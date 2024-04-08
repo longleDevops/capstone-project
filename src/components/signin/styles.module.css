@@ -17,50 +17,6 @@
     top: -80px;
 }
 
-.inputField {
-    margin-bottom: 45px;
-}
-
-.inputField {
-    font-size: 18px;
-    color: #FFFFFF;
-}
-
-.inputField {
-    border: none;
-    height: 45.56px;
-    width: 500px;
-    background-color: transparent;
-    outline: none;
-    border-bottom: 1px solid white;
-}
-
-.inputFieldUnderline {
-    border: none;
-    height: 1px;
-    width: 500px;
-    background-color: #fff;
-    margin-top: 5px;
-}
-
-.inputField::placeholder {
-    color: #FFFFFF;
-}
-
-
-.loginButton {
-    text-decoration: none;
-    background-color: black;
-    border-radius: 18px;
-    height: 53.2px;
-    width: 477.78px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    margin-bottom: 12px;
-}
-
 .signupButton {
     text-decoration: none;
     border: 3px solid black;

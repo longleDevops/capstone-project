@@ -17,37 +17,6 @@
     top: -50px;
 }
 
-.loginInput {
-    margin-bottom: 45px;
-}
-
-.loginInput {
-    font-size: 18px;
-    color: #FFFFFF;
-}
-
-.loginInput {
-    border: none;
-    height: 45.56px;
-    width: 500px;
-    background-color: transparent;
-    outline: none;
-    border-bottom: 1px solid white;
-}
-
-.inputUnderline {
-    border: none;
-    height: 1px;
-    width: 500px;
-    background-color: #fff;
-    margin-top: 5px;
-}
-
-.loginInput::placeholder {
-    color: #FFFFFF;
-}
-
-
 .signupButton {
     text-decoration: none;
     background-color: black;

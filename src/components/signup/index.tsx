@@ -1,8 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import styles from "./styles.module.css";
 import React, { useState } from 'react';
+import Button from "../ui/button";
+import TextInput from "../ui/inputField";
+
+import styles from "./styles.module.css";
 
 export default function LoginForm() {
     // States to store the input field values
@@ -15,45 +17,36 @@ export default function LoginForm() {
         <div className={styles.loginContainer}>
             <div className={styles.loginTitle}>Sign Up</div>
             <div className={styles.inputWrapper}>
-                <input
-                    type="text"
+                <TextInput
                     placeholder="First Name"
-                    className={styles.loginInput}
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                 />
             </div>
             <div className={styles.inputWrapper}>
-                <input
-                    type="text"
+                <TextInput
                     placeholder="Last Name"
-                    className={styles.loginInput}
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                 />
             </div>
             <div className={styles.inputWrapper}>
-                <input
+                <TextInput
                     type="email"
                     placeholder="Email"
-                    className={styles.loginInput}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </div>
             <div className={styles.inputWrapper}>
-                <input
+                <TextInput
                     type="password"
                     placeholder="Password"
-                    className={styles.loginInput}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-
             </div>
-            <div>
-                <Link href="/login" className={styles.signupButton} >Sign up</Link>
-            </div>
+            <Button href="/login">Sign up</Button>
         </div>
     );
 }

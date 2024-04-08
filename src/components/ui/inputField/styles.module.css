@@ -1,0 +1,21 @@
+.input {
+    margin-bottom: 45px;
+}
+
+.input {
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+.input {
+    border: none;
+    height: 45.56px;
+    width: 500px;
+    background-color: transparent;
+    outline: none;
+    border-bottom: 1px solid white;
+}
+
+.input::placeholder {
+    color: #FFFFFF;
+}

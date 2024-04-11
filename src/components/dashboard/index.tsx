@@ -11,13 +11,7 @@ import { faUser, faQuestionCircle, faPowerOff, faCogs, faHandsHelping, faInfoCir
 
 export default function Dashboard() {
     // States to store the input field values
-    const [phoneNumber, setPhoneNo] = useState('');
-    const [selectedGender, setSelectedGender] = useState('');
-    const [Major, setMajor] = useState('');
     
-    const handleSelectChange = (e) => {
-        setSelectedGender(e.target.value);
-    };
 
     return (
         <>

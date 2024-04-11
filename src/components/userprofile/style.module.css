@@ -69,14 +69,15 @@
 .skipButton {
         text-decoration: none;
         background-color: black;
-        border-radius: 18px;
+        border-radius: 38px;
         height: 53.2px;
-        width: 100.78px;
+        width: 150.78px;
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
         margin-top: 15px;
+        font-size: 25px;
 }
 
 .iconWrapper {
@@ -86,10 +87,12 @@
 .icon {
     width: 110px;
     height: 110px;
-    border-radius: 2100%;
+    border-radius: 50%;
     position: top;
-    top: 20;
+    top: 30;
     transform: translateX(0%);
+    padding-bottom: 15px;
+    padding-top: 15px;
   }
 
   .container {

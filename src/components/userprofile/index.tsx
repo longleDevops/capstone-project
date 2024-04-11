@@ -49,7 +49,7 @@ export default function UserProfile() {
                             value={Major}
                             onChange={(e) => setMajor(e.target.value)} />
                     </div>
-                    <button className={styles.skipButton}>Skip</button>
+                    <button className={styles.skipButton}>NEXT</button>
                 </div>
             </div>
         </>

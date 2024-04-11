@@ -27,16 +27,42 @@
 }
 
 .input {
-    border-radius: 10px;
+    border-radius: 18px;
     height: 45.56px;
     width: 500px;
     background-color: white;
     outline: none;
     border-color: transparent;
+    padding-right: 10px;
     padding-left: 10px;
 }
 
 .input::placeholder {
+    color: #838080;
+}
+
+.dropDown{
+    margin-bottom: 45px;
+}
+
+.dropDown{
+    font-size: 18px;
+    color: #0b0a0a;
+}
+
+.dropDown {
+    border-radius: 18px;
+    color: #838080;
+    height: 53px;
+    width: 520px;
+    background-color: white;
+    outline: none;
+    border-color: transparent;
+    padding-right: 10px;
+    padding-left: 4px;
+}
+
+.dropDown::placeholder {
     color: #838080;
 }
 
@@ -54,16 +80,16 @@
 }
 
 .iconWrapper {
-    align-self: center; /* Make the icon wrapper a positioning context */
+    align-self: center;
   }
-  
+
 .icon {
-    width: 110px; /* Adjust the width as needed */
-    height: 110px; /* Adjust the height as needed */
-    border-radius: 2100%; /* Makes the icon circular */
-    position: top; /* Position the icon absolutely */
-    top: 20; /* Align the icon to the top of its container */
-    transform: translateX(0%); /* Center the icon horizontally */
+    width: 110px;
+    height: 110px;
+    border-radius: 2100%;
+    position: top;
+    top: 20;
+    transform: translateX(0%);
   }
 
   .container {

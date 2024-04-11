@@ -1,0 +1,98 @@
+.div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; 
+}
+
+.loginContainer{
+    background-color: rgba(252, 241, 241, 0.5);
+    box-shadow: 0px 5px 5px rgba(228, 226, 226, 0.5);
+    border-radius: 18px;
+    height: 438px;
+    width: 601px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.loginTitle {
+    color: #110d0d;
+    font-size: 36px;
+    position: relative;
+    top: -50px;
+}
+
+.p {
+    color: #110d0d; /* Set the text color */
+    font-size: 20px; /* Set the font size */
+    text-align: left; /* Align the text to the left */
+    /* Add any other styles you want for the element */
+}
+
+.input {
+    margin-bottom: 45px;
+}
+
+.input {
+    font-size: 18px;
+    color: #0b0a0a;
+}
+
+.input {
+    border-radius: 10px;
+    height: 45.56px;
+    width: 500px;
+    background-color: white;
+    outline: none;
+    border-color: transparent;
+    padding-left: 10px;
+}
+
+.input::placeholder {
+    color: #838080;
+}
+
+.skipButton {
+        text-decoration: none;
+        background-color: transparent;
+        border-color: transparent;
+        height: 53.2px;
+        width: 100.78px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        margin-top: 15px;
+}
+
+.iconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.icon {
+    width: 70px; /* Adjust the width as needed */
+    height: 70px; /* Adjust the height as needed */
+    border-radius: 50%; /* Makes the icon circular */
+    transform: translateX(30%); /* Center the icon horizontally */
+    margin-right: 50px; /* Add margin to the right of the icon */
+}
+
+.container {
+    background-color: rgba(131, 79, 79, 0.5);
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 18px;
+    height: 80px;
+    width: 350px;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row; /* Change flex-direction to row */
+}

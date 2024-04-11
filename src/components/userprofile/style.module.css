@@ -1,0 +1,72 @@
+.loginContainer{
+    background-color: rgba(252, 241, 241, 0.5);
+    box-shadow: 0px 5px 5px rgba(228, 226, 226, 0.5);
+    border-radius: 18px;
+    height: 638px;
+    width: 601px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.loginTitle {
+    color: #110d0d;
+    font-size: 36px;
+    position: relative;
+    top: -80px;
+}
+
+.input {
+    margin-bottom: 45px;
+}
+
+.input {
+    font-size: 18px;
+    color: #0b0a0a;
+}
+
+.input {
+    border-radius: 10px;
+    height: 45.56px;
+    width: 500px;
+    background-color: white;
+    outline: none;
+    border-color: transparent;
+    padding-left: 10px;
+}
+
+.input::placeholder {
+    color: #838080;
+}
+
+.skipButton {
+        text-decoration: none;
+        background-color: black;
+        border-radius: 18px;
+        height: 53.2px;
+        width: 100.78px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        margin-top: 15px;
+}
+
+.iconWrapper {
+    align-self: center; /* Make the icon wrapper a positioning context */
+  }
+  
+.icon {
+    width: 110px; /* Adjust the width as needed */
+    height: 110px; /* Adjust the height as needed */
+    border-radius: 2100%; /* Makes the icon circular */
+    position: top; /* Position the icon absolutely */
+    top: 20; /* Align the icon to the top of its container */
+    transform: translateX(0%); /* Center the icon horizontally */
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }

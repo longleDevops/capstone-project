@@ -1,8 +1,5 @@
 "use client";
-import Link from "next/link";
 import React, { useState } from 'react';
-import Button from "../ui/button"
-import TextInput from "../ui/inputField";
 import styles from "./style.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faQuestionCircle, faPowerOff, faCogs, faHandsHelping, faInfoCircle } from '@fortawesome/free-solid-svg-icons'

@@ -24,7 +24,8 @@ export default function UserProfile() {
                     <img src="/user-icon.jpg" alt="Icon" className={styles.icon} />
                 </div>
                 <div className={styles.loginContainer}>
-                    <div className={styles.loginTitle}>Bio</div>
+                    <div className={styles.loginTitle}>Tu Ho</div>
+                    <div className={styles.email}>tu_ho@cwu.edu</div>
                     <div className={styles.inputWrapper}>
                         <input
                             className={styles.input}

@@ -1,7 +1,7 @@
-export default function Home() {
+import { LandingPage } from "@/components/landingpage";
+
+export default function Page() {
   return (
-    <h1 >
-      Survey
-    </h1>
-  );
+    <LandingPage />
+  )
 }

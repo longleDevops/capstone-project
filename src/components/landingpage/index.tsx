@@ -25,7 +25,7 @@ export const LandingPage = () => {
         <SignInButton
           mode="modal"
           afterSignInUrl="/student/dashboard"
-          afterSignUpUrl="/dashboard"
+          afterSignUpUrl="/student/dashboard"
         >
           <button className={styles.student_btn}>
             Login as Student
@@ -42,7 +42,7 @@ export const LandingPage = () => {
         <SignInButton
           mode="modal"
           afterSignInUrl="/admin/dashboard"
-          afterSignUpUrl="/role"
+          afterSignUpUrl="/admin/dashboard"
         >
           <button className={styles.admin_btn}>
             Login as Advisors/Falcuty

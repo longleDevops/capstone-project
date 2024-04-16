@@ -1,5 +1,5 @@
 import { pgTable, serial, text, uuid } from "drizzle-orm/pg-core";
-
+// db schema
 export const users = pgTable("User", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),

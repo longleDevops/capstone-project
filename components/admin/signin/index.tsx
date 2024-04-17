@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from 'react';
-import Button from "../ui/button"
-import TextInput from "../ui/inputField";
+import Button from "../../ui/button"
+import TextInput from "../../ui/inputField";
 
 import styles from "./styles.module.css";
 
@@ -30,20 +30,20 @@ export default function LoginForm() {
     return (
         <div className={styles.loginContainer}>
             <div className={styles.loginTitle}>Log In</div>
-                <TextInput
-                    placeholder="Email"
-                    value={email}
-                    onChange={handleEmailChange}
-                    onBlur={handleEmailBlur}
-                />
-                {emailWarning && <span className={styles.warning}>{emailWarning}</span>}
-                <TextInput
-                    type="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
+            <TextInput
+                placeholder="Email"
+                value={email}
+                onChange={handleEmailChange}
+                onBlur={handleEmailBlur}
+            />
+            {emailWarning && <span className={styles.warning}>{emailWarning}</span>}
+            <TextInput
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+            />
             <Button href="/login">Login</Button>
 
             <div>

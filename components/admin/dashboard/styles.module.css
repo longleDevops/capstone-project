@@ -16,3 +16,17 @@
   padding: 20px;
   border: 1px black solid;
 }
+
+.submission_container{
+  border:1px black solid;
+  margin-right: 20px;
+  padding: 20px;
+}
+
+.submission_row{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 20px;
+  justify-content: space-between;
+}

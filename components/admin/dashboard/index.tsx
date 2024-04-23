@@ -1,6 +1,5 @@
 import styles from "./styles.module.css"
 
-
 const items = [
   {
     name: "kevin",
@@ -18,6 +17,27 @@ const items = [
     year: "2022"
   }
 ]
+
+const submissions = [
+  {
+    name: "Kevin",
+    survey: "Post graduation survey",
+    status: "completed",
+    date: "04/23/2024"
+  },
+  {
+    name: "Kevin",
+    survey: "Post graduation survey",
+    status: "completed",
+    date: "04/23/2024"
+  },
+  {
+    name: "Kevin",
+    survey: "Post graduation survey",
+    status: "completed",
+    date: "04/23/2024"
+  }
+]
 export const AdminDashboard = () => {
   return (
     <div className={styles.container}>
@@ -31,7 +51,16 @@ export const AdminDashboard = () => {
         ))}
       </div>
       <p>Recent Submissions</p>
-
+      <div className={styles.submission_container}>
+        {submissions.map((item) => (
+          <div className={styles.submission_row}>
+            <p>{item.name}</p>
+            <p>{item.survey}</p>
+            <p>{item.status}</p>
+            <p>{item.date}</p>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

@@ -1,0 +1,10 @@
+.header {
+    display: flex;
+    justify-content: end;
+    padding: 40px;
+}
+
+.cwuLogo{
+    height: 100px;
+    width: 100px;
+}

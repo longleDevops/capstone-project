@@ -1,10 +1,3 @@
-/* Add the "My Profile" section */
-.myProfile {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
 .div{
     display: flex;
     align-items: center;
@@ -16,15 +9,12 @@
     background-color: rgba(252, 241, 241, 0.5);
     box-shadow: 0px 5px 5px rgba(228, 226, 226, 0.5);
     border-radius: 18px;
-    height: 600px;
-    width: 650px;
+    height: 438px;
+    width: 601px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    backdrop-filter: blur(90px);
-    position: relative;
-    margin-top: 75px;
 }
 
 .loginTitle {
@@ -34,30 +24,26 @@
     top: -50px;
 }
 
-/*user*/
-.user{
-    position: absolute;
-    right: 0;
-    top: 0;
-}
 /* Style the links */
-.link {
-    padding: 16px 24px;
-    text-decoration: none;
-    font-size: 16px;
+.skipButton {
+    display: block;
+    background-color: transparent;
     color: black;
-    display: flex;
-    align-items: center;
-    
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
 }
 
-.link:hover{
-    background-color: darkorange;
+.skipButton:hover {
+    background-color: #b95e29;
 }
 
-.title{
-    width: 100px;
-    margin-left: 6px;
+.p{
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    margin-right: 550px;
 }
 
 /* Style the "More" link */
@@ -72,13 +58,10 @@
 }
 
 .iconWrapper {
-    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     text-align: left;
-    gap: 8px;
-    
 }
 
 .icon {
@@ -90,26 +73,16 @@
 }
 
 .container {
-    background-color: rgba(131, 79, 79, 0.2);
+    background-color: rgba(131, 79, 79, 0.5);
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    padding:16px 60px;
+    border-radius: 18px;
+    height: 80px;
+    width: 350px;
     position: absolute;
-    top: 110px;
-    right: 8px;
+    top: 100px;
+    right: 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-direction: row; /* Change flex-direction to row */
-    backdrop-filter: blur(90px);
-}
-.imageHolder {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-top: 50px;
-    margin-right: 50px;
 }

@@ -25,14 +25,21 @@
   font-size: 25px;
 }
 
-.student_btn {
+.signin_btn {
   padding: 16px;
   width: 220px;
   cursor: pointer;  
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  border-color: transparent;
 }
 
-.admin_btn{
+.signup_btn{
   padding:16px;
   width: 220px;
   cursor:pointer;
+  border-radius: 10px;
+  border-color: transparent;
+  background-color: rgba(245, 245, 245, 5);
 }

@@ -1,6 +1,6 @@
 import Image from "next/image"
 import styles from "./styles.module.css";
-import { ClerkLoaded, ClerkLoading, SignInButton, UserButton } from "@clerk/nextjs";
+import { ClerkLoaded, ClerkLoading, SignInButton, UserButton, SignUpButton } from "@clerk/nextjs";
 
 export const LandingPage = () => {
   return (
@@ -17,8 +17,8 @@ export const LandingPage = () => {
       </p>
       <p className={styles.title}>for CWU students</p>
       <ClerkLoading>
-        <button className={styles.student_btn}>
-          Login as Student
+        <button className={styles.signin_btn}>
+          Sign In
         </button>
       </ClerkLoading>
       <ClerkLoaded>
@@ -27,27 +27,27 @@ export const LandingPage = () => {
           afterSignInUrl="/student/dashboard"
           afterSignUpUrl="/student/dashboard"
         >
-          <button className={styles.student_btn}>
-            Login as Student
+          <button className={styles.signin_btn}>
+            Sign In
           </button>
         </SignInButton>
       </ClerkLoaded>
 
       <ClerkLoading>
-        <button className={styles.student_btn}>
-          Login as Advisors/Falcuty
+        <button className={styles.signup_btn}>
+          Sign Up
         </button>
       </ClerkLoading>
       <ClerkLoaded>
-        <SignInButton
+        <SignUpButton
           mode="modal"
-          afterSignInUrl="/admin/dashboard"
-          afterSignUpUrl="/admin/dashboard"
+          afterSignInUrl="/student/dashboard"
+          afterSignUpUrl="/student/dashboard"
         >
-          <button className={styles.admin_btn}>
-            Login as Advisors/Falcuty
+          <button className={styles.signup_btn}>
+            Sign Up
           </button>
-        </SignInButton>
+        </SignUpButton>
       </ClerkLoaded>
       <UserButton afterSignOutUrl="/" />
     </div>

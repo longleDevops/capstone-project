@@ -53,7 +53,7 @@ export const AdminDashboard = () => {
       <p>Recent Submissions</p>
       <div className={styles.submission_container}>
         {submissions.map((item) => (
-          <div className={styles.submission_row}>
+          <div className={styles.submission_row} key={item.name}>
             <p>{item.name}</p>
             <p>{item.survey}</p>
             <p>{item.status}</p>

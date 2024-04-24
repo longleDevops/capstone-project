@@ -1,83 +1,101 @@
 .surveyContainer {
-    max-width: 600px; /* Adjust width as needed */
-    margin: 0 auto; /* Center the container */
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: rgba(252, 241, 241, 0.5);
-    box-shadow: 0px 5px 5px rgba(228, 226, 226, 0.5);
-    border-radius: 18px;
-    overflow: hidden; /* Hide overflow */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    position: relative;
-    margin-top: 25px;
-    padding-bottom: 50px;
-    max-height: 800px;
-  }
-  
-  
-  
-  .survey-header {
-    font-size: 32px; /* Increase font size */
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center; /* Center the text */
-  }
-  
-  .survey-question {
-    margin-bottom: 20px;
-  }
-  
-  .question-text {
-    font-weight: bold;
-    font-size: 18px; /* Larger font size for questions */
-    margin-bottom: 10px;
-  }
-  
-  .utilization-ratings,
-  .satisfaction-ratings {
-    margin-left: 20px; /* Indent the ratings */
-  }
-  
-  .utilization-ratings p,
-  .satisfaction-ratings p {
-    margin: 10px 0; /* Adjust margin for spacing */
-  }
-  
-  .rating-options input[type="radio"] {
-    margin-right: 10px; /* Add spacing between radio buttons */
-  }
-  
-  .rating-options label {
-    margin-right: 20px; /* Add spacing between radio buttons and labels */
-    font-size: 16px; /* Adjust font size for ratings */
-    font-weight: bold;
-  }
-  
-  
-  .imageHolder {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-top: 50px;
-    margin-right: 50px;
-  }
-  
-  
-  .button {
-    text-decoration: none;
-    background-color: black;
-    border-radius: 18px;
-    height: 45px;
-    width: 170px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    margin-bottom: 12px;
-    font-size: 16px; /* Adjust the font size as needed */
-    
-  }
+  width: 600px; /* Adjust width as needed */
+  margin: auto; /* Center the container horizontally */
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: rgba(252, 241, 241, 0.5);
+  box-shadow: 0px 5px 5px rgba(228, 226, 226, 0.5);
+  border-radius: 18px;
+  overflow: hidden; /* Hide overflow */
+  position: relative;
+  margin-top: 30%;
+  padding-bottom: 50px;
+  max-height: 800px;
+  justify-content: center;
+
+}
+
+.survey-header {
+  font-size: 32px; /* Increase font size */
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center; /* Center the text */
+}
+
+.survey-table {
+  width: 100%;
+}
+
+.survey-table td {
+  padding: 10px;
+}
+
+.survey-table select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.button {
+  text-decoration: none;
+  background-color: black;
+  border-radius: 18px;
+  height: 45px;
+  width: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 12px;
+  font-size: 16px; /* Adjust the font size as needed */
+  border: none; /* Remove default button border */
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #333; /* Darken color on hover */
+}
+
+/* Center the renderTable content */
+.renderTableContainer {
+  display: flex;
+  justify-content: center;
+}
+
+/* Ensure the image is at the top left */
+.imageHolder {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 50px;
+}
+
+.cwuImage {
+  height: 100%; /* Fill the height of the imageHolder */
+  width: auto; /* Maintain aspect ratio */
+}
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  /* Adjust the margin as needed */
+  cursor: pointer;
+}
+
+/* Center and space buttons */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  /* Adjust the top margin as needed */
+}

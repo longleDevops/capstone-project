@@ -1,22 +1,6 @@
+import { Statistics } from "./statistics"
+import { StudentProfile } from "./student-profile"
 import styles from "./styles.module.css"
-
-const items = [
-  {
-    name: "kevin",
-    major: "math",
-    year: "2022"
-  },
-  {
-    name: "kevin",
-    major: "math",
-    year: "2022"
-  },
-  {
-    name: "kevin",
-    major: "math",
-    year: "2022"
-  }
-]
 
 const submissions = [
   {
@@ -41,14 +25,13 @@ const submissions = [
 export const AdminDashboard = () => {
   return (
     <div className={styles.container}>
-      <p>Dashboard</p>
-      <p>Welcome back Angela.</p>
-      <div className={styles.item_container}>
-        {items.map((item) => (
-          <div className={styles.item_holder} key={item.name}>
-            {item.name}
-          </div>
-        ))}
+      <p className={styles.dashboard_text}>Dashboard</p>
+      <p className={styles.welcome_text}>Welcome back Angela.</p>
+      <div className={styles.statistics_container}>
+        <Statistics />
+      </div>
+      <div className={styles.profile_container}>
+        <StudentProfile />
       </div>
       <p>Recent Submissions</p>
       <div className={styles.submission_container}>

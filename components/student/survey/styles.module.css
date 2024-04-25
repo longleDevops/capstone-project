@@ -1,25 +1,105 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  margin-bottom: 15px;
+}
+
+.input {
+  font-size: 15px;
+  color: #838080;
+}
+
+.input {
+  border-radius: 10px 10px 0 0;
+  height: 13px;
+  width: 231px;
+  background-color: white;
+  outline: none;
+  border-color: transparent;
+  padding: 10px;
+}
+
+.dropDown {
+  margin-bottom: 15px;
+}
+
+.dropDown {
+  font-size: 15px;
+  color: #0b0a0a;
+}
+
+.dropDown {
+  border-radius: 10px 10px 0 0;
+  color: #838080;
+  height: 40px;
+  width: 255px;
+  background-color: white;
+  outline: none;
+  border-color: transparent;
+  padding: 10px;
+}
+
+.question {
+  color: #110d0d;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.title {
+  color: #110d0d;
+  font-size: 45px;
+  font-weight: bold;
+  margin-bottom: 45px;
+}
+
+.nextButton {
+  text-decoration: none;
+  background-color: black;
+  border-radius: 38px;
+  height: 53.2px;
+  width: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-top: 15px;
+  margin-left: 50px;
+  font-size: 25px;
+}
+
 .surveyContainer {
-  width: 600px; /* Adjust width as needed */
-  margin: auto; /* Center the container horizontally */
+  width: 500px;
+  /* Adjust width as needed */
+  margin: auto;
+  /* Center the container horizontally */
   padding: 20px;
   border: 1px solid #ccc;
   background-color: rgba(252, 241, 241, 0.5);
   box-shadow: 0px 5px 5px rgba(228, 226, 226, 0.5);
   border-radius: 18px;
-  overflow: hidden; /* Hide overflow */
+  overflow: hidden;
+  /* Hide overflow */
   position: relative;
   margin-top: 30%;
   padding-bottom: 50px;
   max-height: 800px;
   justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
 }
 
 .survey-header {
-  font-size: 32px; /* Increase font size */
+  font-size: 32px;
+  /* Increase font size */
   font-weight: bold;
   margin-bottom: 20px;
-  text-align: center; /* Center the text */
+  text-align: center;
+  /* Center the text */
 }
 
 .survey-table {
@@ -51,13 +131,16 @@
   justify-content: center;
   color: white;
   margin-bottom: 12px;
-  font-size: 16px; /* Adjust the font size as needed */
-  border: none; /* Remove default button border */
+  font-size: 16px;
+  /* Adjust the font size as needed */
+  border: none;
+  /* Remove default button border */
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: #333; /* Darken color on hover */
+  background-color: #333;
+  /* Darken color on hover */
 }
 
 /* Center the renderTable content */
@@ -75,9 +158,12 @@
 }
 
 .cwuImage {
-  height: 100%; /* Fill the height of the imageHolder */
-  width: auto; /* Maintain aspect ratio */
+  height: 100%;
+  /* Fill the height of the imageHolder */
+  width: auto;
+  /* Maintain aspect ratio */
 }
+
 .button {
   background-color: #4CAF50;
   border: none;

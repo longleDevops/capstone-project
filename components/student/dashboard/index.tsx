@@ -2,7 +2,7 @@
 
 "use client";
 
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
 import styles from "./style.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faQuestionCircle, faPowerOff, faCogs, faHandsHelping, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
@@ -18,7 +18,7 @@ const items = [
         icon: UserRound
     },
     {
-        href: "/student/survey",
+        href: "/student/profile",
         title: "Take Survey",
         icon: CircleArrowRight
     },
@@ -42,28 +42,28 @@ const items = [
 export default function Dashboard() {
     return (
         <>
-            <div className = {styles.imageHolder}>  
-                <img src="/cwu-logo.png" alt="CWU Logo" className={styles.cwuImage} /> 
+            <div className={styles.imageHolder}>
+                <img src="/cwu-logo.png" alt="CWU Logo" className={styles.cwuImage} />
             </div>
-        <div className={styles.container}>
+            <div className={styles.container}>
 
-        <div className={styles.iconWrapper}>
-            {/* Display the icon image */}
-            <UserButton afterSignOutUrl='/' />
-            <div>Tu Ho</div>
-        </div>
-        </div>
+                <div className={styles.iconWrapper}>
+                    {/* Display the icon image */}
+                    <UserButton afterSignOutUrl='/' />
+                    <div>Tu Ho</div>
+                </div>
+            </div>
 
-        <div className={styles.loginContainer}>
-        {items.map((item) => (
-            <Link href={item.href} key={item.href} className={styles.link}>
-                <item.icon />
-                <p className={styles.title}>
-                    {item.title}
-                </p>
-            </Link>
-            ))}
-        </div>
-    </>
+            <div className={styles.loginContainer}>
+                {items.map((item) => (
+                    <Link href={item.href} key={item.href} className={styles.link}>
+                        <item.icon />
+                        <p className={styles.title}>
+                            {item.title}
+                        </p>
+                    </Link>
+                ))}
+            </div>
+        </>
     );
 }

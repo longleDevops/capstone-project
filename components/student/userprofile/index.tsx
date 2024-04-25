@@ -25,12 +25,11 @@ export default function UserProfile() {
 					<img src="/user-icon.jpg" alt="Icon" className={styles.icon} />
 				</div>
 				<div className={styles.loginContainer}>
-					<div className={styles.loginTitle}>Tu Ho</div>
-					<div className={styles.email}>tu_ho@cwu.edu</div>
+					<div className={styles.loginTitle}>Student Info</div>
 					<div className={styles.inputWrapper}>
 						<input
 							className={styles.input}
-							placeholder="Phone Number"
+							placeholder="Your name"
 							value={phoneNumber}
 							onChange={(e) => setPhoneNo(e.target.value)} />
 					</div>
@@ -47,7 +46,7 @@ export default function UserProfile() {
 					<div className={styles.inputWrapper}>
 						<input
 							className={styles.input}
-							placeholder="What is your major?"
+							placeholder="What is your CWU ID?"
 							value={Major}
 							onChange={(e) => setMajor(e.target.value)} />
 					</div>

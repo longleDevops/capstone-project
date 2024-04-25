@@ -370,33 +370,40 @@ export default function Survey() {
                 return (
                     <div>
                         {/* CURRENT EMPLOYMENT STATUS */}
+                        <div className={styles.title}>Employment Status</div>
                         <div className="survey-question">
-                            <p className="question-text">Are you currently employed?</p>
-                            <select value={employmentStatus} onChange={(e) => setEmploymentStatus(e.target.value)}>
+                            <div className={styles.question}>Are you currently employed?</div>
+                            <select value={employmentStatus} onChange={(e) => setEmploymentStatus(e.target.value)} className={styles.dropDown}>
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                             {employmentStatus === 'Yes' && (
                                 <div>
-                                    <p>Is your current job relevant to your major?</p>
-                                    <select value={jobRelevance} onChange={(e) => setJobRelevance(e.target.value)}>
+                                    <div className={styles.question}>Is your current job relevant to your major?</div>
+                                    <select value={jobRelevance} onChange={(e) => setJobRelevance(e.target.value)} className={styles.dropDown}>
                                         <option value="">Select</option>
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
                                     </select>
-                                    <p>Job Title:</p>
-                                    <input type="text" value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} />
-                                    <p>Salary range:</p>
-                                    <select value={salaryRange} onChange={(e) => setSalaryRange(e.target.value)}>
+                                    <div className={styles.question}>What is your job?</div>
+                                    <div className={styles.inputWrapper}>
+                                        <input
+                                            className={styles.input}
+                                            placeholder="Job Title"
+                                            value={jobTitle}
+                                            onChange={(e) => setJobTitle(e.target.value)} />
+                                    </div>
+                                    <div className={styles.question}>What is your salary range?</div>
+                                    <select value={salaryRange} onChange={(e) => setSalaryRange(e.target.value)} className={styles.dropDown}>
                                         <option value="">Select Range</option>
                                         <option value="$0 - $20,000">$0 - $20,000</option>
                                         <option value="$20,001 - $40,000">$20,001 - $40,000</option>
                                         <option value="$40,001 - $60,000">$40,001 - $60,000</option>
                                         {/* List of salary ranges */}
                                     </select>
-                                    <p>Please enter the month and year you secured a job:</p>
-                                    <select value={jobSecuredMonth} onChange={(e) => setJobSecuredMonth(e.target.value)}>
+                                    <div className={styles.question}>Please enter the month and year you secured a job:</div>
+                                    <select value={jobSecuredMonth} onChange={(e) => setJobSecuredMonth(e.target.value)} className={styles.dropDown}>
                                         <option value="">Select Month</option>
                                         <option value="January">January</option>
                                         <option value="February">February</option>
@@ -411,7 +418,7 @@ export default function Survey() {
                                         <option value="November">November</option>
                                         <option value="December">December</option>
                                     </select>
-                                    <select value={jobSecuredYear} onChange={(e) => setJobSecuredYear(e.target.value)}>
+                                    <select value={jobSecuredYear} onChange={(e) => setJobSecuredYear(e.target.value)} className={styles.dropDown}>
                                         <option value="">Select Year</option>
                                         <option value="2022">2022</option>
                                         <option value="2023">2023</option>
@@ -424,19 +431,25 @@ export default function Survey() {
                             )}
                             {employmentStatus === 'No' && (
                                 <div>
-                                    <p>Are you currently pursuing another academic degree?</p>
-                                    <select value={pursuingDegree} onChange={(e) => setPursuingDegree(e.target.value)}>
+                                    <div className={styles.question}>Are you currently pursuing another academic degree?</div>
+                                    <select value={pursuingDegree} onChange={(e) => setPursuingDegree(e.target.value)} className={styles.dropDown}>
                                         <option value="">Select</option>
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
                                     </select>
                                     {pursuingDegree === 'No' && (
                                         <div>
-                                            <p>What kind of jobs do you expect to pursue?</p>
-                                            <input type="text" value={expectedJobs} onChange={(e) => setExpectedJobs(e.target.value)} />
+                                            <div className={styles.question}>What kind of jobs do you expect to pursue?</div>
+                                            <div className={styles.inputWrapper}>
+                                                <input
+                                                    className={styles.input}
+                                                    placeholder="Job Title"
+                                                    value={expectedJobs}
+                                                    onChange={(e) => setExpectedJobs(e.target.value)} />
+                                            </div>
                                             <div className="survey-question">
-                                                <p className="question-text">How do these expected job opportunities relate to your major at CWU? (Ratio 1-5)</p>
-                                                <div className="rating-options">
+                                                <div className={styles.question}>How do these expected job opportunities relate to your major at CWU? (Ratio 1-5)</div>
+                                                <div className={styles.ratingOptions}>
                                                     <input type="radio" id="jobRelation1" name="jobRelation" value="1" />
                                                     <label htmlFor="jobRelation1">1</label>
                                                     <input type="radio" id="jobRelation2" name="jobRelation" value="2" />
@@ -450,8 +463,8 @@ export default function Survey() {
                                                 </div>
                                             </div>
 
-                                            <p>What salary range do you expect for these positions?</p>
-                                            <select value={expectedSalaryRange} onChange={(e) => setExpectedSalaryRange(e.target.value)}>
+                                            <div className={styles.question}>What salary range do you expect for these positions?</div>
+                                            <select value={expectedSalaryRange} onChange={(e) => setExpectedSalaryRange(e.target.value)} className={styles.dropDown}>
                                                 <option value="">Select Range</option>
                                                 <option value="$0 - $20,000">$0 - $20,000</option>
                                                 <option value="$20,001 - $40,000">$20,001 - $40,000</option>
@@ -464,8 +477,10 @@ export default function Survey() {
                             )}
                         </div>
                         {/* Submit Button */}
-                        <button onClick={handleBack}>Back</button>
-                        <button className={styles.button} onClick={handleSubmit}>SUBMIT</button>
+                        <div className={styles.buttonContainer}>
+                            <button onClick={handleBack} className={styles.nextButton}>Back</button>
+                            <button onClick={handleSubmit} className={styles.nextButton}>SUBMIT</button>
+                        </div>
                     </div>
                 );
 

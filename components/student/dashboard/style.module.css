@@ -5,41 +5,20 @@
     margin-bottom: 20px;
 }
 
-.div{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column; 
-}
-
-.loginContainer{
-    background-color: rgba(252, 241, 241, 0.5);
-    box-shadow: 0px 5px 5px rgba(228, 226, 226, 0.5);
-    border-radius: 18px;
-    height: 600px;
-    width: 650px;
+.div {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    backdrop-filter: blur(90px);
-    position: relative;
-    margin-top: 75px;
-}
-
-.loginTitle {
-    color: #110d0d;
-    font-size: 36px;
-    position: relative;
-    top: -50px;
 }
 
 /*user*/
-.user{
+.user {
     position: absolute;
     right: 0;
     top: 0;
 }
+
 /* Style the links */
 .link {
     padding: 16px 24px;
@@ -48,14 +27,14 @@
     color: black;
     display: flex;
     align-items: center;
-    
+
 }
 
-.link:hover{
+.link:hover {
     background-color: darkorange;
 }
 
-.title{
+.title {
     width: 100px;
     margin-left: 6px;
 }
@@ -78,31 +57,38 @@
     justify-content: flex-start;
     text-align: left;
     gap: 8px;
-    
+
 }
 
 .icon {
-    width: 70px; /* Adjust the width as needed */
-    height: 70px; /* Adjust the height as needed */
-    border-radius: 50%; /* Makes the icon circular */
-    transform: translateX(30%); /* Center the icon horizontally */
-    margin-right: 50px; /* Add margin to the right of the icon */
+    width: 70px;
+    /* Adjust the width as needed */
+    height: 70px;
+    /* Adjust the height as needed */
+    border-radius: 50%;
+    /* Makes the icon circular */
+    transform: translateX(30%);
+    /* Center the icon horizontally */
+    margin-right: 50px;
+    /* Add margin to the right of the icon */
 }
 
 .container {
     background-color: rgba(131, 79, 79, 0.2);
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    padding:16px 60px;
+    padding: 16px 60px;
     position: absolute;
     top: 110px;
     right: 8px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    flex-direction: row; /* Change flex-direction to row */
+    flex-direction: row;
+    /* Change flex-direction to row */
     backdrop-filter: blur(90px);
 }
+
 .imageHolder {
     width: 100px;
     height: 100px;

@@ -1,0 +1,8 @@
+.container {
+  width: 100%;
+  padding: 20px 20px 0px 240px;
+}
+
+.container::-webkit-scrollbar{
+  display: none;
+}

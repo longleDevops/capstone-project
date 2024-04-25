@@ -178,7 +178,7 @@ export default function Survey() {
                                         <div className={styles.container}>
                                             <div className={styles.question}>How much did you learn through your use of the career information provided by the career services office?</div>
                                             <div className={styles.container}>
-                                                <div className={styles.question}>2.1. I learned how to explore, make career decisions, and plan my career goals.</div>
+                                                <div className={styles.question}>I learned how to explore, make career decisions, and plan my career goals.</div>
                                                 <div className={styles.ratingOptions}>
                                                     <input type="radio" id="utilizationRating2_1_1" name="utilizationRating2_1" value="1" />
                                                     <label htmlFor="utilizationRating2_1_1">1</label>
@@ -192,7 +192,7 @@ export default function Survey() {
                                                     <label htmlFor="utilizationRating2_1_5">5</label>
                                                 </div>
 
-                                                <div className={styles.question}>2.2. I learned about current occupations and the job market.</div>
+                                                <div className={styles.question}>I learned about current occupations and the job market.</div>
                                                 <div className={styles.ratingOptions}>
                                                     <input type="radio" id="utilizationRating2_2_1" name="utilizationRating2_2" value="1" />
                                                     <label htmlFor="utilizationRating2_2_1">1</label>
@@ -206,7 +206,7 @@ export default function Survey() {
                                                     <label htmlFor="utilizationRating2_2_5">5</label>
                                                 </div>
 
-                                                <div className={styles.question}>2.3. I learned about employment and the job search.</div>
+                                                <div className={styles.question}>I learned about employment and the job search.</div>
                                                 <div className={styles.ratingOptions}>
                                                     <input type="radio" id="utilizationRating2_3_1" name="utilizationRating2_3" value="1" />
                                                     <label htmlFor="utilizationRating2_3_1">1</label>
@@ -219,7 +219,7 @@ export default function Survey() {
                                                     <input type="radio" id="utilizationRating2_3_5" name="utilizationRating2_3" value="5" />
                                                     <label htmlFor="utilizationRating2_3_5">5</label>
                                                 </div>
-                                                <div className={styles.question}>2.4. I learned about interviewing and communication.</div>
+                                                <div className={styles.question}>I learned about interviewing and communication.</div>
                                                 <div className={styles.ratingOptions}>
                                                     <input type="radio" id="utilizationRating2_4_1" name="utilizationRating2_4" value="1" />
                                                     <label htmlFor="utilizationRating2_4_1">1</label>
@@ -233,7 +233,7 @@ export default function Survey() {
                                                     <label htmlFor="utilizationRating2_4_5">5</label>
                                                 </div>
 
-                                                <div className={styles.question}>2.5. I learned about writing resume and job preparation questions.</div>
+                                                <div className={styles.question}>I learned about writing resume and job preparation questions.</div>
                                                 <div className={styles.ratingOptions}>
                                                     <input type="radio" id="utilizationRating2_5_1" name="utilizationRating2_5" value="1" />
                                                     <label htmlFor="utilizationRating2_5_1">1</label>
@@ -267,7 +267,7 @@ export default function Survey() {
                         <div className="survey-question">
                             <div className={styles.question}>How much did you satisfy through your use of the career information provided by the career services office?</div>
                             <div>
-                                <div className={styles.question}>3.1. Career planning and decisions.</div>
+                                <div className={styles.question}>Career planning and decisions.</div>
                                 <div className={styles.ratingOptions}>
                                     <input type="radio" id="satisfactionRating3_1_1" name="satisfactionRating3_1" value="1" />
                                     <label htmlFor="satisfactionRating3_1_1">1</label>
@@ -281,7 +281,7 @@ export default function Survey() {
                                     <label htmlFor="satisfactionRating3_1_5">5</label>
                                 </div>
 
-                                <div className={styles.question}>3.2. Occupations and the job market.</div>
+                                <div className={styles.question}>Occupations and the job market.</div>
                                 <div className={styles.ratingOptions}>
                                     <input type="radio" id="satisfactionRating3_2_1" name="satisfactionRating3_2" value="1" />
                                     <label htmlFor="satisfactionRating3_2_1">1</label>
@@ -294,7 +294,7 @@ export default function Survey() {
                                     <input type="radio" id="satisfactionRating3_2_5" name="satisfactionRating3_2" value="5" />
                                     <label htmlFor="satisfactionRating3_2_5">5</label>
                                 </div>
-                                <div className={styles.question}>3.3. Listings of full time job/internship oppotunities/ Job Network</div>
+                                <div className={styles.question}>Listings of full time job/internship oppotunities/ Job Network</div>
                                 <div className={styles.ratingOptions}>
                                     <input type="radio" id="satisfactionRating3_3_1" name="satisfactionRating3_3" value="1" />
                                     <label htmlFor="satisfactionRating3_3_1">1</label>
@@ -307,7 +307,7 @@ export default function Survey() {
                                     <input type="radio" id="satisfactionRating3_3_5" name="satisfactionRating3_3" value="5" />
                                     <label htmlFor="satisfactionRating3_3_5">5</label>
                                 </div>
-                                <div className={styles.question}>3.4. Building interview/communication skills</div>
+                                <div className={styles.question}>Building interview/communication skills</div>
                                 <div className={styles.ratingOptions}>
                                     <input type="radio" id="satisfactionRating3_4_1" name="satisfactionRating3_4" value="1" />
                                     <label htmlFor="satisfactionRating3_4_1">1</label>
@@ -320,7 +320,7 @@ export default function Survey() {
                                     <input type="radio" id="satisfactionRating3_4_5" name="satisfactionRating3_4" value="5" />
                                     <label htmlFor="satisfactionRating3_4_5">5</label>
                                 </div>
-                                <div className={styles.question}>3.5	Building writing resume/CV skills</div>
+                                <div className={styles.question}>Building writing resume/CV skills</div>
                                 <div className={styles.ratingOptions}>
                                     <input type="radio" id="satisfactionRating3_5_1" name="satisfactionRating3_5" value="1" />
                                     <label htmlFor="satisfactionRating3_2_1">1</label>
@@ -333,7 +333,7 @@ export default function Survey() {
                                     <input type="radio" id="satisfactionRating3_5_5" name="satisfactionRating3_5" value="5" />
                                     <label htmlFor="satisfactionRating3_2_5">5</label>
                                 </div>
-                                <div className={styles.question}>3.6	Career information accessible through the career services website.</div>
+                                <div className={styles.question}>Career information accessible through the career services website.</div>
                                 <div className={styles.ratingOptions}>
                                     <input type="radio" id="satisfactionRating3_6_1" name="satisfactionRating3_6" value="1" />
                                     <label htmlFor="satisfactionRating3_6_1">1</label>
@@ -346,7 +346,7 @@ export default function Survey() {
                                     <input type="radio" id="satisfactionRating3_6_5" name="satisfactionRating3_6" value="5" />
                                     <label htmlFor="satisfactionRating3_6_5">5</label>
                                 </div>
-                                <div className={styles.question}>3.7	Staff who help you find career infomation.</div>
+                                <div className={styles.question}>Staff who help you find career infomation.</div>
                                 <div className={styles.ratingOptions}>
                                     <input type="radio" id="satisfactionRating3_7_1" name="satisfactionRating3_7" value="1" />
                                     <label htmlFor="satisfactionRating3_7_1">1</label>

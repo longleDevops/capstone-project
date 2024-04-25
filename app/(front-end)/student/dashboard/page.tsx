@@ -1,6 +1,9 @@
-import Dashboard from "@/components/student/dashboard";
-export default function Userdashboard() {
+import { Dashboard } from "@/components/student/dashboard";
+
+const Page = () => {
     return (
         <Dashboard />
-    );
+    )
 }
+
+export default Page

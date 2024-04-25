@@ -174,11 +174,12 @@ export default function Survey() {
                             <tbody>
                                 <tr>
                                     <td>
-                                        <div className="survey-question">
-                                            <p className="question-text">How much did you learn through your use of the career information provided by the career services office?</p>
-                                            <div className="utilization-ratings">
-                                                <p>2.1. I learned how to explore, make career decisions, and plan my career goals.</p>
-                                                <div className="rating-options">
+                                        <div className={styles.title}>Career Survey</div>
+                                        <div className={styles.container}>
+                                            <div className={styles.question}>How much did you learn through your use of the career information provided by the career services office?</div>
+                                            <div className={styles.container}>
+                                                <div className={styles.question}>2.1. I learned how to explore, make career decisions, and plan my career goals.</div>
+                                                <div className={styles.ratingOptions}>
                                                     <input type="radio" id="utilizationRating2_1_1" name="utilizationRating2_1" value="1" />
                                                     <label htmlFor="utilizationRating2_1_1">1</label>
                                                     <input type="radio" id="utilizationRating2_1_2" name="utilizationRating2_1" value="2" />
@@ -191,8 +192,8 @@ export default function Survey() {
                                                     <label htmlFor="utilizationRating2_1_5">5</label>
                                                 </div>
 
-                                                <p>2.2. I learned about current occupations and the job market.</p>
-                                                <div className="rating-options">
+                                                <div className={styles.question}>2.2. I learned about current occupations and the job market.</div>
+                                                <div className={styles.ratingOptions}>
                                                     <input type="radio" id="utilizationRating2_2_1" name="utilizationRating2_2" value="1" />
                                                     <label htmlFor="utilizationRating2_2_1">1</label>
                                                     <input type="radio" id="utilizationRating2_2_2" name="utilizationRating2_2" value="2" />
@@ -205,8 +206,8 @@ export default function Survey() {
                                                     <label htmlFor="utilizationRating2_2_5">5</label>
                                                 </div>
 
-                                                <p>2.3. I learned about employment and the job search.</p>
-                                                <div className="rating-options">
+                                                <div className={styles.question}>2.3. I learned about employment and the job search.</div>
+                                                <div className={styles.ratingOptions}>
                                                     <input type="radio" id="utilizationRating2_3_1" name="utilizationRating2_3" value="1" />
                                                     <label htmlFor="utilizationRating2_3_1">1</label>
                                                     <input type="radio" id="utilizationRating2_3_2" name="utilizationRating2_3" value="2" />
@@ -218,8 +219,8 @@ export default function Survey() {
                                                     <input type="radio" id="utilizationRating2_3_5" name="utilizationRating2_3" value="5" />
                                                     <label htmlFor="utilizationRating2_3_5">5</label>
                                                 </div>
-                                                <p>2.4. I learned about interviewing and communication.</p>
-                                                <div className="rating-options">
+                                                <div className={styles.question}>2.4. I learned about interviewing and communication.</div>
+                                                <div className={styles.ratingOptions}>
                                                     <input type="radio" id="utilizationRating2_4_1" name="utilizationRating2_4" value="1" />
                                                     <label htmlFor="utilizationRating2_4_1">1</label>
                                                     <input type="radio" id="utilizationRating2_4_2" name="utilizationRating2_4" value="2" />
@@ -232,8 +233,8 @@ export default function Survey() {
                                                     <label htmlFor="utilizationRating2_4_5">5</label>
                                                 </div>
 
-                                                <p>2.5. I learned about writing resume and job preparation questions.</p>
-                                                <div className="rating-options">
+                                                <div className={styles.question}>2.5. I learned about writing resume and job preparation questions.</div>
+                                                <div className={styles.ratingOptions}>
                                                     <input type="radio" id="utilizationRating2_5_1" name="utilizationRating2_5" value="1" />
                                                     <label htmlFor="utilizationRating2_5_1">1</label>
                                                     <input type="radio" id="utilizationRating2_5_2" name="utilizationRating2_5" value="2" />
@@ -252,19 +253,22 @@ export default function Survey() {
                                 {/* Add more rows for additional questions */}
                             </tbody>
                         </table>
-                        <button onClick={handleBack}>Back</button>
-                        <button onClick={handleNext}>Next</button>
+                        <div className={styles.buttonContainer}>
+                            <button onClick={handleBack} className={styles.nextButton}>Back</button>
+                            <button onClick={handleNext} className={styles.nextButton}>Next</button>
+                        </div>
                     </div>
                 );
             case 3:
                 return (
                     <div>
                         {/* Career Information Satisfaction */}
+                        <div className={styles.title}>Career Survey</div>
                         <div className="survey-question">
-                            <p className="question-text">How much did you satisfy through your use of the career information provided by the career services office?</p>
-                            <div className="satisfaction-ratings">
-                                <p>3.1. Career planning and decisions.</p>
-                                <div className="rating-options">
+                            <div className={styles.question}>How much did you satisfy through your use of the career information provided by the career services office?</div>
+                            <div>
+                                <div className={styles.question}>3.1. Career planning and decisions.</div>
+                                <div className={styles.ratingOptions}>
                                     <input type="radio" id="satisfactionRating3_1_1" name="satisfactionRating3_1" value="1" />
                                     <label htmlFor="satisfactionRating3_1_1">1</label>
                                     <input type="radio" id="satisfactionRating3_1_2" name="satisfactionRating3_1" value="2" />
@@ -277,8 +281,8 @@ export default function Survey() {
                                     <label htmlFor="satisfactionRating3_1_5">5</label>
                                 </div>
 
-                                <p>3.2. Occupations and the job market.</p>
-                                <div className="rating-options">
+                                <div className={styles.question}>3.2. Occupations and the job market.</div>
+                                <div className={styles.ratingOptions}>
                                     <input type="radio" id="satisfactionRating3_2_1" name="satisfactionRating3_2" value="1" />
                                     <label htmlFor="satisfactionRating3_2_1">1</label>
                                     <input type="radio" id="satisfactionRating3_2_2" name="satisfactionRating3_2" value="2" />
@@ -290,8 +294,8 @@ export default function Survey() {
                                     <input type="radio" id="satisfactionRating3_2_5" name="satisfactionRating3_2" value="5" />
                                     <label htmlFor="satisfactionRating3_2_5">5</label>
                                 </div>
-                                <p>3.3. Listings of full time job/internship oppotunities/ Job Network</p>
-                                <div className="rating-options">
+                                <div className={styles.question}>3.3. Listings of full time job/internship oppotunities/ Job Network</div>
+                                <div className={styles.ratingOptions}>
                                     <input type="radio" id="satisfactionRating3_3_1" name="satisfactionRating3_3" value="1" />
                                     <label htmlFor="satisfactionRating3_3_1">1</label>
                                     <input type="radio" id="satisfactionRating3_3_2" name="satisfactionRating3_3" value="2" />
@@ -303,8 +307,8 @@ export default function Survey() {
                                     <input type="radio" id="satisfactionRating3_3_5" name="satisfactionRating3_3" value="5" />
                                     <label htmlFor="satisfactionRating3_3_5">5</label>
                                 </div>
-                                <p>3.4. Building interview/communication skills</p>
-                                <div className="rating-options">
+                                <div className={styles.question}>3.4. Building interview/communication skills</div>
+                                <div className={styles.ratingOptions}>
                                     <input type="radio" id="satisfactionRating3_4_1" name="satisfactionRating3_4" value="1" />
                                     <label htmlFor="satisfactionRating3_4_1">1</label>
                                     <input type="radio" id="satisfactionRating3_4_2" name="satisfactionRating3_4" value="2" />
@@ -316,8 +320,8 @@ export default function Survey() {
                                     <input type="radio" id="satisfactionRating3_4_5" name="satisfactionRating3_4" value="5" />
                                     <label htmlFor="satisfactionRating3_4_5">5</label>
                                 </div>
-                                <p>3.5	Building writing resume/CV skills</p>
-                                <div className="rating-options">
+                                <div className={styles.question}>3.5	Building writing resume/CV skills</div>
+                                <div className={styles.ratingOptions}>
                                     <input type="radio" id="satisfactionRating3_5_1" name="satisfactionRating3_5" value="1" />
                                     <label htmlFor="satisfactionRating3_2_1">1</label>
                                     <input type="radio" id="satisfactionRating3_5_2" name="satisfactionRating3_5" value="2" />
@@ -329,8 +333,8 @@ export default function Survey() {
                                     <input type="radio" id="satisfactionRating3_5_5" name="satisfactionRating3_5" value="5" />
                                     <label htmlFor="satisfactionRating3_2_5">5</label>
                                 </div>
-                                <p>3.6	Career information accessible through the career services website.</p>
-                                <div className="rating-options">
+                                <div className={styles.question}>3.6	Career information accessible through the career services website.</div>
+                                <div className={styles.ratingOptions}>
                                     <input type="radio" id="satisfactionRating3_6_1" name="satisfactionRating3_6" value="1" />
                                     <label htmlFor="satisfactionRating3_6_1">1</label>
                                     <input type="radio" id="satisfactionRating3_6_2" name="satisfactionRating3_6" value="2" />
@@ -342,8 +346,8 @@ export default function Survey() {
                                     <input type="radio" id="satisfactionRating3_6_5" name="satisfactionRating3_6" value="5" />
                                     <label htmlFor="satisfactionRating3_6_5">5</label>
                                 </div>
-                                <p>3.7	Staff who help you find career infomation.</p>
-                                <div className="rating-options">
+                                <div className={styles.question}>3.7	Staff who help you find career infomation.</div>
+                                <div className={styles.ratingOptions}>
                                     <input type="radio" id="satisfactionRating3_7_1" name="satisfactionRating3_7" value="1" />
                                     <label htmlFor="satisfactionRating3_7_1">1</label>
                                     <input type="radio" id="satisfactionRating3_7_2" name="satisfactionRating3_7" value="2" />
@@ -356,8 +360,10 @@ export default function Survey() {
                                     <label htmlFor="satisfactionRating3_7_5">5</label>
                                 </div>                </div>
                         </div>
-                        <button onClick={handleBack}>Back</button>
-                        <button onClick={handleNext}>Next</button>
+                        <div className={styles.buttonContainer}>
+                            <button onClick={handleBack} className={styles.nextButton}>Back</button>
+                            <button onClick={handleNext} className={styles.nextButton}>Next</button>
+                        </div>
                     </div>
                 );
             case 4:
@@ -475,7 +481,7 @@ export default function Survey() {
                 <img src="/cwu-logo.png" alt="CWU Logo" className={styles.cwuImage} />
             </div>
             <div className={styles.surveyContainer}>
-                <div className="survey-header"></div>
+                <div className={styles.surveyHeader}></div>
                 {/* Render current table */}
                 <div className="renderTableContainer">{renderTable()}</div>
             </div>

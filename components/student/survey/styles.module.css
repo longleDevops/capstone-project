@@ -67,7 +67,17 @@
   color: white;
   margin-top: 15px;
   margin-left: 50px;
+  margin-right: 10px;
   font-size: 25px;
+}
+
+.buttonContainer {
+  display: flex;
+}
+
+.nextButton:hover {
+  background-color: #333;
+  /* Darken color on hover */
 }
 
 .surveyContainer {
@@ -93,54 +103,13 @@
 
 }
 
-.survey-header {
+.surveyHeader {
   font-size: 32px;
   /* Increase font size */
   font-weight: bold;
   margin-bottom: 20px;
   text-align: center;
   /* Center the text */
-}
-
-.survey-table {
-  width: 100%;
-}
-
-.survey-table td {
-  padding: 10px;
-}
-
-.survey-table select {
-  width: 100%;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  font-size: 16px;
-  margin-top: 5px;
-}
-
-.button {
-  text-decoration: none;
-  background-color: black;
-  border-radius: 18px;
-  height: 45px;
-  width: 170px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  margin-bottom: 12px;
-  font-size: 16px;
-  /* Adjust the font size as needed */
-  border: none;
-  /* Remove default button border */
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: #333;
-  /* Darken color on hover */
 }
 
 /* Center the renderTable content */
@@ -164,24 +133,35 @@
   /* Maintain aspect ratio */
 }
 
-.button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 10px;
-  /* Adjust the margin as needed */
-  cursor: pointer;
+.ratingOptions {
+  display: flex;
+  align-items: center;
 }
 
-/* Center and space buttons */
-.button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  /* Adjust the top margin as needed */
+.ratingOptions input[type="radio"] {
+  display: none;
+  /* Hide the radio buttons */
+}
+
+.ratingOptions label {
+  margin-right: 10px;
+  /* Adjust spacing between labels */
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 8px 12px;
+  background-color: #f9f9f9;
+  margin-bottom: 20px;
+}
+
+.ratingOptions label:hover {
+  background-color: #e0e0e0;
+  /* Change background color on hover */
+}
+
+.ratingOptions input[type="radio"]:checked+label {
+  background-color: #3498db;
+  /* Change background color when selected */
+  color: #fff;
+  /* Change text color when selected */
 }

@@ -15,13 +15,23 @@
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mantine/core": "^7.8.1",
+    "@mantine/dates": "^7.8.1",
+    "@mantine/hooks": "^7.8.1",
     "@neondatabase/serverless": "^0.9.1",
+    "@tabler/icons-react": "^3.2.0",
+    "chart.js": "^4.4.2",
+    "clsx": "^2.1.1",
+    "dayjs": "^1.11.10",
     "drizzle-orm": "^0.30.8",
     "lucide-react": "^0.368.0",
+    "mantine-react-table": "^2.0.0-beta.1",
     "next": "14.1.4",
     "pg": "^8.11.5",
     "react": "^18",
-    "react-dom": "^18"
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18",
+    "react-icons": "^5.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -30,6 +40,9 @@
     "drizzle-kit": "^0.20.17",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
+    "postcss": "^8.4.38",
+    "postcss-preset-mantine": "^1.14.4",
+    "postcss-simple-vars": "^7.0.1",
     "typescript": "^5"
   }
 }

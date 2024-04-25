@@ -30,9 +30,15 @@ export const AdminDashboard = () => {
       <div className={styles.statistics_container}>
         <Statistics />
       </div>
+
+      <div className={styles.profile_header}>
+        <p className={styles.registered_student}>Registered Students</p>
+        <div className={styles.profile_search}>Search</div>
+      </div>
       <div className={styles.profile_container}>
         <StudentProfile />
       </div>
+
       <p>Recent Submissions</p>
       <div className={styles.submission_container}>
         {submissions.map((item) => (

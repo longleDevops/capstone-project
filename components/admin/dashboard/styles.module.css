@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  height: 1000px;
+  height: 1500px;
 }
 
 .container::-webkit-scrollbar{
@@ -17,27 +17,149 @@
 .statistics_container{
   display: flex;
   gap: 20px;
+  padding: 20px 0 40px 0;
 }
 
 .statistics_holder{
-  width: 160px;
-  height: 90px;
+  width: 320px;
+  height: 190px;
   background-color: white;
   border-radius: 10px;
   padding: 20px;
+  display: flex;
+}
+
+.statistics_left{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+}
+
+.statistics_right{
+  width: 50%;
+  height: auto;
+  display: flex;
+  justify-content:end;
+  align-items:baseline;
+}
+
+.statistics_title{
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.statistics_description{
+  font-size: 12px;
+  font-weight: 500;
+  color: gray;
+  margin-top: -10px;
+}
+.statistics_value{
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+.statistics_logo{
+  object-fit: cover;
+  padding: 5px;
+  background-color: rgb(188, 12, 71);
+  border-radius: 10px;
+}
+.statistics_icon{
+  background-color: rgb(7, 148, 47);
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.statistics_icon2{
+  background-color: rgb(75, 7, 148);
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*doughnut chart*/
+.doughnut_container{
+  width: 80px;
+  height: 80px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10px;
+  margin-right: -10px;
+}
+
+.doughnut_value{
+  position: absolute;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.caption_container{
+  display: flex;
+  align-items: center;
+  gap:10px;
+}
+
+.caption_one{
+  width: 120px;
+  padding: 5px;
+  border-radius: 20px;
+  background-color: red;
+  color: white;
+  font-size: 10px;
+}
+
+.caption_two{
+  width: 120px;
+  padding: 5px;
+  border-radius: 20px;
+  background-color: red;
+  color: white;
+  font-size: 10px;
 }
 
 /*profile*/
+.profile_header{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.profile_search{
+  width: 120px;
+  padding: 10px;
+  border-radius: 10px;
+  border:1px solid #000;
+}
+
 .profile_container{
   display: flex;
   gap: 20px;
+  padding:20px 0 40px 0;
 }
 
 .profile_holder{
   width: 170px;
   height: 230px;
   border-radius: 10px;
+}
 
+.profile_default{
+  width: 170px;
+  height: 230px;
+  border-radius: 10px;
+  background-color: chocolate;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile_top{
@@ -71,10 +193,12 @@
   border-radius: 10px;
 }
 
+
 /*submissions*/
 .submission_container{
   border:1px black solid;
   padding: 20px;
+  margin-top: 20px;
 }
 
 .submission_row{
@@ -105,11 +229,11 @@
   font-size:14px
 }
 
-.statistics_title{
-  font-size: 14px;
-}
 
 .statistics_data{
   font-size:24px;
+  font-weight: 400;
+}
+.registered_student{
   font-weight: 400;
 }

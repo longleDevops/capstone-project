@@ -3,8 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import AppHeader from "@/components/header";
-
+import { MantineProvider } from "@mantine/core"
 const inter = Inter({ subsets: ["latin"] });
+import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css'; //if using mantine date picker features
+import 'mantine-react-table/styles.css';
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,10 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
+
       <html lang="en">
         <body className={inter.className}>
           <main>
-            {children}
+            <MantineProvider>{children}</MantineProvider>
           </main>
         </body>
       </html>

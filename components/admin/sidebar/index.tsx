@@ -2,8 +2,9 @@
 
 import Link from "next/link"
 import styles from "./styles.module.css"
-import { Home, PieChart } from "lucide-react"
+import { Home, PieChart, Users } from "lucide-react"
 import { usePathname } from "next/navigation"
+
 
 export const Sidebar = () => {
   const pathName = usePathname()
@@ -15,10 +16,16 @@ export const Sidebar = () => {
       isActive: pathName === "/admin/dashboard"
     },
     {
-      href: "/admin/reports",
-      name: "Reports",
+      href: "/admin/student",
+      name: "Student",
+      icon: Users,
+      isActive: pathName === "/admin/student"
+    },
+    {
+      href: "/admin/statistics",
+      name: "Statistics",
       icon: PieChart,
-      isActive: pathName === "/admin/reports"
+      isActive: pathName === "/admin/statistics"
     },
   ]
   return (

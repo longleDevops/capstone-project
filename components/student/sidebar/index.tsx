@@ -28,7 +28,7 @@ export const Sidebar = () => {
             isActive: pathName === "/admin/dashboard"
         },
         {
-            href: "/student/dashboard", // NEED to add one more page for about us
+            href: "/student/info", // NEED to add one more page for about us
             name: "About Us",
             icon: CircleHelp,
             isActive: pathName === "/admin/dashboard"

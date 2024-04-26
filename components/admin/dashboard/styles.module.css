@@ -76,7 +76,7 @@
   align-items: center;
 }
 .statistics_icon2{
-  background-color: rgb(75, 7, 148);
+  background-color: #6B31B2;
   border-radius: 10px;
   width: 50px;
   height: 50px;
@@ -140,15 +140,40 @@
   border:1px solid #000;
 }
 
+.horizontal_scroll{
+  width: 700px;
+  overflow-x:scroll;
+  display: flex;
+  gap: 20px;
+  border: 1px black solid;
+  height: 260px;
+  align-items: baseline;
+
+}
+.circular{
+  width: 120px;
+  height: 120px;
+}
+.next_btn{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+
+.next_btn:hover{
+  cursor: pointer;
+}
+
 .profile_container{
   display: flex;
   gap: 20px;
-  padding:20px 0 40px 0;
+  padding:20px 0 20px 0;
+  border:black 1px solid;
 }
 
 .profile_holder{
   width: 170px;
-  height: 230px;
+  height: 190px;
   border-radius: 10px;
 }
 
@@ -158,6 +183,8 @@
   border-radius: 10px;
   background-color: chocolate;
   display: flex;
+  flex-direction: column;
+  gap: 5px;
   justify-content: center;
   align-items: center;
 }

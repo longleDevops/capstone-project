@@ -2,7 +2,10 @@ import Image from "next/image"
 import { DoughnutChart } from "./doughnut-chart"
 import styles from "./styles.module.css"
 import { BadgeDollarSign, Ellipsis, Handshake } from "lucide-react"
-
+import { SalaryMenu } from "./menu/salary-menu"
+import { CareerDialog } from "./menu/career-dialog"
+import { SalaryDialog } from "./menu/salary-dialog"
+import { CareerMenu } from "./menu/career-menu"
 
 export const Statistics = () => {
   const statistics = [
@@ -53,15 +56,18 @@ export const Statistics = () => {
           </div>
           <div className={styles.statistics_right}>
             {index === 0 ?
-              <>
-                <DoughnutChart />
-              </>
-              : <Ellipsis size={30} />
+
+              <DoughnutChart />
+
+              : index === 1 ? <SalaryMenu />
+                : <CareerMenu />
             }
           </div>
 
         </div>
       ))}
+      <SalaryDialog />
+      <CareerDialog />
     </>
   )
 }

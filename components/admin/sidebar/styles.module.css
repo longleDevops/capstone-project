@@ -27,6 +27,7 @@
   color:black;
   padding: 16px;
   width: 170px;
+  transition: background-color .2s;
 }
 
 .link_active{

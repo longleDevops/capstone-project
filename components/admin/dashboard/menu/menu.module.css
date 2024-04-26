@@ -1,0 +1,7 @@
+.menu_icon:hover{
+  cursor: pointer;
+}
+
+.bar_container {
+  width: 800px;
+}

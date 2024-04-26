@@ -3,17 +3,17 @@
 
 import Link from "next/link"
 import styles from "./styles.module.css"
-import { UserRound, CircleHelp, Power, Bell, CircleArrowRight } from 'lucide-react';
+import { LayoutDashboard, CircleHelp, Bell, CircleArrowRight } from 'lucide-react';
 import { usePathname } from "next/navigation"
 
 export const Sidebar = () => {
     const pathName = usePathname()
     const sidebarItems = [
         {
-            href: "/student/info",
-            name: "My Account",
-            icon: UserRound,
-            isActive: pathName === "/student/info"
+            href: "/student/dashboard",
+            name: "Dashboard",
+            icon: LayoutDashboard,
+            isActive: pathName === "/student/dashboard"
         },
         {
             href: "/student/survey",

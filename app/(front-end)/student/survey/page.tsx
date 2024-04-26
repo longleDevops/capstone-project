@@ -1,6 +1,10 @@
-import SurVey from "@/components/student/survey";
-export default function Survey() {
+
+import { Survey } from "@/components/student/survey";
+
+const Page = () => {
     return (
-        <SurVey />
-    );
+        <Survey />
+    )
 }
+
+export default Page

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import styles from "./styles.module.css";
 
-export default function Survey() {
+export const Survey = () => {
     // States to store the input field values
     const [graduationQuarter, setGraduationQuarter] = useState('');
     const [graduationYear, setGraduationYear] = useState('');

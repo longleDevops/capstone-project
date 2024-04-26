@@ -4,9 +4,6 @@
 
 import React, { useState } from 'react';
 import styles from "./style.module.css";
-import { UserRound, CircleHelp, Power, Bell, CircleArrowRight } from 'lucide-react';
-
-import Link from 'next/link';
 import { UserButton } from '@clerk/nextjs';
 
 export const Dashboard = () => {

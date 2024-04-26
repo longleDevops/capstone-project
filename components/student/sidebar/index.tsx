@@ -19,19 +19,19 @@ export const Sidebar = () => {
             href: "/student/survey",
             name: "Take Survey",
             icon: CircleArrowRight,
-            isActive: pathName === "/student/profile"
+            isActive: pathName === "/student/survey"
         },
         {
-            href: "/student/dashboard", // NEED to add one more page for about us
+            href: "/student/contact", // NEED to add one more page for about us
             name: "Help And Support",
             icon: Bell,
-            isActive: pathName === "/admin/dashboard"
+            isActive: pathName === "/student/contact"
         },
         {
-            href: "/student/info", // NEED to add one more page for about us
+            href: "/student/about", // NEED to add one more page for about us
             name: "About Us",
             icon: CircleHelp,
-            isActive: pathName === "/admin/dashboard"
+            isActive: pathName === "/student/about"
         },
     ]
     return (

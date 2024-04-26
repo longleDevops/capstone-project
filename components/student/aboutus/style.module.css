@@ -1,0 +1,99 @@
+.aboutContainer {
+    width: 900px;
+    height: 700px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: rgba(252, 241, 241, 0.5);
+    box-shadow: 0px 5px 5px rgba(228, 226, 226, 0.5);
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 150px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.About {
+    background-color: white;
+    border-radius: 18px;
+    height: 258px;
+    width: 451px;
+    margin-bottom: 20px;
+    padding: 20px;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+
+.Team {
+    background-color: white;
+    border-radius: 18px;
+    height: auto;
+    width: 251px;
+    padding: 20px;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+
+.Contact {
+    background-color: white;
+    border-radius: 18px;
+    height: auto;
+    position: absolute;
+    top: 400px;
+    right: 50px;
+    padding: 20px;
+}
+
+.imageHolder {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 50px;
+    margin-right: 50px;
+}
+
+.heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.subheading {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.teamMember {
+    margin-bottom: 10px;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.role {
+    font-style: italic;
+}
+
+.contactInfo {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.contactInfo br {
+    display: none;
+    /* Hide line breaks */
+}

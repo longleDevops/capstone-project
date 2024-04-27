@@ -1,28 +1,43 @@
 import React from "react";
-import { TextInput, Alert } from "@mantine/core";
+import { TextInput } from "@mantine/core";
 
-export function Demo() {
+interface DemoProps {
+  submitted: boolean; // Specify the type of the submitted prop
+}
+
+export function Demo({ submitted }: DemoProps) {
   const [fullName, setFullName] = React.useState("");
   const [cwuEmail, setCwuEmail] = React.useState("");
   const [cwuId, setCwuId] = React.useState("");
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    setState: React.Dispatch<any> // Specify the type of the setState parameter as needed
+    setState: React.Dispatch<any>
   ) => {
     setState(event.currentTarget.value);
   };
 
   const validateName = (value: string) => {
-    return value.length >= 2 ? null : "Name must be at least 2 characters long";
+    if (submitted) {
+      return value.length >= 2
+        ? null
+        : "Name must be at least 2 characters long";
+    }
+    return null;
   };
 
   const validateCWUId = (value: string) => {
-    return /^\d{9}$/.test(value) ? null : "CWU ID must be a 9-digit number";
+    if (submitted) {
+      return /^\d{9}$/.test(value) ? null : "CWU ID must be a 9-digit number";
+    }
+    return null;
   };
 
   const validateEmail = (value: string) => {
-    return value.endsWith("@cwu.edu") ? null : "Email must end with @cwu.edu";
+    if (submitted) {
+      return value.endsWith("@cwu.edu") ? null : "Email must end with @cwu.edu";
+    }
+    return null;
   };
 
   return (

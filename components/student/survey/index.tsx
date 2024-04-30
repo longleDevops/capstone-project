@@ -58,13 +58,6 @@ export const Survey = () => {
       <div className={styles.imageHolder}>
         <img src="/cwu-logo.png" alt="CWU Logo" className={styles.cwuImage} />
       </div>
-      <div className={styles.container}>
-        <div className={styles.iconWrapper}>
-          {/* Display the icon image */}
-          <UserButton afterSignOutUrl="/" />
-          <div>Tu Ho</div>
-        </div>
-      </div>
       <div className={styles.surveyContainer}>
         <div className={styles.surveyHeader}></div>
         {/* Render current table */}

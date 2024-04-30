@@ -15,7 +15,13 @@ export const Dashboard = () => {
       </div>
 
       <div className={styles.aboutContainer}>
-        <Image src="/grad.png" alt="CWU grad" width={700} height={200} className={styles.cwuGradImg} />
+        <Image
+          src="/grad.png"
+          alt="CWU grad"
+          width={700}
+          height={200}
+          className={styles.cwuGradImg}
+        />
         <div className={styles.heading}>Post-Graduation Career Survey </div>
         <div className={styles.description_container}>
           <p>

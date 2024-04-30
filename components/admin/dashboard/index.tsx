@@ -9,7 +9,7 @@ export const AdminDashboard = () => {
     <div className={styles.container}>
       <p className={styles.dashboard_text}>Dashboard</p>
       <p className={styles.welcome_text}>Welcome back, Jessica</p>
-      <p className={styles.welcome_description}>Here's the brief survey report</p>
+      <p className={styles.welcome_description}>Here the brief survey report</p>
       <div className={styles.statistics_container}>
         <Statistics />
       </div>
@@ -21,7 +21,7 @@ export const AdminDashboard = () => {
       </div>
 
       <p className={styles.welcome_text}>Recent Submissions</p>
-      <p className={styles.welcome_description}>View the most 20 recent student's submissions</p>
+      <p className={styles.welcome_description}>View the most 20 recent student submissions</p>
       <div className={styles.submission_container}>
         <StudentSubmission />
       </div>

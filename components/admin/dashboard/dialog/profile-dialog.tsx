@@ -52,7 +52,7 @@ export const ProfileDialog = () => {
               <p className={styles.status}>Graduated</p>
               <p className={styles.date}>Since May 2023</p>
             </div>
-            <p className={styles.degree}>BA's in Computer science</p>
+            <p className={styles.degree}>BAs in Computer science</p>
             <div className={styles.holder}>
               <p className={styles.left_txt}>Company</p>
               <p className={styles.right_txt}>Microsoft Inc.</p>

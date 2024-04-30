@@ -65,7 +65,7 @@
   align-items: center;
   justify-content: center;
   color: white;
-  margin-top: 15px;
+  margin-top: 20px;
   margin-left: 50px;
   margin-right: 10px;
   font-size: 25px;
@@ -73,6 +73,7 @@
 
 .buttonContainer {
   display: flex;
+    justify-content: space-between;
 }
 
 .nextButton:hover {
@@ -81,7 +82,7 @@
 }
 
 .surveyContainer {
-  width: 500px;
+  width: 700px;
   /* Adjust width as needed */
   margin: auto;
   /* Center the container horizontally */

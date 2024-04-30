@@ -14,10 +14,6 @@ export const Survey = () => {
   const [p1Completed, setP1Completed] = useState(false);
   const [p2Completed, setP2Completed] = useState(false);
   const [p3Completed, setP3Completed] = useState(false);
-  //SetAnswers for tables
-  const [answersP1, setAnswersP1] = useState({});
-  const [answersP2, setAnswersP2] = useState({});
-  const [answersP3, setAnswersP3] = useState({});
 
   // Function to handle navigation to the next table
   // Inside handleNext function
@@ -51,7 +47,6 @@ export const Survey = () => {
     window.location.href = "/student/dashboard";
   };
 
-  //Handle Set table answers
   return (
     <div className={styles.scrollableContainer}>
       <div className={styles.imageHolder}>

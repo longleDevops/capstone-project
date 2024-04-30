@@ -38,7 +38,7 @@ export const Profile = () => {
               className={styles.surveyButton}
               onClick={handleSubmit}
             >
-              Submit!
+              Update!
             </button>
           </div>
         </div>

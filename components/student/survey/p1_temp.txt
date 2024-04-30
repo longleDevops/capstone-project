@@ -1,0 +1,201 @@
+import React, { useState, useEffect } from "react";
+import { Autocomplete, Select } from "@mantine/core";
+
+export function Survey_p1() {
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const [currentStatus, setCurrentStatus] = useState<string>("");
+  const [internStatus, setInternStatus] = useState<string>("");
+  const [workingStatus, setWorkingStatus] = useState<string>("");
+
+  // Function to handle status change
+  const handleStatusChange = (value: string | null) => {
+    setCurrentStatus(value || "");
+    // Reset internStatus when currentStatus changes
+  };
+
+  // Function to handle internship status change
+  const handleInternStatusChange = (value: string | null) => {
+    setInternStatus(value || "");
+  };
+  const handleWorkingStatusChange = (value: string | null) => {
+    // Update the workingStatus state based on the selected value
+    setWorkingStatus(value || ""); // If value is null, set it to an empty string
+  };
+
+  return (
+    <>
+      <Select
+        label="What is your major?"
+        placeholder="Example: Computer Science"
+        data={[
+          "Art",
+          "Elementary Education",
+          "Business",
+          "Psychology",
+          "Criminal Justice and Safety Studies",
+          "Social Science Research Methods",
+          "Marketing",
+          "Computer and Information Systems Security",
+          "Photography",
+          "Web Page and Digital Design",
+          "Accounting",
+          "Finance",
+        ]}
+        defaultValue="Art"
+        allowDeselect={false}
+        searchable
+      />
+      <Select
+        label="Are you currently studying at CWU?"
+        placeholder="Yes or No"
+        data={["Yes", "No"]}
+        allowDeselect={false}
+        onChange={handleStatusChange}
+      />
+      {currentStatus === "Yes" ? (
+        <>
+          <Select
+            label="Do you have an internship?"
+            placeholder="Yes or No"
+            data={["Yes", "No"]}
+            allowDeselect={false}
+            onChange={handleInternStatusChange}
+          />
+          {internStatus === "Yes" ? (
+            <>
+              <Select
+                label="Please select your salary Range "
+                placeholder="Salary Range"
+                data={[
+                  "Below $20,000",
+                  "$20,000 - $40,000",
+                  "$40,000 - $60,000",
+                  "$60,000 - $80,000",
+                  "$80,000 - $100,000",
+                  "Above $100,000",
+                ]}
+                allowDeselect={false}
+              />
+              <Select
+                label="How long did it take you for preparing?"
+                placeholder="Counted by months"
+                data={["1", "2", "3", "6", "9", "12 or more"]}
+                allowDeselect={false}
+              />
+            </>
+          ) : null}
+        </>
+      ) : currentStatus === "No" ? (
+        <>
+          <Select
+            label="What is your current status?"
+            placeholder="Example: Working"
+            data={[
+              "Working",
+              "Pursuing a higher academic degree/Taking a break",
+            ]}
+            allowDeselect={false}
+            onChange={handleWorkingStatusChange}
+          />
+          {workingStatus === "Working" ? (
+            <>
+              <Select
+                label="Please select the quarter you graduated"
+                placeholder="Example: Spring"
+                data={["Spring", "Summer", "Fall", "Winter"]}
+                allowDeselect={false}
+              />
+              <Select
+                label="Please select the year you graduated"
+                placeholder="Example: 2021"
+                data={[
+                  "2014",
+                  "2015",
+                  "2016",
+                  "2017",
+                  "2018",
+                  "2019",
+                  "2020",
+                  "2021",
+                  "2022",
+                  "2023",
+                  "2024",
+                ]}
+                allowDeselect={false}
+              />
+              <Select
+                label="Please select your salary Range "
+                placeholder="Salary Range"
+                data={[
+                  "Below $20,000",
+                  "$20,000 - $40,000",
+                  "$40,000 - $60,000",
+                  "$60,000 - $80,000",
+                  "$80,000 - $100,000",
+                  "Above $100,000",
+                ]}
+                allowDeselect={false}
+              />
+              <Select
+                label="How long did it take you for the job?"
+                placeholder="Counted by months"
+                data={["1", "2", "3", "6", "9", "12 or more"]}
+                allowDeselect={false}
+              />
+            </>
+          ) : (
+            <>
+              <Select
+                label="Please select the quarter you graduated"
+                placeholder="Example: Spring"
+                data={["Spring", "Summer", "Fall", "Winter"]}
+                allowDeselect={false}
+              />
+              <Select
+                label="Please select the year you graduated"
+                placeholder="Example: 2021"
+                data={[
+                  "2014",
+                  "2015",
+                  "2016",
+                  "2017",
+                  "2018",
+                  "2019",
+                  "2020",
+                  "2021",
+                  "2022",
+                  "2023",
+                  "2024",
+                ]}
+                allowDeselect={false}
+              />
+              <Select
+                label="Please select your expected salary Range "
+                placeholder="Salary Range"
+                data={[
+                  "Below $20,000",
+                  "$20,000 - $40,000",
+                  "$40,000 - $60,000",
+                  "$60,000 - $80,000",
+                  "$80,000 - $100,000",
+                  "Above $100,000",
+                ]}
+                allowDeselect={false}
+              />
+              <Select
+                label="How long did it take you prepare for the future job?"
+                placeholder="Counted by months"
+                data={["1", "2", "3", "6", "9", "12 or more"]}
+                allowDeselect={false}
+              />
+            </>
+          )}
+        </>
+      ) : null}
+    </>
+  );
+}

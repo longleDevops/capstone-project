@@ -1,5 +1,6 @@
 import React from "react";
 import { TextInput } from "@mantine/core";
+import styles from "./style.module.css";
 
 interface DemoProps {
   submitted: boolean; // Specify the type of the submitted prop
@@ -55,7 +56,7 @@ export function Demo({ submitted }: DemoProps) {
         placeholder="Enter your CWU email"
         value={cwuEmail}
         onChange={(event) => handleChange(event, setCwuEmail)}
-        style={{ marginBottom: "16px" }}
+        style={{ marginBottom: "16px", borderRadius: "80px 80px 0 0" }}
         error={validateEmail(cwuEmail)}
       />
       <TextInput

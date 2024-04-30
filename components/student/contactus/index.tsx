@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import styles from "./style.module.css";
-
+import { UserButton } from "@clerk/nextjs";
 
 
 export const ContactUs = () => {
@@ -32,6 +32,13 @@ export const ContactUs = () => {
 
             <div className={styles.imageHolder}>
                 <img src="/cwu-logo.png" alt="CWU Logo" className={styles.cwuImage} />
+            </div>
+            <div className={styles.container}>
+                <div className={styles.iconWrapper}>
+                    {/* Display the icon image */}
+                    <UserButton afterSignOutUrl='/' />
+                    <div>Tu Ho</div>
+                </div>
             </div>
             <div className={styles.contactContainer}>
                 <div className={styles.Support}>

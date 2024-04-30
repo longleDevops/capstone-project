@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./styles.module.css";
+import { UserButton } from "@clerk/nextjs";
 import router, { useRouter } from "next/router";
 import { Survey_p1 } from "./survey_p1";
 import { Survey_p2 } from "./survey_p2";
@@ -56,6 +57,13 @@ export const Survey = () => {
     <div className={styles.scrollableContainer}>
       <div className={styles.imageHolder}>
         <img src="/cwu-logo.png" alt="CWU Logo" className={styles.cwuImage} />
+      </div>
+      <div className={styles.container}>
+        <div className={styles.iconWrapper}>
+          {/* Display the icon image */}
+          <UserButton afterSignOutUrl="/" />
+          <div>Tu Ho</div>
+        </div>
       </div>
       <div className={styles.surveyContainer}>
         <div className={styles.surveyHeader}></div>

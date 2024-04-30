@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import { DoughnutChart } from "./doughnut-chart"
 import styles from "./styles.module.css"
@@ -6,23 +7,25 @@ import { SalaryMenu } from "./menu/salary-menu"
 import { CareerDialog } from "./menu/career-dialog"
 import { SalaryDialog } from "./menu/salary-dialog"
 import { CareerMenu } from "./menu/career-menu"
+import CountUp from 'react-countup';
+import { Count } from "./count"
 
 export const Statistics = () => {
   const statistics = [
     {
       title: "Total students",
       description: "CWU & Alumni",
-      data: "200"
+      data: 200
     },
     {
       title: "Salary",
       description: "Avg. Income",
-      data: "$200,000"
+      data: 120000
     },
     {
       title: "Career",
       description: "Majors & Jobs",
-      data: "200"
+      data: 20
     },
   ]
 
@@ -30,7 +33,7 @@ export const Statistics = () => {
   return (
     <>
       {statistics.map((item, index) => (
-        <div className={styles.statistics_holder}>
+        <div className={index === 0 ? styles.statistics_holder1 : styles.statistics_holder2} key={index}>
           <div className={styles.statistics_left}>
             {index === 0 ? <Image
               alt="cwu logo"
@@ -41,17 +44,22 @@ export const Statistics = () => {
             />
               : index === 1 ?
                 <div className={styles.statistics_icon}>
-                  <BadgeDollarSign size={25} color="white" />
+                  <BadgeDollarSign size={23} color="white" />
                 </div>
                 : <div className={styles.statistics_icon2}>
-                  <Handshake size={25} color="white" />
+                  <Handshake size={23} color="white" />
                 </div>
             }
             <p className={styles.statistics_title}>{item.title}</p>
             <p className={styles.statistics_description}>
               {item.description}
             </p>
-            <p className={styles.statistics_value}>+300</p>
+            <div className={styles.statistics_value}>
+              {index === 1 ? <CountUp end={item.data} duration={1.4} prefix="$" />
+                : index === 2 ? <CountUp end={item.data} duration={1.4} suffix="+" />
+                  : <CountUp end={item.data} duration={1.4} />
+              }
+            </div>
 
           </div>
           <div className={styles.statistics_right}>

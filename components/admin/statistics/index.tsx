@@ -1,34 +1,20 @@
-import { BarChart } from "./bar-chart"
-import { CardHolder } from "./card-holder"
-import { CareerChart } from "./career-chart"
-import { LineChart } from "./line-chart"
-import { ReportBtn } from "./report-btn"
+import Image from "next/image"
 import styles from "./styles.module.css"
-
 export const Statistics = () => {
   return (
     <div className={styles.container}>
-      Statistics page
-      <ReportBtn />
-
-      <div className={styles.section_container}>
-        <div className={styles.left_container1}>
-          <LineChart />
-        </div>
-        <div className={styles.right_container1}>
-          <CardHolder />
-        </div>
-      </div>
-
-      <div className={styles.bar_wrapper}>
-      </div>
-      <div className={styles.section_container}>
-        <div className={styles.left_container}>
-        </div>
-        <div className={styles.right_container}>
-
-        </div>
-      </div>
+      <Image
+        src={'/prototype.png'}
+        alt="prototype"
+        width={1100}
+        height={700}
+      />
+      <Image
+        src={'/prototype2.png'}
+        alt="prototype"
+        width={1100}
+        height={700}
+      />
     </div>
   )
 }

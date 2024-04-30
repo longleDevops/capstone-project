@@ -30,7 +30,7 @@ export const CardHolder = () => {
   return (
     <div className={styles.card_container}>
       {items.map((item) => (
-        <div className={styles.card_holder}>
+        <div className={styles.card_holder} key={item.icon}>
 
         </div>
       ))}

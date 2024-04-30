@@ -1,54 +1,29 @@
 import { Statistics } from "./statistics"
 import { StudentProfile } from "./student-profile"
+import { StudentSubmission } from "./student-submission"
 import styles from "./styles.module.css"
 
-const submissions = [
-  {
-    name: "Kevin",
-    survey: "Post graduation survey",
-    status: "completed",
-    date: "04/23/2024"
-  },
-  {
-    name: "Kevin",
-    survey: "Post graduation survey",
-    status: "completed",
-    date: "04/23/2024"
-  },
-  {
-    name: "Kevin",
-    survey: "Post graduation survey",
-    status: "completed",
-    date: "04/23/2024"
-  }
-]
+
 export const AdminDashboard = () => {
   return (
     <div className={styles.container}>
       <p className={styles.dashboard_text}>Dashboard</p>
-      <p className={styles.welcome_text}>Welcome back Angela.</p>
+      <p className={styles.welcome_text}>Welcome back, Jessica</p>
+      <p className={styles.welcome_description}>Here's the brief survey report</p>
       <div className={styles.statistics_container}>
         <Statistics />
       </div>
 
-      <div className={styles.profile_header}>
-        <p className={styles.registered_student}>Registered Students</p>
-        <div className={styles.profile_search}>Search</div>
-      </div>
+      <p className={styles.welcome_text}>Recent Registered</p>
+      <p className={styles.welcome_description}>View and Manage most recent 20 registered students</p>
       <div className={styles.profile_container}>
         <StudentProfile />
       </div>
 
-      <p>Recent Submissions</p>
+      <p className={styles.welcome_text}>Recent Submissions</p>
+      <p className={styles.welcome_description}>View the most 20 recent student's submissions</p>
       <div className={styles.submission_container}>
-        {submissions.map((item) => (
-          <div className={styles.submission_row} key={item.name}>
-            <p>{item.name}</p>
-            <p>{item.survey}</p>
-            <p>{item.status}</p>
-            <p>{item.date}</p>
-          </div>
-        ))}
+        <StudentSubmission />
       </div>
     </div>
   )

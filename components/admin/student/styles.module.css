@@ -1,6 +1,7 @@
 .container {
   padding: 20px;
-  border:1px black solid;
+  background-color: rgba(238, 238, 238, .2);
+  backdrop-filter: blur(90px);
   border-radius: 10px;
   margin: 0 0 0 20px;
   position: relative;
@@ -16,17 +17,13 @@
   gap: 20px;
 }
 
-/*left section*/
-.left_section{
-  width: 60%;
-  height: 100%;
-  background-color: aqua;
+.header_text{
+  font-size: 24px;
+  font-weight: 500;
 }
-
-/*right section*/
-.right_section{
-  width: 40%;
-  height: 100%;
-  background-color: aqua;
-  
+.header_description{
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-bottom: 20px;
 }

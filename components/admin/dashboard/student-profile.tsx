@@ -4,8 +4,8 @@ import { ProfileDialog } from "./dialog/profile-dialog"
 import styles from "./styles.module.css"
 import { useRef, useState } from "react"
 import { ScrollArea, Flex, Button, Stack, Group } from '@mantine/core';
-import { CircularProgressbar } from 'react-circular-progressbar';
-import { CircleChevronRight } from "lucide-react";
+import { Check, ChevronRight, CircleChevronRight, SendHorizonal } from "lucide-react";
+import CountUp from 'react-countup';
 
 
 export const StudentProfile = () => {
@@ -14,45 +14,54 @@ export const StudentProfile = () => {
 
   const profiles = [
     {
-      name: "kevin1",
-      major: "math",
-      year: "2022"
+      name: "TL",
+      major: "Computer science",
+      graduation: "Student",
+      surveyStatus: "yes"
     },
     {
-      name: "kevin2",
-      major: "math",
-      year: "2022"
+      name: "LL",
+      major: "Graphic Design",
+      graduation: "Alumni",
+      surveyStatus: "yes"
     },
     {
-      name: "kevin3",
-      major: "math",
-      year: "2022"
+      name: "DE",
+      major: "Architecture Engineer",
+      graduation: "Alumni",
+      surveyStatus: "yes"
     },
     {
-      name: "kevin3",
-      major: "math",
-      year: "2022"
+      name: "AM",
+      major: "Software Developer",
+      graduation: "Student",
+      surveyStatus: "no"
     },
     {
-      name: "kevin3",
-      major: "math",
-      year: "2022"
+      name: "AM",
+      major: "Software Developer",
+      graduation: "Student",
+      surveyStatus: "yes"
     },
     {
-      name: "kevin3",
-      major: "math",
-      year: "2022"
+      name: "AM",
+      major: "Software Developer",
+      graduation: "Student",
+      surveyStatus: "yes"
     },
     {
-      name: "kevin3",
-      major: "math",
-      year: "2022"
+      name: "AM",
+      major: "Software Developer",
+      graduation: "Student",
+      surveyStatus: "yes"
     },
     {
-      name: "kevin3",
-      major: "math",
-      year: "2022"
-    }
+      name: "AM",
+      major: "Mechanical Engineering",
+      graduation: "Student",
+      surveyStatus: "yes"
+    },
+
   ]
   const viewport = useRef<HTMLDivElement>(null);
   const [scrollPosition, onScrollPositionChange] = useState({ x: 0, y: 0 });
@@ -64,24 +73,32 @@ export const StudentProfile = () => {
   return (
     <>
       <div className={styles.profile_default}>
-        <p>320</p>
-        <p>Submissions</p>
+        <div className={styles.horizontal_icon}>
+          <SendHorizonal size={23} color="white" />
+        </div>
+        <p className={styles.submission_text}>Submissions</p>
+        <p className={styles.submission_percent}>67%</p>
+        <p>320 <span>/400</span></p>
       </div>
 
-      <ScrollArea w={720} h={260}
+      <ScrollArea w={760} h={270}
         viewportRef={viewport}
-        scrollHideDelay={1000}
+        scrollHideDelay={1500}
         onScrollPositionChange={onScrollPositionChange}
       >
-        <Flex gap={10}>
+        <Flex gap={15}>
           {profiles.map((item) => (
             <div className={styles.profile_holder} key={item.name}>
               <div className={styles.profile_top}>
-                TL
+                {item.name}
               </div>
               <div className={styles.profile_bottom}>
-                <p className={styles.major_text}>Computer science</p>
-                <p className={styles.status_text}>CWU student</p>
+                <p className={styles.major_text}>{item.major}</p>
+                <div className={styles.status_text}>
+                  <p>{item.graduation}</p>
+                  {item.surveyStatus === 'yes' && <div className={styles.profile_completion}><Check size={14} /></div>}
+                </div>
+
                 <ProfileDialog />
               </div>
             </div>
@@ -89,7 +106,7 @@ export const StudentProfile = () => {
         </Flex>
       </ScrollArea>
 
-      <CircleChevronRight className={styles.next_btn} onClick={() => scrollToRight(60)} size={30} />
+      <ChevronRight className={styles.next_btn} onClick={() => scrollToRight(60)} size={30} />
 
     </>
   )

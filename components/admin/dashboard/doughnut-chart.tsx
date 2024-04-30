@@ -25,7 +25,7 @@ export const DoughnutChart = () => {
   return (
     <div className={styles.doughnut_container}>
       <div className={styles.doughnut_value}>
-        200
+        67%
       </div>
       <Doughnut
         data={data}

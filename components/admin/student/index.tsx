@@ -1,3 +1,4 @@
+import { StudentTable } from "./student-table"
 import styles from "./styles.module.css"
 export const StudentPage = () => {
   const profile = [
@@ -11,16 +12,10 @@ export const StudentPage = () => {
   ]
   return (
     <div className={styles.container}>
-      student Page
+      <p className={styles.header_text}>Student Management</p>
+      <p className={styles.header_description}>View and manage all of the registered students with ease</p>
       <div className={styles.section_container}>
-        <div className={styles.left_section}>
-          Table
-        </div>
-        <div className={styles.right_section}>
-          Profile
-          <p>Graduated</p>
-          <p></p>
-        </div>
+        <StudentTable />
       </div>
     </div>
   )

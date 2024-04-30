@@ -2,11 +2,12 @@
 .container{
   margin-left: 20px;
   padding: 20px;
-  border:1px black solid;
   display: flex;
   flex-direction: column;
   gap: 20px;
   height: 1500px;
+  backdrop-filter: blur(70px);
+  border-radius: 10px;
 }
 
 .container::-webkit-scrollbar{
@@ -16,14 +17,34 @@
 /* statistics */
 .statistics_container{
   display: flex;
-  gap: 20px;
+  gap: 40px;
   padding: 20px 0 40px 0;
+  margin-top: -10px;
+  margin-bottom: 20px;
 }
 
-.statistics_holder{
-  width: 320px;
-  height: 190px;
-  background-color: white;
+.statistics_holder1{
+  width: 300px;
+  height: 180px;
+  box-shadow: 2px 3px 3px #9E0419;
+  background-color: rgba(255,255,255,0.9);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+}
+.statistics_holder2{
+  width: 300px;
+  height: 180px;
+  background-color: rgba(255,255,255,0.9);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+}
+.statistics_holder3{
+  width: 300px;
+  height: 180px;
+  box-shadow: 2px 3px 3px #501599;
+  background-color: rgba(255,255,255,0.9);
   border-radius: 10px;
   padding: 20px;
   display: flex;
@@ -33,7 +54,7 @@
   width: 50%;
   display: flex;
   flex-direction: column;
-  gap:10px;
+  gap: 5px;
 }
 
 .statistics_right{
@@ -56,9 +77,8 @@
   margin-top: -10px;
 }
 .statistics_value{
-  font-size: 18px;
-  font-weight: 500;
-  margin-top: 10px;
+  font-size: 29px;
+  font-weight: 400;
 }
 .statistics_logo{
   object-fit: cover;
@@ -79,7 +99,7 @@
   background-color: #6B31B2;
   border-radius: 10px;
   width: 50px;
-  height: 50px;
+  height:50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,9 +148,13 @@
 
 /*profile*/
 .profile_header{
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+  
+}
+
+.profile_header_text{
+  font-size: 14px;
+  font-weight: 500px;
+  color: grey;
 }
 
 .profile_search{
@@ -157,6 +181,7 @@
 .next_btn{
   margin-top: auto;
   margin-bottom: auto;
+  color:  #1F32C4;
 }
 
 
@@ -168,48 +193,83 @@
   display: flex;
   gap: 20px;
   padding:20px 0 20px 0;
-  border:black 1px solid;
+  margin-top: -10px;
 }
 
 .profile_holder{
-  width: 170px;
-  height: 190px;
+  width: 175px;
+  height: 200px;
   border-radius: 10px;
 }
 
 .profile_default{
-  width: 170px;
-  height: 230px;
+  width: 175px;
+  height: 240px;
   border-radius: 10px;
-  background-color: chocolate;
+  background-color: white;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
+  align-items: center;
+  padding-top: 40px;  
+  box-shadow: 2px 3px 3px #1F32C4;
+}
+
+.submission_text{
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: -10px;
+}
+.submission_percent{
+  font-weight: 500;
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 20px;
+}
+
+.horizontal_icon{
+  width: 50px;
+  height: 50px;
+  display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
+  background-color: #1F32C4;
 }
 
 .profile_top{
-  background-color: beige;
+  background-color: #FFF8E1;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40%;
+  height: 45%;
   width: 100%;
   border-radius: 10px 10px 0 0;
   font-weight: 500;
   font-size:larger;
+  position: relative;
+}
+
+.profile_completion{
+  border-radius: 100%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600px;
+  color: white;
+  background-color: rgb(7, 148, 47);
 }
 
 .profile_bottom{
-  padding: 20px;
+  padding: 17px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap:20px;
   background-color: rgba(255,255,255,1);
   border-radius: 0 0 10px 10px;
-  
+  height: 150px;
 }
 
 .profile_btn{
@@ -222,10 +282,16 @@
 
 
 /*submissions*/
+.submission_container_big{
+  background-color: #fcfcfc;
+  border-radius: 10px;
+  box-shadow: 2px 3px 3px #0069B6;
+}
 .submission_container{
-  border:1px black solid;
-  padding: 20px;
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  padding:20px 0 20px 0;
+  margin-top: -10px;
 }
 
 .submission_row{
@@ -236,24 +302,53 @@
   justify-content: space-between;
 }
 
+.submission_row_odd{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 20px;
+  justify-content: space-between;
+  background-color: #F3EDFF;
+}
+
+.submission_status{
+  color: green;
+}
+.submission_name{
+  width: 150px;
+}
 /* texts, fonts */
 .dashboard_text{
-  font-size: 22px;
+  font-size: 26px;
   font-weight:500;
 }
 
 .welcome_text{
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 500;
 }
 
+.welcome_description{
+  font-size:16px;
+  font-weight: 500;
+  color: grey;
+  margin-top: -20px;
+}
+
 .major_text{
-  font-size:12px;
-  color:rgb(10, 104, 162)
+  font-size:14px;
+  color:rgb(10, 104, 162);
+  font-weight: 600;
+  
 }
 
 .status_text{
-  font-size:14px
+  font-size:14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 
@@ -262,5 +357,6 @@
   font-weight: 400;
 }
 .registered_student{
-  font-weight: 400;
+  font-weight: 500;
+  font-size: 26px;
 }

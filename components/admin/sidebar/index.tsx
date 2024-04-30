@@ -2,8 +2,9 @@
 
 import Link from "next/link"
 import styles from "./styles.module.css"
-import { Home, PieChart, Users } from "lucide-react"
+import { Home, PieChart, Settings, Users } from "lucide-react"
 import { usePathname } from "next/navigation"
+import Image from "next/image"
 
 
 export const Sidebar = () => {
@@ -31,7 +32,8 @@ export const Sidebar = () => {
   return (
     <div className={styles.container}>
       <div className={styles.title}>
-        CWU
+
+        <p>CWU</p>
       </div>
       {sidebarItems.map((item) => (
         <Link
@@ -43,6 +45,10 @@ export const Sidebar = () => {
           {item.name}
         </Link>
       ))}
+      <div className={styles.setting_holder}>
+        <Settings size={20} />
+        <p>Settings</p>
+      </div>
     </div>
   )
 }

@@ -10,6 +10,7 @@ import {
   User,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { UserButton } from "@clerk/nextjs";
 
 export const Sidebar = () => {
   const pathName = usePathname();
@@ -47,17 +48,23 @@ export const Sidebar = () => {
   ];
   return (
     <div className={styles.container}>
-      <div className={styles.title}>CAREER SURVEY</div>
-      {sidebarItems.map((item) => (
-        <Link
-          href={item.href}
-          key={item.name}
-          className={item.isActive ? styles.link_active : styles.link}
-        >
-          <item.icon size={20} />
-          {item.name}
-        </Link>
-      ))}
+      <div className={styles.title}><p >CWU SURVEY</p></div>
+      <div className={styles.link_container}>
+        {sidebarItems.map((item) => (
+          <Link
+            href={item.href}
+            key={item.name}
+            className={item.isActive ? styles.link_active : styles.link}
+          >
+            <item.icon size={20} />
+            {item.name}
+          </Link>
+        ))}
+      </div>
+      <div className={styles.user_container}>
+        <UserButton afterSignOutUrl="/" />
+        <p>Tu Ho</p>
+      </div>
     </div>
   );
 };

@@ -19,13 +19,6 @@ export const Profile = () => {
       <div className={styles.imageHolder}>
         <img src="/cwu-logo.png" alt="CWU Logo" className={styles.cwuImage} />
       </div>
-      <div className={styles.container}>
-        <div className={styles.iconWrapper}>
-          {/* Display the icon image */}
-          <UserButton afterSignOutUrl="/" />
-          <div>Thang Le</div>
-        </div>
-      </div>
 
       <div className={styles.aboutContainer}>
         <div className={styles.About}>

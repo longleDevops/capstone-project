@@ -114,8 +114,8 @@
 }
 
 .aboutContainer {
-    width: 400px;
-    height: 500px;
+    width: 600px;
+    height: 700px;
     margin: auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -154,9 +154,10 @@
     align-items: center;
     justify-content: center;
     color: white;
-    width: 120px;
-    height: 40px;
+    width: 150px;
+    height: 70px;
     position: relative;
     text-align: center;
-    left: 120px;
+    left: 180px;
+    top: 50px;
 }

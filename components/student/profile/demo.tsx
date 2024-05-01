@@ -1,6 +1,7 @@
 import React from "react";
 import { TextInput } from "@mantine/core";
 import styles from "./style.module.css";
+import '@mantine/core/styles/Input.css';
 
 interface DemoProps {
   submitted: boolean; // Specify the type of the submitted prop
@@ -44,6 +45,7 @@ export function Demo({ submitted }: DemoProps) {
   return (
     <>
       <TextInput
+        size="xl"
         label="Full Name"
         placeholder="Enter your full name"
         value={fullName}
@@ -52,14 +54,16 @@ export function Demo({ submitted }: DemoProps) {
         error={validateName(fullName)}
       />
       <TextInput
+        size="xl"
         label="CWU Email"
         placeholder="Enter your CWU email"
         value={cwuEmail}
         onChange={(event) => handleChange(event, setCwuEmail)}
-        style={{ marginBottom: "16px", borderRadius: "80px 80px 0 0" }}
+        style={{ marginBottom: "16px" }}
         error={validateEmail(cwuEmail)}
       />
       <TextInput
+        size="xl"
         label="CWU ID"
         placeholder="Enter your CWU ID"
         value={cwuId}

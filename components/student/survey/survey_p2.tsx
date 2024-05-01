@@ -54,6 +54,7 @@ export function Survey_p2({ onP2Complete }: SurveyP2Props) {
       <Stack>
         <Group>
           <Radio.Group
+            size="xl"
             name="learningExperience1"
             label="1. I learned how to explore, make career decisions, and plan my
             career goals."
@@ -71,6 +72,7 @@ export function Survey_p2({ onP2Complete }: SurveyP2Props) {
         </Group>
         <Group>
           <Radio.Group
+            size="xl"
             name="learningExperience2"
             label="2. I learned about employment and the job search."
             withAsterisk
@@ -87,6 +89,7 @@ export function Survey_p2({ onP2Complete }: SurveyP2Props) {
         </Group>
         <Group>
           <Radio.Group
+            size="xl"
             name="learningExperience3"
             label="3. I learned about current occupations and the job market"
             withAsterisk
@@ -103,6 +106,7 @@ export function Survey_p2({ onP2Complete }: SurveyP2Props) {
         </Group>
         <Group>
           <Radio.Group
+            size="xl"
             name="learningExperience4"
             label=" 4. I learned about writing resume and job preparation questions."
             withAsterisk
@@ -119,6 +123,7 @@ export function Survey_p2({ onP2Complete }: SurveyP2Props) {
         </Group>
         <Group>
           <Radio.Group
+            size="xl"
             name="learningExperience5"
             label="5. I learned about employment and the job search"
             withAsterisk

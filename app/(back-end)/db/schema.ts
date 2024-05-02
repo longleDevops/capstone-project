@@ -17,7 +17,8 @@ export const surveys = pgTable("Survey", {
 
 export const profile = pgTable("Profile", {
   id: serial("id").primaryKey(),
-  userName: text("user_name").notNull(),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
   dateOfBirth: text("birth_date").notNull(),
   gender: text("gender").notNull(),
   phoneNumber: text("phone_number").notNull(),

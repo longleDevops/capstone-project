@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TextInput, Select } from "@mantine/core";
+import dayjs from 'dayjs';
+import { DatePickerInput } from '@mantine/dates';
 
 interface SurveyP1Props {
   onP1Complete: () => void;
@@ -32,6 +34,8 @@ export function Survey_p1({ onP1Complete }: SurveyP1Props) {
   const [freeStatusQuestion2, setfreeStatusQuestion2] = useState<string>("");
   const [freeStatusQuestion3, setfreeStatusQuestion3] = useState<string>("");
   const [freeStatusQuestion4, setfreeStatusQuestion4] = useState<string>("");
+  // GRADUATION DATE
+  const [grad, setGrad] = useState<Date | null>(null);
 
   useEffect(() => {
     checkQuestionsAnswered();
@@ -218,6 +222,13 @@ export function Survey_p1({ onP1Complete }: SurveyP1Props) {
         allowDeselect={false}
         searchable
         onChange={handleMajorChange}
+      />
+      <DatePickerInput
+        size="xl"
+        label="When is your graduation?"
+        placeholder="Pick date and year"
+        value={grad}
+        onChange={setGrad}
       />
       <Select
         size="xl"

@@ -8,7 +8,8 @@ interface DemoProps {
 }
 
 export function Demo({ submitted }: DemoProps) {
-  const [fullName, setFullName] = React.useState("");
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
   const [cwuEmail, setCwuEmail] = React.useState("");
   const [cwuId, setCwuId] = React.useState("");
 
@@ -46,12 +47,21 @@ export function Demo({ submitted }: DemoProps) {
     <>
       <TextInput
         size="xl"
-        label="Full Name"
-        placeholder="Enter your full name"
-        value={fullName}
-        onChange={(event) => handleChange(event, setFullName)}
+        label="First Name"
+        placeholder="Enter your first name"
+        value={firstName}
+        onChange={(event) => handleChange(event, setFirstName)}
         style={{ marginBottom: "16px" }}
-        error={validateName(fullName)}
+        error={validateName(firstName)}
+      />
+      <TextInput
+        size="xl"
+        label="Last Name"
+        placeholder="Enter your last name"
+        value={lastName}
+        onChange={(event) => handleChange(event, setLastName)}
+        style={{ marginBottom: "16px" }}
+        error={validateName(lastName)}
       />
       <TextInput
         size="xl"

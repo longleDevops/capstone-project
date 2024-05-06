@@ -25,8 +25,8 @@ export const LandingPage = () => {
         <ClerkLoaded>
           <SignInButton
             mode="modal"
-            afterSignInUrl="/student/dashboard"
-            afterSignUpUrl="/student/dashboard"
+            afterSignInUrl="/student/home"
+            afterSignUpUrl="/student/home"
           >
             <button className={styles.signin_btn}>
               Sign In

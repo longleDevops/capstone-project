@@ -6,8 +6,11 @@ import React, { useState } from "react";
 import styles from "./style.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import { Survey } from "../survey";
+import { useSurvey } from "@/hooks/use-survey";
 
-export const Dashboard = () => {
+export const Home = () => {
+  const { isStarted, setIsStarted } = useSurvey()
   return (
     <>
       <div className={styles.imageHolder}>
@@ -36,12 +39,15 @@ export const Dashboard = () => {
             support initiatives.
           </p>
         </div>
-        <Link href="/student/survey">
-          <button type="submit" className={styles.surveyButton}>
+        <Link
+          href={'/student/survey'}
+        >
+          <button onClick={() => setIsStarted(true)} className={styles.surveyButton}>
             Take Survey!
           </button>
         </Link>
       </div>
     </>
   );
+
 };

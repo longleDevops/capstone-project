@@ -13,7 +13,7 @@ export const Survey2 = () => {
 
   const handleClicked = (value: number) => {
     const newPart = currentPart + value;
-    if (newPart === 0 || newPart === 4)
+    if (newPart === 0 || newPart === 5)
       return;
     setCurrentPart(newPart)
   }

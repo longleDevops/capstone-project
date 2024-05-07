@@ -55,8 +55,15 @@
 .bar_container {
   height: 400px;
   width: 800px;
+  background-color: bisque;
 }
 
+
+/* Pie chart*/
+.pie_container{
+  height: 300px;
+  width: 300px;
+}
 /*Second section*/
 
 

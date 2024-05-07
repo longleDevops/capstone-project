@@ -1,12 +1,15 @@
 import React from "react";
 import { TextInput } from "@mantine/core";
+import styles from "./style.module.css";
+import '@mantine/core/styles/Input.css';
 
 interface DemoProps {
   submitted: boolean; // Specify the type of the submitted prop
 }
 
 export function Demo({ submitted }: DemoProps) {
-  const [fullName, setFullName] = React.useState("");
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
   const [cwuEmail, setCwuEmail] = React.useState("");
   const [cwuId, setCwuId] = React.useState("");
 
@@ -43,14 +46,25 @@ export function Demo({ submitted }: DemoProps) {
   return (
     <>
       <TextInput
-        label="Full Name"
-        placeholder="Enter your full name"
-        value={fullName}
-        onChange={(event) => handleChange(event, setFullName)}
+        size="xl"
+        label="First Name"
+        placeholder="Enter your first name"
+        value={firstName}
+        onChange={(event) => handleChange(event, setFirstName)}
         style={{ marginBottom: "16px" }}
-        error={validateName(fullName)}
+        error={validateName(firstName)}
       />
       <TextInput
+        size="xl"
+        label="Last Name"
+        placeholder="Enter your last name"
+        value={lastName}
+        onChange={(event) => handleChange(event, setLastName)}
+        style={{ marginBottom: "16px" }}
+        error={validateName(lastName)}
+      />
+      <TextInput
+        size="xl"
         label="CWU Email"
         placeholder="Enter your CWU email"
         value={cwuEmail}
@@ -59,6 +73,7 @@ export function Demo({ submitted }: DemoProps) {
         error={validateEmail(cwuEmail)}
       />
       <TextInput
+        size="xl"
         label="CWU ID"
         placeholder="Enter your CWU ID"
         value={cwuId}

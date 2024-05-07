@@ -14,9 +14,7 @@ export const StudentPage = () => {
     <div className={styles.container}>
       <p className={styles.header_text}>Student Management</p>
       <p className={styles.header_description}>View and manage all of the registered students with ease</p>
-      <div className={styles.section_container}>
-        <StudentTable />
-      </div>
+      <StudentTable />
     </div>
   )
 }

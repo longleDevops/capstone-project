@@ -13,13 +13,7 @@ export const AboutUs = () => {
             <div className={styles.imageHolder}>
                 <img src="/cwu-logo.png" alt="CWU Logo" className={styles.cwuImage} />
             </div>
-            <div className={styles.container}>
-                <div className={styles.iconWrapper}>
-                    {/* Display the icon image */}
-                    <UserButton afterSignOutUrl='/' />
-                    <div>Tu Ho</div>
-                </div>
-            </div>
+
             <div className={styles.aboutContainer}>
                 <div className={styles.About}>
                     <h1 className={styles.heading}>About Us</h1>

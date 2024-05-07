@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./styles.module.css";
+import { UserButton } from "@clerk/nextjs";
 import router, { useRouter } from "next/router";
 import { Survey_p1 } from "./survey_p1";
 import { Survey_p2 } from "./survey_p2";
 import { Survey_p3 } from "./survey_p3";
+
 
 export const Survey = () => {
   // State to track the current table
@@ -18,6 +20,7 @@ export const Survey = () => {
   const [answersP1, setAnswersP1] = useState({});
   const [answersP2, setAnswersP2] = useState({});
   const [answersP3, setAnswersP3] = useState({});
+
 
   // Function to handle navigation to the next table
   // Inside handleNext function

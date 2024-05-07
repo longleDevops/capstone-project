@@ -65,6 +65,7 @@ export function Survey_p3({ onP3Complete }: SurveyP3Props) {
       <Stack>
         <Group>
           <Radio.Group
+            size="xl"
             name="Satisfaction"
             label="1. Career planning and decisions"
             withAsterisk
@@ -82,6 +83,7 @@ export function Survey_p3({ onP3Complete }: SurveyP3Props) {
 
         <Group>
           <Radio.Group
+            size="xl"
             name="Satisfaction2"
             label="2. Occupations and the job market."
             withAsterisk
@@ -98,6 +100,7 @@ export function Survey_p3({ onP3Complete }: SurveyP3Props) {
         </Group>
         <Group>
           <Radio.Group
+            size="xl"
             name="Satisfaction3"
             label="3. Listings of full time job/internship oppotunities/ Job Network"
             withAsterisk
@@ -114,6 +117,7 @@ export function Survey_p3({ onP3Complete }: SurveyP3Props) {
         </Group>
         <Group>
           <Radio.Group
+            size="xl"
             name="Satisfaction4"
             label="4. Building interview/communication skills"
             withAsterisk
@@ -130,6 +134,7 @@ export function Survey_p3({ onP3Complete }: SurveyP3Props) {
         </Group>
         <Group>
           <Radio.Group
+            size="xl"
             name="Satisfaction5"
             label="5. Building writing resume/CV skills"
             withAsterisk
@@ -146,6 +151,7 @@ export function Survey_p3({ onP3Complete }: SurveyP3Props) {
         </Group>
         <Group>
           <Radio.Group
+            size="xl"
             name="Satisfaction6"
             label="6. Career information accessible through the career services website"
             withAsterisk
@@ -162,6 +168,7 @@ export function Survey_p3({ onP3Complete }: SurveyP3Props) {
         </Group>
         <Group>
           <Radio.Group
+            size="xl"
             name="Satisfaction7"
             label="7. Staff who help you find career infomation."
             withAsterisk

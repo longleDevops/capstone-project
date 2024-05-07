@@ -4,28 +4,30 @@
 
 import React, { useState } from "react";
 import styles from "./style.module.css";
-import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import Image from "next/image";
+import { Survey } from "../survey";
+import { useSurvey } from "@/hooks/use-survey";
 
-export const Dashboard = () => {
+export const Home = () => {
+  const { isStarted, setIsStarted } = useSurvey()
   return (
     <>
       <div className={styles.imageHolder}>
         <img src="/cwu-logo.png" alt="CWU Logo" className={styles.cwuImage} />
       </div>
-      <div className={styles.container}>
-        <div className={styles.iconWrapper}>
-          {/* Display the icon image */}
-          <UserButton afterSignOutUrl="/" />
-          <div>Tu Ho</div>
-        </div>
-      </div>
 
       <div className={styles.aboutContainer}>
-        <div className={styles.About}>
-          <h1 className={styles.heading}>Post-Graduation Career Survey App</h1>
-          <p className={styles.description}>
-            <img src="/grad.png" alt="CWU grad" className={styles.cwuGradImg} />
+        <Image
+          src="/grad.png"
+          alt="CWU grad"
+          width={700}
+          height={200}
+          className={styles.cwuGradImg}
+        />
+        <div className={styles.heading}>Post-Graduation Career Survey </div>
+        <div className={styles.description_container}>
+          <p>
             As you embark on your journey beyond Central Washington University,
             we invite you to participate in our Post-Graduation Career Survey.
             Your insights and experiences are invaluable in shaping the future
@@ -36,15 +38,16 @@ export const Dashboard = () => {
             enhancement of our academic programs, career services, and alumni
             support initiatives.
           </p>
-          <div>
-            <Link href="/student/survey">
-              <button type="submit" className={styles.surveyButton}>
-                Take Survey!
-              </button>
-            </Link>
-          </div>
         </div>
+        <Link
+          href={'/student/survey'}
+        >
+          <button onClick={() => setIsStarted(true)} className={styles.surveyButton}>
+            Take Survey!
+          </button>
+        </Link>
       </div>
     </>
   );
+
 };

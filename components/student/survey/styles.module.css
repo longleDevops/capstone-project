@@ -59,21 +59,21 @@
   text-decoration: none;
   background-color: black;
   border-radius: 38px;
-  height: 53.2px;
-  width: 170px;
-  display: flex;
+  display: flex; 
   align-items: center;
   justify-content: center;
   color: white;
-  margin-top: 20px;
-  margin-left: 50px;
-  margin-right: 10px;
-  font-size: 25px;
+  width: 120px;
+  height: 40px;
+  position: relative;
+  text-align: center;
+  left: 120px;
+  margin: 35px 120px 0 0;
 }
 
 .buttonContainer {
   display: flex;
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .nextButton:hover {
@@ -121,17 +121,21 @@
 
 /* Ensure the image is at the top left */
 .imageHolder {
+  border-radius: 50%;
   position: absolute;
   top: 0;
   right: 0;
-  height: 50px;
+  margin-top: 50px;
+  margin-right: 50px;
 }
 
 .cwuImage {
-  height: 100%;
-  /* Fill the height of the imageHolder */
-  width: auto;
-  /* Maintain aspect ratio */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
 .ratingOptions {
@@ -165,4 +169,43 @@
   /* Change background color when selected */
   color: #fff;
   /* Change text color when selected */
+}
+
+.iconWrapper {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 8px;
+
+}
+
+.icon {
+  width: 70px;
+  /* Adjust the width as needed */
+  height: 70px;
+  /* Adjust the height as needed */
+  border-radius: 50%;
+  /* Makes the icon circular */
+  transform: translateX(30%);
+  /* Center the icon horizontally */
+  margin-right: 50px;
+  /* Add margin to the right of the icon */
+}
+
+.container {
+  background-color: rgba(131, 79, 79, 0.2);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 16px 60px;
+  position: absolute;
+  top: 110px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  /* Change flex-direction to row */
+  backdrop-filter: blur(90px);
 }

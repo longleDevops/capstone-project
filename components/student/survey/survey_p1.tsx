@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TextInput, Select } from "@mantine/core";
+import dayjs from 'dayjs';
+import { DatePickerInput } from '@mantine/dates';
 
 interface SurveyP1Props {
   onP1Complete: () => void;
@@ -32,6 +34,8 @@ export function Survey_p1({ onP1Complete }: SurveyP1Props) {
   const [freeStatusQuestion2, setfreeStatusQuestion2] = useState<string>("");
   const [freeStatusQuestion3, setfreeStatusQuestion3] = useState<string>("");
   const [freeStatusQuestion4, setfreeStatusQuestion4] = useState<string>("");
+  // GRADUATION DATE
+  const [grad, setGrad] = useState<Date | null>(null);
 
   useEffect(() => {
     checkQuestionsAnswered();
@@ -197,6 +201,8 @@ export function Survey_p1({ onP1Complete }: SurveyP1Props) {
   return (
     <>
       <Select
+        size="xl"
+        style={{ marginBottom: "16px" }}
         label="What is your major?"
         placeholder="Example: Computer Science"
         data={[
@@ -217,7 +223,15 @@ export function Survey_p1({ onP1Complete }: SurveyP1Props) {
         searchable
         onChange={handleMajorChange}
       />
+      <DatePickerInput
+        size="xl"
+        label="When is your graduation?"
+        placeholder="Pick date and year"
+        value={grad}
+        onChange={setGrad}
+      />
       <Select
+        size="xl"
         label="Are you currently studying at CWU?"
         placeholder="Please select one options"
         data={[
@@ -236,6 +250,7 @@ export function Survey_p1({ onP1Complete }: SurveyP1Props) {
           {currentStatus === "Yes" && (
             <>
               <Select
+                size="xl"
                 label="Do you have internship?"
                 placeholder="Yes or no"
                 data={["Yes", "No"]}
@@ -245,16 +260,19 @@ export function Survey_p1({ onP1Complete }: SurveyP1Props) {
                 <>
                   {/* Example internship questions */}
                   <TextInput
+                    size="xl"
                     label="Please enter your company name"
                     placeholder="Example: Apple"
                     onChange={handleInternChange1}
                   />
                   <TextInput
+                    size="xl"
                     label="Please enter your job title"
                     placeholder="Example: Software Engineering"
                     onChange={handleInternChange2}
                   />
                   <Select
+                    size="xl"
                     label="Please select your salary range"
                     placeholder="Salary Range"
                     data={[
@@ -268,6 +286,7 @@ export function Survey_p1({ onP1Complete }: SurveyP1Props) {
                     onChange={handleInternChange3}
                   />
                   <Select
+                    size="xl"
                     label="How long did it take you for preparing?"
                     placeholder="Counted by months"
                     data={["1", "2", "3", "6", "9", "12 or more"]}
@@ -285,16 +304,19 @@ export function Survey_p1({ onP1Complete }: SurveyP1Props) {
         <>
           {/* Example internship questions */}
           <TextInput
+            size="xl"
             label="Please enter you company name"
             placeholder="Example: Apple"
             onChange={handleWorkingChange1}
           />
           <TextInput
+            size="xl"
             label="Please enter your job title"
             placeholder="Example: Software Engineering "
             onChange={handleWorkingChange2}
           />
           <Select
+            size="xl"
             label="Please select  your salary range "
             placeholder="Salary Range"
             data={[
@@ -308,6 +330,7 @@ export function Survey_p1({ onP1Complete }: SurveyP1Props) {
             onChange={handleWorkingChange3}
           />
           <Select
+            size="xl"
             label="How long did it take you for the job?"
             placeholder="Counted by months"
             data={["1", "2", "3", "6", "9", "12 or more"]}
@@ -315,12 +338,14 @@ export function Survey_p1({ onP1Complete }: SurveyP1Props) {
             onChange={handleWorkingChange4}
           />
           <Select
+            size="xl"
             label="Did you got any recommendation letter from CWWU or career center service for the job? "
             placeholder="Yes or No"
             data={["Yes", "No"]}
             onChange={handleWorkingChange5}
           />
           <Select
+            size="xl"
             label=" How did you secure your current job?"
             placeholder="Example : CWU career center service"
             data={[
@@ -339,11 +364,13 @@ export function Survey_p1({ onP1Complete }: SurveyP1Props) {
         <>
           {/* Example internship questions */}
           <TextInput
+            size="xl"
             label="Please enter a school name that you are pusuring a new degree"
             placeholder="Example: CWU"
             onChange={handleAcaChange1}
           />
           <Select
+            size="xl"
             label="Please enter your major"
             placeholder="Example : CWU"
             data={[
@@ -364,12 +391,14 @@ export function Survey_p1({ onP1Complete }: SurveyP1Props) {
           />
 
           <Select
+            size="xl"
             label="Did the major at CWU help you get acceped? "
             placeholder="Yes or No"
             data={["Yes", "No"]}
             onChange={handleAcaChange3}
           />
           <Select
+            size="xl"
             label="How long did it take you for getting accepted?"
             placeholder="Counted by months"
             data={["1", "2", "3", "6", "9", "12 or more"]}
@@ -384,12 +413,14 @@ export function Survey_p1({ onP1Complete }: SurveyP1Props) {
           {/* Example internship questions */}
 
           <TextInput
+            size="xl"
             label="Please enter your job title you aiming for"
             placeholder="Example: Software Engineering "
             onChange={handleFreeStatusChange2}
           />
 
           <Select
+            size="xl"
             label="Please select your expected salary Range "
             placeholder="Salary Range"
             data={[
@@ -403,6 +434,7 @@ export function Survey_p1({ onP1Complete }: SurveyP1Props) {
             onChange={handleFreeStatusChange3}
           />
           <Select
+            size="xl"
             label="How long do you expect for getting a new job?"
             placeholder="Counted by months"
             data={["1", "2", "3", "6", "9", "12 or more"]}

@@ -37,7 +37,7 @@ export const SurveyTwo = () => {
       <div className={styles.title}>What is your current status?</div>
       <div className={styles.answer1_container}>
         {quizThreeAnswers.map((item, index) => (
-          <div className={styles.answer1} onClick={() => handleAnswerQ1(index)}>
+          <div key={index} className={q1Answer === index ? styles.answer1_selected : styles.answer1} onClick={() => handleAnswerQ1(index)} >
             {q1Answer === index &&
               <div className={styles.select_holder}>
                 <Check size={15} color='white' />

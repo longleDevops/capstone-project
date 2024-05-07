@@ -28,6 +28,23 @@
   cursor: pointer;
   position: relative;
 }
+.answer1_selected{
+  width: 140px;
+  height: 140px;
+  border: 1px #227517 solid;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+}
+.answer1:hover {
+  border: 1px #227517 solid;
+}
 .answer1_title{
   font-size: 14px;
   width: 100%;

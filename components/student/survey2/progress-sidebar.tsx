@@ -59,7 +59,7 @@ export const ProgressSidebar = () => {
               <div className={item.isCompleted ? styles.inner_status_completed : item.isActive ? styles.inner_status_active : styles.inner_status}>
                 {item.isCompleted ?
                   <Check color="white" size={14} strokeWidth={4} absoluteStrokeWidth />
-                  : <div className={item.isActive ? styles.inner_circle_active : styles.inner_status}>
+                  : <div className={item.isActive ? styles.inner_circle_active : styles.inner_circle}>
                   </div>}
               </div>
               {index != 3 &&

@@ -11,28 +11,28 @@ export const ProgressSidebar = () => {
     {
       title: 'Background info',
       description: 'Some basic information about yourself',
-      isActive: currentPart === 1,
-      isCompleted: currentPart > 1
+      isActive: currentPart === 0,
+      isCompleted: currentPart > 0
     },
     {
       title: 'Employment status',
       description: 'Some information regarding your current employment status',
-      isActive: currentPart === 2,
-      isCompleted: currentPart > 2
+      isActive: [1, 2, 3].includes(currentPart),
+      isCompleted: currentPart > 3
 
     },
     {
       title: 'Career planning',
       description: 'Your satisfactions regarding CWU career services',
-      isActive: currentPart === 3,
-      isCompleted: currentPart > 3
+      isActive: currentPart === 4,
+      isCompleted: currentPart > 4
 
     },
     {
       title: 'Survey completion',
       description: 'Some statistics results for your references',
-      isActive: currentPart === 4,
-      isCompleted: currentPart > 4
+      isActive: currentPart === 5,
+      isCompleted: currentPart >= 5
 
     },
   ]

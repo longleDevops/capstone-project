@@ -9,6 +9,7 @@
   font-weight: 600;
   margin-bottom: 30px;
   margin-top: 70px;
+  width: 100%;
 }
 
 .question_container{
@@ -28,6 +29,29 @@
   background-color: white;
   position: relative;
   cursor: pointer;
+}
+
+.answer:hover{
+  scale: 1.1;
+}
+
+.answer_selected{
+  width: 110px;
+  height: 110px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+  border: #227517 1px solid;
+}
+
+.answer_selected:hover{
+  scale:1.1;
 }
 
 .select_holder{
@@ -61,3 +85,4 @@
 .emotion{
   object-fit: cover;
 }
+

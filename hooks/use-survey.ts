@@ -27,7 +27,7 @@ export const useSurvey = create<ISurvey>((set) => ({
   isStepThreeStarted: false,
   setIsStepThreeStarted: (isStepThreeStarted: boolean) => { set({ isStepThreeStarted }) },
 
-  currentPart: 1,
+  currentPart: 0,
   setCurrentPart: (currentPart: number) => { set({ currentPart }) }
 
 }))

@@ -2,6 +2,7 @@ import { Angry, Check, Frown, Meh, Smile, SmilePlus } from 'lucide-react'
 import styles from './styles.module.css'
 import Image from 'next/image'
 import { useState } from 'react'
+import { useSurveyPartThree } from '@/hooks/use-partThree'
 
 const questions = [
   {
@@ -47,17 +48,63 @@ const answers = [
     fillColor: 'green'
   }
 ]
-export const SurveyThree = () => {
-  const [q1Answer, setQ1Answer] = useState(-1)
-  const [q2Answer, setQ2Answer] = useState(-1)
-  const [q3Answer, setQ3Answer] = useState(-1)
 
+
+export const SurveyThree = () => {
+  const { q1Answer, setQ1Answer, q2Answer, setQ2Answer, q3Answer, setQ3Answer, q4Answer, setQ4Answer, q5Answer, setQ5Answer } = useSurveyPartThree()
+
+  const handleClicked = (quesNum: number, index: number) => {
+    if (quesNum === 1) {
+      if (index === q1Answer) {
+        setQ1Answer(-1)
+        return;
+      }
+      setQ1Answer(index);
+      return;
+    }
+
+    if (quesNum === 2) {
+      if (index === q2Answer) {
+        setQ2Answer(-1)
+        return;
+      }
+      setQ2Answer(index);
+      return;
+    }
+
+    if (quesNum === 3) {
+      if (index === q3Answer) {
+        setQ3Answer(-1)
+        return;
+      }
+      setQ3Answer(index)
+      return
+    }
+
+    if (quesNum === 4) {
+      if (index === q4Answer) {
+        setQ4Answer(-1)
+        return;
+      }
+      setQ4Answer(index)
+      return
+    }
+
+    if (quesNum === 5) {
+      if (index === q5Answer) {
+        setQ5Answer(-1)
+        return;
+      }
+      setQ5Answer(index)
+      return
+    }
+  }
   return (
     <div className={styles.container}>
-      <div className={styles.title}>On the scale 1 to 5, how did CWU help you with career planning and decisions?</div>
+      <div className={styles.title}>How did CWU help you with career planning and decisions?</div>
       <div className={styles.question_container}>
         {answers.map((item, index) => (
-          <div className={styles.answer} key={item.title} onClick={() => setQ1Answer(index)}>
+          <div className={q1Answer === index ? styles.answer_selected : styles.answer} key={item.title} onClick={() => handleClicked(1, index)}>
             {q1Answer === index &&
               <div className={styles.select_holder}>
                 <Check size={15} color='white' />
@@ -71,10 +118,10 @@ export const SurveyThree = () => {
         ))}
       </div>
 
-      <div className={styles.title}>On the scale 1 to 5, how did CWU help you with career planning and decisions?</div>
+      <div className={styles.title}>How did CWU build your communication and technical skills?</div>
       <div className={styles.question_container}>
         {answers.map((item, index) => (
-          <div className={styles.answer} key={item.title} onClick={() => setQ2Answer(index)}>
+          <div className={q2Answer === index ? styles.answer_selected : styles.answer} key={item.title} onClick={() => handleClicked(2, index)}>
             {q2Answer === index &&
               <div className={styles.select_holder}>
                 <Check size={15} color='white' />
@@ -88,10 +135,10 @@ export const SurveyThree = () => {
         ))}
       </div>
 
-      <div className={styles.title}>On the scale 1 to 5, how did CWU help you with career planning and decisions?</div>
+      <div className={styles.title}>How did CWU prepare for your resume?</div>
       <div className={styles.question_container}>
         {answers.map((item, index) => (
-          <div className={styles.answer} key={item.title} onClick={() => setQ3Answer(index)}>
+          <div className={q3Answer === index ? styles.answer_selected : styles.answer} key={item.title} onClick={() => handleClicked(3, index)}>
             {q3Answer === index &&
               <div className={styles.select_holder}>
                 <Check size={15} color='white' />
@@ -105,6 +152,39 @@ export const SurveyThree = () => {
         ))}
       </div>
 
+      <div className={styles.title}>How did CWU prepare for your interviews?</div>
+      <div className={styles.question_container}>
+        {answers.map((item, index) => (
+          <div className={q4Answer === index ? styles.answer_selected : styles.answer} key={item.title} onClick={() => handleClicked(4, index)}>
+            {q4Answer === index &&
+              <div className={styles.select_holder}>
+                <Check size={15} color='white' />
+              </div>
+            }
+            <div className={styles.score_holder}>
+              <item.icon size={30} />
+            </div>
+            <p className={styles.answer_title}>{item.title}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className={styles.title}>How would you rate the professional level of CWU staff? </div>
+      <div className={styles.question_container}>
+        {answers.map((item, index) => (
+          <div className={q5Answer === index ? styles.answer_selected : styles.answer} key={item.title} onClick={() => handleClicked(5, index)}>
+            {q5Answer === index &&
+              <div className={styles.select_holder}>
+                <Check size={15} color='white' />
+              </div>
+            }
+            <div className={styles.score_holder}>
+              <item.icon size={30} />
+            </div>
+            <p className={styles.answer_title}>{item.title}</p>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

@@ -13,7 +13,7 @@
 .answer1_container{
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
 }
 .answer1{
   width: 140px;
@@ -28,6 +28,22 @@
   cursor: pointer;
   position: relative;
 }
+
+.answer1:hover{
+  width: 140px;
+  height: 140px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+  scale: 1.1;
+}
+
 .answer1_selected{
   width: 140px;
   height: 140px;
@@ -41,6 +57,53 @@
   gap: 10px;
   cursor: pointer;
   position: relative;
+}
+
+.answer1_selected:hover{
+  width: 140px;
+  height: 140px;
+  border: 1px #227517 solid;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+  scale: 1.1;
+}
+
+.answer1_disable1{
+  width: 140px;
+  height: 140px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  pointer-events: none;
+  color: gray;
+}
+
+
+.answer1_disable2 {
+  width: 140px;
+  height: 140px;
+  background-color: rgba(0, 0, 0, .1);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
 }
 .answer1:hover {
   border: 1px #227517 solid;
@@ -88,6 +151,35 @@
   cursor: pointer;
   position: relative;
 }
+
+.q2_path1_yes_selected{
+width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+    border: 1px #227517 solid;
+
+}
+
+.q2_path1_yes:hover{
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+  scale: 1.03;
+  
+}
+
 .q2_path1_no{
   width: 100%;
   background-color: white;
@@ -99,5 +191,33 @@
   cursor: pointer;
   position: relative;
   margin-top: 15px;
+
 }
 
+.q2_path1_no_selected{
+width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+    margin-top: 15px;
+    border: 1px #227517 solid;
+
+}
+.q2_path1_no:hover{
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+  margin-top: 15px;
+  scale: 1.03;
+}

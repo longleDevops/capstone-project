@@ -44,6 +44,7 @@ export const SurveyOne = () => {
           "Accounting",
           "Finance",
           "Nursing",
+          "Mathematic",
         ]}
         allowDeselect={false}
         searchable

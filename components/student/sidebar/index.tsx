@@ -21,10 +21,10 @@ export const Sidebar = () => {
       isActive: pathName === "/student/home",
     },
     {
-      href: "/student/profile",
-      name: "Profile",
+      href: "/student/survey",
+      name: "Survey",
       icon: User,
-      isActive: pathName === "/student/profile",
+      isActive: pathName === "/student/survey",
     },
     {
       href: "/student/contact", // NEED to add one more page for about us
@@ -56,7 +56,6 @@ export const Sidebar = () => {
       </div>
       <div className={styles.user_container}>
         <UserButton afterSignOutUrl="/" />
-        <p>Tu Ho</p>
       </div>
     </div>
   );

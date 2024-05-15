@@ -11,14 +11,11 @@ export const LineChart = () => {
       legend: {
         position: 'top' as const,
       },
-      title: {
-        display: true,
-        text: 'Chart.js Line Chart',
-      },
+
     },
   };
 
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  const labels = ['spring 22', 'Fall 23', 'Winter 23', 'Spring 23', 'Fall 24', 'Winter 24', 'Spring 24'];
 
   const data = {
     labels,

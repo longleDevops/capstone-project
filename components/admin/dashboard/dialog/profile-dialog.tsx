@@ -50,9 +50,10 @@ export const ProfileDialog = () => {
             <p className={styles.name}>Andree Lindo</p>
             <div className={styles.graduation_holder}>
               <p className={styles.status}>Graduated</p>
-              <p className={styles.date}>Since May 2023</p>
+              <p className={styles.date}>Fall 2023 - Fall 2024</p>
             </div>
             <p className={styles.degree}>BAs in Computer science</p>
+
             <div className={styles.holder}>
               <p className={styles.left_txt}>Company</p>
               <p className={styles.right_txt}>Microsoft Inc.</p>

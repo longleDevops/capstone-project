@@ -21,7 +21,9 @@ type Student = {
   id: string,
   firstName: string;
   lastName: string;
-  year: string;
+  graduationStatus: string;
+  startTerm: string,
+  endTerm: string
   level: string;
   satisfaction: string;
   salary: string
@@ -33,101 +35,14 @@ const data: Student[] = [
     id: "12345678",
     firstName: 'Zachary',
     lastName: 'Davis',
-    year: '2019',
+    graduationStatus: 'graduated',
+    startTerm: 'Fall 2023',
+    endTerm: 'Fall 2024',
     level: 'Bachelor',
     satisfaction: '4.6',
     salary: "$100,000"
   },
-  {
-    id: "12345678",
-    firstName: 'Long',
-    lastName: 'la',
-    year: '2019',
-    level: 'Master',
-    satisfaction: '4.6',
-    salary: "$100,000"
-  },
-  {
-    id: "456546456",
-    firstName: 'Thang',
-    lastName: 'Le',
-    year: '2019',
-    level: 'Bachelor',
-    satisfaction: '4.6',
-    salary: "$100,000"
-  },
-  {
-    id: "23423432",
-    firstName: 'Huzing',
-    lastName: 'Davis',
-    year: '2019',
-    level: 'Bachelor',
-    satisfaction: '4.6',
-    salary: "$100,000"
-  },
-  {
-    id: "345346345",
-    firstName: 'Son',
-    lastName: 'Davis',
-    year: '2019',
-    level: 'Bachelor',
-    satisfaction: '4.6',
-    salary: "$100,000"
-  },
-  {
-    id: "12345678",
-    firstName: 'Travis',
-    lastName: 'Davis',
-    year: '2019',
-    level: 'Bachelor',
-    satisfaction: '2.3',
-    salary: "$100,000"
-  },
-  {
-    id: "12345678",
-    firstName: 'Zachary',
-    lastName: 'Davis',
-    year: '2019',
-    level: 'Bachelor',
-    satisfaction: '3.5',
-    salary: "$100,000"
-  },
-  {
-    id: "12345678",
-    firstName: 'Zachary',
-    lastName: 'Davis',
-    year: '2019',
-    level: 'Bachelor',
-    satisfaction: '1.6',
-    salary: "$100,000"
-  },
-  {
-    id: "12345678",
-    firstName: 'Zachary',
-    lastName: 'Davis',
-    year: '2019',
-    level: 'Bachelor',
-    satisfaction: '4.6',
-    salary: "$100,000"
-  },
-  {
-    id: "12345678",
-    firstName: 'Zachary',
-    lastName: 'Davis',
-    year: '2019',
-    level: 'Bachelor',
-    satisfaction: '4.6',
-    salary: "$100,000"
-  },
-  {
-    id: "12345678",
-    firstName: 'Zachary',
-    lastName: 'Davis',
-    year: '2019',
-    level: 'Bachelor',
-    satisfaction: '4.6',
-    salary: "$100,000"
-  },
+
 ];
 
 const columns: MRT_ColumnDef<Student>[] = [
@@ -147,8 +62,18 @@ const columns: MRT_ColumnDef<Student>[] = [
     size: 120,
   },
   {
-    accessorKey: 'year',
-    header: 'Start Year',
+    accessorKey: 'graduationStatus',
+    header: 'Graduation Status',
+    size: 120,
+  },
+  {
+    accessorKey: 'startTerm',
+    header: 'Start Term',
+    size: 120,
+  },
+  {
+    accessorKey: 'endTerm',
+    header: 'End Term',
     size: 120,
   },
   {

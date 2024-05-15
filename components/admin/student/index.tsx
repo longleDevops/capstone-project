@@ -12,7 +12,7 @@ export const StudentPage = () => {
   ]
   return (
     <div className={styles.container}>
-      <p className={styles.header_text}>Student Management</p>
+      <p className={styles.header_text}>Survey Management</p>
       <p className={styles.header_description}>View and manage all of the registered students with ease</p>
       <StudentTable />
     </div>

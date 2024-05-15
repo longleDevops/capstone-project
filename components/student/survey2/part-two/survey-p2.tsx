@@ -53,12 +53,6 @@ export const SurveyTwo = () => {
       }
       setQ2Path1Answer(input);
     } else if (currentPart === 2) {
-      if (input === q3Path1Answer) {
-        setQ3Path1Answer(-1);
-        return;
-      }
-      setQ3Path1Answer(input)
-    } else if (currentPart === 2) {
       if (input === q2Path2Answer) {
         setQ2Path2Answer(-1);
         return;
@@ -158,7 +152,7 @@ export const SurveyTwo = () => {
               </div>
             </>
           }
-          {q3Path1Answer === 0 &&
+          {q3Path1Answer === 0 ? (
             <>
               <div className={styles.title}>
                 Have you participated in any internship programs?
@@ -175,13 +169,13 @@ export const SurveyTwo = () => {
                   NO
                 </div>
               </div>
-              <div className={styles.title}>What is your company name?</div>
+              <div className={styles.title}>What is your internship company name?</div>
               <TextInput
                 size='lg'
                 placeholder="Ex: Apple Inc."
               />
 
-              <div className={styles.title}>What is your job title?</div>
+              <div className={styles.title}>What is your internship title?</div>
               <TextInput
                 size='lg'
                 placeholder="Ex: Apple Inc."
@@ -193,15 +187,13 @@ export const SurveyTwo = () => {
                 placeholder="Ex: Apple Inc."
               />
 
-              <div className={styles.title}>How long did it take for preparing?</div>
+              <div className={styles.title}>How long did you take the internship?</div>
               <TextInput
                 size='lg'
                 placeholder="Ex: Apple Inc."
               />
             </>
-          }
-
-          {q3Path1Answer === 1 &&
+          ) : (
             <>
               <div className={styles.title}>
                 Have you taken OPT or CPT?
@@ -210,38 +202,39 @@ export const SurveyTwo = () => {
                 <div className={styles.q2_path1_yes} onClick={() => handleYes(0)}>
 
                   <Check size={22} />
-                  CPT
+                  YES
                 </div>
                 <div className={styles.q2_path1_no} onClick={() => setQ2Path1Answer(1)}>
 
                   <X size={22} />
-                  OPT
+                  NO
                 </div>
               </div>
-              <div className={styles.title}>What is your company name?</div>
+              <div className={styles.title}>What is your CPT or OPT company name?</div>
               <TextInput
                 size='lg'
                 placeholder="Ex: Apple Inc."
               />
 
-              <div className={styles.title}>What is your job title?</div>
+              <div className={styles.title}>What is your CPT or OPT title?</div>
               <TextInput
                 size='lg'
                 placeholder="Ex: Apple Inc."
               />
 
-              <div className={styles.title}>What is your estimate salary?</div>
+              <div className={styles.title}>What is your estimate CPT or OPT salary?</div>
               <TextInput
                 size='lg'
                 placeholder="Ex: Apple Inc."
               />
 
-              <div className={styles.title}>How long did it take for preparing?</div>
+              <div className={styles.title}>How long is your CPT or OPT?</div>
               <TextInput
                 size='lg'
                 placeholder="Ex: Apple Inc."
               />
             </>
+          )
           }
         </>
         : quizThreeAnswers[1].isActive ?
@@ -270,7 +263,7 @@ export const SurveyTwo = () => {
               </div>
             </div>
 
-            {q2Path2Answer === 0 &&
+            {q2Path2Answer === 0 ? (
               <div>
                 <div className={styles.title}>What is your company name?</div>
                 <TextInput
@@ -301,7 +294,35 @@ export const SurveyTwo = () => {
                   size='lg'
                   placeholder="Ex: Apple Inc."
                 />
-              </div>}
+              </div>
+            ) : (
+              <div>
+                <div className={styles.title}>What is company are you applying to?</div>
+                <TextInput
+                  size='lg'
+                  placeholder="Ex: Apple Inc."
+                />
+
+                <div className={styles.title}>What position did you apply?</div>
+                <TextInput
+                  size='lg'
+                  placeholder="Ex: Apple Inc."
+                />
+
+                <div className={styles.title}>What is your expected salary?</div>
+                <TextInput
+                  size='lg'
+                  placeholder="Ex: Apple Inc."
+                />
+
+                <div className={styles.title}>Did you got any recommendation letter from CWU?</div>
+                <TextInput
+                  size='lg'
+                  placeholder="Ex: Apple Inc."
+                />
+              </div>
+            )
+            }
           </>
           : quizThreeAnswers[2].isActive ?
             <>

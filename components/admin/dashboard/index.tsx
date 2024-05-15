@@ -5,6 +5,8 @@ import styles from "./styles.module.css"
 
 
 export const AdminDashboard = () => {
+
+
   return (
     <div className={styles.container}>
       <p className={styles.dashboard_text}>Dashboard</p>

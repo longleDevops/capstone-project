@@ -1,8 +1,16 @@
 import { pgTable, serial, text, uuid } from "drizzle-orm/pg-core";
 // db schema
-export const users = pgTable("User", {
+export const account = pgTable("Account", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
+  role: text("role").notNull()
+})
+
+export const studentBackground = pgTable("Student Background", {
+  id: serial("id").primaryKey(),
+  firstName: text("firstName").notNull(),
+  lastName: text("lastName").notNull(),
+
   role: text("role").notNull()
 })
 

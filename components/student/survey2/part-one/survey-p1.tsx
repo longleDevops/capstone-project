@@ -43,6 +43,7 @@ export const SurveyOne = () => {
           "Web Page and Digital Design",
           "Accounting",
           "Finance",
+          "Nursing",
         ]}
         allowDeselect={false}
         searchable

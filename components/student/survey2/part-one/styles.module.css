@@ -1,14 +1,22 @@
-.container{
+.container {
   width: 620px;
 
 }
-.size{
+
+.size {
   font-size: 30px;
 }
 
-.title{
+.title {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 20px;
   margin-top: 50px;
+}
+
+.pagetitle {
+  font-size: 44px;
+  font-weight: bold;
+  color: #333;
+  margin: 30px;
 }

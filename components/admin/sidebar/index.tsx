@@ -18,7 +18,7 @@ export const Sidebar = () => {
     },
     {
       href: "/admin/student",
-      name: "Student",
+      name: "Students",
       icon: Users,
       isActive: pathName === "/admin/student"
     },

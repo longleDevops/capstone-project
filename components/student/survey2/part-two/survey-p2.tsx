@@ -50,9 +50,14 @@ export const SurveyTwo = () => {
     if (currentPart === 1) {
       if (input === q2Path1Answer) {
         setQ2Path1Answer(-1);
+      }
+      setQ2Path1Answer(input);
+    } else if (currentPart === 2) {
+      if (input === q3Path1Answer) {
+        setQ3Path1Answer(-1);
         return;
       }
-      setQ2Path1Answer(input)
+      setQ3Path1Answer(input)
     } else if (currentPart === 2) {
       if (input === q2Path2Answer) {
         setQ2Path2Answer(-1);
@@ -126,8 +131,34 @@ export const SurveyTwo = () => {
               NO
             </div>
           </div>
-
           {q2Path1Answer === 0 &&
+            <>
+              <div className={styles.title}>
+                Are you a US citizen?
+              </div>
+              <div className={styles.q2_path1_holder}>
+                <div className={q3Path1Answer === 0 ? styles.q2_path1_yes_selected : styles.q2_path1_yes} onClick={() => handleYes(0)}>
+                  {q3Path1Answer === 0 &&
+                    <div className={styles.select_holder}>
+                      <Check size={15} color='white' />
+                    </div>
+                  }
+                  <Check size={22} />
+                  YES
+                </div>
+                <div className={q3Path1Answer === 1 ? styles.q2_path1_no_selected : styles.q2_path1_no} onClick={() => handleYes(1)}>
+                  {q3Path1Answer === 1 &&
+                    <div className={styles.select_holder}>
+                      <Check size={15} color='white' />
+                    </div>
+                  }
+                  <X size={22} />
+                  NO
+                </div>
+              </div>
+            </>
+          }
+          {q3Path1Answer === 0 &&
             <>
               <div className={styles.title}>
                 Have you participated in any internship programs?
@@ -142,6 +173,49 @@ export const SurveyTwo = () => {
 
                   <X size={22} />
                   NO
+                </div>
+              </div>
+              <div className={styles.title}>What is your company name?</div>
+              <TextInput
+                size='lg'
+                placeholder="Ex: Apple Inc."
+              />
+
+              <div className={styles.title}>What is your job title?</div>
+              <TextInput
+                size='lg'
+                placeholder="Ex: Apple Inc."
+              />
+
+              <div className={styles.title}>What is your estimate salary?</div>
+              <TextInput
+                size='lg'
+                placeholder="Ex: Apple Inc."
+              />
+
+              <div className={styles.title}>How long did it take for preparing?</div>
+              <TextInput
+                size='lg'
+                placeholder="Ex: Apple Inc."
+              />
+            </>
+          }
+
+          {q3Path1Answer === 1 &&
+            <>
+              <div className={styles.title}>
+                Have you taken OPT or CPT?
+              </div>
+              <div className={styles.q2_path1_holder}>
+                <div className={styles.q2_path1_yes} onClick={() => handleYes(0)}>
+
+                  <Check size={22} />
+                  CPT
+                </div>
+                <div className={styles.q2_path1_no} onClick={() => setQ2Path1Answer(1)}>
+
+                  <X size={22} />
+                  OPT
                 </div>
               </div>
               <div className={styles.title}>What is your company name?</div>

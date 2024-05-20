@@ -9,11 +9,13 @@ import { SalaryDialog } from "./menu/salary-dialog"
 import { CareerMenu } from "./menu/career-menu"
 import CountUp from 'react-countup';
 import { Count } from "./count"
+import { useGetAccount } from "@/app/(back-end)/features/account/api/use-get-account"
 
 export const Statistics = () => {
+
   const statistics = [
     {
-      title: "Total students",
+      title: "Total Students",
       description: "CWU & Alumni",
       data: 200
     },

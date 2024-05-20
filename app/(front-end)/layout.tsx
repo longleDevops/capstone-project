@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css'; //if using mantine date picker features
 import 'mantine-react-table/styles.css';
+import { QueryProvider } from "@/providers/query-provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,7 +26,11 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <main>
-            <MantineProvider>{children}</MantineProvider>
+            <QueryProvider>
+              <MantineProvider>
+                {children}
+              </MantineProvider>
+            </QueryProvider>
           </main>
         </body>
       </html>

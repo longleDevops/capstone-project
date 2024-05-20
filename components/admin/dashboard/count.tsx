@@ -7,3 +7,7 @@ export const Count = () => {
     <CountUp end={400000} duration={1.6} />
   )
 }
+
+
+
+

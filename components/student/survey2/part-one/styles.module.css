@@ -20,3 +20,11 @@
   color: #333;
   margin: 30px;
 }
+
+.btn_group {
+  width: 620px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: end;
+  padding-bottom: 40px;
+}

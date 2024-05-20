@@ -1,9 +1,9 @@
-import type { Config } from "drizzle-kit";
+import { Config } from "drizzle-kit";
 
 export default {
   schema: "./app/(back-end)/db/schema.ts",
   out: "./drizzle",
-  driver: "pg",
+  driver: 'pg',
   dbCredentials: {
     connectionString: process.env.DATABASE_URL!,
   },

@@ -17,8 +17,11 @@ export const studentBackground = pgTable("Student Background", {
   lastName: text("Last Name").notNull(),
   studentId: text("Student ID"),
   major: text("Major").notNull(),
-  startTerm: text("Start Term"),
+  startTerm: text("Start Term").notNull(),
   endTerm: text("End Term"),
+  campus: text("Campus").notNull(),
+  gender: text("Gender").notNull(),
+  race: text("Race").notNull(),
 
   userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
 
@@ -28,42 +31,90 @@ export const insertBackgroundSchema = createInsertSchema(studentBackground)
 
 export const accountRelations = relations(account, ({ one }) => ({
   studentBackground: one(studentBackground),
+  domesticStudent: one(domesticStudent),
+  internationalStudent: one(internationalStudent),
+  satisfaction: one(satisfaction)
 }));
 
-export const employmentStatus = pgTable("Employment Status", {
+export const domesticStudent = pgTable("Domestic Student", {
   id: serial("id").primaryKey(),
-  currentStatus: text("Status").notNull(),
-  isInternationalStudent: boolean("International Student").notNull(),
-  isWorking: boolean("Working").notNull(),
-  isSeekingDegree: boolean("Seeking Degree").notNull(),
+  currentStatus: text("Status").notNull().default("Domestic Student"),
 
-
-  isOPT: boolean("OPT/CPT"),
   isInternship: boolean("Internship"),
 
-  optCompany: text("OPT Company"),
-  internCompany: text("Intern Company"),
+  internshipCompany: text("Internship Company"),
+  internshipTitle: text("Internship title"),
+  internshipSalary: text("Internship Salary"),
+  internshipPrepTime: text("Prep Time"),
 
   userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
-
 })
+export const insertDomesticStudentSchema = createInsertSchema(domesticStudent)
+
+export const internationalStudent = pgTable("International Student", {
+  id: serial("id").primaryKey(),
+  currentStatus: text("Status").notNull().default("International Student"),
+
+  isOPT: boolean("CPT/OPT"),
+
+  companyName: text("Company Name"),
+  jobTitle: text("Job Title"),
+  salary: text("Salary"),
+
+  userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
+})
+export const insertInternationalStudentSchema = createInsertSchema(internationalStudent)
 
 
-// export const surveys = pgTable("Survey", {
-//   id: serial("id").primaryKey(),
-//   question: text("question").notNull(),
-//   A: text("A").notNull(),
-//   B: text("B").notNull(),
-//   C: text("C").notNull(),
-//   D: text("D").notNull(),
-// })
+export const working = pgTable("Working", {
+  id: serial("id").primaryKey(),
+  currentStatus: text("Status").notNull().default("Currently Working"),
 
-// export const profile = pgTable("Profile", {
-//   id: serial("id").primaryKey(),
-//   firstName: text("first_name").notNull(),
-//   lastName: text("last_name").notNull(),
-//   dateOfBirth: text("birth_date").notNull(),
-//   gender: text("gender").notNull(),
-//   phoneNumber: text("phone_number").notNull(),
-// })
+  isWorking: boolean("Working"),
+
+  companyName: text("Company Name"),
+  jobTitle: text("Job Title"),
+  salary: text("Salary"),
+
+  userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
+})
+export const insertWorkingSchema = createInsertSchema(working)
+
+export const seekingDegree = pgTable("Seeking Degree", {
+  id: serial("id").primaryKey(),
+  currentStatus: text("Status").notNull().default("Seeking Degree"),
+
+  isSeeking: boolean("Seeking Degress"),
+
+  institution: text("Institution Name"),
+  major: text("Job Title"),
+  isHelped: boolean("Is Helpful"),
+
+  userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
+})
+export const insertSeekingDegreeSchema = createInsertSchema(seekingDegree)
+
+export const satisfaction = pgTable("Satisfaction", {
+  id: serial("id").primaryKey(),
+  q1: text("Q1").notNull().default("How did CWU help you with career planning and decisions?"),
+  q1Answer: integer("Q1 Answer").notNull(),
+
+  q2: text("Q2").notNull().default("How did CWU build your communication and technical skills?"),
+  q2Answer: integer("Q2 Answer").notNull(),
+
+  q3: text("Q3").notNull().default("How did CWU prepare for your resume?"),
+  q3Answer: integer("Q3 Answer").notNull(),
+
+  q4: text("Q4").notNull().default("How did CWU prepare for your interviews?"),
+  q4Answer: integer("Q4 Answer").notNull(),
+
+  q5: text("Q5").notNull().default("How would you rate the professional level of CWU staff?"),
+  q5Answer: integer("Q5 Answer").notNull(),
+
+  userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
+})
+export const insertSatisfactionSchema = createInsertSchema(satisfaction)
+
+
+
 

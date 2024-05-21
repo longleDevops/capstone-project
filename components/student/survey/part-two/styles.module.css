@@ -221,3 +221,13 @@ width: 100%;
   margin-top: 15px;
   scale: 1.03;
 }
+
+.btn_group {
+  width: 620px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: end;
+  padding-bottom: 40px;
+}
+
+

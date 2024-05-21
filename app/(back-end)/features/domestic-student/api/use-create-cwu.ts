@@ -3,10 +3,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import { client } from "@/lib/hono"
 
-type ResponseType = InferResponseType<typeof client.api.backgrounds.$post>
-type RequestType = InferRequestType<typeof client.api.backgrounds.$post>["json"]
+type ResponseType = InferResponseType<typeof client.api.domesticStudent.$post>
+type RequestType = InferRequestType<typeof client.api.domesticStudent.$post>["json"]
 
-export const useCreateBackground = () => {
+export const useCreateDomestic = () => {
   const queryClient = useQueryClient()
 
   const mutation = useMutation<
@@ -15,11 +15,13 @@ export const useCreateBackground = () => {
     RequestType
   >({
     mutationFn: async (json) => {
-      const response = await client.api.backgrounds.$post({ json });
+      const response = await client.api.domesticStudent.$post({ json });
       return await response.json()
     },
     onSuccess: () => {
-
+      console.log("Successful")
     }
   })
+
+  return mutation;
 }

@@ -30,6 +30,11 @@ const app = new Hono()
       lastName: true,
       studentId: true,
       major: true,
+      startTerm: true,
+      endTerm: true,
+      campus: true,
+      gender: true,
+      race: true
     })),
     async (c) => {
       const auth = getAuth(c)
@@ -39,7 +44,9 @@ const app = new Hono()
       const [data] = await db.insert(studentBackground).values({
         ...values,
         userId: auth.userId
-      }).returning()
+      })
+        .onConflictDoNothing()
+        .returning()
 
       return c.json({ data })
     }

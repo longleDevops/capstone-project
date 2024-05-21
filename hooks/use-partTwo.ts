@@ -8,6 +8,10 @@ interface ISurveyTwo {
   setQ2Path1Answer: (q2Path1Answer: number) => void;
   q3Path1Answer: number;
   setQ3Path1Answer: (q3Path1Answer: number) => void;
+  q4Path1Answer: number;
+  setQ4Path1Answer: (q4Path1Answer: number) => void;
+  q4Path1Answer2: number;
+  setQ4Path1Answer2: (q4Path1Answer2: number) => void;
 
   q2Path2Answer: number;
   setQ2Path2Answer: (q2Path2Answer: number) => void;
@@ -30,6 +34,10 @@ export const useSurveyPartTwo = create<ISurveyTwo>((set) => ({
   setQ2Path1Answer: (q2Path1Answer: number) => set({ q2Path1Answer }),
   q3Path1Answer: -1,
   setQ3Path1Answer: (q3Path1Answer: number) => set({ q3Path1Answer }),
+  q4Path1Answer: -1,
+  setQ4Path1Answer: (q4Path1Answer: number) => set({ q4Path1Answer }),
+  q4Path1Answer2: -1,
+  setQ4Path1Answer2: (q4Path1Answer2: number) => set({ q4Path1Answer2 }),
 
   q2Path2Answer: -1,
   setQ2Path2Answer: (q2Path2Answer: number) => set({ q2Path2Answer }),

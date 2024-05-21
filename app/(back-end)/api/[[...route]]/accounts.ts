@@ -1,9 +1,8 @@
+import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
+import { eq } from "drizzle-orm";
 import { Hono } from "hono";
 import db from "../../db/drizzle";
-import { eq } from "drizzle-orm";
-import { account, insertAccountSchema } from "../../db/schema";
-import { clerkMiddleware, getAuth } from "@hono/clerk-auth"
-import { zValidator } from '@hono/zod-validator'
+import { account } from "../../db/schema";
 
 const app = new Hono()
   .get('/',
@@ -25,19 +24,13 @@ const app = new Hono()
     })
   .post('/',
     clerkMiddleware(),
-    // zValidator("json", insertAccountSchema.pick({
-    //   firstName: true
-    // })),
     async (c) => {
       const auth = getAuth(c)
-      // const values = c.req.valid("json")
       if (!auth?.userId) { return c.json({ error: 'Unauthorized' }, 401) }
 
       const [data] = await db.insert(account).values({
         id: auth?.userId,
-
-
-      }).returning()
+      }).returning().onConflictDoNothing()
       return c.json({ data })
     }
   )

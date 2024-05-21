@@ -1,97 +1,28 @@
-"use client";
-import React, { useState } from "react";
-import styles from "./styles.module.css";
-import { UserButton } from "@clerk/nextjs";
-import router, { useRouter } from "next/router";
-import { Survey_p1 } from "./survey_p1";
-import { Survey_p2 } from "./survey_p2";
-import { Survey_p3 } from "./survey_p3";
+"use client"
 
+import { useSurvey } from '@/hooks/use-survey'
+import { SurveyFinal } from './part-final/survey-final'
+import { SurveyOne } from './part-one/survey-p1'
+import { SurveyThree } from './part-three/survey-p3'
+import { SurveyTwo } from './part-two/survey-p2'
+import { ProgressSidebar } from './progress-sidebar'
+import styles from './styles.module.css'
 
 export const Survey = () => {
-  // State to track the current table
-  const [currentTable, setCurrentTable] = useState(1);
+  const { currentPart } = useSurvey();
 
-  const [submitted, setSubmitted] = useState(false);
-  const [p1Completed, setP1Completed] = useState(false);
-  const [p2Completed, setP2Completed] = useState(false);
-  const [p3Completed, setP3Completed] = useState(false);
-  //SetAnswers for tables
-  const [answersP1, setAnswersP1] = useState({});
-  const [answersP2, setAnswersP2] = useState({});
-  const [answersP3, setAnswersP3] = useState({});
-
-
-  // Function to handle navigation to the next table
-  // Inside handleNext function
-  const handleNext = () => {
-    if (currentTable === 1 && !p1Completed) {
-      alert("Please answer all questions in Part 1 before proceeding.");
-      return;
-    }
-    if (currentTable === 2 && !p2Completed) {
-      alert("Please answer all questions in Part 2 before proceeding.");
-      return;
-    }
-
-    setCurrentTable(currentTable + 1);
-  };
-  // Function to handle navigation to the previous table
-  const handleBack = () => {
-    setCurrentTable(currentTable - 1);
-  };
-
-  const handleSubmit = () => {
-    if (currentTable === 3 && !p3Completed) {
-      alert("Please answer all questions in Part 3 before proceeding.");
-      return;
-    }
-    // Show a message
-    alert("Thank you for your time!");
-
-    // Redirect back to the student dashboard
-    setSubmitted(true);
-    window.location.href = "/student/dashboard";
-  };
-
-  //Handle Set table answers
   return (
-    <div className={styles.scrollableContainer}>
-      <div className={styles.imageHolder}>
-        <img src="/cwu-logo.png" alt="CWU Logo" className={styles.cwuImage} />
+    <div className={styles.container}>
+      <div className={styles.left_content}>
+        <ProgressSidebar />
       </div>
-      <div className={styles.surveyContainer}>
-        <div className={styles.surveyHeader}></div>
-        {/* Render current table */}
-        <div className="renderTableContainer">
-          {currentTable === 1 && (
-            <Survey_p1 onP1Complete={() => setP1Completed(true)} />
-          )}
-          {currentTable === 2 && (
-            <Survey_p2 onP2Complete={() => setP2Completed(true)} />
-          )}{" "}
-          {currentTable === 3 && (
-            <Survey_p3 onP3Complete={() => setP3Completed(true)} />
-          )}
-        </div>
-        <div className={styles.buttonContainer}>
-          {currentTable !== 1 && (
-            <button onClick={handleBack} className={styles.nextButton}>
-              Back
-            </button>
-          )}
-          {(currentTable == 1 || currentTable == 2) && (
-            <button onClick={handleNext} className={styles.nextButton}>
-              Next
-            </button>
-          )}
-          {currentTable === 3 && (
-            <button onClick={handleSubmit} className={styles.nextButton}>
-              Submit
-            </button>
-          )}
-        </div>
+      <div className={styles.right_content}>
+        {currentPart === 0 ? <SurveyOne />
+          : [1, 2, 3].includes(currentPart) ? <SurveyTwo />
+            : currentPart === 4 ? <SurveyThree />
+              : <SurveyFinal />
+        }
       </div>
     </div>
-  );
-};
+  )
+}

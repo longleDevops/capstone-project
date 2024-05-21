@@ -1,8 +1,14 @@
+"use client"
+
+import { useSurveyPartThree } from '@/hooks/use-partThree'
 import { Angry, Check, Frown, Meh, Smile, SmilePlus } from 'lucide-react'
 import styles from './styles.module.css'
-import Image from 'next/image'
-import { useState } from 'react'
-import { useSurveyPartThree } from '@/hooks/use-partThree'
+import { useSatisfaction } from '@/app/(back-end)/features/satisfaction/api/use-satisfaction'
+import { Button } from '@mantine/core'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { useSurvey } from '@/hooks/use-survey'
+import toast, { Toaster } from 'react-hot-toast';
+import { ConfirmationModal } from '../part-final/confirmation-modal'
 
 const questions = [
   {
@@ -12,7 +18,7 @@ const questions = [
 
 const answers = [
   {
-    title: "Bad",
+    title: "Meh",
     score: "1",
     icon: Angry,
     fillColor: 'red'
@@ -53,13 +59,14 @@ const answers = [
 export const SurveyThree = () => {
   const { q1Answer, setQ1Answer, q2Answer, setQ2Answer, q3Answer, setQ3Answer, q4Answer, setQ4Answer, q5Answer, setQ5Answer } = useSurveyPartThree()
 
+  const { currentPart, setCurrentPart } = useSurvey()
   const handleClicked = (quesNum: number, index: number) => {
     if (quesNum === 1) {
       if (index === q1Answer) {
         setQ1Answer(-1)
         return;
       }
-      setQ1Answer(index);
+      setQ1Answer(index + 1);
       return;
     }
 
@@ -68,7 +75,7 @@ export const SurveyThree = () => {
         setQ2Answer(-1)
         return;
       }
-      setQ2Answer(index);
+      setQ2Answer(index + 1);
       return;
     }
 
@@ -77,7 +84,7 @@ export const SurveyThree = () => {
         setQ3Answer(-1)
         return;
       }
-      setQ3Answer(index)
+      setQ3Answer(index + 1)
       return
     }
 
@@ -86,7 +93,7 @@ export const SurveyThree = () => {
         setQ4Answer(-1)
         return;
       }
-      setQ4Answer(index)
+      setQ4Answer(index + 1)
       return
     }
 
@@ -95,10 +102,12 @@ export const SurveyThree = () => {
         setQ5Answer(-1)
         return;
       }
-      setQ5Answer(index)
+      setQ5Answer(index + 1)
       return
     }
   }
+
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>How did CWU help you with career planning and decisions?</div>
@@ -184,6 +193,21 @@ export const SurveyThree = () => {
             <p className={styles.answer_title}>{item.title}</p>
           </div>
         ))}
+      </div>
+
+      <div className={styles.btn_group}>
+        <Button
+          radius={10}
+          size='lg'
+          bg={'transparent'}
+          styles={{ root: { color: 'black', fontSize: 16 } }}
+          leftSection={<ArrowLeft size={24} />}
+          onClick={() => setCurrentPart(3)}
+        >
+          Back
+        </Button>
+
+        <ConfirmationModal />
       </div>
     </div>
   )

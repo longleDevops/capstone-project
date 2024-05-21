@@ -1,6 +1,6 @@
 "use client"
 
-import { useSatisfaction } from '@/app/(back-end)/features/satisfaction/api/use-satisfaction';
+import { useCreateSatisfaction } from '@/app/(back-end)/features/satisfaction/api/use-create-satisfaction';
 import { useSurveyPartThree } from '@/hooks/use-partThree';
 import { useSurvey } from '@/hooks/use-survey';
 import { Button, Modal } from '@mantine/core';
@@ -15,7 +15,8 @@ export const ConfirmationModal = () => {
   const { q1Answer, q2Answer, q3Answer, q4Answer, q5Answer } = useSurveyPartThree()
   const { setCurrentPart } = useSurvey()
 
-  const satisfactionMutation = useSatisfaction()
+  const satisfactionMutation = useCreateSatisfaction()
+
   const handleSubmit = () => {
     satisfactionMutation.mutate({
       q1Answer,

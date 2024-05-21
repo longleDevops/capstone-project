@@ -9,7 +9,7 @@ import {
   User,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 
 export const Sidebar = () => {
   const pathName = usePathname();
@@ -20,12 +20,7 @@ export const Sidebar = () => {
       icon: LayoutDashboard,
       isActive: pathName === "/student/home",
     },
-    {
-      href: "/student/survey",
-      name: "Survey",
-      icon: User,
-      isActive: pathName === "/student/survey",
-    },
+
     {
       href: "/student/contact", // NEED to add one more page for about us
       name: "Help And Support",
@@ -39,6 +34,9 @@ export const Sidebar = () => {
       isActive: pathName === "/student/about",
     },
   ];
+
+  const { user } = useUser()
+
   return (
     <div className={styles.container}>
       <div className={styles.title}><p >CWU SURVEY</p></div>
@@ -56,6 +54,7 @@ export const Sidebar = () => {
       </div>
       <div className={styles.user_container}>
         <UserButton afterSignOutUrl="/" />
+        <p>{user?.username}</p>
       </div>
     </div>
   );

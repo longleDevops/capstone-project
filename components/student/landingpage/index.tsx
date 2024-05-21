@@ -1,6 +1,6 @@
-import Image from "next/image"
+import { ClerkLoaded, ClerkLoading, SignInButton, SignUpButton } from "@clerk/nextjs";
+import Image from "next/image";
 import styles from "./styles.module.css";
-import { ClerkLoaded, ClerkLoading, SignInButton, UserButton, SignUpButton } from "@clerk/nextjs";
 
 export const LandingPage = () => {
   return (
@@ -50,7 +50,6 @@ export const LandingPage = () => {
             </button>
           </SignUpButton>
         </ClerkLoaded>
-        <UserButton afterSignOutUrl="/" />
       </div>
     </div>
   )

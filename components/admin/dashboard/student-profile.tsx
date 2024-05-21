@@ -6,63 +6,26 @@ import { useRef, useState } from "react"
 import { ScrollArea, Flex, Button, Stack, Group } from '@mantine/core';
 import { Check, ChevronRight, CircleChevronRight, SendHorizonal } from "lucide-react";
 import CountUp from 'react-countup';
+import { useGetAccounts } from "@/app/(back-end)/features/account/api/use-get-accounts";
+import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/api/use-get-backgrounds";
+import { useGetSubmittedAccounts } from "@/app/(back-end)/features/account/api/use-get-submitted-accounts";
 
 
 export const StudentProfile = () => {
-  const [scrollPos, setScrollPos] = useState(0);
-  const containerRef = useRef(null);
 
-  const profiles = [
-    {
-      name: "TL",
-      major: "Computer science",
-      graduation: "Student",
-      surveyStatus: "yes"
-    },
-    {
-      name: "LL",
-      major: "Graphic Design",
-      graduation: "Alumni",
-      surveyStatus: "yes"
-    },
-    {
-      name: "DE",
-      major: "Architecture Engineer",
-      graduation: "Alumni",
-      surveyStatus: "yes"
-    },
-    {
-      name: "AM",
-      major: "Software Developer",
-      graduation: "Student",
-      surveyStatus: "no"
-    },
-    {
-      name: "AM",
-      major: "Software Developer",
-      graduation: "Student",
-      surveyStatus: "yes"
-    },
-    {
-      name: "AM",
-      major: "Software Developer",
-      graduation: "Student",
-      surveyStatus: "yes"
-    },
-    {
-      name: "AM",
-      major: "Software Developer",
-      graduation: "Student",
-      surveyStatus: "yes"
-    },
-    {
-      name: "AM",
-      major: "Mechanical Engineering",
-      graduation: "Student",
-      surveyStatus: "yes"
-    },
+  const { data: allStudents } = useGetAccounts()
+  const { data: allSubmittedStudents } = useGetSubmittedAccounts()
+  const { data: backgroundData } = useGetBackgrounds()
 
-  ]
+  const profiles = backgroundData ? backgroundData.map((item) => ({
+    name: item.firstName,
+    major: item.major,
+    graduation: item.endTerm,
+    surveyStatus: "yes"
+  })) : [];
+
+  const submissionPercent = allStudents && allSubmittedStudents ? (allSubmittedStudents.length / allStudents.length) * 100 : 0
+
   const viewport = useRef<HTMLDivElement>(null);
   const [scrollPosition, onScrollPositionChange] = useState({ x: 0, y: 0 });
 
@@ -77,8 +40,8 @@ export const StudentProfile = () => {
           <SendHorizonal size={23} color="white" />
         </div>
         <p className={styles.submission_text}>Submissions</p>
-        <p className={styles.submission_percent}>67%</p>
-        <p>320 <span>/400</span></p>
+        <p className={styles.submission_percent}>{submissionPercent.toFixed(0)}%</p>
+        <p>{allSubmittedStudents?.length} <span>/ {allStudents?.length}</span></p>
       </div>
 
       <ScrollArea w={760} h={270}

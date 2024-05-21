@@ -7,6 +7,7 @@ export const account = pgTable("Account", {
   id: text("id").primaryKey(),
   firstName: text("First Name").default("N/A").notNull(),
   lastName: text("Last Name").default("N/A").notNull(),
+  isSubmitted: boolean("Survey Completed").default(false).notNull()
 })
 
 export const insertAccountSchema = createInsertSchema(account)

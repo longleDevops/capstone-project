@@ -1,12 +1,12 @@
+import { client } from "@/lib/hono";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { InferRequestType, InferResponseType } from "hono";
-import { useMutation, useQueryClient } from "@tanstack/react-query"
 
-import { client } from "@/lib/hono"
 
 type ResponseType = InferResponseType<typeof client.api.satisfaction.$post>
 type RequestType = InferRequestType<typeof client.api.satisfaction.$post>["json"]
 
-export const useSatisfaction = () => {
+export const useCreateSatisfaction = () => {
   const queryClient = useQueryClient()
 
   const mutation = useMutation<
@@ -18,8 +18,12 @@ export const useSatisfaction = () => {
       const response = await client.api.satisfaction.$post({ json });
       return await response.json()
     },
-    onSuccess: () => {
-      console.log("Successful")
+    onSuccess: async () => {
+      try {
+        await client.api.accounts["update-submission"].$patch()
+      } catch (e) {
+        console.error(e)
+      }
     }
   })
 

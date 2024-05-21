@@ -154,9 +154,15 @@ export const FormOne = () => {
               radius={10}
               leftSection={<DollarSign />}
               style={{}}
-              placeholder="Example: Computer Science"
+              placeholder="Ex: $50,000 - $60,0000"
               data={[
-                "$50,000 - $55,000", // list of majors.
+                "40,000 - $50,000",
+                "$50,000 - $60,000",
+                "$60,000 - $70,000",
+                "$70,000 - $80,000",
+                "$80,000 - $90,000",
+                "$90,000 - $100,000",
+                "Above $100,000", // list of salaries.
               ]}
               allowDeselect={false}
               searchable

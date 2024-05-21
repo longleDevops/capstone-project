@@ -150,12 +150,27 @@ export const FormTwo = () => {
                 />
 
                 <div className={styles.title}>What is your CPT / OPT work salary?</div>
-                <TextInput
-                  size='lg'
-                  required
-                  placeholder="Ex: Apple Inc."
+                <Select
+                  size="lg"
+                  radius={10}
+                  leftSection={<DollarSign />}
+                  style={{}}
+                  placeholder="Ex: $50,000 - $60,0000"
+                  data={[
+                    "40,000 - $50,000",
+                    "$50,000 - $60,000",
+                    "$60,000 - $70,000",
+                    "$70,000 - $80,000",
+                    "$80,000 - $90,000",
+                    "$90,000 - $100,000",
+                    "Above $100,000", // list of salaries.
+                  ]}
+                  allowDeselect={false}
+                  searchable
+                  nothingFoundMessage="Nothing found..."
                   key={form.key('salary')}
                   {...form.getInputProps('salary')}
+                  comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 } }}
                 />
               </>
             }

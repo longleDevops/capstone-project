@@ -246,7 +246,8 @@ export const SurveyOne = () => {
               "Pierce County",
               "Lynnwood",
               "Des Moines",
-              "Sammamish", // list of location.
+              "Sammamish",
+              "Online", // list of location.
             ]}
             allowDeselect={false}
             searchable

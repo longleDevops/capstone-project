@@ -50,38 +50,6 @@ export const ContactUs = () => {
             <li>How can I contact customer support?</li>
           </ul>
         </div>
-        <div className={styles.inputContainer}>
-          <h1>Questions and Comments</h1>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="comment">Comment:</label>
-              <textarea
-                id="comment"
-                value={comment}
-                onChange={handleComplaintChange}
-                placeholder="Type your comment here..."
-                rows={4}
-                cols={50}
-                className={styles.input}
-              />
-            </div>
-            <div>
-              <label htmlFor="question">Question:</label>
-              <textarea
-                id="question"
-                value={question}
-                onChange={handleQuestionChange}
-                placeholder="Type your question here..."
-                rows={4}
-                cols={50}
-                className={styles.input}
-              />
-            </div>
-            <button type="submit" className={styles.submitButton}>
-              Submit
-            </button>
-          </form>
-        </div>
         <div className={styles.Resources}>
           <h2>Resources</h2>
           <p>Here are some additional resources that may be helpful:</p>

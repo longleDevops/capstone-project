@@ -3,11 +3,10 @@
 import { useSurveyPartThree } from '@/hooks/use-partThree'
 import { Angry, Check, Frown, Meh, Smile, SmilePlus } from 'lucide-react'
 import styles from './styles.module.css'
-import { useSatisfaction } from '@/app/(back-end)/features/satisfaction/api/use-create-satisfaction'
-import { Button } from '@mantine/core'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+
 import { useSurvey } from '@/hooks/use-survey'
-import toast, { Toaster } from 'react-hot-toast';
+import { Button } from '@mantine/core'
+import { ArrowLeft } from 'lucide-react'
 import { ConfirmationModal } from '../part-final/confirmation-modal'
 
 const questions = [

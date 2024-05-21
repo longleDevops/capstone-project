@@ -103,7 +103,7 @@ export const OptionTwo = () => {
         </div>
       </div>
 
-      {q2Path2Answer === 0 && (
+      {q2Path2Answer === 0 ? (
         <div>
           <div className={styles.title}>What is your company name?</div>
           <TextInput
@@ -145,6 +145,17 @@ export const OptionTwo = () => {
             key={form.key('salary')}
             {...form.getInputProps('salary')}
             comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 } }}
+          />
+        </div>
+      ) : (
+        <div>
+          <div className={styles.title}>What company have you applied to?</div>
+          <TextInput
+            size='lg'
+            placeholder="Ex: Apple Inc."
+            required
+            key={form.key('companyName')}
+            {...form.getInputProps('companyName')}
           />
         </div>
       )

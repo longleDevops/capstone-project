@@ -21,6 +21,7 @@ export const useCreateSatisfaction = () => {
     onSuccess: async () => {
       try {
         await client.api.accounts["update-submission"].$patch()
+        queryClient.invalidateQueries({ queryKey: ["account", "accounts"] })
       } catch (e) {
         console.error(e)
       }

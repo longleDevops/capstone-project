@@ -19,7 +19,7 @@ export const useCreateWorking = () => {
       return await response.json()
     },
     onSuccess: () => {
-      console.log("Successful")
+      console.log("Create Working Successful")
     }
   })
 

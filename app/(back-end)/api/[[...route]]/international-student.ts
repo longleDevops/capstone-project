@@ -26,8 +26,6 @@ const app = new Hono()
   .post('/',
     clerkMiddleware(),
     zValidator("json", insertInternationalStudentSchema.pick({
-      currentStatus: true,
-      isOPT: true,
       companyName: true,
       jobTitle: true,
       salary: true,

@@ -19,7 +19,7 @@ export const useCreateInternational = () => {
       return await response.json()
     },
     onSuccess: () => {
-      console.log("Successful")
+      console.log("Create International Successful")
     }
   })
 

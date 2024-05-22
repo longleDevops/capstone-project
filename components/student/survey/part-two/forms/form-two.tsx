@@ -74,9 +74,9 @@ export const FormTwo = () => {
   const form = useForm({
     mode: 'uncontrolled',
     initialValues: {
-      companyName: '',
-      jobTitle: '',
-      salary: '',
+      companyName,
+      jobTitle,
+      salary,
     },
     validate: zodResolver(schema),
   });
@@ -107,7 +107,16 @@ export const FormTwo = () => {
       });
       return;
     }
+    setInternationalAnswers({ companyName: '', jobTitle: '', salary: '' });
     setCurrentPart(5);
+    notifications.show({
+      title: 'Employment Completed',
+      message: "",
+      color: 'teal',
+      autoClose: 3000,
+      style: { width: 260, height: 60 },
+      classNames: styles2
+    })
   }
 
   return (

@@ -8,6 +8,7 @@ import { useSurvey } from '@/hooks/use-survey'
 import { Button } from '@mantine/core'
 import { ArrowLeft } from 'lucide-react'
 import { ConfirmationModal } from '../part-final/confirmation-modal'
+import { useSurveyPartTwo } from '@/hooks/use-partTwo'
 
 const questions = [
   {
@@ -59,6 +60,7 @@ export const SurveyThree = () => {
   const { q1Answer, setQ1Answer, q2Answer, setQ2Answer, q3Answer, setQ3Answer, q4Answer, setQ4Answer, q5Answer, setQ5Answer } = useSurveyPartThree()
 
   const { currentPart, setCurrentPart } = useSurvey()
+  const { q1Answer: q1SurveyPt2 } = useSurveyPartTwo()
 
   const handleClicked = (quesNum: number, index: number) => {
     if (quesNum === 1) {
@@ -108,7 +110,7 @@ export const SurveyThree = () => {
   }
 
   const navigateBack = () => {
-    setCurrentPart(q1Answer)
+    setCurrentPart(q1SurveyPt2 + 1)
   }
 
   return (

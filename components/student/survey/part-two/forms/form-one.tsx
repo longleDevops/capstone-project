@@ -5,7 +5,7 @@ import { useSurveyPartTwo } from '@/hooks/use-partTwo'
 import { useSurvey } from '@/hooks/use-survey'
 import { Button, Select, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/form'
-import { ArrowLeft, ArrowRight, Check, DollarSign, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BriefcaseBusiness, Building, CalendarDays, Check, DollarSign, X } from 'lucide-react'
 import { zodResolver } from 'mantine-form-zod-resolver'
 import { z } from 'zod'
 import styles from '@/components/student/survey/part-two/styles.module.css'
@@ -60,7 +60,7 @@ export const FormOne = () => {
   }
 
   const { domesticAnswers, setDomesticAnswers } = useDomesticAnswers()
-  const { intershipCompany, internshipSalary, internshipTitle, internshipPrepTime } = domesticAnswers
+  const { internshipCompany, internshipSalary, internshipTitle, internshipPrepTime } = domesticAnswers
   const schema = z.object({
     internshipCompany: z.string(),
     internshipTitle: z.string(),
@@ -71,7 +71,7 @@ export const FormOne = () => {
   const form = useForm({
     mode: 'uncontrolled',
     initialValues: {
-      intershipCompany,
+      internshipCompany,
       internshipTitle,
       internshipSalary,
       internshipPrepTime
@@ -105,7 +105,16 @@ export const FormOne = () => {
       });
       return;
     }
+    setDomesticAnswers({ internshipCompany: '', internshipPrepTime: '', internshipSalary: '', internshipTitle: '' });
     setCurrentPart(5);
+    notifications.show({
+      title: 'Employment Completed',
+      message: "",
+      color: 'teal',
+      autoClose: 3000,
+      style: { width: 260, height: 60 },
+      classNames: styles2
+    })
   }
   return (
     <div>
@@ -141,7 +150,7 @@ export const FormOne = () => {
               size='lg'
               radius={10}
               required
-              placeholder="Appl Inc."
+              leftSection={<Building />}
               key={form.key('internshipCompany')}
               {...form.getInputProps('internshipCompany')}
             />
@@ -151,7 +160,7 @@ export const FormOne = () => {
               size='lg'
               radius={10}
               required
-              placeholder="Ex: Software Engineering"
+              leftSection={<BriefcaseBusiness />}
               key={form.key('internshipTitle')}
               {...form.getInputProps('internshipTitle')}
             />
@@ -162,7 +171,6 @@ export const FormOne = () => {
               radius={10}
               leftSection={<DollarSign />}
               style={{}}
-              placeholder="Ex: $50,000 - $60,0000"
               data={[
                 "$40,000 - $50,000",
                 "$50,000 - $60,000",
@@ -184,7 +192,7 @@ export const FormOne = () => {
             <Select
               size="lg"
               radius={10}
-              leftSection={<DollarSign />}
+              leftSection={<CalendarDays />}
               style={{}}
               placeholder="3 months"
               data={[

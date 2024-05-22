@@ -2,13 +2,13 @@ import { create } from 'zustand'
 
 interface IDomesticAnswers {
   domesticAnswers: {
-    intershipCompany: string,
+    internshipCompany: string,
     internshipTitle: string,
     internshipSalary: string,
     internshipPrepTime: string
   };
   setDomesticAnswers: (domesticAnswers: {
-    intershipCompany: string,
+    internshipCompany: string,
     internshipTitle: string,
     internshipSalary: string,
     internshipPrepTime: string
@@ -17,13 +17,13 @@ interface IDomesticAnswers {
 }
 export const useDomesticAnswers = create<IDomesticAnswers>((set) => ({
   domesticAnswers: {
-    intershipCompany: '',
+    internshipCompany: '',
     internshipTitle: '',
     internshipSalary: '',
     internshipPrepTime: ''
   },
   setDomesticAnswers: (domesticAnswers: {
-    intershipCompany: string,
+    internshipCompany: string,
     internshipTitle: string,
     internshipSalary: string,
     internshipPrepTime: string

@@ -4,7 +4,7 @@ import { useSurveyPartTwo } from '@/hooks/use-partTwo'
 import { useSurvey } from '@/hooks/use-survey'
 import { Button, Select, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/form'
-import { ArrowLeft, ArrowRight, Check, DollarSign, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BriefcaseBusiness, Building, Check, DollarSign, X } from 'lucide-react'
 import { zodResolver } from 'mantine-form-zod-resolver'
 import { z } from 'zod'
 
@@ -129,8 +129,8 @@ export const OptionTwo = () => {
           <div className={styles.title}>What is your company name?</div>
           <TextInput
             size='lg'
-            placeholder="Ex: Apple Inc."
             required
+            leftSection={<Building />}
             key={form.key('companyName')}
             {...form.getInputProps('companyName')}
           />
@@ -138,8 +138,8 @@ export const OptionTwo = () => {
           <div className={styles.title}>What is your job title?</div>
           <TextInput
             size='lg'
-            placeholder="Ex: Apple Inc."
             required
+            leftSection={<BriefcaseBusiness />}
             key={form.key('jobTitle')}
             {...form.getInputProps('jobTitle')}
           />
@@ -150,7 +150,6 @@ export const OptionTwo = () => {
             radius={10}
             leftSection={<DollarSign />}
             style={{}}
-            placeholder="Ex: $50,000 - $60,0000"
             data={[
               "$40,000 - $50,000",
               "$50,000 - $60,000",

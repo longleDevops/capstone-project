@@ -2,7 +2,7 @@
 
 import { Button, Select, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/form'
-import { ArrowLeft, ArrowRight, Check, DollarSign, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CalendarDays, Check, DollarSign, Factory, FlaskConical, Gitlab, University, X } from 'lucide-react'
 import { zodResolver } from 'mantine-form-zod-resolver'
 import { z } from 'zod'
 import { useSurvey } from '@/hooks/use-survey'
@@ -26,36 +26,42 @@ export const OptionThree = () => {
 
 
     q2Path3Answer,
-
+    q5Path3Answer,
     setQ1Answer,
     setQ2Path1Answer,
     setQ3Path1Answer,
     setQ2Path4Answer,
     setQ2Path2Answer,
     setQ2Path3Answer,
+    setQ5Path3Answer,
     setQ4Path1Answer
   } = useSurveyPartTwo()
   const { currentPart, setCurrentPart } = useSurvey()
 
   const { seekingAnswers, setSeekingAnswers } = useSeekingDegreeAnswers()
-  const { institution, major } = seekingAnswers
+  const { institution, major, prepTime } = seekingAnswers
   const schema = z.object({
     institution: z.string(),
     major: z.string(),
+    prepTime: z.string()
   });
 
   const form = useForm({
     mode: 'uncontrolled',
     initialValues: {
-      institution: '',
-      major: '',
+      institution,
+      major,
+      prepTime
     },
     validate: zodResolver(schema),
   });
 
   const seekingMutation = useCreateSeekingDegree()
   const handleSubmit = (values: typeof form.values) => {
-    setSeekingAnswers(values)
+    setSeekingAnswers({
+      ...values,
+      isHelped: q5Path3Answer === 0
+    })
     setCurrentPart(5);
     notifications.show({
       title: 'Employment Completed',
@@ -69,6 +75,10 @@ export const OptionThree = () => {
 
   const handleQ2Pt3 = (input: number) => {
     return input === q2Path3Answer ? setQ2Path3Answer(-1) : setQ2Path3Answer(input)
+  }
+
+  const handleQ5Pt3 = (input: number) => {
+    return input === q5Path3Answer ? setQ5Path3Answer(-1) : setQ5Path3Answer(input)
   }
 
   const navigateBack = () => {
@@ -129,6 +139,7 @@ export const OptionThree = () => {
             size='lg'
             placeholder="Ex: Apple Inc."
             required
+            leftSection={<University />}
             key={form.key('institution')}
             {...form.getInputProps('institution')}
           />
@@ -138,26 +149,53 @@ export const OptionThree = () => {
             size='lg'
             placeholder="Ex: Apple Inc."
             required
+            leftSection={<FlaskConical />}
             key={form.key('major')}
             {...form.getInputProps('major')}
           />
 
           <div className={styles.title}>Did the major at CWU help you get acceped?</div>
-          <TextInput
-            size='lg'
-            placeholder="Ex: Apple Inc."
-            required
-            key={form.key('salary')}
-            {...form.getInputProps('salary')}
-          />
+          <div className={styles.q2_path1_holder}>
+            <div className={q5Path3Answer === 0 ? styles.q2_path1_yes_selected : styles.q2_path1_yes} onClick={() => handleQ5Pt3(0)}>
+              {q5Path3Answer === 0 &&
+                <div className={styles.select_holder}>
+                  <Check size={15} color='white' />
+                </div>
+              }
+              <Check size={22} />
+              YES
+            </div>
+            <div className={q5Path3Answer === 1 ? styles.q2_path1_no_selected : styles.q2_path1_no} onClick={() => handleQ5Pt3(1)}>
+              {q5Path3Answer === 1 &&
+                <div className={styles.select_holder}>
+                  <Check size={15} color='white' />
+                </div>
+              }
+              <X size={22} />
+              NO
+            </div>
+          </div>
 
           <div className={styles.title}>How long did it to get accepted?</div>
-          <TextInput
-            size='lg'
-            placeholder="Ex: Apple Inc."
-            required
-            key={form.key('salary')}
-            {...form.getInputProps('salary')}
+          <Select
+            size="lg"
+            radius={10}
+            leftSection={<CalendarDays />}
+            style={{}}
+            placeholder="3 months"
+            data={[
+              "less than 1 month",
+              "1 month - 3 months",
+              "3 months - 6 months",
+              "6 months - 1 year",
+              "1 year - 2 years",
+            ]}
+            allowDeselect={false}
+            searchable
+            nothingFoundMessage="Nothing found..."
+            key={form.key('prepTime')}
+            {...form.getInputProps('prepTime')}
+            comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 } }}
           />
         </div>
       )

@@ -88,11 +88,10 @@ export const seekingDegree = pgTable("Seeking Degree", {
   id: serial("id").primaryKey(),
   currentStatus: text("Status").notNull().default("Seeking Degree"),
 
-  isSeeking: boolean("Seeking Degress"),
-
   institution: text("Institution Name"),
   major: text("Job Title"),
   isHelped: boolean("Is Helpful"),
+  prepTime: text("Accepted Time"),
 
   userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
 })
@@ -105,6 +104,7 @@ export const searchingJob = pgTable("Searching Job", {
   companyName: text("Company Name"),
   jobTitle: text("Job Title"),
   salary: text("Salary"),
+
 
   userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
 })

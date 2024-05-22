@@ -6,7 +6,7 @@ import { client } from "@/lib/hono"
 type ResponseType = InferResponseType<typeof client.api.searchingJob.$post>
 type RequestType = InferRequestType<typeof client.api.searchingJob.$post>["json"]
 
-export const useCreateWorking = () => {
+export const useCreateSearchingJob = () => {
   const queryClient = useQueryClient()
 
   const mutation = useMutation<
@@ -19,7 +19,7 @@ export const useCreateWorking = () => {
       return await response.json()
     },
     onSuccess: () => {
-      console.log("Successful")
+      console.log("Create Searching Successful")
     }
   })
 

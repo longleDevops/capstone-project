@@ -17,6 +17,9 @@ export const useCreateSeekingDegree = () => {
     mutationFn: async (json) => {
       const response = await client.api.seekingDegree.$post({ json });
       return await response.json()
+    },
+    onSuccess: () => {
+      console.log("Create Seeking Degree Successful")
     }
   })
 

@@ -55,7 +55,7 @@ export const OptionFour = () => {
     validate: zodResolver(schema),
   });
 
-
+  // Form Submission
   const handleSubmit = (values: typeof form.values) => {
     setSearchingAnswers(values);
     setCurrentPart(5);
@@ -71,7 +71,7 @@ export const OptionFour = () => {
   const handleQ2Pt4 = (input: number) => {
     return input === q2Path4Answer ? setQ2Path4Answer(-1) : setQ2Path4Answer(input)
   }
-
+  // Back btn
   const navigateBack = () => {
     if (q2Path4Answer === 0) {
       setCurrentPart(0);
@@ -81,6 +81,7 @@ export const OptionFour = () => {
     setQ1Answer(2)
   }
 
+  // Next btn
   const navigateNext = () => {
     if (q2Path4Answer === -1) {
       notifications.show({
@@ -137,7 +138,6 @@ export const OptionFour = () => {
           <div className={styles.title}>What is the name of company you applied to?</div>
           <TextInput
             size='lg'
-            placeholder="Ex: Apple Inc."
             required
             key={form.key('companyName')}
             {...form.getInputProps('companyName')}
@@ -146,7 +146,6 @@ export const OptionFour = () => {
           <div className={styles.title}>What is your expected position in the above company?</div>
           <TextInput
             size='lg'
-            placeholder="Ex: Apple Inc."
             required
             key={form.key('jobTitle')}
             {...form.getInputProps('jobTitle')}

@@ -2,11 +2,12 @@
 
 import { Button, Select, TextInput } from '@mantine/core';
 import { MonthPickerInput } from '@mantine/dates';
-import { ArrowRight, BriefcaseBusiness } from 'lucide-react';
+import { ArrowRight, BriefcaseBusiness, Calendar, CalendarCheck, CalendarRange, ContactRound, Earth, Fingerprint, FlaskConical, Hash, NotebookPen, University, User, UserRound } from 'lucide-react';
 import { useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
 import { zodResolver } from 'mantine-form-zod-resolver';
 import { z } from 'zod';
+import { FaTransgender } from "react-icons/fa";
 
 
 import { useCreateBackground } from '@/app/(back-end)/features/student-background/api/use-create-background';
@@ -53,6 +54,11 @@ export const SurveyOne = () => {
   const { firstName, lastName, studentId, major, startTerm, endTerm, campus, gender, race } = backgroundAnswers
   const { setCurrentPart } = useSurvey()
 
+  const startTermArr = ["Fall 2017", "Winter 2017", "Spring 2017", "Summer 2017", "Fall 2018", "Winter 2018", "Spring 2018", "Summer 2018", "Fall 2019", "Winter 2019", "Spring 2019", "Summer 2019", "Fall 2020", "Winter 2020", "Spring 2020", "Summer 2020", "Fall 2021", "Winter 2021", "Spring 2021", "Summer 2021", "Fall 2022", "Winter 2022", "Spring 2022", "Summer 2022", "Fall 2023", "Winter 2023", "Spring 2023", "Summer 2023", "Fall 2024", "Winter 2024", "Spring 2024"];
+
+  const endTermArr = ["Fall 2017", "Winter 2017", "Spring 2017", "Summer 2017", "Fall 2018", "Winter 2018", "Spring 2018", "Summer 2018", "Fall 2019", "Winter 2019", "Spring 2019", "Summer 2019", "Fall 2020", "Winter 2020", "Spring 2020", "Summer 2020", "Fall 2021", "Winter 2021", "Spring 2021", "Summer 2021", "Fall 2022", "Winter 2022", "Spring 2022", "Summer 2022", "Fall 2023", "Winter 2023", "Spring 2023", "Summer 2023", "Fall 2024", "Winter 2024", "Spring 2024", "Summer 2025"];
+
+
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
@@ -69,7 +75,26 @@ export const SurveyOne = () => {
     validate: zodResolver(schema),
   });
 
+  // Check endterm is greater than start term
+  const isValidTerm = (start: string, end: string) => {
+    const startIndex = startTermArr.indexOf(start);
+    const endIndex = endTermArr.indexOf(end);
+
+    return endIndex > startIndex;
+  }
   const handleSubmit = (values: typeof form.values) => {
+    if (!isValidTerm(values.startTerm, values.endTerm)) {
+      notifications.show({
+        title: '',
+        message: "End Term must be greater than Start Term",
+        color: 'red',
+        autoClose: 3000,
+        style: { width: 260, height: 60 },
+        classNames: styles2
+      })
+      return;
+    }
+
     setBackgroundAnswers(values);
     notifications.show({
       title: 'Background Info Completed',
@@ -79,6 +104,7 @@ export const SurveyOne = () => {
       style: { width: 260, height: 60 },
       classNames: styles2
     })
+
     if (q1Answer === -1) {
       setCurrentPart(1)
       return;
@@ -108,6 +134,7 @@ export const SurveyOne = () => {
           <div className={styles.title}>What is your First Name?</div>
           <TextInput size='lg' radius={10}
             required
+            leftSection={<ContactRound />}
             styles={{ input: {} }}
             key={form.key('firstName')}
             {...form.getInputProps('firstName')}
@@ -116,6 +143,7 @@ export const SurveyOne = () => {
 
           <div className={styles.title}>What is your Last Name?</div>
           <TextInput size='lg' radius={10}
+            leftSection={<ContactRound />}
             key={form.key('lastName')}
             {...form.getInputProps('lastName')}
 
@@ -123,6 +151,7 @@ export const SurveyOne = () => {
 
           <div className={styles.title}><p>What is your CWU ID? </p></div>
           <TextInput size='lg' radius={10}
+            leftSection={<Fingerprint />}
             key={form.key('studentId')}
             {...form.getInputProps('studentId')}
           />
@@ -130,9 +159,8 @@ export const SurveyOne = () => {
           <Select
             size="lg"
             radius={10}
-            leftSection={<BriefcaseBusiness />}
+            leftSection={<FlaskConical />}
             style={{}}
-            placeholder="Example: Computer Science"
             data={[
               "Art",
               "Elementary Education",
@@ -164,9 +192,8 @@ export const SurveyOne = () => {
               <Select
                 size="lg"
                 radius={10}
-                leftSection={<BriefcaseBusiness />}
+                leftSection={<Calendar />}
                 style={{}}
-                placeholder="Ex. Spring 2018"
                 data={[
                   "Fall 2017",
                   "Winter 2017",
@@ -214,9 +241,8 @@ export const SurveyOne = () => {
               <Select
                 size="lg"
                 radius={10}
-                leftSection={<BriefcaseBusiness />}
+                leftSection={<CalendarCheck />}
                 style={{}}
-                placeholder="Ex. Spring 2018"
                 data={[
                   "Fall 2017",
                   "Winter 2017",
@@ -267,7 +293,6 @@ export const SurveyOne = () => {
             radius={10}
 
             style={{}}
-            placeholder="Example: Des Moines"
             data={[
               "Ellensburg",
               "Pierce County",
@@ -278,6 +303,7 @@ export const SurveyOne = () => {
             ]}
             allowDeselect={false}
             searchable
+            leftSection={<University />}
             key={form.key('campus')}
             {...form.getInputProps('campus')}
             nothingFoundMessage="Nothing found..."
@@ -293,6 +319,7 @@ export const SurveyOne = () => {
               'Other',
             ]}
             clearable
+            leftSection={<FaTransgender size={24} />}
             key={form.key('gender')}
             {...form.getInputProps('gender')}
             required
@@ -308,6 +335,7 @@ export const SurveyOne = () => {
               'Middle Eastern',
             ]}
             clearable
+            leftSection={<Earth />}
             key={form.key('race')}
             {...form.getInputProps('race')}
             required

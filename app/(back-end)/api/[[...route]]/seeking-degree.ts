@@ -26,10 +26,10 @@ const app = new Hono()
   .post('/',
     clerkMiddleware(),
     zValidator("json", insertSeekingDegreeSchema.pick({
-      isSeeking: true,
       institution: true,
       major: true,
-      isHelped: true
+      isHelped: true,
+      prepTime: true
     })),
     async (c) => {
       const auth = getAuth(c)

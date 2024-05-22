@@ -1,55 +1,50 @@
 "use client"
 
-import Link from "next/link";
-import React, { useState } from 'react';
-import TextInput from "../../ui/inputField";
-
+import { useField } from '@mantine/form';
+import { PasswordInput, TextInput } from '@mantine/core';
 import styles from "./styles.module.css";
+import { useAuthentication } from '@/hooks/use-authentication';
+import { useRouter } from 'next/navigation';
 
 
 export default function Auth() {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [emailWarning, setEmailWarning] = useState('');
+	const router = useRouter()
+	const { setIsAuthenticated } = useAuthentication()
 
-	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setEmail(e.target.value);
-	}
+	const field1 = useField({
+		initialValue: '',
+		validate: (value) => (value !== 'admin' ? 'Wrong username' : null),
+	});
 
-	const handleEmailBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-		const input = e.target.value;
-		const emailPattern = /\S+@\S+\.\S+/;
+	const field2 = useField({
+		initialValue: '',
+		validate: (value) => (value !== 'admin' ? 'Wrong password' : null),
+	});
 
-		if (!emailPattern.test(input) && input !== '') {
-			setEmailWarning('@');
-		} else {
-			setEmailWarning('');
+	const handleClicked = () => {
+		field1.validate();
+		field2.validate();
+		if (field1.getValue() === 'admin' && field2.getValue() === 'admin') {
+			setIsAuthenticated(true);
+			router.push('/admin/dashboard')
 		}
 	}
 
 	return (
 		<div className={styles.loginContainer}>
 			<div className={styles.loginTitle}>Admin</div>
-			<TextInput
-				placeholder="Username"
-				value={email}
-				onChange={handleEmailChange}
-				onBlur={handleEmailBlur}
+			<TextInput {...field1.getInputProps()} label="Username" mb="md" w={400} size="lg"
 			/>
-			{emailWarning && <span className={styles.warning}>{emailWarning}</span>}
-			<TextInput
-				type="password"
-				placeholder="Enter your password"
-				value={password}
-				onChange={(e) => setPassword(e.target.value)}
-				required
+
+			<PasswordInput {...field2.getInputProps()} label="Password" mb="md" w={400} size="lg"
 			/>
-			<Link
-				href={"/admin/dashboard"}
+
+			<div
 				className={styles.login_btn}
+				onClick={handleClicked}
 			>
 				Login
-			</Link>
+			</div>
 			<p className={styles.forgot_password}>Forgot password?</p>
 		</div>
 	);

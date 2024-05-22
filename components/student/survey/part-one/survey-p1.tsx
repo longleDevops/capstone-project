@@ -132,6 +132,7 @@ export const SurveyOne = () => {
           <div className={styles.title}><p>What is your CWU ID? </p></div>
           <TextInput size='lg' radius={10}
             leftSection={<Fingerprint />}
+            placeholder='0000000'
             key={form.key('studentId')}
             {...form.getInputProps('studentId')}
           />

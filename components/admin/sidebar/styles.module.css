@@ -21,6 +21,11 @@
   gap: 10px;
 }
 
+.logo_link{
+  text-decoration: none;
+    color: #9E0419;
+}
+
 .link{
   text-decoration: none;
   display: flex;

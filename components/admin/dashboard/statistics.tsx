@@ -1,4 +1,5 @@
 "use client"
+
 import Image from "next/image"
 import { DoughnutChart } from "./doughnut-chart"
 import styles from "./styles.module.css"
@@ -11,11 +12,22 @@ import CountUp from 'react-countup';
 import { Count } from "./count"
 import { useGetAccounts } from "@/app/(back-end)/features/account/api/use-get-accounts"
 import { useGetSubmittedAccounts } from "@/app/(back-end)/features/account/api/use-get-submitted-accounts"
+import { useGetWorking } from "@/app/(back-end)/features/working/api/use-get-workings"
+import { useGetSeekingDegrees } from "@/app/(back-end)/features/seeking-degree/api/use-get-seekingDegrees"
+import { useGetSearchingJob } from "@/app/(back-end)/features/searching-job/api/use-get-searching-job"
+import { useGetDomestics } from "@/app/(back-end)/features/domestic-student/api/use-get-domestics"
+import { useGetInternationals } from "@/app/(back-end)/features/international-student/api/use-get-internationals"
 
 export const Statistics = () => {
 
-  const { data: allSubmittedAccounts } = useGetSubmittedAccounts()
-  const totalSubmittedStudents = allSubmittedAccounts ? allSubmittedAccounts.length : 0
+  const { data: submittedAccounts } = useGetSubmittedAccounts()
+  const totalSubmittedStudents = submittedAccounts ? submittedAccounts.length : 0
+
+  const { data: workingStudents } = useGetWorking()
+  const { data: seekingStudents } = useGetSeekingDegrees()
+  const { data: searchingStudents } = useGetSearchingJob()
+  const { data: domesticStudents } = useGetDomestics()
+  const { data: internationalStudents } = useGetInternationals()
 
 
   const statistics = [

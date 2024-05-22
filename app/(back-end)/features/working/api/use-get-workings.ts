@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { client } from "@/lib/hono"
 
-export const useGetSatisfactions = () => {
+export const useGetWorking = () => {
   const query = useQuery({
     queryKey: ["workings"],
     queryFn: async () => {

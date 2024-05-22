@@ -33,7 +33,12 @@ export const Sidebar = () => {
     <div className={styles.container}>
       <div className={styles.title}>
 
-        <p>CWU</p>
+        <Link
+          className={styles.logo_link}
+          href="/admin/dashboard"
+        >
+          CWU
+        </Link>
       </div>
       {sidebarItems.map((item) => (
         <Link

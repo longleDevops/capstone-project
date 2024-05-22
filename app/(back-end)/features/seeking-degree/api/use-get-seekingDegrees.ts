@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { client } from "@/lib/hono"
 
-export const useSeekingDegrees = () => {
+export const useGetSeekingDegrees = () => {
   const query = useQuery({
     queryKey: ["seeking-degrees"],
     queryFn: async () => {

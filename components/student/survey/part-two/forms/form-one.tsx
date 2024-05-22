@@ -49,6 +49,25 @@ export const FormOne = () => {
     setQ1Answer(answer)
   }
 
+  const salaryRange = [
+    "$40,000 - $50,000",
+    "$50,000 - $60,000",
+    "$60,000 - $70,000",
+    "$70,000 - $80,000",
+    "$80,000 - $90,000",
+    "$90,000 - $100,000",
+    "Above $100,000", // list of salaries.
+  ]
+
+  const avgSalary = [
+    45000,
+    55000,
+    65000,
+    75000,
+    85000,
+    95000,
+    120000
+  ]
   const handleQ2Pt1 = (input: number) => {
     return input === q2Path1Answer ? setQ2Path1Answer(-1) : setQ2Path1Answer(input)
   }
@@ -171,15 +190,7 @@ export const FormOne = () => {
               radius={10}
               leftSection={<DollarSign />}
               style={{}}
-              data={[
-                "$40,000 - $50,000",
-                "$50,000 - $60,000",
-                "$60,000 - $70,000",
-                "$70,000 - $80,000",
-                "$80,000 - $90,000",
-                "$90,000 - $100,000",
-                "Above $100,000", // list of salaries.
-              ]}
+              data={salaryRange}
               allowDeselect={false}
               searchable
               nothingFoundMessage="Nothing found..."

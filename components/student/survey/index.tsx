@@ -19,7 +19,7 @@ export const Survey = () => {
       </div>
       <div className={styles.right_content}>
         {!isLoaded ?
-          <div>...Loading</div> :
+          <div className={styles.loading}>...Loading</div> :
           currentPart === 0 ? <SurveyOne />
             : [1, 2, 3, 4].includes(currentPart) ? <SurveyTwo />
               : currentPart === 5 ? <SurveyThree />

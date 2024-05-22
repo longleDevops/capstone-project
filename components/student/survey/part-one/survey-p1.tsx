@@ -1,29 +1,28 @@
 "use client"
 
 import { Button, Select, TextInput } from '@mantine/core';
-import { MonthPickerInput } from '@mantine/dates';
-import { ArrowRight, BriefcaseBusiness, Calendar, CalendarCheck, CalendarRange, ContactRound, Earth, Fingerprint, FlaskConical, Hash, NotebookPen, University, User, UserRound } from 'lucide-react';
 import { useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
+import { ArrowRight, Calendar, CalendarCheck, ContactRound, Earth, Fingerprint, FlaskConical, University } from 'lucide-react';
 import { zodResolver } from 'mantine-form-zod-resolver';
-import { z } from 'zod';
 import { FaTransgender } from "react-icons/fa";
+import { z } from 'zod';
 
 
-import { useCreateBackground } from '@/app/(back-end)/features/student-background/api/use-create-background';
-import styles from './styles.module.css';
 import styles2 from "@/components/student/survey/notification.module.css";
-import { useSurvey } from '@/hooks/use-survey';
-import { useUser } from '@clerk/nextjs';
-import { useState } from 'react';
 import { useBackgroundAnswers } from '@/hooks/use-background-answers';
 import { useSurveyPartTwo } from '@/hooks/use-partTwo';
+import { useSurvey } from '@/hooks/use-survey';
+import { useUser } from '@clerk/nextjs';
+import styles from './styles.module.css';
 
 export const SurveyOne = () => {
-  const { user, isLoaded } = useUser()
-  if (!isLoaded) return (<>...Loading</>);
+  const { user } = useUser()
 
-  const mutation = useCreateBackground()
+  const { backgroundAnswers, setBackgroundAnswers } = useBackgroundAnswers()
+  const { q1Answer } = useSurveyPartTwo()
+  const { firstName, lastName, studentId, major, startTerm, endTerm, campus, gender, race } = backgroundAnswers
+  const { setCurrentPart } = useSurvey()
 
   const schema = z.object({
     firstName: z
@@ -49,10 +48,6 @@ export const SurveyOne = () => {
     race: z
       .string({ message: 'Please fill this field' }),
   });
-  const { backgroundAnswers, setBackgroundAnswers } = useBackgroundAnswers()
-  const { q1Answer } = useSurveyPartTwo()
-  const { firstName, lastName, studentId, major, startTerm, endTerm, campus, gender, race } = backgroundAnswers
-  const { setCurrentPart } = useSurvey()
 
   const startTermArr = ["Fall 2017", "Winter 2017", "Spring 2017", "Summer 2017", "Fall 2018", "Winter 2018", "Spring 2018", "Summer 2018", "Fall 2019", "Winter 2019", "Spring 2019", "Summer 2019", "Fall 2020", "Winter 2020", "Spring 2020", "Summer 2020", "Fall 2021", "Winter 2021", "Spring 2021", "Summer 2021", "Fall 2022", "Winter 2022", "Spring 2022", "Summer 2022", "Fall 2023", "Winter 2023", "Spring 2023", "Summer 2023", "Fall 2024", "Winter 2024", "Spring 2024"];
 
@@ -110,21 +105,6 @@ export const SurveyOne = () => {
       return;
     }
     setCurrentPart(q1Answer + 1)
-  }
-  const handleSubmit2 = (values: typeof form.values) => {
-    mutation.mutate(values, {
-      onSuccess: () => {
-        setCurrentPart(1),
-          notifications.show({
-            title: 'Background Info Completed',
-            message: "",
-            color: 'teal',
-            autoClose: 3000,
-            style: { width: 260, height: 60 },
-            classNames: styles2
-          })
-      }
-    })
   }
 
   return (

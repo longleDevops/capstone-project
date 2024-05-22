@@ -42,8 +42,8 @@ export const LandingPage = () => {
         <ClerkLoaded>
           <SignUpButton
             mode="modal"
-            afterSignInUrl="/student/dashboard"
-            afterSignUpUrl="/student/dashboard"
+            afterSignInUrl="/student/home"
+            afterSignUpUrl="/student/home"
           >
             <button className={styles.signup_btn}>
               Sign Up

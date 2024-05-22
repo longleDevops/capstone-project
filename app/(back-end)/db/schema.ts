@@ -14,9 +14,9 @@ export const insertAccountSchema = createInsertSchema(account)
 
 export const studentBackground = pgTable("Student Background", {
   id: serial("id").primaryKey(),
-  firstName: text("First Name").notNull(),
-  lastName: text("Last Name").notNull(),
-  studentId: text("Student ID"),
+  firstName: text("First Name"),
+  lastName: text("Last Name"),
+  studentId: text("Student ID").default('0000000'),
   major: text("Major").notNull(),
   startTerm: text("Start Term").notNull(),
   endTerm: text("End Term"),
@@ -34,6 +34,9 @@ export const accountRelations = relations(account, ({ one }) => ({
   studentBackground: one(studentBackground),
   domesticStudent: one(domesticStudent),
   internationalStudent: one(internationalStudent),
+  working: one(working),
+  searchingJob: one(searchingJob),
+  seekingDegree: one(seekingDegree),
   satisfaction: one(satisfaction)
 }));
 
@@ -94,6 +97,18 @@ export const seekingDegree = pgTable("Seeking Degree", {
   userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
 })
 export const insertSeekingDegreeSchema = createInsertSchema(seekingDegree)
+
+export const searchingJob = pgTable("Searching Job", {
+  id: serial("id").primaryKey(),
+  currentStatus: text("Status").notNull().default("Searching Job"),
+
+  companyName: text("Company Name"),
+  jobTitle: text("Job Title"),
+  salary: text("Salary"),
+
+  userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
+})
+export const insertSearchingJobSchema = createInsertSchema(searchingJob)
 
 export const satisfaction = pgTable("Satisfaction", {
   id: serial("id").primaryKey(),

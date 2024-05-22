@@ -18,8 +18,8 @@ export const Survey = () => {
       </div>
       <div className={styles.right_content}>
         {currentPart === 0 ? <SurveyOne />
-          : [1, 2, 3].includes(currentPart) ? <SurveyTwo />
-            : currentPart === 4 ? <SurveyThree />
+          : [1, 2, 3, 4].includes(currentPart) ? <SurveyTwo />
+            : currentPart === 5 ? <SurveyThree />
               : <SurveyFinal />
         }
       </div>

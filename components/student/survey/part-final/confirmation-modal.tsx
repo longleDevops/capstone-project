@@ -8,7 +8,8 @@ import { useDisclosure } from '@mantine/hooks';
 import { ArrowRight } from 'lucide-react';
 import toast from 'react-hot-toast';
 import styles from './styles.module.css';
-
+import { notifications } from '@mantine/notifications';
+import styles2 from "@/components/student/survey/notification.module.css"
 
 export const ConfirmationModal = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -32,6 +33,21 @@ export const ConfirmationModal = () => {
       }
     })
 
+  }
+
+  const navigateNext = () => {
+    if (q1Answer === -1 || q2Answer === -1 || q3Answer === -1 || q4Answer === -1 || q5Answer === -1) {
+      notifications.show({
+        title: 'Please answer all questions',
+        message: "",
+        color: 'red',
+        autoClose: 3000,
+        style: { width: 290, height: 80 },
+        classNames: styles2
+      });
+      return;
+    }
+    open()
   }
   return (
     <>
@@ -68,7 +84,7 @@ export const ConfirmationModal = () => {
         styles={{ root: { fontSize: 16 } }}
         rightSection={<ArrowRight size={24} />
         }
-        onClick={open}
+        onClick={navigateNext}
       >
         Submit
       </Button>

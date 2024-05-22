@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 
 import { client } from "@/lib/hono"
 
-export const useGetSatisfactions = () => {
+export const useGetSearchingJob = () => {
   const query = useQuery({
-    queryKey: ["workings"],
+    queryKey: ["searching-jobs"],
     queryFn: async () => {
-      const response = await client.api.working.$get()
+      const response = await client.api.searchingJob.$get()
 
       if (!response.ok) {
         throw new Error("Failed to get account")

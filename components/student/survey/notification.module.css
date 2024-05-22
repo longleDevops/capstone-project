@@ -17,3 +17,7 @@
 .closeButton {
   color: var(--mantine-color-white);
 }
+
+.closeButton:hover {
+  color: var(--mantine-color-white);
+}

@@ -12,6 +12,7 @@ import styles from '@/components/student/survey/part-two/styles.module.css'
 import { useCreateInternational } from '@/app/(back-end)/features/international-student/api/use-create-international'
 import { notifications } from '@mantine/notifications';
 import styles2 from "@/components/student/survey/notification.module.css"
+import { useInternationalAnswers } from '@/hooks/use-international-answers'
 
 export const FormTwo = () => {
   const {
@@ -59,6 +60,8 @@ export const FormTwo = () => {
     return input === q4Path1Answer ? setQ4Path1Answer(-1) : setQ4Path1Answer(input)
   }
 
+  const { internationalAnswers, setInternationalAnswers } = useInternationalAnswers();
+  const { companyName, jobTitle, salary } = internationalAnswers
   const schema = z.object({
     companyName: z
       .string(),
@@ -78,35 +81,42 @@ export const FormTwo = () => {
     validate: zodResolver(schema),
   });
 
-  const internationalMutation = useCreateInternational()
 
   const handleSubmit = (values: typeof form.values) => {
-    internationalMutation.mutate({
-      ...values,
-      currentStatus: "International Student",
-      isOPT: q4Path1Answer2 === 0
-    }, {
-      onSuccess: () => {
-        setCurrentPart(4),
-          notifications.show({
-            title: 'Employment Completed',
-            message: "",
-            color: 'teal',
-            autoClose: 3000,
-            style: { width: 260, height: 60 },
-            classNames: styles2
-          })
-      }
-    }
-    )
+    setInternationalAnswers(values);
+    setCurrentPart(5);
+    notifications.show({
+      title: 'Employment Completed',
+      message: "",
+      color: 'teal',
+      autoClose: 3000,
+      style: { width: 260, height: 60 },
+      classNames: styles2
+    })
   }
+
+  const navigateNext = () => {
+    if (q4Path1Answer === -1) {
+      notifications.show({
+        title: 'Please Answer',
+        message: "Have you taken OPT / CPT?",
+        color: 'red',
+        autoClose: 3000,
+        style: { width: 290, height: 80 },
+        classNames: styles2
+      });
+      return;
+    }
+    setCurrentPart(5);
+  }
+
   return (
     <div>
       <form onSubmit={form.onSubmit(handleSubmit)}>
         {q3Path1Answer === 1 && q2Path1Answer === 0 && (
           <>
             <div className={styles.title}>
-              Have you taken OPT or CPT?
+              Have you taken OPT / CPT?
             </div>
             <div className={styles.q2_path1_holder}>
               <div className={q4Path1Answer2 === 0 ? styles.q2_path1_yes_selected : styles.q2_path1_yes} onClick={() => setQ4Path1Answer2(0)}>
@@ -187,7 +197,19 @@ export const FormTwo = () => {
           >
             Back
           </Button>
-          <Button
+
+          {q3Path1Answer === 1 && q4Path1Answer2 !== 0 && <Button
+            radius={10}
+            size='lg'
+            bg={'black'}
+            styles={{ root: { fontSize: 16 } }}
+            rightSection={<ArrowRight size={24} />}
+            onClick={navigateNext}
+          >
+            Next
+          </Button>}
+
+          {q3Path1Answer === 1 && q4Path1Answer2 === 0 && <Button
             radius={10}
             size='lg'
             bg={'black'}
@@ -196,7 +218,7 @@ export const FormTwo = () => {
             type='submit'
           >
             Next
-          </Button>
+          </Button>}
         </div>
       </form>
     </div>

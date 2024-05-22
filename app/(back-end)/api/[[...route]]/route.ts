@@ -7,6 +7,7 @@ import internationalStudent from './international-student'
 import seekingDegree from './seeking-degree'
 import working from './working'
 import satisfaction from './satisfaction'
+import searchingJob from './searching-job'
 
 export const runtime = 'edge';
 
@@ -20,6 +21,7 @@ const routes = app
   .route("/seekingDegree", seekingDegree)
   .route("/working", working)
   .route("/satisfaction", satisfaction)
+  .route("/searchingJob", searchingJob)
 
 export const GET = handle(app)
 export const POST = handle(app)

@@ -7,6 +7,8 @@ import { ArrowLeft, ArrowRight, Check, X } from 'lucide-react'
 import styles from './styles.module.css'
 import { FormOne } from './forms/form-one'
 import { FormTwo } from './forms/form-two'
+import styles2 from '@/components/student/survey/notification.module.css'
+import { notifications } from '@mantine/notifications';
 
 export const OptionOne = () => {
   const {
@@ -36,6 +38,37 @@ export const OptionOne = () => {
   }
   const handleQ4Pt1 = (input: number) => {
     return input === q4Path1Answer ? setQ4Path1Answer(-1) : setQ4Path1Answer(input)
+  }
+
+  const navigateNext = () => {
+    if (q2Path1Answer === -1) {
+      notifications.show({
+        title: 'Please Answer',
+        message: "Are you currently a CWU student?",
+        color: 'red',
+        autoClose: 3000,
+        style: { width: 290, height: 80 },
+        classNames: styles2
+      });
+      return;
+    }
+    if (q2Path1Answer === 1) {
+      setQ1Answer(1)
+      setCurrentPart(2);
+      return;
+    }
+    if (q2Path1Answer === 0) {
+      notifications.show({
+        title: 'Please Answer',
+        message: "Are you a US citizen?",
+        color: 'red',
+        autoClose: 3000,
+        style: { width: 290, height: 80 },
+        classNames: styles2
+      });
+      return;
+    }
+
   }
 
   return (
@@ -101,6 +134,7 @@ export const OptionOne = () => {
             bg={'transparent'}
             styles={{ root: { color: 'black', fontSize: 16 } }}
             leftSection={<ArrowLeft size={24} />}
+            onClick={() => setCurrentPart(0)}
           >
             Back
           </Button>
@@ -110,6 +144,7 @@ export const OptionOne = () => {
             bg={'black'}
             styles={{ root: { fontSize: 16 } }}
             rightSection={<ArrowRight size={24} />}
+            onClick={navigateNext}
           >
             Next
           </Button>

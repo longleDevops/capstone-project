@@ -59,13 +59,14 @@ export const SurveyThree = () => {
   const { q1Answer, setQ1Answer, q2Answer, setQ2Answer, q3Answer, setQ3Answer, q4Answer, setQ4Answer, q5Answer, setQ5Answer } = useSurveyPartThree()
 
   const { currentPart, setCurrentPart } = useSurvey()
+
   const handleClicked = (quesNum: number, index: number) => {
     if (quesNum === 1) {
       if (index === q1Answer) {
         setQ1Answer(-1)
         return;
       }
-      setQ1Answer(index + 1);
+      setQ1Answer(index);
       return;
     }
 
@@ -74,7 +75,7 @@ export const SurveyThree = () => {
         setQ2Answer(-1)
         return;
       }
-      setQ2Answer(index + 1);
+      setQ2Answer(index);
       return;
     }
 
@@ -83,7 +84,7 @@ export const SurveyThree = () => {
         setQ3Answer(-1)
         return;
       }
-      setQ3Answer(index + 1)
+      setQ3Answer(index)
       return
     }
 
@@ -92,7 +93,7 @@ export const SurveyThree = () => {
         setQ4Answer(-1)
         return;
       }
-      setQ4Answer(index + 1)
+      setQ4Answer(index)
       return
     }
 
@@ -101,18 +102,21 @@ export const SurveyThree = () => {
         setQ5Answer(-1)
         return;
       }
-      setQ5Answer(index + 1)
+      setQ5Answer(index);
       return
     }
   }
 
+  const navigateBack = () => {
+    setCurrentPart(q1Answer)
+  }
 
   return (
     <div className={styles.container}>
       <div className={styles.title}>How did CWU help you with career planning and decisions?</div>
       <div className={styles.question_container}>
         {answers.map((item, index) => (
-          <div className={q1Answer === index ? styles.answer_selected : styles.answer} key={item.title} onClick={() => handleClicked(1, index - 1)}>
+          <div className={q1Answer === index ? styles.answer_selected : styles.answer} key={item.title} onClick={() => handleClicked(1, index)}>
             {q1Answer === index &&
               <div className={styles.select_holder}>
                 <Check size={15} color='white' />
@@ -129,7 +133,7 @@ export const SurveyThree = () => {
       <div className={styles.title}>How did CWU build your communication and technical skills?</div>
       <div className={styles.question_container}>
         {answers.map((item, index) => (
-          <div className={q2Answer === index ? styles.answer_selected : styles.answer} key={item.title} onClick={() => handleClicked(2, index - 1)}>
+          <div className={q2Answer === index ? styles.answer_selected : styles.answer} key={item.title} onClick={() => handleClicked(2, index)}>
             {q2Answer === index &&
               <div className={styles.select_holder}>
                 <Check size={15} color='white' />
@@ -146,7 +150,7 @@ export const SurveyThree = () => {
       <div className={styles.title}>How did CWU prepare for your resume?</div>
       <div className={styles.question_container}>
         {answers.map((item, index) => (
-          <div className={q3Answer === index ? styles.answer_selected : styles.answer} key={item.title} onClick={() => handleClicked(3, index - 1)}>
+          <div className={q3Answer === index ? styles.answer_selected : styles.answer} key={item.title} onClick={() => handleClicked(3, index)}>
             {q3Answer === index &&
               <div className={styles.select_holder}>
                 <Check size={15} color='white' />
@@ -163,7 +167,7 @@ export const SurveyThree = () => {
       <div className={styles.title}>How did CWU prepare for your interviews?</div>
       <div className={styles.question_container}>
         {answers.map((item, index) => (
-          <div className={q4Answer === index ? styles.answer_selected : styles.answer} key={item.title} onClick={() => handleClicked(4, index - 1)}>
+          <div className={q4Answer === index ? styles.answer_selected : styles.answer} key={item.title} onClick={() => handleClicked(4, index)}>
             {q4Answer === index &&
               <div className={styles.select_holder}>
                 <Check size={15} color='white' />
@@ -180,7 +184,7 @@ export const SurveyThree = () => {
       <div className={styles.title}>How would you rate the professional level of CWU staff? </div>
       <div className={styles.question_container}>
         {answers.map((item, index) => (
-          <div className={q5Answer === index ? styles.answer_selected : styles.answer} key={item.title} onClick={() => handleClicked(5, index - 1)}>
+          <div className={q5Answer === index ? styles.answer_selected : styles.answer} key={item.title} onClick={() => handleClicked(5, index)}>
             {q5Answer === index &&
               <div className={styles.select_holder}>
                 <Check size={15} color='white' />
@@ -201,7 +205,7 @@ export const SurveyThree = () => {
           bg={'transparent'}
           styles={{ root: { color: 'black', fontSize: 16 } }}
           leftSection={<ArrowLeft size={24} />}
-          onClick={() => setCurrentPart(3)}
+          onClick={navigateBack}
         >
           Back
         </Button>

@@ -11,6 +11,7 @@ import { z } from 'zod'
 import styles from '@/components/student/survey/part-two/styles.module.css'
 import { notifications } from '@mantine/notifications';
 import styles2 from "@/components/student/survey/notification.module.css"
+import { useDomesticAnswers } from '@/hooks/use-domestic-answers'
 
 export const FormOne = () => {
   const {
@@ -58,6 +59,8 @@ export const FormOne = () => {
     return input === q4Path1Answer ? setQ4Path1Answer(-1) : setQ4Path1Answer(input)
   }
 
+  const { domesticAnswers, setDomesticAnswers } = useDomesticAnswers()
+  const { intershipCompany, internshipSalary, internshipTitle, internshipPrepTime } = domesticAnswers
   const schema = z.object({
     internshipCompany: z.string(),
     internshipTitle: z.string(),
@@ -68,36 +71,41 @@ export const FormOne = () => {
   const form = useForm({
     mode: 'uncontrolled',
     initialValues: {
-      intershipCompany: '',
-      internshipTitle: '',
-      internshipSalary: '',
-      internshipPrepTime: ''
+      intershipCompany,
+      internshipTitle,
+      internshipSalary,
+      internshipPrepTime
     },
     validate: zodResolver(schema),
   });
 
-  const domesticMutation = useCreateDomestic()
 
   const handleSubmit = (values: typeof form.values) => {
-    domesticMutation.mutate({
-      ...values,
-      currentStatus: "Domestic Student",
-      isInternship: q4Path1Answer === 0
-    }, {
-      onSuccess: () => {
-        setCurrentPart(4),
-          notifications.show({
-            title: 'Employment Completed',
-            message: "",
-            color: 'teal',
-            autoClose: 3000,
-            style: { width: 260, height: 60 },
-            classNames: styles2
-          })
-      }
-    }
+    setDomesticAnswers(values);
+    setCurrentPart(5);
+    notifications.show({
+      title: 'Employment Completed',
+      message: "",
+      color: 'teal',
+      autoClose: 3000,
+      style: { width: 260, height: 60 },
+      classNames: styles2
+    })
 
-    )
+  }
+  const navigateNext = () => {
+    if (q4Path1Answer === -1) {
+      notifications.show({
+        title: 'Please Answer',
+        message: "Have you participated in any internship programs?",
+        color: 'red',
+        autoClose: 3000,
+        style: { width: 290, height: 80 },
+        classNames: styles2
+      });
+      return;
+    }
+    setCurrentPart(5);
   }
   return (
     <div>
@@ -207,7 +215,18 @@ export const FormOne = () => {
           >
             Back
           </Button>
-          <Button
+          {q3Path1Answer === 0 && q4Path1Answer !== 0 && <Button
+            radius={10}
+            size='lg'
+            bg={'black'}
+            styles={{ root: { fontSize: 16 } }}
+            rightSection={<ArrowRight size={24} />}
+            onClick={navigateNext}
+          >
+            Next
+          </Button>}
+
+          {q3Path1Answer === 0 && q4Path1Answer === 0 && <Button
             radius={10}
             size='lg'
             bg={'black'}
@@ -216,7 +235,7 @@ export const FormOne = () => {
             type='submit'
           >
             Next
-          </Button>
+          </Button>}
         </div>
       </form>
     </div>

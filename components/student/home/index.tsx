@@ -2,12 +2,10 @@
 
 "use client";
 
-import React, { useState } from "react";
-import styles from "./style.module.css";
-import Link from "next/link";
-import Image from "next/image";
-import { Survey } from "../survey";
 import { useSurvey } from "@/hooks/use-survey";
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./style.module.css";
 
 export const Home = () => {
   const { isStarted, setIsStarted } = useSurvey()

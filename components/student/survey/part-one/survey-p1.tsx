@@ -13,21 +13,28 @@ import { useCreateBackground } from '@/app/(back-end)/features/student-backgroun
 import styles from './styles.module.css';
 import styles2 from "@/components/student/survey/notification.module.css";
 import { useSurvey } from '@/hooks/use-survey';
+import { useUser } from '@clerk/nextjs';
+import { useState } from 'react';
+import { useBackgroundAnswers } from '@/hooks/use-background-answers';
+import { useSurveyPartTwo } from '@/hooks/use-partTwo';
 
 export const SurveyOne = () => {
+  const { user, isLoaded } = useUser()
+  if (!isLoaded) return (<>...Loading</>);
 
   const mutation = useCreateBackground()
 
   const schema = z.object({
     firstName: z
-      .string()
-      .min(2, { message: 'First Name should have at least 2 letters' }),
+      .string(),
     lastName: z
-      .string()
-      .min(2, { message: 'last name should have at least 2 letters' }),
+      .string(),
     studentId: z
-      .string()
-      .min(5, { message: 'ID should have at least 8 numbers' }),
+      .coerce
+      .number()
+      .int()
+      .gte(1000000, { message: 'ID should have 7 numbers and not start with 0' })
+      .lte(9999999, { message: 'ID should only have 7 numbers' }),
     major: z
       .string(),
     startTerm: z
@@ -37,30 +44,48 @@ export const SurveyOne = () => {
     campus: z
       .string(),
     gender: z
-      .string(),
+      .string({ message: 'Please fill this field' }),
     race: z
-      .string(),
+      .string({ message: 'Please fill this field' }),
   });
+  const { backgroundAnswers, setBackgroundAnswers } = useBackgroundAnswers()
+  const { q1Answer } = useSurveyPartTwo()
+  const { firstName, lastName, studentId, major, startTerm, endTerm, campus, gender, race } = backgroundAnswers
+  const { setCurrentPart } = useSurvey()
 
   const form = useForm({
-    mode: 'uncontrolled',
+    mode: "uncontrolled",
     initialValues: {
-      firstName: '',
-      lastName: '',
-      studentId: '',
-      major: '',
-      startTerm: '',
-      endTerm: '',
-      campus: '',
-      gender: '',
-      race: ''
+      firstName: firstName ? firstName : user?.firstName,
+      lastName: lastName ? lastName : user?.lastName,
+      studentId,
+      major,
+      startTerm,
+      endTerm,
+      campus,
+      gender,
+      race
     },
     validate: zodResolver(schema),
   });
 
-  const { setCurrentPart } = useSurvey()
-
   const handleSubmit = (values: typeof form.values) => {
+    setBackgroundAnswers(values);
+    notifications.show({
+      title: 'Background Info Completed',
+      message: "",
+      color: 'teal',
+      autoClose: 3000,
+      style: { width: 260, height: 60 },
+      classNames: styles2
+    })
+    if (q1Answer === -1) {
+      setCurrentPart(1)
+      return;
+    }
+    setCurrentPart(q1Answer + 1)
+  }
+  const handleSubmit2 = (values: typeof form.values) => {
     mutation.mutate(values, {
       onSuccess: () => {
         setCurrentPart(1),
@@ -69,14 +94,12 @@ export const SurveyOne = () => {
             message: "",
             color: 'teal',
             autoClose: 3000,
-
             style: { width: 260, height: 60 },
             classNames: styles2
           })
       }
     })
   }
-
 
   return (
     <>
@@ -85,11 +108,10 @@ export const SurveyOne = () => {
           <div className={styles.title}>What is your First Name?</div>
           <TextInput size='lg' radius={10}
             required
-            //value={firstName}
             styles={{ input: {} }}
-            //onChange={(e) => setFirstName(e.target.value)} 
             key={form.key('firstName')}
             {...form.getInputProps('firstName')}
+
           />
 
           <div className={styles.title}>What is your Last Name?</div>
@@ -103,7 +125,6 @@ export const SurveyOne = () => {
           <TextInput size='lg' radius={10}
             key={form.key('studentId')}
             {...form.getInputProps('studentId')}
-
           />
           <div className={styles.title}>What is your Major?</div>
           <Select
@@ -137,102 +158,108 @@ export const SurveyOne = () => {
             required
           />
 
-          <div className={styles.title}>Start Term</div>
-          <Select
-            size="lg"
-            radius={10}
-            leftSection={<BriefcaseBusiness />}
-            style={{}}
-            placeholder="Ex. Spring 2018"
-            data={[
-              "Fall 2017",
-              "Winter 2017",
-              "Spring 2017",
-              "Summer 2017",
-              "Fall 2018",
-              "Winter 2018",
-              "Spring 2018",
-              "Summer 2018",
-              "Fall 2019",
-              "Winter 2019",
-              "Spring 2019",
-              "Summer 2019",
-              "Fall 2020",
-              "Winter 2020",
-              "Spring 2020",
-              "Summer 2020",
-              "Fall 2021",
-              "Winter 2021",
-              "Spring 2021",
-              "Summer 2021",
-              "Fall 2022",
-              "Winter 2022",
-              "Spring 2022",
-              "Summer 2022",
-              "Fall 2023",
-              "Winter 2023",
-              "Spring 2023",
-              "Summer 2023",
-              "Fall 2024",
-              "Winter 2024",
-              "Spring 2024"
-            ]}
-            allowDeselect={false}
-            searchable
-            nothingFoundMessage="Nothing found..."
-            key={form.key('startTerm')}
-            {...form.getInputProps('startTerm')}
-            comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 } }}
-            required
-          />
-          <div className={styles.title}>End term</div>
-          <Select
-            size="lg"
-            radius={10}
-            leftSection={<BriefcaseBusiness />}
-            style={{}}
-            placeholder="Ex. Spring 2018"
-            data={[
-              "Fall 2017",
-              "Winter 2017",
-              "Spring 2017",
-              "Summer 2017",
-              "Fall 2018",
-              "Winter 2018",
-              "Spring 2018",
-              "Summer 2018",
-              "Fall 2019",
-              "Winter 2019",
-              "Spring 2019",
-              "Summer 2019",
-              "Fall 2020",
-              "Winter 2020",
-              "Spring 2020",
-              "Summer 2020",
-              "Fall 2021",
-              "Winter 2021",
-              "Spring 2021",
-              "Summer 2021",
-              "Fall 2022",
-              "Winter 2022",
-              "Spring 2022",
-              "Summer 2022",
-              "Fall 2023",
-              "Winter 2023",
-              "Spring 2023",
-              "Summer 2023",
-              "Fall 2024",
-              "Winter 2024",
-              "Spring 2024"
-            ]}
-            allowDeselect={false}
-            searchable
-            nothingFoundMessage="Nothing found..."
-            key={form.key('endTerm')}
-            {...form.getInputProps('endTerm')}
-            comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 } }}
-            required
-          />
+          <div className={styles.term_container}>
+            <div>
+              <div className={styles.title}>Start Term</div>
+              <Select
+                size="lg"
+                radius={10}
+                leftSection={<BriefcaseBusiness />}
+                style={{}}
+                placeholder="Ex. Spring 2018"
+                data={[
+                  "Fall 2017",
+                  "Winter 2017",
+                  "Spring 2017",
+                  "Summer 2017",
+                  "Fall 2018",
+                  "Winter 2018",
+                  "Spring 2018",
+                  "Summer 2018",
+                  "Fall 2019",
+                  "Winter 2019",
+                  "Spring 2019",
+                  "Summer 2019",
+                  "Fall 2020",
+                  "Winter 2020",
+                  "Spring 2020",
+                  "Summer 2020",
+                  "Fall 2021",
+                  "Winter 2021",
+                  "Spring 2021",
+                  "Summer 2021",
+                  "Fall 2022",
+                  "Winter 2022",
+                  "Spring 2022",
+                  "Summer 2022",
+                  "Fall 2023",
+                  "Winter 2023",
+                  "Spring 2023",
+                  "Summer 2023",
+                  "Fall 2024",
+                  "Winter 2024",
+                  "Spring 2024"
+                ]}
+                allowDeselect={false}
+                searchable
+                nothingFoundMessage="Nothing found..."
+                key={form.key('startTerm')}
+                {...form.getInputProps('startTerm')}
+                comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 } }}
+                required
+              />
+            </div>
+            <div>
+              <div className={styles.title}>End term</div>
+              <Select
+                size="lg"
+                radius={10}
+                leftSection={<BriefcaseBusiness />}
+                style={{}}
+                placeholder="Ex. Spring 2018"
+                data={[
+                  "Fall 2017",
+                  "Winter 2017",
+                  "Spring 2017",
+                  "Summer 2017",
+                  "Fall 2018",
+                  "Winter 2018",
+                  "Spring 2018",
+                  "Summer 2018",
+                  "Fall 2019",
+                  "Winter 2019",
+                  "Spring 2019",
+                  "Summer 2019",
+                  "Fall 2020",
+                  "Winter 2020",
+                  "Spring 2020",
+                  "Summer 2020",
+                  "Fall 2021",
+                  "Winter 2021",
+                  "Spring 2021",
+                  "Summer 2021",
+                  "Fall 2022",
+                  "Winter 2022",
+                  "Spring 2022",
+                  "Summer 2022",
+                  "Fall 2023",
+                  "Winter 2023",
+                  "Spring 2023",
+                  "Summer 2023",
+                  "Fall 2024",
+                  "Winter 2024",
+                  "Spring 2024"
+                ]}
+                allowDeselect={false}
+                searchable
+                nothingFoundMessage="Nothing found..."
+                key={form.key('endTerm')}
+                {...form.getInputProps('endTerm')}
+                comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 } }}
+                required
+              />
+            </div>
+          </div>
 
           <div className={styles.title}>Campus Location</div>
           <Select
@@ -247,7 +274,7 @@ export const SurveyOne = () => {
               "Lynnwood",
               "Des Moines",
               "Sammamish",
-              "Online", // list of location.
+              "Online"
             ]}
             allowDeselect={false}
             searchable
@@ -279,15 +306,12 @@ export const SurveyOne = () => {
               'African',
               'Hispanic and Latino',
               'Middle Eastern',
-              'Other'
             ]}
-
             clearable
             key={form.key('race')}
             {...form.getInputProps('race')}
             required
           />
-
 
           <div className={styles.btn_group}>
             <Button

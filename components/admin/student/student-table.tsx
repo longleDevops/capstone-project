@@ -19,8 +19,8 @@ import { useGetBackgrounds } from '@/app/(back-end)/features/student-background/
 
 type Student = {
   id: string,
-  firstName: string;
-  lastName: string;
+  firstName: string | null;
+  lastName: string | null;
   graduationStatus: string;
   employmentStatus: string,
   startTerm: string,
@@ -109,7 +109,7 @@ export const StudentTable = () => {
     submittedBackgrounds.map((item) => (
       {
         id: item.studentId || '000000',
-        firstName: item.firstName,
+        firstName: item.firstName || '',
         lastName: item.lastName,
         graduationStatus: 'graduated',
         startTerm: item.startTerm,

@@ -5,13 +5,16 @@ interface IDomesticAnswers {
     internshipCompany: string,
     internshipTitle: string,
     internshipSalary: string,
-    internshipPrepTime: string
+    internshipPrepTime: string,
+    avgInternshipSalary: number
   };
   setDomesticAnswers: (domesticAnswers: {
     internshipCompany: string,
     internshipTitle: string,
     internshipSalary: string,
-    internshipPrepTime: string
+    internshipPrepTime: string,
+    avgInternshipSalary: number
+
   }) => void;
 
 }
@@ -20,13 +23,15 @@ export const useDomesticAnswers = create<IDomesticAnswers>((set) => ({
     internshipCompany: '',
     internshipTitle: '',
     internshipSalary: '',
-    internshipPrepTime: ''
+    internshipPrepTime: '',
+    avgInternshipSalary: 0
   },
   setDomesticAnswers: (domesticAnswers: {
     internshipCompany: string,
     internshipTitle: string,
     internshipSalary: string,
-    internshipPrepTime: string
+    internshipPrepTime: string,
+    avgInternshipSalary: number
   }) => { set({ domesticAnswers }) },
 
 }))

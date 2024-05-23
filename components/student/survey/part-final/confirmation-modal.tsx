@@ -60,7 +60,17 @@ export const ConfirmationModal = () => {
 
   const handleSubmit = () => {
 
-    backgroundMutation.mutate(backgroundAnswers);
+    const studentStatus =
+      (q1SurveyPt2 === 0 && q3Path1Answer === 0) ? 'domestic-student'
+        : (q1SurveyPt2 === 0 && q3Path1Answer === 1) ? 'international-student'
+          : q1SurveyPt2 === 1 ? 'working-student'
+            : q1SurveyPt2 === 2 ? 'seeking-student'
+              : 'job-seeking-student';
+
+    backgroundMutation.mutate({
+      ...backgroundAnswers,
+      status: studentStatus
+    });
 
     if (q1SurveyPt2 === 0 && q3Path1Answer === 0) {
       domesticMutation.mutate(domesticAnswers);

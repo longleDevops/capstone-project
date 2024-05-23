@@ -1,6 +1,6 @@
 import { Statistics } from "./statistics"
 import { StudentProfile } from "./student-profile"
-import { StudentSubmission } from "./student-submission"
+import { StudentRegistered } from "./student-registered"
 import styles from "./styles.module.css"
 
 
@@ -16,16 +16,16 @@ export const AdminDashboard = () => {
         <Statistics />
       </div>
 
-      <p className={styles.welcome_text}>Recent Registered</p>
-      <p className={styles.welcome_description}>View and Manage most recent 20 registered students</p>
+      <p className={styles.welcome_text}>All Submissions</p>
+      <p className={styles.welcome_description}>View and Manage student's profiles from all survey submissions</p>
       <div className={styles.profile_container}>
         <StudentProfile />
       </div>
 
-      <p className={styles.welcome_text}>Recent Submissions</p>
-      <p className={styles.welcome_description}>View the most 20 recent student submissions</p>
+      <p className={styles.welcome_text}>Recent Registerd</p>
+      <p className={styles.welcome_description}>View all recent registered students</p>
       <div className={styles.submission_container}>
-        <StudentSubmission />
+        <StudentRegistered />
       </div>
     </div>
   )

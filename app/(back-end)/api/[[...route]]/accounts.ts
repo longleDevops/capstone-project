@@ -13,11 +13,7 @@ const app = new Hono()
       if (!auth?.userId) {
         return c.json({ error: 'Unauthorized' }, 401)
       }
-      const data = await db.select({
-        id: account.id,
-        firstName: account.firstName,
-        lastName: account.lastName,
-      })
+      const data = await db.select()
         .from(account)
         .where(eq(account.id, auth?.userId))
       return c.json({ data })
@@ -47,11 +43,7 @@ const app = new Hono()
       if (!auth?.userId) {
         return c.json({ error: 'Unauthorized' }, 401)
       }
-      const data = await db.select({
-        id: account.id,
-        firstName: account.firstName,
-        lastName: account.lastName,
-      })
+      const data = await db.select()
         .from(account)
       return c.json({ data })
     })

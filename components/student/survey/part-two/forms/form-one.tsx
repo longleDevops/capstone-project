@@ -100,7 +100,10 @@ export const FormOne = () => {
 
 
   const handleSubmit = (values: typeof form.values) => {
-    setDomesticAnswers(values);
+    setDomesticAnswers({
+      ...values,
+      avgInternshipSalary: avgSalary[salaryRange.indexOf(values.internshipSalary)]
+    });
     setCurrentPart(5);
     notifications.show({
       title: 'Employment Completed',
@@ -124,7 +127,7 @@ export const FormOne = () => {
       });
       return;
     }
-    setDomesticAnswers({ internshipCompany: '', internshipPrepTime: '', internshipSalary: '', internshipTitle: '' });
+    setDomesticAnswers({ internshipCompany: '', internshipPrepTime: '', internshipSalary: '', internshipTitle: '', avgInternshipSalary: 0 });
     setCurrentPart(5);
     notifications.show({
       title: 'Employment Completed',

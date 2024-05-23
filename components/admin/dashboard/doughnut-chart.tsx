@@ -48,7 +48,7 @@ export const DoughnutChart = () => {
   return (
     <div className={styles.doughnut_container}>
       <div className={styles.doughnut_value}>
-        {percentage}%
+        {percentage.toFixed(0)}%
       </div>
       <Doughnut
         data={data}

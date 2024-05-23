@@ -9,22 +9,18 @@ import CountUp from 'react-countup';
 import { useGetAccounts } from "@/app/(back-end)/features/account/api/use-get-accounts";
 import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/api/use-get-backgrounds";
 import { useGetSubmittedAccounts } from "@/app/(back-end)/features/account/api/use-get-submitted-accounts";
+import { useDialog } from "@/hooks/use-dialog";
 
 
 export const StudentProfile = () => {
-
+  const { setIsDialogOpen3 } = useDialog()
   const { data: allStudents } = useGetAccounts()
   const { data: allSubmittedStudents } = useGetSubmittedAccounts()
   const { data: backgroundData } = useGetBackgrounds()
 
-  const profiles = backgroundData ? backgroundData.map((item) => ({
-    name: item.firstName,
-    major: item.major,
-    graduation: item.endTerm,
-    surveyStatus: "yes"
-  })) : [];
+  const profiles = backgroundData ? backgroundData : [];
 
-  const submissionPercent = allStudents && allSubmittedStudents ? (allSubmittedStudents.length / allStudents.length) * 100 : 0
+  const submissionPercent = (allStudents && allSubmittedStudents) ? (allSubmittedStudents.length / allStudents.length) * 100 : 0
 
   const viewport = useRef<HTMLDivElement>(null);
   const [scrollPosition, onScrollPositionChange] = useState({ x: 0, y: 0 });
@@ -33,6 +29,7 @@ export const StudentProfile = () => {
     const newPosistion = amount + scrollPosition.x;
     viewport.current!.scrollTo({ left: newPosistion, behavior: 'smooth' });
   }
+
   return (
     <>
       <div className={styles.profile_default}>
@@ -51,25 +48,25 @@ export const StudentProfile = () => {
       >
         <Flex gap={15}>
           {profiles.map((item) => (
-            <div className={styles.profile_holder} key={item.name}>
+            <div className={styles.profile_holder} key={item.id}>
               <div className={styles.profile_top}>
-                {item.name}
+                {item.firstName}
               </div>
               <div className={styles.profile_bottom}>
                 <p className={styles.major_text}>{item.major}</p>
                 <div className={styles.status_text}>
-                  <p>{item.graduation}</p>
-                  {item.surveyStatus === 'yes' && <div className={styles.profile_completion}><Check size={14} /></div>}
+                  <p>{item.endTerm}</p>
+                  <div className={styles.profile_completion}><Check size={14} /></div>
                 </div>
 
-                <ProfileDialog />
+                <ProfileDialog backgroundData={item} />
               </div>
             </div>
           ))}
         </Flex>
       </ScrollArea>
 
-      <ChevronRight className={styles.next_btn} onClick={() => scrollToRight(60)} size={30} />
+      {profiles.length >= 4 && <ChevronRight className={styles.next_btn} onClick={() => scrollToRight(60)} size={30} />}
 
     </>
   )

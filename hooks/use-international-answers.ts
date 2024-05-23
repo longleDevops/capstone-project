@@ -5,11 +5,13 @@ interface InternationalAnswers {
     companyName: string,
     jobTitle: string,
     salary: string,
+    avgSalary: number
   };
   setInternationalAnswers: (internationalAnswers: {
     companyName: string,
     jobTitle: string,
     salary: string,
+    avgSalary: number
   }) => void;
 
 }
@@ -18,11 +20,13 @@ export const useInternationalAnswers = create<InternationalAnswers>((set) => ({
     companyName: '',
     jobTitle: '',
     salary: '',
+    avgSalary: 0
   },
   setInternationalAnswers: (internationalAnswers: {
     companyName: string,
     jobTitle: string,
     salary: string,
+    avgSalary: number
   }) => { set({ internationalAnswers }) },
 
 }))

@@ -1,4 +1,4 @@
-import { boolean, integer, pgTable, serial, text, uuid } from "drizzle-orm/pg-core";
+import { boolean, integer, pgTable, serial, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod"
 import { relations } from 'drizzle-orm';
 
@@ -7,7 +7,9 @@ export const account = pgTable("Account", {
   id: text("id").primaryKey(),
   firstName: text("First Name").default("N/A").notNull(),
   lastName: text("Last Name").default("N/A").notNull(),
-  isSubmitted: boolean("Survey Completed").default(false).notNull()
+  isSubmitted: boolean("Survey Completed").default(false).notNull(),
+  createdAt: timestamp("Created At", { mode: "date", withTimezone: true }).defaultNow().notNull()
+
 })
 
 export const insertAccountSchema = createInsertSchema(account)
@@ -23,6 +25,8 @@ export const studentBackground = pgTable("Student Background", {
   campus: text("Campus").notNull(),
   gender: text("Gender").notNull(),
   race: text("Race").notNull(),
+  degreeLevel: text("Degree").notNull(),
+  status: text("Status").notNull(),
 
   userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
 
@@ -50,6 +54,7 @@ export const domesticStudent = pgTable("Domestic Student", {
   internshipTitle: text("Internship title"),
   internshipSalary: text("Internship Salary"),
   internshipPrepTime: text("Prep Time"),
+  avgInternshipSalary: integer("Average Salary").notNull(),
 
   userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
 })
@@ -64,7 +69,7 @@ export const internationalStudent = pgTable("International Student", {
   companyName: text("Company Name"),
   jobTitle: text("Job Title"),
   salary: text("Salary"),
-
+  avgSalary: integer("Average Salary").notNull(),
   userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
 })
 export const insertInternationalStudentSchema = createInsertSchema(internationalStudent)
@@ -79,6 +84,7 @@ export const working = pgTable("Working", {
   companyName: text("Company Name"),
   jobTitle: text("Job Title"),
   salary: text("Salary"),
+  avgSalary: integer("Average Salary").notNull(),
 
   userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
 })

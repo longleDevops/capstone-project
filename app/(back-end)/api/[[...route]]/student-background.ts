@@ -34,7 +34,9 @@ const app = new Hono()
       endTerm: true,
       campus: true,
       gender: true,
-      race: true
+      race: true,
+      degreeLevel: true,
+      status: true
     })),
     async (c) => {
       const auth = getAuth(c)

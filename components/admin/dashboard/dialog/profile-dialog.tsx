@@ -5,9 +5,35 @@ import { useDisclosure } from '@mantine/hooks';
 import { Modal, Button } from '@mantine/core';
 import Image from 'next/image';
 import { Rating } from '@mantine/core';
+import { useUser } from '@clerk/nextjs';
+import { useGetBackgrounds } from '@/app/(back-end)/features/student-background/api/use-get-backgrounds';
+import { useDialog } from '@/hooks/use-dialog';
+import { DomesticStatus } from './domestic-status';
+import { InternationalStatus } from './international-status';
+import { WorkingStatus } from './working-status';
+import { SearchingJobStatus } from './searching-job-status';
+import { SeekingDegreeStatus } from './seeking-degree-status';
+import { studentBackground } from '@/app/(back-end)/db/schema';
 
+type props = {
+  backgroundData: {
+    id: number;
+    firstName: string | null;
+    lastName: string | null;
+    status: string;
+    studentId: string | null;
+    major: string;
+    startTerm: string;
+    endTerm: string | null;
+    campus: string;
+    gender: string;
+    race: string;
+    degreeLevel: string;
+    userId: string;
+  }
+}
 
-export const ProfileDialog = () => {
+export const ProfileDialog = ({ backgroundData }: props) => {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
@@ -45,40 +71,17 @@ export const ProfileDialog = () => {
               className={styles.graduation_img}
             />
           </div>
-          <div className={styles.bottom_container}>
-            <p className={styles.username}>@andre</p>
-            <p className={styles.name}>Andree Lindo</p>
-            <div className={styles.graduation_holder}>
-              <p className={styles.status}>Graduated</p>
-              <p className={styles.date}>Fall 2023 - Fall 2024</p>
-            </div>
-            <p className={styles.degree}>BAs in Computer science</p>
 
-            <div className={styles.holder}>
-              <p className={styles.left_txt}>Company</p>
-              <p className={styles.right_txt}>Microsoft Inc.</p>
-            </div>
-            <div className={styles.holder}>
-              <p className={styles.left_txt}>Job Title</p>
-              <p className={styles.right_txt} >Software Engineer</p>
-            </div>
-            <div className={styles.holder}>
-              <p className={styles.left_txt}>Salary range</p>
-              <p className={styles.right_txt}>$400,000-$450,000</p>
-            </div>
+          {
+            backgroundData.status === 'domestic-student' ? <DomesticStatus backgroundData={backgroundData} />
+              : backgroundData.status === 'international-student' ? <InternationalStatus backgroundData={backgroundData} />
+                : backgroundData.status === 'working-student' ? <WorkingStatus backgroundData={backgroundData} />
+                  : backgroundData.status === 'seeking-student' ? <SeekingDegreeStatus backgroundData={backgroundData} />
+                    : <SearchingJobStatus backgroundData={backgroundData} />
+          }
 
-            <div className={styles.holder}>
-              <p className={styles.left_txt}>Date</p>
-              <p className={styles.right_txt}>07/12/2020</p>
-            </div>
-            <div className={styles.holder}>
-              <p className={styles.left_txt}>Survey Rating</p>
-              <Rating value={3.5} fractions={2} readOnly />
-            </div>
-          </div>
         </div>
       </Modal>
-
       <Button
         onClick={open}
         radius={'md'}

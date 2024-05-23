@@ -29,6 +29,17 @@ export const Statistics = () => {
   const { data: domesticStudents } = useGetDomestics()
   const { data: internationalStudents } = useGetInternationals()
 
+  const workingSalary = workingStudents ? workingStudents.map((item) => item.avgSalary) : [0]
+  const domesticSalary = domesticStudents ? domesticStudents.map((item) => item.avgInternshipSalary) : [0]
+  const internationalSalary = internationalStudents ? internationalStudents.map((item) => item.avgSalary) : [0]
+
+  const totalSalary = workingSalary.concat(domesticSalary, internationalSalary)
+  const filteredSalary = totalSalary.filter(value => value !== 0)
+
+  const sum = filteredSalary.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  const totalAvg = Number(sum / filteredSalary.length)
+
+  const totalWorkingStudents = filteredSalary.length;
 
   const statistics = [
     {
@@ -39,12 +50,12 @@ export const Statistics = () => {
     {
       title: "Salary",
       description: "Avg. Income",
-      data: 120000
+      data: totalAvg
     },
     {
-      title: "Career",
-      description: "Majors & Jobs",
-      data: 20
+      title: "Job",
+      description: "Working students",
+      data: totalWorkingStudents
     },
   ]
 

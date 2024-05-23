@@ -192,6 +192,7 @@ export const OptionThree = () => {
             ]}
             allowDeselect={false}
             searchable
+            required
             nothingFoundMessage="Nothing found..."
             key={form.key('prepTime')}
             {...form.getInputProps('prepTime')}

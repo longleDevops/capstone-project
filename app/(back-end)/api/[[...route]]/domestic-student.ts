@@ -31,7 +31,8 @@ const app = new Hono()
       internshipCompany: true,
       internshipTitle: true,
       internshipSalary: true,
-      internshipPrepTime: true
+      internshipPrepTime: true,
+      avgInternshipSalary: true
     })),
     async (c) => {
       const auth = getAuth(c)

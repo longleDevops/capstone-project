@@ -3,7 +3,7 @@
 import { Button, Select, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
-import { ArrowRight, Calendar, CalendarCheck, ContactRound, Earth, Fingerprint, FlaskConical, University } from 'lucide-react';
+import { ArrowRight, Calendar, CalendarCheck, ContactRound, Earth, Fingerprint, FlaskConical, GraduationCap, TrendingUp, University } from 'lucide-react';
 import { zodResolver } from 'mantine-form-zod-resolver';
 import { FaTransgender } from "react-icons/fa";
 import { z } from 'zod';
@@ -21,7 +21,7 @@ export const SurveyOne = () => {
 
   const { backgroundAnswers, setBackgroundAnswers } = useBackgroundAnswers()
   const { q1Answer } = useSurveyPartTwo()
-  const { firstName, lastName, studentId, major, startTerm, endTerm, campus, gender, race } = backgroundAnswers
+  const { firstName, lastName, studentId, major, startTerm, endTerm, campus, gender, race, degreeLevel } = backgroundAnswers
   const { setCurrentPart } = useSurvey()
 
   const schema = z.object({
@@ -47,6 +47,8 @@ export const SurveyOne = () => {
       .string({ message: 'Please fill this field' }),
     race: z
       .string({ message: 'Please fill this field' }),
+    degreeLevel: z
+      .string()
   });
 
   const startTermArr = ["Fall 2017", "Winter 2017", "Spring 2017", "Summer 2017", "Fall 2018", "Winter 2018", "Spring 2018", "Summer 2018", "Fall 2019", "Winter 2019", "Spring 2019", "Summer 2019", "Fall 2020", "Winter 2020", "Spring 2020", "Summer 2020", "Fall 2021", "Winter 2021", "Spring 2021", "Summer 2021", "Fall 2022", "Winter 2022", "Spring 2022", "Summer 2022", "Fall 2023", "Winter 2023", "Spring 2023", "Summer 2023", "Fall 2024", "Winter 2024", "Spring 2024"];
@@ -65,7 +67,8 @@ export const SurveyOne = () => {
       endTerm,
       campus,
       gender,
-      race
+      race,
+      degreeLevel
     },
     validate: zodResolver(schema),
   });
@@ -111,14 +114,15 @@ export const SurveyOne = () => {
     <>
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <div className={styles.container}>
-          <div className={styles.title}>What is your First Name?</div>
+          <div className={styles.title}>
+            What is your First Name?
+          </div>
           <TextInput size='lg' radius={10}
             required
             leftSection={<ContactRound />}
             styles={{ input: {} }}
             key={form.key('firstName')}
             {...form.getInputProps('firstName')}
-
           />
 
           <div className={styles.title}>What is your Last Name?</div>
@@ -136,11 +140,31 @@ export const SurveyOne = () => {
             key={form.key('studentId')}
             {...form.getInputProps('studentId')}
           />
+
+          <div className={styles.title}>What is your level of degree?</div>
+          <Select
+            size="lg"
+            radius={10}
+            leftSection={<University />}
+            style={{}}
+            data={[
+              "Bachelor's Degree",
+              "Master's Degree",
+              "Doctoral Degree",
+
+            ]}
+            allowDeselect={false}
+            key={form.key('degreeLevel')}
+            {...form.getInputProps('degreeLevel')}
+            comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 } }}
+            required
+          />
+
           <div className={styles.title}>What is your Major?</div>
           <Select
             size="lg"
             radius={10}
-            leftSection={<FlaskConical />}
+            leftSection={<GraduationCap />}
             style={{}}
             data={[
               "Art",
@@ -156,7 +180,7 @@ export const SurveyOne = () => {
               "Accounting",
               "Finance",
               "Nursing",
-              "Medical", // list of majors.
+              "Medical"
             ]}
             allowDeselect={false}
             searchable

@@ -10,7 +10,8 @@ interface IBackgroundAnswers {
     endTerm: string,
     campus: string,
     gender: string,
-    race: string
+    race: string,
+    degreeLevel: string
   };
   setBackgroundAnswers: (backgroundAnswers: {
     firstName: string | null | undefined,
@@ -21,7 +22,9 @@ interface IBackgroundAnswers {
     endTerm: string,
     campus: string,
     gender: string,
-    race: string
+    race: string,
+    degreeLevel: string
+
   }) => void;
 
 }
@@ -35,7 +38,8 @@ export const useBackgroundAnswers = create<IBackgroundAnswers>((set) => ({
     endTerm: '',
     campus: '',
     gender: '',
-    race: ''
+    race: '',
+    degreeLevel: ''
   },
   setBackgroundAnswers: (backgroundAnswers: {
     firstName: string | null | undefined,
@@ -46,7 +50,8 @@ export const useBackgroundAnswers = create<IBackgroundAnswers>((set) => ({
     endTerm: string,
     campus: string,
     gender: string,
-    race: string
+    race: string,
+    degreeLevel: string
   }) => { set({ backgroundAnswers }) },
 
 }))

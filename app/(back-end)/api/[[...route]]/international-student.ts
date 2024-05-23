@@ -29,6 +29,7 @@ const app = new Hono()
       companyName: true,
       jobTitle: true,
       salary: true,
+      avgSalary: true
     })),
     async (c) => {
       const auth = getAuth(c)

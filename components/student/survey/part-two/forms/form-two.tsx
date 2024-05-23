@@ -62,6 +62,26 @@ export const FormTwo = () => {
 
   const { internationalAnswers, setInternationalAnswers } = useInternationalAnswers();
   const { companyName, jobTitle, salary } = internationalAnswers
+
+  const salaryRange = [
+    "$40,000 - $50,000",
+    "$50,000 - $60,000",
+    "$60,000 - $70,000",
+    "$70,000 - $80,000",
+    "$80,000 - $90,000",
+    "$90,000 - $100,000",
+    "Above $100,000", // list of salaries.
+  ]
+
+  const avgSalary = [
+    45000,
+    55000,
+    65000,
+    75000,
+    85000,
+    95000,
+    120000
+  ]
   const schema = z.object({
     companyName: z
       .string(),
@@ -83,7 +103,10 @@ export const FormTwo = () => {
 
 
   const handleSubmit = (values: typeof form.values) => {
-    setInternationalAnswers(values);
+    setInternationalAnswers({
+      ...values,
+      avgSalary: avgSalary[salaryRange.indexOf(values.salary)]
+    });
     setCurrentPart(5);
     notifications.show({
       title: 'Employment Completed',
@@ -107,7 +130,7 @@ export const FormTwo = () => {
       });
       return;
     }
-    setInternationalAnswers({ companyName: '', jobTitle: '', salary: '' });
+    setInternationalAnswers({ companyName: '', jobTitle: '', salary: '', avgSalary: 0 });
     setCurrentPart(5);
     notifications.show({
       title: 'Employment Completed',
@@ -175,15 +198,7 @@ export const FormTwo = () => {
                   leftSection={<DollarSign />}
                   style={{}}
                   placeholder="Ex: $50,000 - $60,0000"
-                  data={[
-                    "$40,000 - $50,000",
-                    "$50,000 - $60,000",
-                    "$60,000 - $70,000",
-                    "$70,000 - $80,000",
-                    "$80,000 - $90,000",
-                    "$90,000 - $100,000",
-                    "Above $100,000", // list of salaries.
-                  ]}
+                  data={salaryRange}
                   allowDeselect={false}
                   searchable
                   nothingFoundMessage="Nothing found..."

@@ -20,7 +20,9 @@ export const useCreateSatisfaction = () => {
     },
     onSuccess: async () => {
       try {
-        await client.api.accounts["update-submission"].$patch()
+        await client.api.accounts["update-submission"].$patch();
+        queryClient.invalidateQueries({ queryKey: ['student-backgrounds'] })
+        queryClient.invalidateQueries({ queryKey: ['accounts'] })
       } catch (e) {
         console.error(e)
       }

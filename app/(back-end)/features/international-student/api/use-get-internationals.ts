@@ -6,7 +6,7 @@ export const useGetInternationals = () => {
   const query = useQuery({
     queryKey: ["international-students"],
     queryFn: async () => {
-      const response = await client.api.accounts["international-students"].$get()
+      const response = await client.api.internationalStudent.$get()
 
       if (!response.ok) {
         throw new Error("Failed to get all international students")

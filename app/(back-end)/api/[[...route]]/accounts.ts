@@ -47,78 +47,7 @@ const app = new Hono()
         .from(account)
       return c.json({ data })
     })
-  .get('/student-backgrounds',
-    clerkMiddleware(),
-    async (c) => {
-      const auth = getAuth(c)
 
-      if (!auth?.userId) {
-        return c.json({ error: 'Unauthorized' }, 401)
-      }
-      const data = await db.select()
-        .from(studentBackground)
-      return c.json({ data })
-    })
-  .get('/workings',
-    clerkMiddleware(),
-    async (c) => {
-      const auth = getAuth(c)
-
-      if (!auth?.userId) {
-        return c.json({ error: 'Unauthorized' }, 401)
-      }
-      const data = await db.select()
-        .from(working)
-      return c.json({ data })
-    })
-  .get('/seeking-degrees',
-    clerkMiddleware(),
-    async (c) => {
-      const auth = getAuth(c)
-
-      if (!auth?.userId) {
-        return c.json({ error: 'Unauthorized' }, 401)
-      }
-      const data = await db.select()
-        .from(seekingDegree)
-      return c.json({ data })
-    })
-  .get('/domestic-students',
-    clerkMiddleware(),
-    async (c) => {
-      const auth = getAuth(c)
-
-      if (!auth?.userId) {
-        return c.json({ error: 'Unauthorized' }, 401)
-      }
-      const data = await db.select()
-        .from(domesticStudent)
-      return c.json({ data })
-    })
-  .get('/international-students',
-    clerkMiddleware(),
-    async (c) => {
-      const auth = getAuth(c)
-
-      if (!auth?.userId) {
-        return c.json({ error: 'Unauthorized' }, 401)
-      }
-      const data = await db.select()
-        .from(internationalStudent)
-      return c.json({ data })
-    })
-  .get('/satisfactions',
-    clerkMiddleware(),
-    async (c) => {
-      const auth = getAuth(c)
-
-      if (!auth?.userId) {
-        return c.json({ error: 'Unauthorized' }, 401)
-      }
-      const data = await db.select()
-        .from(satisfaction)
-      return c.json({ data })
-    })
   .post('/',
     clerkMiddleware(),
     async (c) => {

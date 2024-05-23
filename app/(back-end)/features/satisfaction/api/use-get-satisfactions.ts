@@ -6,7 +6,7 @@ export const useGetSatisfactions = () => {
   const query = useQuery({
     queryKey: ["satisfactions"],
     queryFn: async () => {
-      const response = await client.api.accounts["satisfactions"].$get()
+      const response = await client.api.satisfaction.$get()
 
       if (!response.ok) {
         throw new Error("Failed to get account")

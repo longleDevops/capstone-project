@@ -6,23 +6,19 @@ import { clerkMiddleware, getAuth } from "@hono/clerk-auth"
 import { zValidator } from '@hono/zod-validator'
 
 const app = new Hono()
-  // .get('/',
-  //   clerkMiddleware(),
-  //   async (c) => {
-  //     const auth = getAuth(c)
+  .get('/',
+    clerkMiddleware(),
+    async (c) => {
+      const auth = getAuth(c)
 
-  //     if (!auth?.userId) {
-  //       return c.json({ error: 'Unauthorized' }, 401)
-  //     }
-  //     const data = await db.select({
-  //       id: studentBackground.id,
-  //       firstName: studentBackground.firstName,
-  //     })
-  //       .from(account)
-  //       .where(eq(account.id, auth?.userId))
+      if (!auth?.userId) {
+        return c.json({ error: 'Unauthorized' }, 401)
+      }
+      const data = await db.select()
+        .from(studentBackground)
 
-  //     return c.json({ data })
-  //   })
+      return c.json({ data })
+    })
   .post('/',
     clerkMiddleware(),
     zValidator("json", insertBackgroundSchema.pick({

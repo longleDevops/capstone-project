@@ -14,12 +14,8 @@ const app = new Hono()
       if (!auth?.userId) {
         return c.json({ error: 'Unauthorized' }, 401)
       }
-      const data = await db.select({
-        currentStatus: seekingDegree.currentStatus,
-
-      })
+      const data = await db.select()
         .from(seekingDegree)
-        .where(eq(seekingDegree.userId, auth?.userId))
 
       return c.json({ data })
     })

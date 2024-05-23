@@ -215,7 +215,7 @@ export const FormOne = () => {
                 "3 months - 6 months",
                 "6 months - 1 year",
                 "1 year - 2 years",
-                // list of majors.
+
               ]}
               allowDeselect={false}
               searchable

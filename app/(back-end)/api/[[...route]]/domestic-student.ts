@@ -14,12 +14,8 @@ const app = new Hono()
       if (!auth?.userId) {
         return c.json({ error: 'Unauthorized' }, 401)
       }
-      const data = await db.select({
-        currentStatus: domesticStudent.currentStatus,
-
-      })
+      const data = await db.select()
         .from(domesticStudent)
-        .where(eq(domesticStudent.userId, auth?.userId))
 
       return c.json({ data })
     })

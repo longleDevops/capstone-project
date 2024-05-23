@@ -16,7 +16,6 @@ const app = new Hono()
       }
       const data = await db.select()
         .from(searchingJob)
-        .where(eq(searchingJob.userId, auth?.userId))
 
       return c.json({ data })
     })

@@ -37,6 +37,7 @@ export const Statistics = () => {
   const filteredSalary = totalSalary.filter(value => value !== 0)
 
   const sum = filteredSalary.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
   const totalAvg = Number(sum / filteredSalary.length)
 
   const totalWorkingStudents = filteredSalary.length;

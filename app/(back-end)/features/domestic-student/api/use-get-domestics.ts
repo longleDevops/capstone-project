@@ -6,7 +6,7 @@ export const useGetDomestics = () => {
   const query = useQuery({
     queryKey: ["domestic-students"],
     queryFn: async () => {
-      const response = await client.api.accounts["domestic-students"].$get()
+      const response = await client.api.domesticStudent.$get()
 
       if (!response.ok) {
         throw new Error("Failed to get all domestic students")

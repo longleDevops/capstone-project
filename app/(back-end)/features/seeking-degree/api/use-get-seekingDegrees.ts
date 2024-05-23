@@ -6,7 +6,7 @@ export const useGetSeekingDegrees = () => {
   const query = useQuery({
     queryKey: ["seeking-degrees"],
     queryFn: async () => {
-      const response = await client.api.accounts["seeking-degrees"].$get()
+      const response = await client.api.seekingDegree.$get()
 
       if (!response.ok) {
         throw new Error("Failed to get account")

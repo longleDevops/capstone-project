@@ -6,7 +6,7 @@ export const useGetBackgrounds = () => {
   const query = useQuery({
     queryKey: ["student-backgrounds"],
     queryFn: async () => {
-      const response = await client.api.accounts["student-backgrounds"].$get()
+      const response = await client.api.backgrounds.$get()
 
       if (!response.ok) {
         throw new Error("Failed to get account")

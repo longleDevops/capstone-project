@@ -3,9 +3,7 @@ import { StudentProfile } from "./student-profile"
 import { StudentRegistered } from "./student-registered"
 import styles from "./styles.module.css"
 
-
 export const AdminDashboard = () => {
-
 
   return (
     <div className={styles.container}>
@@ -17,7 +15,7 @@ export const AdminDashboard = () => {
       </div>
 
       <p className={styles.welcome_text}>All Submissions</p>
-      <p className={styles.welcome_description}>View and Manage student's profiles from all survey submissions</p>
+      <p className={styles.welcome_description}>View and Manage student&apos;s profiles from all survey submissions</p>
       <div className={styles.profile_container}>
         <StudentProfile />
       </div>

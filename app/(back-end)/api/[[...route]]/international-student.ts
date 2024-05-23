@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import db from "../../db/drizzle";
 import { eq } from "drizzle-orm";
-import { domesticStudent, insertDomesticStudentSchema, insertInternationalStudentSchema, internationalStudent } from "../../db/schema";
+import { insertInternationalStudentSchema, internationalStudent } from "../../db/schema";
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth"
 import { zValidator } from '@hono/zod-validator'
 
@@ -14,12 +14,8 @@ const app = new Hono()
       if (!auth?.userId) {
         return c.json({ error: 'Unauthorized' }, 401)
       }
-      const data = await db.select({
-        currentStatus: domesticStudent.currentStatus,
-
-      })
-        .from(domesticStudent)
-        .where(eq(domesticStudent.userId, auth?.userId))
+      const data = await db.select()
+        .from(internationalStudent)
 
       return c.json({ data })
     })

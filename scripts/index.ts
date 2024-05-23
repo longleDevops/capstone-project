@@ -1,79 +1,188 @@
-import { account, domesticStudent, internationalStudent, studentBackground } from "@/app/(back-end)/db/schema";
+import * as schema from "@/app/(back-end)/db/schema";
+import { account, domesticStudent, studentBackground, internationalStudent, working, searchingJob, seekingDegree, satisfaction } from "@/app/(back-end)/db/schema";
 import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
-import * as schema from "@/app/(back-end)/db/schema";
-import { auth } from "@clerk/nextjs";
-import { faker } from '@faker-js/faker';
+import { genderateWorkingStudentData, generateAccountData, generateDomesticStudentData, generateInternationalStudentData, generateSatisfactionData, generateSearchingData, generateSeekingDegreeData, generateStudentBackgroundData } from './fake-data';
 
-const avgSalary = [
-  45000,
-  55000,
-  65000,
-  75000,
-  85000,
-  95000,
-  120000
-]
+const sql = neon("postgresql://career-path_owner:JCaNYRAb3ev5@ep-orange-cloud-a6ut7nna.us-west-2.aws.neon.tech/career-path?sslmode=require");
+const db = drizzle(sql, { schema });
 
-function generateAccountData() {
-  return {
-    id: faker.string.nanoid(7),
-    firstName: faker.person.firstName(),
-    lastName: faker.person.lastName(),
-    isSubmitted: true,
-  };
-}
-
-function generateStudentBackgroundData(userId: string) {
-  return {
-    userId: userId,
-    firstName: faker.person.firstName(),
-    lastName: faker.person.lastName(),
-    studentId: faker.number.int({ min: 1000000, max: 9999999 }).toString()
-    ,
-    major: 'Computer Science',
-    startTerm: 'Fall 2016',
-    endTerm: 'Fall 2018',
-    campus: 'Des Moines',
-    gender: faker.person.gender(),
-    race: 'Asian',
-    degreeLevel: 'Master Degree',
-    status: 'domestic-student',
-  };
-}
-
-function generateDomesticStudentData(userId: string) {
-  return {
-    userId: userId,
-    isInternship: faker.datatype.boolean(),
-    internshipCompany: faker.company.name(),
-    internshipTitle: faker.person.jobTitle(),
-    internshipSalary: '$50,000 - $60,000',
-    internshipPrepTime: '1 month - 3 months',
-    avgInternshipSalary: faker.helpers.arrayElement(avgSalary),
-  };
-}
 
 async function main() {
-  const sql = neon("postgresql://career-path_owner:JCaNYRAb3ev5@ep-orange-cloud-a6ut7nna.us-west-2.aws.neon.tech/career-path?sslmode=require");
-  const db = drizzle(sql, { schema });
+  await db.delete(account)
 
-  //await db.delete(account)
+  await insertWorkingOnly(15);
+}
 
-  for (let i = 0; i < 50; i++) {
-    const accountData = generateAccountData();
-    const newAccount = await db.insert(account).values(accountData).returning({ id: account.id });
+async function insertMixed(size: number) {
+  const statusArr = [
+    'domestic-student',
+    'international-student',
+    'working-student',
+    'seeking-student',
+    'job-seeking-student'
+  ]
+  try {
+    //await db.delete(account)
+    for (let i = 0; i < size; i++) {
+      const accountData = generateAccountData();
+      const newAccount = await db.insert(account).values(accountData).returning({ id: account.id });
 
-    const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id);
+      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr);
+      await db.insert(studentBackground).values(studentBackgroundData);
 
-    await db.insert(studentBackground).values(studentBackgroundData);
+      if (studentBackgroundData.status === 'domestic-student') {
+        await insertDomestic(newAccount[0].id);
+      } else if (studentBackgroundData.status === 'international-student') {
+        await insertInternational(newAccount[0].id);
+      } else if (studentBackgroundData.status === 'working-student') {
+        await insertWorking(newAccount[0].id);
+      } else if (studentBackgroundData.status === 'seeking-student') {
+        await insertSeeking(newAccount[0].id);
+      } else {
+        await insertSearching(newAccount[0].id);
+      }
+    }
+    console.log("Insert Mixed Successful")
 
-    const domesticStudentData = generateDomesticStudentData(newAccount[0].id);
-    await db.insert(domesticStudent).values(domesticStudentData);
+  } catch (e) {
+    console.error(e)
   }
+}
 
+async function insertInternationalOnly(size: number) {
+  const statusArr = [
+    'international-student',
+  ]
+  try {
+    //await db.delete(account)
 
-  console.log("Successful")
+    for (let i = 0; i < size; i++) {
+      const accountData = generateAccountData();
+      const newAccount = await db.insert(account).values(accountData).returning({ id: account.id });
+
+      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr);
+      await db.insert(studentBackground).values(studentBackgroundData);
+      await insertInternational(newAccount[0].id);
+    }
+    console.log("Successful")
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+async function insertDomesticOnly(size: number) {
+  const statusArr = [
+    'domestic-student'
+  ]
+  try {
+    //await db.delete(account)
+
+    for (let i = 0; i < size; i++) {
+      const accountData = generateAccountData();
+      const newAccount = await db.insert(account).values(accountData).returning({ id: account.id });
+
+      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr);
+      await db.insert(studentBackground).values(studentBackgroundData);
+      await insertDomestic(newAccount[0].id);
+    }
+    console.log("Insert Domestic Successful")
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+async function insertWorkingOnly(size: number) {
+  const statusArr = [
+    'working-student'
+  ]
+  try {
+    //await db.delete(account)
+
+    for (let i = 0; i < size; i++) {
+      const accountData = generateAccountData();
+      const newAccount = await db.insert(account).values(accountData).returning({ id: account.id });
+
+      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr);
+      await db.insert(studentBackground).values(studentBackgroundData);
+      await insertWorking(newAccount[0].id);
+    }
+    console.log("Insert Working Successful")
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+async function insertSeekingDegreeOnly(size: number) {
+  const statusArr = [
+    'seeking-student'
+  ]
+  try {
+    //await db.delete(account)
+
+    for (let i = 0; i < size; i++) {
+      const accountData = generateAccountData();
+      const newAccount = await db.insert(account).values(accountData).returning({ id: account.id });
+
+      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr);
+      await db.insert(studentBackground).values(studentBackgroundData);
+      await insertSeeking(newAccount[0].id);
+    }
+    console.log("Insert Seeking Degree Successful")
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+async function inserSearchingJobOnly(size: number) {
+  const statusArr = [
+    'job-seeking-student'
+  ]
+  try {
+    //await db.delete(account)
+
+    for (let i = 0; i < size; i++) {
+      const accountData = generateAccountData();
+      const newAccount = await db.insert(account).values(accountData).returning({ id: account.id });
+
+      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr);
+      await db.insert(studentBackground).values(studentBackgroundData);
+      await insertSearching(newAccount[0].id);
+    }
+    console.log("Insert Searching Successful")
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+async function insertDomestic(id: string) {
+  const domesticStudentData = generateDomesticStudentData(id);
+  await db.insert(domesticStudent).values(domesticStudentData);
+}
+
+async function insertInternational(id: string) {
+  const internationalStudentData = generateInternationalStudentData(id);
+  await db.insert(internationalStudent).values(internationalStudentData);
+}
+
+async function insertWorking(id: string) {
+  const workingData = genderateWorkingStudentData(id);
+  await db.insert(working).values(workingData);
+}
+
+async function insertSeeking(id: string) {
+  const seekingData = generateSeekingDegreeData(id);
+  await db.insert(seekingDegree).values(seekingData);
+}
+
+async function insertSearching(id: string) {
+  const searchingData = generateSearchingData(id);
+  await db.insert(searchingJob).values(searchingData);
+}
+
+async function insertSatisfaction(id: string) {
+  const satisfactionData = generateSatisfactionData(id);
+  await db.insert(satisfaction).values(satisfactionData);
 }
 
 main();

@@ -1,19 +1,17 @@
 "use client"
 
-import { ProfileDialog } from "./dialog/profile-dialog"
-import styles from "./styles.module.css"
-import { useRef, useState } from "react"
-import { ScrollArea, Flex, Button, Stack, Group } from '@mantine/core';
-import { Check, ChevronRight, CircleChevronRight, SendHorizonal } from "lucide-react";
-import CountUp from 'react-countup';
+import { Check, ChevronRight, SendHorizonal } from "lucide-react";
+import { useRef, useState } from "react";
+import { Flex, ScrollArea } from '@mantine/core';
+
 import { useGetAccounts } from "@/app/(back-end)/features/account/api/use-get-accounts";
-import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/api/use-get-backgrounds";
 import { useGetSubmittedAccounts } from "@/app/(back-end)/features/account/api/use-get-submitted-accounts";
-import { useDialog } from "@/hooks/use-dialog";
+import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/api/use-get-backgrounds";
+import { ProfileDialog } from "./dialog/profile-dialog";
+import styles from "./styles.module.css";
 
 
 export const StudentProfile = () => {
-  const { setIsDialogOpen3 } = useDialog()
   const { data: allStudents } = useGetAccounts()
   const { data: allSubmittedStudents } = useGetSubmittedAccounts()
   const { data: backgroundData } = useGetBackgrounds()

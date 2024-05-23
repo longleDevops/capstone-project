@@ -1,22 +1,22 @@
 "use client"
 
+
+import { BadgeDollarSign, Handshake } from "lucide-react"
 import Image from "next/image"
-import { DoughnutChart } from "./doughnut-chart"
-import styles from "./styles.module.css"
-import { BadgeDollarSign, Ellipsis, Handshake } from "lucide-react"
-import { SalaryMenu } from "./menu/salary-menu"
-import { CareerDialog } from "./menu/career-dialog"
-import { SalaryDialog } from "./menu/salary-dialog"
-import { CareerMenu } from "./menu/career-menu"
-import CountUp from 'react-countup';
-import { Count } from "./count"
-import { useGetAccounts } from "@/app/(back-end)/features/account/api/use-get-accounts"
+import CountUp from 'react-countup'
+
 import { useGetSubmittedAccounts } from "@/app/(back-end)/features/account/api/use-get-submitted-accounts"
-import { useGetWorking } from "@/app/(back-end)/features/working/api/use-get-workings"
-import { useGetSeekingDegrees } from "@/app/(back-end)/features/seeking-degree/api/use-get-seekingDegrees"
-import { useGetSearchingJob } from "@/app/(back-end)/features/searching-job/api/use-get-searching-job"
 import { useGetDomestics } from "@/app/(back-end)/features/domestic-student/api/use-get-domestics"
 import { useGetInternationals } from "@/app/(back-end)/features/international-student/api/use-get-internationals"
+import { useGetSearchingJob } from "@/app/(back-end)/features/searching-job/api/use-get-searching-job"
+import { useGetSeekingDegrees } from "@/app/(back-end)/features/seeking-degree/api/use-get-seekingDegrees"
+import { useGetWorking } from "@/app/(back-end)/features/working/api/use-get-workings"
+import { DoughnutChart } from "./doughnut-chart"
+import { CareerDialog } from "./menu/career-dialog"
+import { CareerMenu } from "./menu/career-menu"
+import { SalaryDialog } from "./menu/salary-dialog"
+import { SalaryMenu } from "./menu/salary-menu"
+import styles from "./styles.module.css"
 
 export const Statistics = () => {
 
@@ -24,8 +24,8 @@ export const Statistics = () => {
   const totalSubmittedStudents = submittedAccounts ? submittedAccounts.length : 0
 
   const { data: workingStudents } = useGetWorking()
-  const { data: seekingStudents } = useGetSeekingDegrees()
-  const { data: searchingStudents } = useGetSearchingJob()
+  // const { data: seekingStudents } = useGetSeekingDegrees()
+  // const { data: searchingStudents } = useGetSearchingJob()
   const { data: domesticStudents } = useGetDomestics()
   const { data: internationalStudents } = useGetInternationals()
 
@@ -85,9 +85,9 @@ export const Statistics = () => {
               {item.description}
             </p>
             <div className={styles.statistics_value}>
-              {index === 1 ? <CountUp end={item.data} duration={1.4} prefix="$" />
-                : index === 2 ? <CountUp end={item.data} duration={1.4} suffix="+" />
-                  : <CountUp end={item.data} duration={1.4} />
+              {index === 1 ? <CountUp end={item.data} duration={2} prefix="$" />
+                : index === 2 ? <CountUp end={item.data} duration={1.6} suffix="+" />
+                  : <CountUp end={item.data} duration={1.2} />
               }
             </div>
 

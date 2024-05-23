@@ -1,19 +1,14 @@
 "use client"
 
-import styles from './styles.module.css'
+import { Button, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { Modal, Button } from '@mantine/core';
 import Image from 'next/image';
-import { Rating } from '@mantine/core';
-import { useUser } from '@clerk/nextjs';
-import { useGetBackgrounds } from '@/app/(back-end)/features/student-background/api/use-get-backgrounds';
-import { useDialog } from '@/hooks/use-dialog';
 import { DomesticStatus } from './domestic-status';
 import { InternationalStatus } from './international-status';
-import { WorkingStatus } from './working-status';
 import { SearchingJobStatus } from './searching-job-status';
 import { SeekingDegreeStatus } from './seeking-degree-status';
-import { studentBackground } from '@/app/(back-end)/db/schema';
+import styles from './styles.module.css';
+import { WorkingStatus } from './working-status';
 
 type props = {
   backgroundData: {

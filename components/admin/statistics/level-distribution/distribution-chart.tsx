@@ -35,7 +35,7 @@ export const DistributionChart = ({ bachelor, master, doctorate }: props) => {
     <div className={styles.doughnut_container}>
       <div className={styles.doughnut_value}>
         <p>{percent.toFixed(0)}%</p>
-        <p className={styles.doughnut_description}>Bachelor's</p>
+        <p className={styles.doughnut_description}>Bachelor&apos;s</p>
       </div>
       <Doughnut
         data={data}

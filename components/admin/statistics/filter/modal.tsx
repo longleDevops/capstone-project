@@ -62,8 +62,9 @@ export function FilterModal() {
           Select one or more majors listed below
           <div className={styles.major_container}>
             {
-              majorArr.map((item) => (
+              majorArr.map((item, index) => (
                 <div
+                  key={index}
                   className={styles.majorItem}
                   style={majorSet.has(item) ? { color: 'white', background: 'black' } : {}}
                   onClick={() => handleAdded(item)}>

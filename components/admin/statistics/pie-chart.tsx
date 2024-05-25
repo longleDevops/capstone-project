@@ -23,7 +23,34 @@ export const PieChart = () => {
 
   return (
     <div className={styles.pie_container}>
-      <Pie data={data} />
+      <Pie
+        data={data}
+        options={
+          {
+            responsive: true,
+            maintainAspectRatio: false,
+            // Plugins
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                displayColors: true,
+                boxPadding: 5,
+                padding: 10,
+                titleFont: {
+                  size: 14,
+                  weight: 'bold'
+                },
+                bodyFont: {
+                  size: 18,
+                  weight: 'bolder'
+                }
+              }
+            },
+          }
+        }
+      />
     </div>
   )
 }

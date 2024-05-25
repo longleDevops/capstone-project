@@ -25,11 +25,7 @@ export function CareerMenu() {
 
       <Menu.Dropdown>
 
-        <Menu.Item
-          leftSection={<IconSearch style={{ width: rem(14), height: rem(14) }} />}
-        >
-          Search
-        </Menu.Item>
+
 
         <Menu.Divider />
 

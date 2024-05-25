@@ -5,6 +5,7 @@ import 'chart.js/auto';
 import { Doughnut, Pie } from 'react-chartjs-2';
 import styles from '@/components/admin/statistics/styles.module.css'
 import { GraduationCap } from 'lucide-react';
+import { rgba } from '@mantine/core';
 
 type props = {
   bachelor: number,
@@ -37,24 +38,43 @@ export const DistributionChart = ({ bachelor, master, doctorate }: props) => {
         <p>{percent.toFixed(0)}%</p>
         <p className={styles.doughnut_description}>Bachelor&apos;s</p>
       </div>
-      <Doughnut
-        data={data}
-        options={
-          {
-            color: 'black',
-            layout: {
-              padding: 10
-            },
-            plugins: {
-              legend: {
-                display: false
+      <div>
+        <Doughnut
+          data={data}
+          options={
+            {
+              responsive: true,
+              maintainAspectRatio: false,
+              color: 'black',
+              layout: {
+                padding: 10
               },
-            },
-            maintainAspectRatio: false,
-            cutout: '73%',
+              plugins: {
+                legend: {
+                  display: false
+                },
+                tooltip: {
+                  xAlign: 'center',
+                  yAlign: 'bottom',
+                  backgroundColor: 'rgba(64,84,215,1)',
+                  displayColors: true,
+                  boxPadding: 5,
+                  padding: 10,
+                  titleFont: {
+                    size: 14,
+                    weight: 'bold'
+                  },
+                  bodyFont: {
+                    size: 18,
+                    weight: 'bolder'
+                  }
+                }
+              },
+              cutout: '73%',
+            }
           }
-        }
-      />
+        />
+      </div>
     </div>
   )
 }

@@ -35,24 +35,42 @@ export const SalaryChart = ({ bachelor, master, doctorate }: props) => {
         <CountUp end={total} duration={2} prefix={'$'} />
         <p className={styles.doughnut_description}>Total</p>
       </div>
-      <Doughnut
-        data={data}
-        options={
-          {
-            color: 'black',
-            layout: {
-              padding: 10
-            },
-            plugins: {
-              legend: {
-                display: false
+      <div>
+        <Doughnut
+          data={data}
+          options={
+            {
+              color: 'black',
+              layout: {
+                padding: 10
               },
-            },
-            maintainAspectRatio: false,
-            cutout: '73%',
+              plugins: {
+                legend: {
+                  display: false
+                },
+                tooltip: {
+                  xAlign: 'center',
+                  yAlign: 'bottom',
+                  backgroundColor: 'rgba(64,84,215,1)',
+                  displayColors: true,
+                  boxPadding: 5,
+                  padding: 10,
+                  titleFont: {
+                    size: 14,
+                    weight: 'bold'
+                  },
+                  bodyFont: {
+                    size: 18,
+                    weight: 'bolder'
+                  }
+                }
+              },
+              maintainAspectRatio: false,
+              cutout: '73%',
+            }
           }
-        }
-      />
+        />
+      </div>
     </div>
   )
 }

@@ -66,13 +66,15 @@ export const LineChart = () => {
         label: 'Employed',
         data: Array.from(employedMap.values()),
         backgroundColor: ["#0363f4"],
-        fill: true
+        fill: true,
+        tension: .5
       },
       {
         label: 'Unemployed & Other',
         data: Array.from(otherMap.values()),
         backgroundColor: ["#f33c5c"],
-        fill: true
+        fill: true,
+        tension: .5
       },
 
     ]
@@ -89,6 +91,7 @@ export const LineChart = () => {
         data={data}
         options={
           {
+
             responsive: true,
             maintainAspectRatio: false,
             // Plugins
@@ -110,15 +113,7 @@ export const LineChart = () => {
                 }
               }
             },
-            animations: {
-              tension: {
-                duration: 500,
-                easing: 'easeOutQuad',
-                from: .8,
-                to: .5,
-                loop: false
-              }
-            },
+
             scales: {
               y: {
                 ticks: {

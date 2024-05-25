@@ -2,11 +2,17 @@
 
 import Image from "next/image"
 import styles from "./styles.module.css"
-import { CircleHelp, HandCoins, Percent, Star } from "lucide-react"
+import { CircleHelp, HandCoins, Percent, Star, Triangle } from "lucide-react"
 import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/api/use-get-backgrounds"
 import CountUp from 'react-countup'
 import { useFilter } from "@/hooks/use-filter"
 import { useSettings } from "@/hooks/use-settings"
+
+import { FiTriangle } from "react-icons/fi";
+import { TbTriangleInverted } from "react-icons/tb";
+import { difference } from "next/dist/build/utils"
+import { TooltipComponent } from "./tooltip"
+
 
 export const CardHolder = () => {
   const { majorName } = useFilter()
@@ -42,7 +48,10 @@ export const CardHolder = () => {
       increased: "3%",
       icon: "icon",
       prefix: '',
-      suffix: ''
+      suffix: '',
+      isIncreased: ((totalStudents - 50) / 50 * 100).toFixed(2),
+      difference: '',
+      label: 'All students who submitted the survey'
     },
     {
       title: "Employment Rate",
@@ -50,7 +59,11 @@ export const CardHolder = () => {
       increased: "3%",
       icon: Percent,
       prefix: '',
-      suffix: '%'
+      suffix: '%',
+      isIncreased: employmentRate > 50,
+      difference: (employmentRate - 50 > 0) ? employmentRate - 50 : 50 - employmentRate,
+      label: 'Rates for employed students'
+
     },
     {
       title: "Avg Salary",
@@ -58,7 +71,10 @@ export const CardHolder = () => {
       increased: "3%",
       icon: HandCoins,
       prefix: '$',
-      suffix: ''
+      suffix: '',
+      isIncreased: avgSalary > 50000,
+      difference: ((avgSalary - 50000) / 50000 * 100).toFixed(2),
+      label: 'Average salary for employed students'
     },
     {
       title: "Avg Rating",
@@ -66,7 +82,10 @@ export const CardHolder = () => {
       increased: "3%",
       icon: Star,
       prefix: '',
-      suffix: ''
+      suffix: '',
+      isIncreased: avgRating > 2.5,
+      difference: ((avgRating - 2.5) / 2.5 * 100).toFixed(2),
+      label: 'Survey rating for all submitted surveys'
     }
   ]
   return (
@@ -89,7 +108,19 @@ export const CardHolder = () => {
               />}
               {<item.icon />}
             </div>
-            <div>{item.increased}</div>
+            {item.isIncreased ?
+              <div className={styles.percent_txt}>
+                <FiTriangle fill="#4bcd2f" color="#4bcd2f" size={11} />
+                <p>{item.difference}%</p>
+              </div>
+              :
+              <div className={styles.percent_txt}>
+                <TbTriangleInverted fill="#f33c5c" color="#f33c5c" size={10} />
+                <p>{item.difference}%</p>
+              </div>
+            }
+
+
           </div>
           <div className={styles.lower_card}>
             <div>
@@ -100,7 +131,7 @@ export const CardHolder = () => {
               <p className={styles.lower_card_title} style={index === 0 ? {} : {}}
               >{item.title}</p>
             </div>
-            <CircleHelp size={18} color='white' fill="blue" />
+            <TooltipComponent label={item.label} />
           </div>
         </div>
       ))}

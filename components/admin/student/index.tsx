@@ -4,9 +4,10 @@ import { StudentTable } from "./student-table"
 import styles from "./styles.module.css"
 import { Student } from "./columns"
 import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/api/use-get-backgrounds"
+import { useSettings } from "@/hooks/use-settings"
 
 export const StudentPage = () => {
-
+  const { isClosed } = useSettings()
   const { data: submittedBackgrounds, isLoading } = useGetBackgrounds();
 
   if (!submittedBackgrounds || isLoading) return <>...Loading</>
@@ -31,10 +32,15 @@ export const StudentPage = () => {
     ));
 
   return (
-    <div className={styles.container}>
-      <p className={styles.header_text}>Survey Management</p>
-      <p className={styles.header_description}>View and manage all of the registered users with ease</p>
-      <StudentTable data={data} />
+    <div
+      className={styles.container}
+      style={isClosed ? { marginLeft: '140px' } : {}}
+    >
+      <div className={styles.container_holder}>
+        <p className={styles.header_text}>Survey Management</p>
+        <p className={styles.header_description}>View and manage all of the registered users with ease</p>
+        <StudentTable data={data} />
+      </div>
     </div>
   )
 }

@@ -25,7 +25,8 @@ const app = new Hono()
       institution: true,
       major: true,
       isHelped: true,
-      prepTime: true
+      prepTime: true,
+      degreeLevel: true
     })),
     async (c) => {
       const auth = getAuth(c)

@@ -1,0 +1,37 @@
+/*filter group*/
+.filter_container{
+  display: flex;
+  gap: 25px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.container{
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.majorItem{
+  padding: 10px 15px;
+  border: 1px #9b9a9b solid;
+  border-radius: 20px;
+  color: #9b9a9b;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  
+}
+.majorItem:hover{
+  border: black solid 1px;
+}
+.major_container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.btn{
+  margin-left: auto;
+}

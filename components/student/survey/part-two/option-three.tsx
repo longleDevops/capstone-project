@@ -2,7 +2,7 @@
 
 import { Button, Select, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/form'
-import { ArrowLeft, ArrowRight, CalendarDays, Check, DollarSign, Factory, FlaskConical, Gitlab, University, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CalendarDays, Check, DollarSign, Factory, FlaskConical, Gitlab, GraduationCap, University, X } from 'lucide-react'
 import { zodResolver } from 'mantine-form-zod-resolver'
 import { z } from 'zod'
 import { useSurvey } from '@/hooks/use-survey'
@@ -39,11 +39,12 @@ export const OptionThree = () => {
   const { currentPart, setCurrentPart } = useSurvey()
 
   const { seekingAnswers, setSeekingAnswers } = useSeekingDegreeAnswers()
-  const { institution, major, prepTime } = seekingAnswers
+  const { institution, major, prepTime, degreeLevel } = seekingAnswers
   const schema = z.object({
     institution: z.string(),
     major: z.string(),
-    prepTime: z.string()
+    prepTime: z.string(),
+    degreeLevel: z.string()
   });
 
   const form = useForm({
@@ -51,7 +52,8 @@ export const OptionThree = () => {
     initialValues: {
       institution,
       major,
-      prepTime
+      prepTime,
+      degreeLevel
     },
     validate: zodResolver(schema),
   });
@@ -137,11 +139,30 @@ export const OptionThree = () => {
           <div className={styles.title}>What institution are you pursuing a higher degree?</div>
           <TextInput
             size='lg'
-            placeholder="Ex: Apple Inc."
+            placeholder="Seattle University."
             required
             leftSection={<University />}
             key={form.key('institution')}
             {...form.getInputProps('institution')}
+          />
+
+          <div className={styles.title}>What is your target degree level?</div>
+          <Select
+            size="lg"
+            radius={10}
+            leftSection={<GraduationCap />}
+            style={{}}
+            data={[
+              "Bachelor's Degree",
+              "Master's Degree",
+              "Doctoral Degree",
+
+            ]}
+            allowDeselect={false}
+            key={form.key('degreeLevel')}
+            {...form.getInputProps('degreeLevel')}
+            comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 } }}
+            required
           />
 
           <div className={styles.title}>What is your major?</div>

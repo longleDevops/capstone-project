@@ -67,29 +67,61 @@ export const ConfirmationModal = () => {
             : q1SurveyPt2 === 2 ? 'seeking-student'
               : 'job-seeking-student';
 
-    backgroundMutation.mutate({
-      ...backgroundAnswers,
-      status: studentStatus
-    });
+    const avgRating = ((q1Answer + q2Answer + q3Answer + q4Answer + q5Answer) / 5).toFixed(1)
 
     if (q1SurveyPt2 === 0 && q3Path1Answer === 0) {
       domesticMutation.mutate(domesticAnswers);
+      backgroundMutation.mutate({
+        ...backgroundAnswers,
+        status: studentStatus,
+        avgSalary: domesticAnswers.avgInternshipSalary,
+        isEmployed: domesticAnswers.avgInternshipSalary > 0,
+        avgRating
+      });
     }
 
     if (q1SurveyPt2 === 0 && q3Path1Answer === 1) {
       internationalMutation.mutate(internationalAnswers);
+      backgroundMutation.mutate({
+        ...backgroundAnswers,
+        status: studentStatus,
+        avgSalary: internationalAnswers.avgSalary,
+        isEmployed: internationalAnswers.avgSalary > 0,
+        avgRating
+      });
     }
 
     if (q1SurveyPt2 === 1 && q2Path2Answer === 0) {
       workingMutation.mutate(workingAnswers);
+      backgroundMutation.mutate({
+        ...backgroundAnswers,
+        status: studentStatus,
+        avgSalary: workingAnswers.avgSalary,
+        isEmployed: true,
+        avgRating
+      });
     }
 
     if (q1SurveyPt2 === 2 && q2Path3Answer === 0) {
       seekingDegreeMutation.mutate(seekingAnswers);
+      backgroundMutation.mutate({
+        ...backgroundAnswers,
+        status: studentStatus,
+        avgSalary: 0,
+        isEmployed: false,
+        avgRating
+      });
     }
 
     if (q1SurveyPt2 === 3 && q2Path4Answer === 0) {
       searchingJobMutation.mutate(searchingAnswers);
+      backgroundMutation.mutate({
+        ...backgroundAnswers,
+        status: studentStatus,
+        avgSalary: 0,
+        isEmployed: false,
+        avgRating
+      });
     }
 
     satisfactionMutation.mutate({

@@ -1,26 +1,49 @@
+"use client"
+
 import { DistributionChart } from './distribution-chart'
 import styles from '@/components/admin/statistics/styles.module.css'
+import { useGetBackgrounds } from '@/app/(back-end)/features/student-background/api/use-get-backgrounds'
+import { useFilter } from '@/hooks/use-filter'
+
 export const DistributionGroup = () => {
+  const { majorName } = useFilter()
+
+  const { data: backgroundData1, isLoading } = useGetBackgrounds()
+
+  const backgroundData2 = backgroundData1 ? backgroundData1 : []
+
+  const backgroundData = (majorName.size === 0 || majorName.size === 14) ? backgroundData2 : backgroundData2.filter((item) => majorName.has(item.major))
+
+
+
+  const bachelorArr = backgroundData ? backgroundData.filter(val => val.degreeLevel === "Bachelor's Degree",
+  ) : []
+
+  const masterArr = backgroundData ? backgroundData.filter(val => val.degreeLevel === "Master's Degree") : []
+
+  const doctorateArr = backgroundData ? backgroundData.filter(val => val.degreeLevel === "Doctoral Degree"
+  ) : []
+
   const distributions = [
     {
-      level: 'bachelors',
-      rank: '1',
-      amount: '200'
+      level: '',
+      rank: '',
+      amount: ''
     },
     {
-      level: 'Master',
+      level: "Bachelor's",
       rank: '2',
-      amount: '200'
+      amount: bachelorArr.length
     },
     {
-      level: 'PhD',
+      level: "Master's",
       rank: '3',
-      amount: '200'
+      amount: masterArr.length
     },
     {
-      level: 'Graduated',
+      level: "Doctorate's",
       rank: '4',
-      amount: '200'
+      amount: doctorateArr.length
     },
   ]
   return (
@@ -40,7 +63,7 @@ export const DistributionGroup = () => {
               </div>
 
               : <div key={item.level} className={styles.each_level}>
-                <p className={styles.color_txt2}></p>
+                <p className={index === 1 ? styles.color_txt2 : index === 2 ? styles.color_txt3 : styles.color_txt4}></p>
                 <p className={styles.rank_txt}>{item.rank}</p>
                 <p className={styles.level_txt}>{item.level}</p>
                 <p className={styles.amount_txt}>{item.amount}</p>
@@ -48,7 +71,11 @@ export const DistributionGroup = () => {
           ))}
         </div>
         <div className={styles.doughnut}>
-          <DistributionChart />
+          {!isLoading && <DistributionChart
+            bachelor={bachelorArr.length}
+            master={masterArr.length}
+            doctorate={doctorateArr.length}
+          />}
         </div>
       </div>
     </>

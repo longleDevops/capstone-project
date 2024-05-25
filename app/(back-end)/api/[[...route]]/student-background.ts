@@ -32,7 +32,10 @@ const app = new Hono()
       gender: true,
       race: true,
       degreeLevel: true,
-      status: true
+      status: true,
+      avgSalary: true,
+      isEmployed: true,
+      avgRating: true,
     })),
     async (c) => {
       const auth = getAuth(c)

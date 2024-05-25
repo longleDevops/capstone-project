@@ -11,7 +11,11 @@ const db = drizzle(sql, { schema });
 async function main() {
   await db.delete(account)
 
-  await insertWorkingOnly(15);
+  await insertWorkingOnly(5);
+  await insertSearchingJobOnly(5);
+  await insertSeekingDegreeOnly(5);
+  await insertDomesticOnly(5);
+  await insertInternationalOnly(5);
 }
 
 async function insertMixed(size: number) {
@@ -134,7 +138,7 @@ async function insertSeekingDegreeOnly(size: number) {
   }
 }
 
-async function inserSearchingJobOnly(size: number) {
+async function insertSearchingJobOnly(size: number) {
   const statusArr = [
     'job-seeking-student'
   ]

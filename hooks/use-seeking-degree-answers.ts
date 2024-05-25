@@ -5,13 +5,16 @@ interface ISeekingDegree {
     institution: string,
     major: string,
     prepTime: string,
-    isHelped: boolean
+    isHelped: boolean,
+    degreeLevel: string
   };
   setSeekingAnswers: (seekingAnswers: {
     institution: string,
     major: string,
     prepTime: string,
-    isHelped: boolean
+    isHelped: boolean,
+    degreeLevel: string
+
   }) => void;
 
 }
@@ -20,14 +23,16 @@ export const useSeekingDegreeAnswers = create<ISeekingDegree>((set) => ({
     institution: '',
     major: '',
     prepTime: '',
-    isHelped: false
+    isHelped: false,
+    degreeLevel: ''
 
   },
   setSeekingAnswers: (seekingAnswers: {
     institution: string,
     major: string,
     prepTime: string,
-    isHelped: boolean
+    isHelped: boolean,
+    degreeLevel: string
   }) => { set({ seekingAnswers }) },
 
 }))

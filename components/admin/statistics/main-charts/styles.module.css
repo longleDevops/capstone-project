@@ -1,0 +1,39 @@
+.left_container1{
+  width: 50%;
+  height: 400px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.chart_holder{
+  padding-left: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.chart_title{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.chart_description{
+  font-size: 12px;
+  font-weight: 500;
+  color: gray;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.area_container{
+  margin-top: 30px;
+  height: 275px;
+}
+.bar_container{
+  margin-top:30px;
+  height: 275px;
+}

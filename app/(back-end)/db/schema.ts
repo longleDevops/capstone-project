@@ -21,12 +21,15 @@ export const studentBackground = pgTable("Student Background", {
   studentId: text("Student ID").default('0000000'),
   major: text("Major").notNull(),
   startTerm: text("Start Term").notNull(),
-  endTerm: text("End Term"),
+  endTerm: text("End Term").notNull(),
   campus: text("Campus").notNull(),
   gender: text("Gender").notNull(),
   race: text("Race").notNull(),
   degreeLevel: text("Degree").notNull(),
   status: text("Status").notNull(),
+  avgSalary: integer("Avg Salary").notNull(),
+  isEmployed: boolean("Is Employed").notNull(),
+  avgRating: text("Avg Rating").notNull(),
 
   userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
 
@@ -79,11 +82,9 @@ export const working = pgTable("Working", {
   id: serial("id").primaryKey(),
   currentStatus: text("Status").notNull().default("Currently Working"),
 
-  isWorking: boolean("Working"),
-
-  companyName: text("Company Name"),
-  jobTitle: text("Job Title"),
-  salary: text("Salary"),
+  companyName: text("Company Name").notNull(),
+  jobTitle: text("Job Title").notNull(),
+  salary: text("Salary").notNull(),
   avgSalary: integer("Average Salary").notNull(),
 
   userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
@@ -94,10 +95,11 @@ export const seekingDegree = pgTable("Seeking Degree", {
   id: serial("id").primaryKey(),
   currentStatus: text("Status").notNull().default("Seeking Degree"),
 
-  institution: text("Institution Name"),
-  major: text("Job Title"),
-  isHelped: boolean("Is Helpful"),
-  prepTime: text("Accepted Time"),
+  institution: text("Institution Name").notNull(),
+  degreeLevel: text("Degree Level").notNull(),
+  major: text("Job Title").notNull(),
+  isHelped: boolean("Is Helpful").notNull(),
+  prepTime: text("Accepted Time").notNull(),
 
   userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
 })
@@ -107,9 +109,9 @@ export const searchingJob = pgTable("Searching Job", {
   id: serial("id").primaryKey(),
   currentStatus: text("Status").notNull().default("Searching Job"),
 
-  companyName: text("Company Name"),
-  jobTitle: text("Job Title"),
-  salary: text("Salary"),
+  companyName: text("Company Name").notNull(),
+  jobTitle: text("Job Title").notNull(),
+  salary: text("Salary").notNull(),
 
 
   userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })

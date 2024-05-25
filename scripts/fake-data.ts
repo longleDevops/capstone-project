@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import { min } from 'drizzle-orm';
 
 export const avgSalary = [
   45000,
@@ -108,6 +109,9 @@ export function generateStudentBackgroundData(userId: string, statusArr: string[
     race: faker.helpers.arrayElement(raceArr),
     degreeLevel: faker.helpers.arrayElement(degreeLevelArr),
     status: faker.helpers.arrayElement(statusArr),
+    avgSalary: faker.helpers.arrayElement(avgSalary),
+    isEmployed: faker.datatype.boolean(),
+    avgRating: faker.number.float({ min: 0, max: 6, fractionDigits: 1 }).toString()
   };
 }
 
@@ -161,6 +165,7 @@ export function generateSeekingDegreeData(userId: string) {
     major: faker.person.jobTitle(),
     isHelped: faker.datatype.boolean(),
     prepTime: faker.helpers.arrayElement(prepTimeArr),
+    degreeLevel: faker.helpers.arrayElement(degreeLevelArr)
   };
 }
 

@@ -2,13 +2,15 @@
 
 import Link from "next/link"
 import styles from "./styles.module.css"
-import { Home, PieChart, Settings, Users } from "lucide-react"
+import { ArrowLeft, ChevronLeft, ChevronRight, Home, PieChart, Settings, Users } from "lucide-react"
 import { usePathname } from "next/navigation"
-import Image from "next/image"
-
+import { useState } from "react"
+import { useSettings } from "@/hooks/use-settings"
 
 export const Sidebar = () => {
   const pathName = usePathname()
+  const { isClosed, setIsClosed } = useSettings()
+
   const sidebarItems = [
     {
       href: "/admin/dashboard",
@@ -30,30 +32,52 @@ export const Sidebar = () => {
     },
   ]
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>
+    <>
+      <div
+        className={isClosed ? styles.container_closed : styles.container}
 
-        <Link
-          className={styles.logo_link}
-          href="/admin/dashboard"
+      >
+        <div
+          className={styles.title}
         >
-          CWU
-        </Link>
-      </div>
-      {sidebarItems.map((item) => (
-        <Link
-          href={item.href}
-          key={item.name}
-          className={item.isActive ? styles.link_active : styles.link}
+          <Link
+            className={styles.logo_link}
+            href="/admin/dashboard"
+          >
+            CWU
+          </Link>
+        </div>
+        {sidebarItems.map((item) => (
+          <Link
+            href={item.href}
+            key={item.name}
+            className={
+              !isClosed ?
+                (item.isActive ? styles.link_active : styles.link)
+                : (item.isActive ? styles.link_active_closed : styles.link_closed)
+            }
+          >
+            <item.icon size={20} />
+            {!isClosed && item.name}
+          </Link>
+        ))}
+        <div
+          className={styles.setting_holder}
+          style={isClosed ? { width: '55px' } : {}}
         >
-          <item.icon size={20} />
-          {item.name}
-        </Link>
-      ))}
-      <div className={styles.setting_holder}>
-        <Settings size={20} />
-        <p>Settings</p>
+          <Settings size={20} />
+          {!isClosed && <p>Settings</p>}
+        </div>
+        <div className={styles.arrow_left}>
+          {!isClosed ?
+            <div onClick={() => setIsClosed(true)}
+              className={styles.arrow_item}><ChevronRight size={16} /></div>
+            :
+            <div onClick={() => setIsClosed(false)}
+              className={styles.arrow_item}><ChevronLeft size={16} /></div>
+          }
+        </div>
       </div>
-    </div>
+    </>
   )
 }

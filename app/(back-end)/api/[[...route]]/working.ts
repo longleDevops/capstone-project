@@ -22,7 +22,6 @@ const app = new Hono()
   .post('/',
     clerkMiddleware(),
     zValidator("json", insertWorkingSchema.pick({
-      isWorking: true,
       companyName: true,
       jobTitle: true,
       salary: true,

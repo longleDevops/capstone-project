@@ -7,7 +7,7 @@ import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/
 import { useSettings } from "@/hooks/use-settings"
 
 export const StudentPage = () => {
-  const { isClosed } = useSettings()
+  const { isClosed, theme } = useSettings()
   const { data: submittedBackgrounds, isLoading } = useGetBackgrounds();
 
   if (!submittedBackgrounds || isLoading) return <>...Loading</>
@@ -34,7 +34,11 @@ export const StudentPage = () => {
   return (
     <div
       className={styles.container}
-      style={isClosed ? { marginLeft: '140px' } : {}}
+      style={
+        theme === 'Classic' ? (isClosed ? { marginLeft: '140px' } : {})
+          : theme === 'Cwu' ? (isClosed ? { marginLeft: '140px' } : {})
+            : {}
+      }
     >
       <div className={styles.container_holder}>
         <p className={styles.header_text}>Survey Management</p>

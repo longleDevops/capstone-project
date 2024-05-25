@@ -17,9 +17,10 @@ import { CareerMenu } from "./menu/career-menu"
 import { SalaryDialog } from "./menu/salary-dialog"
 import { SalaryMenu } from "./menu/salary-menu"
 import styles from "./styles.module.css"
+import { useSettings } from "@/hooks/use-settings"
 
 export const Statistics = () => {
-
+  const { theme } = useSettings()
   const { data: submittedAccounts } = useGetSubmittedAccounts()
   const totalSubmittedStudents = submittedAccounts ? submittedAccounts.length : 0
 
@@ -64,7 +65,13 @@ export const Statistics = () => {
   return (
     <>
       {statistics.map((item, index) => (
-        <div className={index === 0 ? styles.statistics_holder1 : styles.statistics_holder2} key={index}>
+        <div
+          className={index === 0 ? styles.statistics_holder1 : styles.statistics_holder2}
+          style={
+            index !== 0 ? (theme === 'Classic' ? { boxShadow: '0px 1px 5px #d0d5dc' } : {}) : (theme === 'Classic' ? { boxShadow: '1px 2px 4px #bc0c47' } : {})
+          }
+          key={index}
+        >
           <div className={styles.statistics_left}>
             {index === 0 ? <Image
               alt="cwu logo"
@@ -74,7 +81,8 @@ export const Statistics = () => {
               className={styles.statistics_logo}
             />
               : index === 1 ?
-                <div className={styles.statistics_icon}>
+                <div className={styles.statistics_icon}
+                >
                   <BadgeDollarSign size={23} color="white" />
                 </div>
                 : <div className={styles.statistics_icon2}>

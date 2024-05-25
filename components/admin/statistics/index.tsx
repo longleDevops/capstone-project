@@ -9,7 +9,7 @@ import { SalaryGroup } from "./salary/salary-group"
 import styles from "./styles.module.css"
 
 export const Statistics = () => {
-  const { isClosed } = useSettings()
+  const { isClosed, theme } = useSettings()
   return (
     <div
       className={styles.container}
@@ -21,7 +21,11 @@ export const Statistics = () => {
         <FilterGroup />
 
         <div className={styles.section_container}>
-          <div className={styles.left_container1}>
+          <div className={styles.left_container1}
+            style={
+              theme === 'Classic' ? { border: '1px solid #d0d5dc' } : {}
+            }
+          >
             <ChartsContainer />
 
           </div>
@@ -31,10 +35,19 @@ export const Statistics = () => {
         </div>
 
         <div className={styles.section_container}>
-          <div className={styles.left_container}>
+          <div
+            className={styles.left_container}
+            style={
+              theme === 'Classic' ? { border: '1px solid #d0d5dc' } : {}
+            }>
             <DistributionGroup />
           </div>
-          <div className={styles.right_container}>
+          <div
+            className={styles.right_container}
+            style={
+              theme === 'Classic' ? { border: '1px solid #d0d5dc' } : {}
+            }
+          >
             <SalaryGroup />
           </div>
         </div>

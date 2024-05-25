@@ -5,12 +5,16 @@ import { ChartSelect } from './chart-select'
 import { LineChart } from './line-chart'
 import styles from './styles.module.css'
 import { BarChart } from './bar-chart'
+import { useSettings } from '@/hooks/use-settings'
 
 export const ChartsContainer = () => {
-
+  const { theme } = useSettings()
   const { chartType } = useMainChart()
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+
+    >
       <div className={styles.chart_holder}>
         <p className={styles.chart_title}>Total cwu students by terms</p>
         <ChartSelect />

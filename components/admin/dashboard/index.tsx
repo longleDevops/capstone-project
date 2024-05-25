@@ -6,12 +6,17 @@ import { StudentProfile } from "./student-profile"
 import { StudentRegistered } from "./student-registered"
 import styles from "./styles.module.css"
 
+const color = ['#d7c0bd', '#ded8d6', '#bf7975']
 export const AdminDashboard = () => {
-  const { isClosed } = useSettings()
+  const { isClosed, theme } = useSettings()
   return (
     <div
       className={styles.container}
-      style={isClosed ? { marginLeft: '140px' } : {}}
+      style={
+        theme === 'Classic' ? (isClosed ? { marginLeft: '140px' } : {})
+          : theme === 'Cwu' ? (isClosed ? { marginLeft: '140px' } : {})
+            : {}
+      }
     >
       <div className={styles.container_holder}>
         <p className={styles.dashboard_text}>Dashboard</p>

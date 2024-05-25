@@ -9,12 +9,14 @@ import { useGetSubmittedAccounts } from "@/app/(back-end)/features/account/api/u
 import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/api/use-get-backgrounds";
 import { ProfileDialog } from "./dialog/profile-dialog";
 import styles from "./styles.module.css";
+import { useSettings } from "@/hooks/use-settings";
 
 
 export const StudentProfile = () => {
   const { data: allStudents } = useGetAccounts()
   const { data: allSubmittedStudents } = useGetSubmittedAccounts()
   const { data: backgroundData } = useGetBackgrounds()
+  const { theme } = useSettings()
 
   const profiles = backgroundData ? backgroundData : [];
 
@@ -28,9 +30,15 @@ export const StudentProfile = () => {
     viewport.current!.scrollTo({ left: newPosistion, behavior: 'smooth' });
   }
 
+
   return (
     <>
-      <div className={styles.profile_default}>
+      <div
+        className={styles.profile_default}
+        style={
+          theme === 'Classic' ? { boxShadow: '0px 2px 5px #1f32c4' } : {}
+        }
+      >
         <div className={styles.horizontal_icon}>
           <SendHorizonal size={23} color="white" />
         </div>
@@ -46,11 +54,27 @@ export const StudentProfile = () => {
       >
         <Flex gap={15}>
           {profiles.map((item) => (
-            <div className={styles.profile_holder} key={item.id}>
-              <div className={styles.profile_top}>
+            <div
+              className={styles.profile_holder}
+              key={item.id}
+
+            >
+              <div className={styles.profile_top}
+                style={theme === 'Classic' ? {
+                  borderTop: '1px solid #d0d5dc',
+                  borderLeft: '1px solid #d0d5dc',
+                  borderRight: '1px solid #d0d5dc',
+                } : {}}
+              >
                 {item.firstName}
               </div>
-              <div className={styles.profile_bottom}>
+              <div className={styles.profile_bottom}
+                style={theme === 'Classic' ? {
+                  borderBottom: '1px solid #d0d5dc',
+                  borderLeft: '1px solid #d0d5dc',
+                  borderRight: '1px solid #d0d5dc',
+                } : {}}
+              >
                 <p className={styles.major_text}>{item.major}</p>
                 <div className={styles.status_text}>
                   <p>{item.endTerm}</p>
@@ -64,7 +88,7 @@ export const StudentProfile = () => {
         </Flex>
       </ScrollArea>
 
-      {profiles.length >= 4 && <ChevronRight className={styles.next_btn} onClick={() => scrollToRight(60)} size={30} />}
+      {profiles.length >= 4 && <ChevronRight className={styles.next_btn} onClick={() => scrollToRight(100)} size={30} />}
 
     </>
   )

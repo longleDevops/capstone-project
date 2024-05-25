@@ -6,10 +6,11 @@ import { CircleHelp, HandCoins, Percent, Star } from "lucide-react"
 import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/api/use-get-backgrounds"
 import CountUp from 'react-countup'
 import { useFilter } from "@/hooks/use-filter"
+import { useSettings } from "@/hooks/use-settings"
 
 export const CardHolder = () => {
   const { majorName } = useFilter()
-
+  const { theme } = useSettings()
   const { data: backgroundData1, isLoading } = useGetBackgrounds()
 
   const backgroundData2 = backgroundData1 ? backgroundData1 : []
@@ -74,7 +75,7 @@ export const CardHolder = () => {
         <div
           className={styles.card_holder}
           key={item.title}
-          style={index === 0 ? { backgroundColor: '#f2f2f2', boxShadow: ' 2px 3px 3px #9E0419' } : {}}
+          style={theme === 'Classic' ? { border: '1px #d0d5dc solid' } : {}}
         >
           <div className={styles.upper_card}>
             <div className={index === 0 ? styles.logo_holder_first : styles.logo_holder}

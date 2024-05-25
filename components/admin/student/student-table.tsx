@@ -92,6 +92,7 @@ export const StudentTable = ({ data }: { data: Student[] }) => {
     <MantineProvider
       theme={{
         primaryColor: 'orange',
+
       }}
     >
       <MantineReactTable

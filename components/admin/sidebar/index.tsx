@@ -6,10 +6,11 @@ import { ArrowLeft, ChevronLeft, ChevronRight, Home, PieChart, Settings, Users }
 import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { useSettings } from "@/hooks/use-settings"
+import { SettingsComponent } from "./settings"
 
 export const Sidebar = () => {
   const pathName = usePathname()
-  const { isClosed, setIsClosed } = useSettings()
+  const { isClosed, setIsClosed, theme } = useSettings()
 
   const sidebarItems = [
     {
@@ -34,8 +35,12 @@ export const Sidebar = () => {
   return (
     <>
       <div
-        className={isClosed ? styles.container_closed : styles.container}
-
+        className={
+          isClosed ? styles.container_closed : styles.container
+        }
+        style={
+          theme === 'Classic' ? { backgroundColor: '#f6f6f6' } : {}
+        }
       >
         <div
           className={styles.title}
@@ -57,24 +62,18 @@ export const Sidebar = () => {
                 : (item.isActive ? styles.link_active_closed : styles.link_closed)
             }
           >
-            <item.icon size={20} />
+            <item.icon size={22} />
             {!isClosed && item.name}
           </Link>
         ))}
-        <div
-          className={styles.setting_holder}
-          style={isClosed ? { width: '55px' } : {}}
-        >
-          <Settings size={20} />
-          {!isClosed && <p>Settings</p>}
-        </div>
+        <SettingsComponent />
         <div className={styles.arrow_left}>
           {!isClosed ?
             <div onClick={() => setIsClosed(true)}
-              className={styles.arrow_item}><ChevronRight size={16} /></div>
+              className={styles.arrow_item}><ChevronRight size={18} /></div>
             :
             <div onClick={() => setIsClosed(false)}
-              className={styles.arrow_item}><ChevronLeft size={16} /></div>
+              className={styles.arrow_item}><ChevronLeft size={18} /></div>
           }
         </div>
       </div>

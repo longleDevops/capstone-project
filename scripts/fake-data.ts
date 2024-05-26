@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { min } from 'drizzle-orm';
 
-export const avgSalary = [
+export const avgSalaryArr = [
   45000,
   55000,
   65000,
@@ -91,68 +91,72 @@ export function generateAccountData() {
   };
 }
 
-export function generateStudentBackgroundData(userId: string, statusArr: string[]) {
+export function generateStudentBackgroundData(userId: string, statusArr: string[], isEmployed: boolean, avgSalary: number, avgRating: string) {
 
   const startTerm = faker.helpers.arrayElement(startTermArr);
-  const filteredEndTerm = endTermArr.filter(value => endTermArr.indexOf(value) > startTermArr.indexOf(startTerm))
-  const endTerm = faker.helpers.arrayElement(filteredEndTerm)
+  const filteredEndTerm = endTermArr.filter(value => endTermArr.indexOf(value) > startTermArr.indexOf(startTerm));
+  const endTerm = faker.helpers.arrayElement(filteredEndTerm);
+
+  const status = statusArr[0]
+
   return {
-    userId: userId,
-    firstName: faker.person.firstName(),
-    lastName: faker.person.lastName(),
-    studentId: faker.number.int({ min: 1000000, max: 9999999 }).toString(),
-    major: faker.helpers.arrayElement(majorArr),
-    startTerm,
-    endTerm,
-    campus: faker.helpers.arrayElement(campusArr),
-    gender: faker.helpers.arrayElement(genderArr),
-    race: faker.helpers.arrayElement(raceArr),
-    degreeLevel: faker.helpers.arrayElement(degreeLevelArr),
-    status: faker.helpers.arrayElement(statusArr),
-    avgSalary: faker.helpers.arrayElement(avgSalary),
-    isEmployed: faker.datatype.boolean(),
-    avgRating: faker.number.float({ min: 0, max: 6, fractionDigits: 1 }).toString()
+    userId: userId, // good
+    firstName: faker.person.firstName(), // good
+    lastName: faker.person.lastName(), // good
+    studentId: faker.number.int({ min: 1000000, max: 9999999 }).toString(), // good
+    major: faker.helpers.arrayElement(majorArr), // good
+    startTerm, // good
+    endTerm, // good
+    campus: faker.helpers.arrayElement(campusArr), // good
+    gender: faker.helpers.arrayElement(genderArr), // good
+    race: faker.helpers.arrayElement(raceArr), // good
+    degreeLevel: faker.helpers.arrayElement(degreeLevelArr), // good
+    status, // good
+    avgSalary, // good
+    isEmployed, // good
+    avgRating // good
   };
 }
 
 // Domestic students
-export function generateDomesticStudentData(userId: string) {
+export function generateDomesticStudentData(userId: string, isEmployed: boolean, range: string, avgSalary: number) {
   return {
     userId: userId,
-    isInternship: faker.datatype.boolean(),
+    isInternship: isEmployed,
     internshipCompany: faker.company.name(),
     internshipTitle: faker.person.jobTitle(),
-    internshipSalary: faker.helpers.arrayElement(salaryRange),
+    internshipSalary: range,
     internshipPrepTime: faker.helpers.arrayElement(prepTimeArr),
-    avgInternshipSalary: faker.helpers.arrayElement(avgSalary),
+    avgInternshipSalary: avgSalary,
   };
 }
 
 // International students
-export function generateInternationalStudentData(userId: string) {
+export function generateInternationalStudentData(userId: string, isEmployed: boolean, range: string, avgSalary: number) {
   return {
     userId: userId,
 
-    isOPT: faker.datatype.boolean(),
+    isOPT: isEmployed,
+
 
     companyName: faker.company.name(),
     jobTitle: faker.person.jobTitle(),
-    salary: faker.helpers.arrayElement(salaryRange),
-    avgSalary: faker.helpers.arrayElement(avgSalary),
+    salary: range,
+    avgSalary,
   };
 }
 
 // Working students
-export function genderateWorkingStudentData(userId: string) {
+export function genderateWorkingStudentData(userId: string, avgSalary: number) {
   return {
     userId: userId,
 
-    isWorking: faker.datatype.boolean(),
+    isWorking: true,
 
     companyName: faker.company.name(),
     jobTitle: faker.person.jobTitle(),
     salary: faker.helpers.arrayElement(salaryRange),
-    avgSalary: faker.helpers.arrayElement(avgSalary),
+    avgSalary,
   };
 }
 
@@ -185,10 +189,12 @@ export function generateSatisfactionData(userId: string) {
   return {
     userId: userId,
 
-    q1Answer: faker.number.int({ min: 0, max: 6 }),
-    q2Answer: faker.number.int({ min: 0, max: 6 }),
-    q3Answer: faker.number.int({ min: 0, max: 6 }),
-    q4Answer: faker.number.int({ min: 0, max: 6 }),
-    q5Answer: faker.number.int({ min: 0, max: 6 })
+    q1Answer: faker.number.int({ min: 1, max: 5 }),
+    q2Answer: faker.number.int({ min: 1, max: 5 }),
+    q3Answer: faker.number.int({ min: 1, max: 5 }),
+    q4Answer: faker.number.int({ min: 1, max: 5 }),
+    q5Answer: faker.number.int({ min: 1, max: 5 })
+
   };
+
 }

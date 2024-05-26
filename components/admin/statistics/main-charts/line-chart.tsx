@@ -24,7 +24,7 @@ export const LineChart = () => {
   // };
 
   // fall, winter, spring (2017-2023)
-  const quarters = ["F17", "W17", "S17", "F18", "W18", "S18", "F19", "W19", "S19", "F20", "W20", "S20", "F21", "W21", "S21", "F22", "W22", "S22", "F23", "W23", "S23"]
+  const quarters = ["F17", "W17", "S17", "SU17", "F18", "W18", "S18", "SU18", "F19", "W19", "S19", "SU19", "F20", "W20", "S20", "SU20", "F21", "W21", "S21", "SU21", "F22", "W22", "S22", "SU22", "F23", "W23", "S23", "SU23", "F24", "W24", "S24", "SU24"]
 
 
   const { majorName } = useFilter()
@@ -45,7 +45,7 @@ export const LineChart = () => {
 
   // employed only
   backgroundData
-    ? backgroundData.filter(value => value.startTerm.split("")[0] != "Summer" && value.isEmployed === true).map(value => value.startTerm).forEach((quarter) => {
+    ? backgroundData.filter(value => value.isEmployed === true).map(value => value.startTerm).forEach((quarter) => {
       if (employedMap.has(transform(quarter))) {
         employedMap.set(transform(quarter), employedMap.get(transform(quarter)) + 1);
       }
@@ -53,7 +53,7 @@ export const LineChart = () => {
 
   // un-employed only
   backgroundData
-    ? backgroundData.filter(value => value.startTerm.split("")[0] != "Summer" && value.isEmployed === false).map(value => value.startTerm).forEach((quarter) => {
+    ? backgroundData.filter(value => value.isEmployed === false).map(value => value.startTerm).forEach((quarter) => {
       if (otherMap.has(transform(quarter))) {
         otherMap.set(transform(quarter), otherMap.get(transform(quarter)) + 1);
       }
@@ -70,7 +70,7 @@ export const LineChart = () => {
         tension: .5
       },
       {
-        label: 'Unemployed & Other',
+        label: 'Unemployed',
         data: Array.from(otherMap.values()),
         backgroundColor: ["#f33c5c"],
         fill: true,
@@ -80,7 +80,7 @@ export const LineChart = () => {
     ]
   };
   function transform(quarter: string) {
-    const season = quarter.split(" ")[0].slice(0, 1); // "F"
+    const season = quarter.split(" ")[0].slice(0, 2) === "Su" ? 'Su' : quarter.split(" ")[0].slice(0, 1); // "F"
     const year = quarter.split(" ")[1].slice(2); // "19"
     return season + year
   }

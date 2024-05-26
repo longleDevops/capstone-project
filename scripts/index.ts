@@ -2,7 +2,9 @@ import * as schema from "@/app/(back-end)/db/schema";
 import { account, domesticStudent, studentBackground, internationalStudent, working, searchingJob, seekingDegree, satisfaction } from "@/app/(back-end)/db/schema";
 import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
-import { genderateWorkingStudentData, generateAccountData, generateDomesticStudentData, generateInternationalStudentData, generateSatisfactionData, generateSearchingData, generateSeekingDegreeData, generateStudentBackgroundData } from './fake-data';
+import { avgSalaryArr, genderateWorkingStudentData, generateAccountData, generateDomesticStudentData, generateInternationalStudentData, generateSatisfactionData, generateSearchingData, generateSeekingDegreeData, generateStudentBackgroundData, salaryRange } from './fake-data';
+import { faker } from '@faker-js/faker';
+
 
 const sql = neon("postgresql://career-path_owner:JCaNYRAb3ev5@ep-orange-cloud-a6ut7nna.us-west-2.aws.neon.tech/career-path?sslmode=require");
 const db = drizzle(sql, { schema });
@@ -11,49 +13,15 @@ const db = drizzle(sql, { schema });
 async function main() {
   await db.delete(account)
 
-  await insertWorkingOnly(5);
-  await insertSearchingJobOnly(5);
-  await insertSeekingDegreeOnly(5);
-  await insertDomesticOnly(5);
-  await insertInternationalOnly(5);
+  // await insertDomesticOnly(55);
+  // await insertInternationalOnly(55);
+  // await insertWorkingOnly(55);
+  // await insertSeekingDegreeOnly(55);
+  // await insertSearchingJobOnly(55);
 }
 
-async function insertMixed(size: number) {
-  const statusArr = [
-    'domestic-student',
-    'international-student',
-    'working-student',
-    'seeking-student',
-    'job-seeking-student'
-  ]
-  try {
-    //await db.delete(account)
-    for (let i = 0; i < size; i++) {
-      const accountData = generateAccountData();
-      const newAccount = await db.insert(account).values(accountData).returning({ id: account.id });
 
-      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr);
-      await db.insert(studentBackground).values(studentBackgroundData);
-
-      if (studentBackgroundData.status === 'domestic-student') {
-        await insertDomestic(newAccount[0].id);
-      } else if (studentBackgroundData.status === 'international-student') {
-        await insertInternational(newAccount[0].id);
-      } else if (studentBackgroundData.status === 'working-student') {
-        await insertWorking(newAccount[0].id);
-      } else if (studentBackgroundData.status === 'seeking-student') {
-        await insertSeeking(newAccount[0].id);
-      } else {
-        await insertSearching(newAccount[0].id);
-      }
-    }
-    console.log("Insert Mixed Successful")
-
-  } catch (e) {
-    console.error(e)
-  }
-}
-
+// Test pass
 async function insertInternationalOnly(size: number) {
   const statusArr = [
     'international-student',
@@ -61,20 +29,37 @@ async function insertInternationalOnly(size: number) {
   try {
     //await db.delete(account)
 
+
     for (let i = 0; i < size; i++) {
+      const isEmployed = faker.datatype.boolean()
+      const range = isEmployed ? faker.helpers.arrayElement(salaryRange) : ''
+      const foundSalary = avgSalaryArr[salaryRange.indexOf(range)]
+      const avgSalary = isEmployed ? foundSalary : 0
+
       const accountData = generateAccountData();
       const newAccount = await db.insert(account).values(accountData).returning({ id: account.id });
 
-      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr);
+      const satisfactionData = generateSatisfactionData(newAccount[0].id);
+      const ratingArr = [satisfactionData.q1Answer, satisfactionData.q2Answer, satisfactionData.q3Answer, satisfactionData.q4Answer, satisfactionData.q5Answer]
+      const sum = ratingArr.reduce((acc, current) => acc + current, 0)
+      const avgRating = (sum / 5).toFixed(1)
+
+      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr, isEmployed, avgSalary, avgRating);
+
+      const internationalStudentData = generateInternationalStudentData(newAccount[0].id, isEmployed, range, avgSalary);
+
       await db.insert(studentBackground).values(studentBackgroundData);
-      await insertInternational(newAccount[0].id);
+      await db.insert(internationalStudent).values(internationalStudentData);
+      await db.insert(satisfaction).values(satisfactionData);
     }
-    console.log("Successful")
+    console.log("International Successful")
   } catch (e) {
     console.error(e)
   }
 }
 
+
+// Test Pass
 async function insertDomesticOnly(size: number) {
   const statusArr = [
     'domestic-student'
@@ -83,12 +68,27 @@ async function insertDomesticOnly(size: number) {
     //await db.delete(account)
 
     for (let i = 0; i < size; i++) {
+
+      const isEmployed = faker.datatype.boolean()
+      const range = isEmployed ? faker.helpers.arrayElement(salaryRange) : ''
+      const foundSalary = avgSalaryArr[salaryRange.indexOf(range)]
+      const avgSalary = isEmployed ? foundSalary : 0
+
       const accountData = generateAccountData();
       const newAccount = await db.insert(account).values(accountData).returning({ id: account.id });
 
-      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr);
+      const satisfactionData = generateSatisfactionData(newAccount[0].id);
+      const ratingArr = [satisfactionData.q1Answer, satisfactionData.q2Answer, satisfactionData.q3Answer, satisfactionData.q4Answer, satisfactionData.q5Answer]
+      const sum = ratingArr.reduce((acc, current) => acc + current, 0)
+      const avgRating = (sum / 5).toFixed(1)
+
+      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr, isEmployed, avgSalary, avgRating);
+      const domesticStudentData = generateDomesticStudentData(newAccount[0].id, isEmployed, range, avgSalary);
+
+
       await db.insert(studentBackground).values(studentBackgroundData);
-      await insertDomestic(newAccount[0].id);
+      await db.insert(domesticStudent).values(domesticStudentData);
+      await db.insert(satisfaction).values(satisfactionData);
     }
     console.log("Insert Domestic Successful")
   } catch (e) {
@@ -96,6 +96,8 @@ async function insertDomesticOnly(size: number) {
   }
 }
 
+
+// Test Pass
 async function insertWorkingOnly(size: number) {
   const statusArr = [
     'working-student'
@@ -104,12 +106,23 @@ async function insertWorkingOnly(size: number) {
     //await db.delete(account)
 
     for (let i = 0; i < size; i++) {
+      const avgSalary = faker.helpers.arrayElement(avgSalaryArr)
+      const isEmployed = true
       const accountData = generateAccountData();
       const newAccount = await db.insert(account).values(accountData).returning({ id: account.id });
 
-      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr);
+      const satisfactionData = generateSatisfactionData(newAccount[0].id);
+      const ratingArr = [satisfactionData.q1Answer, satisfactionData.q2Answer, satisfactionData.q3Answer, satisfactionData.q4Answer, satisfactionData.q5Answer]
+      const sum = ratingArr.reduce((acc, current) => acc + current, 0)
+      const avgRating = (sum / 5).toFixed(1)
+
+      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr, isEmployed, avgSalary, avgRating);
+
+      const workingData = genderateWorkingStudentData(newAccount[0].id, avgSalary);
+
       await db.insert(studentBackground).values(studentBackgroundData);
-      await insertWorking(newAccount[0].id);
+      await db.insert(working).values(workingData);
+      await db.insert(satisfaction).values(satisfactionData);
     }
     console.log("Insert Working Successful")
   } catch (e) {
@@ -117,6 +130,7 @@ async function insertWorkingOnly(size: number) {
   }
 }
 
+// Test Pass
 async function insertSeekingDegreeOnly(size: number) {
   const statusArr = [
     'seeking-student'
@@ -128,9 +142,18 @@ async function insertSeekingDegreeOnly(size: number) {
       const accountData = generateAccountData();
       const newAccount = await db.insert(account).values(accountData).returning({ id: account.id });
 
-      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr);
+      const satisfactionData = generateSatisfactionData(newAccount[0].id);
+      const ratingArr = [satisfactionData.q1Answer, satisfactionData.q2Answer, satisfactionData.q3Answer, satisfactionData.q4Answer, satisfactionData.q5Answer]
+      const sum = ratingArr.reduce((acc, current) => acc + current, 0)
+      const avgRating = (sum / 5).toFixed(1)
+
+      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr, false, 0, avgRating);
+
+      const seekingData = generateSeekingDegreeData(newAccount[0].id);
+
       await db.insert(studentBackground).values(studentBackgroundData);
-      await insertSeeking(newAccount[0].id);
+      await db.insert(seekingDegree).values(seekingData);
+      await db.insert(satisfaction).values(satisfactionData);
     }
     console.log("Insert Seeking Degree Successful")
   } catch (e) {
@@ -149,9 +172,17 @@ async function insertSearchingJobOnly(size: number) {
       const accountData = generateAccountData();
       const newAccount = await db.insert(account).values(accountData).returning({ id: account.id });
 
-      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr);
+      const satisfactionData = generateSatisfactionData(newAccount[0].id);
+      const ratingArr = [satisfactionData.q1Answer, satisfactionData.q2Answer, satisfactionData.q3Answer, satisfactionData.q4Answer, satisfactionData.q5Answer]
+      const sum = ratingArr.reduce((acc, current) => acc + current, 0)
+      const avgRating = (sum / 5).toFixed(1)
+
+      const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr, false, 0, avgRating);
+      const searchingData = generateSearchingData(newAccount[0].id);
+
       await db.insert(studentBackground).values(studentBackgroundData);
-      await insertSearching(newAccount[0].id);
+      await db.insert(searchingJob).values(searchingData);
+      await db.insert(satisfaction).values(satisfactionData);
     }
     console.log("Insert Searching Successful")
   } catch (e) {
@@ -159,34 +190,5 @@ async function insertSearchingJobOnly(size: number) {
   }
 }
 
-async function insertDomestic(id: string) {
-  const domesticStudentData = generateDomesticStudentData(id);
-  await db.insert(domesticStudent).values(domesticStudentData);
-}
-
-async function insertInternational(id: string) {
-  const internationalStudentData = generateInternationalStudentData(id);
-  await db.insert(internationalStudent).values(internationalStudentData);
-}
-
-async function insertWorking(id: string) {
-  const workingData = genderateWorkingStudentData(id);
-  await db.insert(working).values(workingData);
-}
-
-async function insertSeeking(id: string) {
-  const seekingData = generateSeekingDegreeData(id);
-  await db.insert(seekingDegree).values(seekingData);
-}
-
-async function insertSearching(id: string) {
-  const searchingData = generateSearchingData(id);
-  await db.insert(searchingJob).values(searchingData);
-}
-
-async function insertSatisfaction(id: string) {
-  const satisfactionData = generateSatisfactionData(id);
-  await db.insert(satisfaction).values(satisfactionData);
-}
 
 main();

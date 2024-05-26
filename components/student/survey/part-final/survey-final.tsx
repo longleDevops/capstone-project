@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import styles from './styles.module.css'
 import Link from "next/link"
@@ -6,6 +8,7 @@ import { useSurvey } from "@/hooks/use-survey"
 
 export const SurveyFinal = () => {
   const { setCurrentPart } = useSurvey()
+
   return (
     <div className={styles.container}>
       <p className={styles.header_txt}>Thank you for your participation!</p>

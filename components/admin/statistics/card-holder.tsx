@@ -29,6 +29,7 @@ export const CardHolder = () => {
   const sumRating = ratingArr.reduce((accumulator, currentValue) => {
     return accumulator + currentValue;
   }, 0);
+
   const avgRating = Number((sumRating / ratingArr.length).toFixed(1))
 
   const employedArr = backgroundData ? backgroundData.filter(value => value.isEmployed).map(value => value.avgSalary) : []
@@ -49,8 +50,8 @@ export const CardHolder = () => {
       icon: "icon",
       prefix: '',
       suffix: '',
-      isIncreased: ((totalStudents - 50) / 50 * 100).toFixed(2),
-      difference: '',
+      isIncreased: totalStudents > 10,
+      difference: (totalStudents - 10 > 0) ? ((totalStudents - 10) / 10 * 100).toFixed(2) : ((10 - totalStudents) / 10 * 100).toFixed(2),
       label: 'All students who submitted the survey'
     },
     {
@@ -61,7 +62,7 @@ export const CardHolder = () => {
       prefix: '',
       suffix: '%',
       isIncreased: employmentRate > 50,
-      difference: (employmentRate - 50 > 0) ? employmentRate - 50 : 50 - employmentRate,
+      difference: (employmentRate - 50 > 0) ? ((employmentRate - 50) / 50 * 100).toFixed(2) : ((50 - employmentRate) / 50 * 100).toFixed(2),
       label: 'Rates for employed students'
 
     },
@@ -78,7 +79,7 @@ export const CardHolder = () => {
     },
     {
       title: "Avg Rating",
-      value: Number(avgRating.toFixed(1)),
+      value: Number(avgRating),
       increased: "3%",
       icon: Star,
       prefix: '',
@@ -126,7 +127,9 @@ export const CardHolder = () => {
             <div>
               <p className={styles.lower_card_value} style={index === 0 ? {} : {}}
               >
-                < CountUp end={item.value} duration={2} prefix={item.prefix} suffix={item.suffix} />
+                {index === 1 || index === 3 ? < CountUp end={item.value} decimals={1} duration={2} prefix={item.prefix} suffix={item.suffix} />
+                  : < CountUp end={item.value} duration={2} prefix={item.prefix} suffix={item.suffix} />
+                }
               </p>
               <p className={styles.lower_card_title} style={index === 0 ? {} : {}}
               >{item.title}</p>

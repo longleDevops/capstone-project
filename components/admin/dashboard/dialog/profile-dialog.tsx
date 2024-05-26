@@ -25,6 +25,7 @@ type props = {
     race: string;
     degreeLevel: string;
     userId: string;
+    avgRating: string
   }
 }
 

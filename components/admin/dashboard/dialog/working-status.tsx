@@ -33,7 +33,7 @@ export const WorkingStatus = ({ backgroundData }: props) => {
 
   return (
     <div className={styles.bottom_container}>
-      <p className={styles.username}>@{'hjkh'}</p>
+      <p className={styles.username}>@{backgroundData.firstName?.substring(0, 2)}{backgroundData.lastName?.substring(0, 2)}</p>
       <p className={styles.name}>{backgroundData.firstName}&nbsp;{backgroundData.lastName}</p>
       <div className={styles.graduation_holder}>
         <p className={styles.status}>Graduated</p>

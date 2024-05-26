@@ -31,7 +31,7 @@ export const StudentRegistered = () => {
   return (
     <div className={styles.submission_container_big}>
       <div className={styles.submission_container}>
-        {data.map((item, index) => (
+        {data.slice(0, 50).map((item, index) => (
           <div className={isEven(index) ? styles.submission_row : styles.submission_row_odd} key={item.id}>
             <p className={styles.submission_name}>{item.firstName}</p>
             <p>Graduation survey</p>

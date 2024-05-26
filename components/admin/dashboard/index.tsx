@@ -26,7 +26,7 @@ export const AdminDashboard = () => {
           <Statistics />
         </div>
 
-        <p className={styles.welcome_text}>All Submissions</p>
+        <p className={styles.welcome_text}>Recent Submissions</p>
         <p className={styles.welcome_description}>View and Manage student&apos;s profiles from all survey submissions</p>
         <div className={styles.profile_container}>
           <StudentProfile />

@@ -53,7 +53,7 @@ export const StudentProfile = () => {
         onScrollPositionChange={onScrollPositionChange}
       >
         <Flex gap={15}>
-          {profiles.map((item) => (
+          {profiles.slice(0, 100).map((item) => (
             <div
               className={styles.profile_holder}
               key={item.id}

@@ -5,8 +5,8 @@ import { relations } from 'drizzle-orm';
 // db schema
 export const account = pgTable("Account", {
   id: text("id").primaryKey(),
-  firstName: text("First Name").default("N/A").notNull(),
-  lastName: text("Last Name").default("N/A").notNull(),
+  firstName: text("First Name").default("N/A"),
+  lastName: text("Last Name").default("N/A"),
   isSubmitted: boolean("Survey Completed").default(false).notNull(),
   createdAt: timestamp("Created At", { mode: "date", withTimezone: true }).defaultNow().notNull()
 
@@ -134,6 +134,8 @@ export const satisfaction = pgTable("Satisfaction", {
 
   q5: text("Q5").notNull().default("How would you rate the professional level of CWU staff?"),
   q5Answer: integer("Q5 Answer").notNull(),
+
+  createdAt: timestamp("Created At", { withTimezone: true }).defaultNow().notNull(),
 
   userId: text('userID').notNull().unique().references(() => account.id, { onDelete: 'cascade' })
 })

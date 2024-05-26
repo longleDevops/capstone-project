@@ -1,51 +1,42 @@
-// index.js
+import db from "@/app/(back-end)/db/drizzle";
+import { NotStarted } from "./not-started";
+import { account, satisfaction } from "@/app/(back-end)/db/schema";
+import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
+import { eq } from "drizzle-orm";
+import styles from './style.module.css'
 
-"use client";
+export const Home = async () => {
+  const { userId } = auth()
+  if (!userId) redirect("/");
 
-import { useSurvey } from "@/hooks/use-survey";
-import Image from "next/image";
-import Link from "next/link";
-import styles from "./style.module.css";
+  const currentUser = await db.select({
+    isSubmitted: account.isSubmitted,
+  }).from(account).where(eq(account.id, userId))
+  const { isSubmitted } = currentUser[0]
 
-export const Home = () => {
-  const { isStarted, setIsStarted } = useSurvey()
+  const formatTime = (dateObject: Date) => {
+    const result = dateObject.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' });
+
+    return result;
+  }
+
+  if (isSubmitted) {
+    const satisfactionData = await db.select({
+      createdAt: satisfaction.createdAt
+    }).from(satisfaction).where(eq(satisfaction.userId, userId))
+
+    const { createdAt } = satisfactionData[0]
+    return (
+      <div className={styles.completion_holder}>
+        <div> Congratulations! You have submitted the survey at </div>
+        <p>{formatTime(createdAt)}</p>
+      </div>)
+  }
+
+
   return (
-    <>
-      <div className={styles.imageHolder}>
-        <img src="/cwu-logo.png" alt="CWU Logo" className={styles.cwuImage} />
-      </div>
-
-      <div className={styles.aboutContainer}>
-        <Image
-          src="/grad.png"
-          alt="CWU grad"
-          width={700}
-          height={200}
-          className={styles.cwuGradImg}
-        />
-        <div className={styles.heading}>Post-Graduation Career Survey </div>
-        <div className={styles.description_container}>
-          <p>
-            As you embark on your journey beyond Central Washington University,
-            we invite you to participate in our Post-Graduation Career Survey.
-            Your insights and experiences are invaluable in shaping the future
-            of our programs and ensuring the success of current and future
-            students. The CWU Post-Graduation Career Survey is a vital tool for
-            understanding the career paths and achievements of our graduates. By
-            sharing your post-graduation experiences, you contribute to the
-            enhancement of our academic programs, career services, and alumni
-            support initiatives.
-          </p>
-        </div>
-        <Link
-          href={'/student/survey'}
-        >
-          <button onClick={() => setIsStarted(true)} className={styles.surveyButton}>
-            Take Survey!
-          </button>
-        </Link>
-      </div>
-    </>
+    <NotStarted />
   );
 
 };

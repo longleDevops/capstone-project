@@ -4,11 +4,26 @@ import Image from "next/image"
 import styles from './styles.module.css'
 import Link from "next/link"
 import { useSurvey } from "@/hooks/use-survey"
-
+import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/api/use-get-backgrounds"
+import { useBackgroundAnswers } from "@/hooks/use-background-answers"
+import CountUp from 'react-countup'
+import { useRouter } from "next/navigation"
+import { Button } from "@mantine/core"
 
 export const SurveyFinal = () => {
   const { setCurrentPart } = useSurvey()
+  const { data: backgroundData } = useGetBackgrounds()
+  const { backgroundAnswers } = useBackgroundAnswers()
+  const router = useRouter()
+  const matchedMajor = backgroundData ? backgroundData.filter((val) => val.major === backgroundAnswers.major) : []
+  const size = backgroundData ? backgroundData.length : 0
 
+  const matchedPercent = (matchedMajor.length / size) * 100;
+
+  const handleClicked = () => {
+    router.push('/student/home')
+    router.refresh()
+  }
   return (
     <div className={styles.container}>
       <p className={styles.header_txt}>Thank you for your participation!</p>
@@ -21,19 +36,15 @@ export const SurveyFinal = () => {
       />
       <p className={styles.completed_txt}>Completed</p>
       <div className={styles.description}>
-        <p>33% students have the same major as yours</p>
-        <p>you are the top 1% with over 100k salary!</p>
+        <p><CountUp end={matchedPercent} decimals={2} duration={2} suffix="%" /> students have the same major as yours</p>
       </div>
 
-      <Link
-        href={'/student/home'}
-        className={styles.btn}
+      <Button
+        variant='variant'
+        onClick={handleClicked}
       >
         Back to Home
-      </Link>
-      <button onClick={() => setCurrentPart(5)}>
-        test
-      </button>
+      </Button>
     </div>
   )
 }

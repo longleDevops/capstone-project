@@ -11,13 +11,13 @@ const db = drizzle(sql, { schema });
 
 
 async function main() {
-  await db.delete(account)
+  //await db.delete(account)
 
-  // await insertDomesticOnly(5);
-  // await insertInternationalOnly(5);
-  await insertWorkingOnly(55);
-  await insertSeekingDegreeOnly(55);
-  // await insertSearchingJobOnly(55);
+  //await insertDomesticOnly(2025);
+  await insertInternationalOnly(3305);
+  await insertWorkingOnly(2550);
+  await insertSeekingDegreeOnly(3055);
+  await insertSearchingJobOnly(4055);
 }
 
 
@@ -85,10 +85,13 @@ async function insertDomesticOnly(size: number) {
       const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr, isEmployed, avgSalary, avgRating);
       const domesticStudentData = generateDomesticStudentData(newAccount[0].id, isEmployed, range, avgSalary);
 
+      const allPromises = [
 
-      await db.insert(studentBackground).values(studentBackgroundData);
-      await db.insert(domesticStudent).values(domesticStudentData);
-      await db.insert(satisfaction).values(satisfactionData);
+        db.insert(studentBackground).values(studentBackgroundData),
+        db.insert(domesticStudent).values(domesticStudentData),
+        db.insert(satisfaction).values(satisfactionData)
+      ]
+      await Promise.all(allPromises)
     }
     console.log("Insert Domestic Successful")
   } catch (e) {
@@ -120,9 +123,13 @@ async function insertWorkingOnly(size: number) {
 
       const workingData = genderateWorkingStudentData(newAccount[0].id, avgSalary);
 
-      await db.insert(studentBackground).values(studentBackgroundData);
-      await db.insert(working).values(workingData);
-      await db.insert(satisfaction).values(satisfactionData);
+      const allPromise = [
+
+        db.insert(studentBackground).values(studentBackgroundData),
+        db.insert(working).values(workingData),
+        db.insert(satisfaction).values(satisfactionData)
+      ]
+      await Promise.all(allPromise)
     }
     console.log("Insert Working Successful")
   } catch (e) {
@@ -151,9 +158,14 @@ async function insertSeekingDegreeOnly(size: number) {
 
       const seekingData = generateSeekingDegreeData(newAccount[0].id);
 
-      await db.insert(studentBackground).values(studentBackgroundData);
-      await db.insert(seekingDegree).values(seekingData);
-      await db.insert(satisfaction).values(satisfactionData);
+
+
+      const allPromise = [
+        db.insert(studentBackground).values(studentBackgroundData),
+        db.insert(seekingDegree).values(seekingData),
+        db.insert(satisfaction).values(satisfactionData)
+      ]
+      await Promise.all(allPromise)
     }
     console.log("Insert Seeking Degree Successful")
   } catch (e) {
@@ -180,9 +192,16 @@ async function insertSearchingJobOnly(size: number) {
       const studentBackgroundData = generateStudentBackgroundData(newAccount[0].id, statusArr, false, 0, avgRating);
       const searchingData = generateSearchingData(newAccount[0].id);
 
-      await db.insert(studentBackground).values(studentBackgroundData);
-      await db.insert(searchingJob).values(searchingData);
-      await db.insert(satisfaction).values(satisfactionData);
+
+
+      const allPromise = [
+        db.insert(studentBackground).values(studentBackgroundData),
+        await db.insert(searchingJob).values(searchingData),
+        db.insert(satisfaction).values(satisfactionData)
+      ]
+      await Promise.all(allPromise)
+
+
     }
     console.log("Insert Searching Successful")
   } catch (e) {

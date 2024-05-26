@@ -80,7 +80,7 @@ export const LineChart = () => {
     ]
   };
   function transform(quarter: string) {
-    const season = quarter.split(" ")[0].slice(0, 2) === "SU" ? 'SU' : quarter.split(" ")[0].slice(0, 1); // "F"
+    const season = quarter.split(" ")[0].slice(0, 2) === "Su" ? 'SU' : quarter.split(" ")[0].slice(0, 1); // "F"
     const year = quarter.split(" ")[1].slice(2); // "19"
     return season + year
   }

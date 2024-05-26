@@ -31,12 +31,19 @@ export const StudentRegistered = () => {
   return (
     <div className={styles.submission_container_big}>
       <div className={styles.submission_container}>
-        {data.slice(0, 50).map((item, index) => (
+        <div className={styles.submission_title} >
+          <p className={styles.submission_name}>Full Name</p>
+          <p>Survey Name</p>
+          <p > Survey Status</p>
+          <p >Date Created</p>
+          <p >At Time</p>
+        </div>
+        {data.slice(-50).reverse().map((item, index) => (
           <div className={isEven(index) ? styles.submission_row : styles.submission_row_odd} key={item.id}>
-            <p className={styles.submission_name}>{item.firstName}</p>
+            <p className={styles.submission_name}>{item.firstName} {item.lastName}</p>
             <p>Graduation survey</p>
-            <p className={styles.submission_status}>{item.isSubmitted ? 'completed' : 'not submitted'}</p>
-            <p>{formatDate(item.createdAt)}</p>
+            <p className={styles.submission_status} style={item.isSubmitted ? { color: '#0bca00' } : { color: '#ca0900' }}>{item.isSubmitted ? 'completed' : 'not submitted'}</p>
+            <p className={styles.date_created}>{formatDate(item.createdAt)}</p>
             <p className={styles.submission_status}>{formatTime(item.createdAt)}</p>
           </div>
         ))}

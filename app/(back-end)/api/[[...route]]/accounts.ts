@@ -45,6 +45,7 @@ const app = new Hono()
       }
       const data = await db.select()
         .from(account)
+        .orderBy(account.createdAt)
       return c.json({ data })
     })
 

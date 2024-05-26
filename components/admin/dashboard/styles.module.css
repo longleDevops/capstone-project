@@ -297,7 +297,7 @@
   display: flex;
   flex-direction: column;
   padding:20px 0 20px 0;
-  margin-top: -10px;
+  margin-top: -18px;
 }
 
 .submission_row{
@@ -317,8 +317,24 @@
   background-color: #F3EDFF;
 }
 
+.submission_title{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 20px;
+  justify-content: space-between;
+  background-color: #9946ff;
+  color:white;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.date_created{
+  width: 60px;
+}
+
 .submission_status{
-  color: green;
+  width: 140px;
 }
 .submission_name{
   width: 150px;

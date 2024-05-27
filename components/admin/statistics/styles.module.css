@@ -1,6 +1,6 @@
 .container{
   border-radius: 10px;
-  margin: 20px 20px 0px 260px;
+  margin: 20px 20px 20px 260px;
   display: flex;
   justify-content: center;
 }
@@ -224,7 +224,6 @@
 }
 
 
-
 /*Card holder*/
 .card_container{
   width: 100%;
@@ -329,3 +328,50 @@
 .filter_item_title{
   padding: 5px 12px;
 }
+
+@media (width<=1300px) {
+  .container{
+  margin: 20px;
+  
+}
+}
+
+@media (width<=1050px) {
+  .section_container{
+    flex-direction:column-reverse;
+    gap: 40px;
+    align-items: center;
+  }
+  .left_container1{
+    width: 100%;
+  }
+  .right_container1{
+    width: 100%;
+  }
+  .left_container{
+    width: 100%;
+  }
+  .right_container{
+    width: 100%;
+  }
+}
+
+@media (width<=590px) {
+  
+ .distribution_holder{
+  flex-wrap: wrap;
+  gap: 40px;
+ }
+ .doughnut{
+  justify-content: center;
+ }
+ .left_container{
+  height: auto;
+  padding-bottom: 40px;
+ }
+
+ .right_container{
+  height: auto;
+  padding-bottom: 40px;
+ }
+} 

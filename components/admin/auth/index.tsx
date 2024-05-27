@@ -45,7 +45,6 @@ export default function Auth() {
 			>
 				Login
 			</div>
-			<p className={styles.forgot_password}>Forgot password?</p>
 		</div>
 	);
 }

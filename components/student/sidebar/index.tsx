@@ -39,7 +39,7 @@ export const Sidebar = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}><p >CWU SURVEY</p></div>
+      <div className={styles.title}><p >CWU <span className={styles.span_title}>SURVEY</span></p></div>
       <div className={styles.link_container}>
         {sidebarItems.map((item) => (
           <Link
@@ -48,13 +48,13 @@ export const Sidebar = () => {
             className={item.isActive ? styles.link_active : styles.link}
           >
             <item.icon size={20} />
-            {item.name}
+            <p className={styles.sidebar_item}>{item.name}</p>
           </Link>
         ))}
       </div>
       <div className={styles.user_container}>
         <UserButton afterSignOutUrl="/" />
-        <p>{user?.username}</p>
+        <p className={styles.username}>{user?.username}</p>
       </div>
     </div>
   );

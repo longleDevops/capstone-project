@@ -92,3 +92,14 @@
   font-size: 12px;
   font-weight: 500;
 }
+
+@media (width<=590px) {
+  
+ .distribution_holder{
+  flex-wrap: wrap;
+  gap: 40px;
+ }
+ .doughnut{
+  justify-content: center;
+ }
+} 

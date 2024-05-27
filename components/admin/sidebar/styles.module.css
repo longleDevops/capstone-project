@@ -170,3 +170,15 @@
   display: flex;
   justify-content: end;
 }
+
+@media (width<=1300px) {
+  .container{
+    padding:0 20px 0 20px
+  }
+  .title{
+    padding-top: 20px;
+  }
+  .arrow_left{
+    display: none;
+  }
+}

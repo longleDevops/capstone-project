@@ -31,7 +31,7 @@
 }
 
 .statistics_holder1{
-  width: 300px;
+  min-width: 300px;
   height: 180px;
   box-shadow: 2px 3px 3px #9E0419;
   background-color: rgba(255,255,255,0.9);
@@ -40,7 +40,7 @@
   display: flex;
 }
 .statistics_holder2{
-  width: 300px;
+  min-width: 300px;
   height: 180px;
   background-color: rgba(255,255,255,0.9);
   border-radius: 10px;
@@ -48,7 +48,7 @@
   display: flex;
 }
 .statistics_holder3{
-  width: 300px;
+  min-width: 300px;
   height: 180px;
   box-shadow: 2px 3px 3px #501599;
   background-color: rgba(255,255,255,0.9);
@@ -209,7 +209,7 @@
 }
 
 .profile_default{
-  width: 175px;
+  min-width: 175px;
   height: 240px;
   border-radius: 10px;
   background-color: white;
@@ -292,6 +292,7 @@
   background-color: #fcfcfc;
   border-radius: 10px;
   box-shadow: 2px 3px 3px #0069B6;
+  min-width: 1050px;
 }
 .submission_container{
   display: flex;
@@ -380,4 +381,47 @@
 .registered_student{
   font-weight: 500;
   font-size: 26px;
+}
+
+
+@media (width<=1300px) {
+  .container{
+    margin: 20px 20px 0px 20px;
+  }
+  
+}
+
+@media (width<=1050px) {
+  .statistics_container{
+    flex-wrap: wrap;
+  }
+  .statistics_holder1{
+  min-width: 420px;
+  height: 240px;  
+  padding: 20px;
+  display: flex;
+}
+.statistics_holder2{
+  min-width: 420px;
+  height: 240px;
+  box-shadow: 2px 3px 3px #139704;
+  background-color: rgba(255,255,255,0.9);
+  padding: 20px;
+  display: flex;
+}
+.statistics_holder3{
+  min-width: 420px;
+  height: 240px;
+  box-shadow: 2px 3px 3px #14059c;
+  background-color: rgba(255,255,255,0.9);
+  padding: 20px;
+  display: flex;
+}
+}
+
+@media (width<=800px) {
+  .next_btn{
+    min-width: 40px;
+    min-height: 40px;
+  }
 }

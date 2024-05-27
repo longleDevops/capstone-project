@@ -7,6 +7,7 @@ import { DistributionGroup } from "./level-distribution/distribution-group"
 import { ChartsContainer } from "./main-charts/charts-container"
 import { SalaryGroup } from "./salary/salary-group"
 import styles from "./styles.module.css"
+import { FilterList } from "./filter-list"
 
 export const Statistics = () => {
   const { isClosed, theme } = useSettings()
@@ -18,8 +19,9 @@ export const Statistics = () => {
       <div className={styles.container_holder}>
         <p className={styles.statistics_title}>Survey Statistics </p>
         <p className={styles.statistic_des}>Manage and filter survey data records</p>
-        <FilterGroup />
 
+        <FilterList />
+        <FilterGroup />
         <div className={styles.section_container}>
           <div className={styles.left_container1}
             style={
@@ -50,7 +52,17 @@ export const Statistics = () => {
           >
             <SalaryGroup />
           </div>
+
         </div>
+        {/* <div className={styles.section_container}>
+          <div
+            className={styles.analysis_container}
+            style={
+              theme === 'Classic' ? { border: '1px solid #d0d5dc' } : {}
+            }>
+            <DistributionGroup />
+          </div>
+        </div> */}
       </div>
     </div>
   )

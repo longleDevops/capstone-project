@@ -53,7 +53,7 @@ export const CareerDialog = () => {
     labels: labels,
     datasets: [{
       axis: 'y',
-      label: 'Total employed students per major',
+      label: 'Total employed students: ',
       data: workingArr,
       fill: true,
       backgroundColor: [
@@ -124,9 +124,10 @@ export const CareerDialog = () => {
 
                   },
                   x: {
+                    max: 700,
                     ticks: {
                       font: {
-                        size: 12,
+                        size: 16,
                         weight: 'bold'
                       }
                     },

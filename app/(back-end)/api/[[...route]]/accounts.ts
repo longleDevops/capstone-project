@@ -6,6 +6,7 @@ import { account } from "../../db/schema";
 
 const app = new Hono()
   .get('/',
+    clerkMiddleware(),
     async (c) => {
       const auth = getAuth(c)
 
@@ -50,12 +51,14 @@ const app = new Hono()
     }
   )
   .patch('/update-submission',
+    clerkMiddleware(),
     async (c) => {
       const auth = getAuth(c)
       if (!auth?.userId) { return c.json({ error: 'Unauthorized' }, 401) }
       const data = await db.update(account)
         .set({ isSubmitted: true })
-        .where(eq(account.id, auth?.userId)).returning({ updatedId: account.id })
+        .where(eq(account.id, auth.userId)).returning({ updatedId: account.id })
+      console.log("updated successfully")
       return c.json({ data })
     }
   )

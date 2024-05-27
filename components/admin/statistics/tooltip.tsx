@@ -8,7 +8,7 @@ export const TooltipComponent = ({ label }: { label: string }) => {
       w={220}
       withArrow
       transitionProps={{ duration: 200 }}
-      label="Avg Income from only working students"
+      label={label}
       color='indigo'
     >
       <CircleHelp size={18} color='white' fill="blue" />

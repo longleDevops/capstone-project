@@ -19,7 +19,7 @@ export const ChartsContainer = () => {
         <p className={styles.chart_title}>Total cwu students by terms</p>
         <ChartSelect />
       </div>
-      <p className={styles.chart_description}>{"Spring, Fall, Winter"}</p>
+      <p className={styles.chart_description}>{"Fall, Winter, Spring, Summer"}</p>
       {chartType === "Area chart"
         ? <LineChart />
         : <BarChart />}

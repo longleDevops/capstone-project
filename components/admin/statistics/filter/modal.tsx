@@ -57,7 +57,7 @@ export function FilterModal() {
   }
   return (
     <>
-      <Modal opened={opened} onClose={close} size={"auto"} radius={10} withCloseButton={false} closeOnClickOutside={false} closeOnEscape={false} >
+      <Modal opened={opened} onClose={close} size={"auto"} radius={10} withCloseButton={false} closeOnClickOutside={false} closeOnEscape={false} lockScroll={false}>
         <div className={styles.container} >
           Select one or more majors listed below
           <div className={styles.major_container}>
@@ -77,7 +77,7 @@ export function FilterModal() {
           <Button onClick={handleConfirmed} bg={'black'} radius={10} mt={-30}>Confirm</Button>
         </div>
       </Modal>
-      <Button onClick={handleOpened} rightSection={<GraduationCap />} radius={10} bg={"#5361ed"}>Filter by Major</Button>
+      <Button onClick={handleOpened} rightSection={<GraduationCap />} radius={10} bg={"#5361ed"}>Filter Major</Button>
     </>
   );
 }

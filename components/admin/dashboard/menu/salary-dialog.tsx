@@ -32,7 +32,7 @@ export const SalaryDialog = () => {
   const { data: backgroundData1 } = useGetBackgrounds()
 
   const backgroundData2 = backgroundData1 ? backgroundData1 : []
-
+  const totalStudent = backgroundData2.length
   const salaryMap = new Map()
   const countMap = new Map()
   majorArr.forEach(val => salaryMap.set(val, 0))
@@ -69,7 +69,13 @@ export const SalaryDialog = () => {
         transitionProps={{ duration: 50 }}>
         {/* Modal content */}
         <div className={styles.modal_container}>
-          <div className={styles.chart_title}>Average Student Salary By Majors</div>
+          <div className={styles.chart_title}>
+            <p>Average Student Salary By Majors</p>
+            <div className={styles.total_title}>
+              <CountUp end={totalStudent} duration={3} />
+              <p>students</p>
+            </div>
+          </div>
           <div className={styles.bar_container}>
             <Bar
               data={data}

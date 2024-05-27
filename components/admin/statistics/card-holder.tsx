@@ -52,7 +52,7 @@ export const CardHolder = () => {
       suffix: '',
       isIncreased: totalStudents > 10,
       difference: (totalStudents - 10 > 0) ? ((totalStudents - 10) / 10 * 100).toFixed(2) : ((10 - totalStudents) / 10 * 100).toFixed(2),
-      label: 'All students who submitted the survey'
+      label: 'This data represents all students who have completed the survey'
     },
     {
       title: "Employment Rate",
@@ -63,7 +63,7 @@ export const CardHolder = () => {
       suffix: '%',
       isIncreased: employmentRate > 50,
       difference: (employmentRate - 50 > 0) ? ((employmentRate - 50) / 50 * 100).toFixed(2) : ((50 - employmentRate) / 50 * 100).toFixed(2),
-      label: 'Rates for employed students'
+      label: 'This data represents the employment rates or the percentage of students who are currently employed. The standard comparison value is 50%. '
 
     },
     {
@@ -75,7 +75,7 @@ export const CardHolder = () => {
       suffix: '',
       isIncreased: avgSalary > 50000,
       difference: ((avgSalary - 50000) / 50000 * 100).toFixed(2),
-      label: 'Average salary for employed students'
+      label: 'This data represents the average salary reported by students who are currently employed. The standard comparison value is $50,000'
     },
     {
       title: "Avg Rating",
@@ -86,7 +86,7 @@ export const CardHolder = () => {
       suffix: '',
       isIncreased: avgRating > 2.5,
       difference: ((avgRating - 2.5) / 2.5 * 100).toFixed(2),
-      label: 'Survey rating for all submitted surveys'
+      label: 'This data represents the average survey rating collected from all students. The highest rating is 5, and the lowest is 1. The standard comparison value is 2.5.'
     }
   ]
   return (

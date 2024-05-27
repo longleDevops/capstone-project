@@ -20,9 +20,8 @@ export const StudentProfile = () => {
   const viewport = useRef<HTMLDivElement>(null);
   const [scrollPosition, onScrollPositionChange] = useState({ x: 0, y: 0 });
 
-  if (!backgroundData) return <>...Loading</>
   // const profiles = backgroundData.slice(-100).reverse();
-  const profiles = backgroundData.slice(0, 100)
+  const profiles = backgroundData ? backgroundData.slice(0, 100) : []
 
   const submissionPercent = (allStudents && allSubmittedStudents) ? (allSubmittedStudents.length / allStudents.length) * 100 : 0
 

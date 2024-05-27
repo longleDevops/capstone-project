@@ -8,10 +8,15 @@ import { SurveyTwo } from './part-two/survey-p2'
 import { ProgressSidebar } from './progress-sidebar'
 import styles from './styles.module.css'
 import { useUser } from '@clerk/nextjs'
+import { useGetAccount } from '@/app/(back-end)/features/account/api/use-get-account'
+import { redirect } from 'next/navigation'
 
 export const Survey = () => {
   const { currentPart } = useSurvey();
   const { isLoaded } = useUser()
+  const { data } = useGetAccount()
+  const accountData = data ? data[0].isSubmitted : false
+  if (accountData) redirect('/student/home')
   return (
     <div className={styles.container}>
       <div className={styles.left_content}>

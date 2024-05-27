@@ -16,6 +16,7 @@ const app = new Hono()
       return c.json({ data })
     })
   .post('/',
+    clerkMiddleware(),
     zValidator("json", insertSatisfactionSchema.pick({
       q1Answer: true,
       q2Answer: true,

@@ -341,7 +341,6 @@
     flex-direction:column-reverse;
     gap: 40px;
     align-items: center;
-    border:1px black solid
   }
   .left_container1{
     width: 100%;
@@ -356,3 +355,23 @@
     width: 100%;
   }
 }
+
+@media (width<=590px) {
+  
+ .distribution_holder{
+  flex-wrap: wrap;
+  gap: 40px;
+ }
+ .doughnut{
+  justify-content: center;
+ }
+ .left_container{
+  height: auto;
+  padding-bottom: 40px;
+ }
+
+ .right_container{
+  height: auto;
+  padding-bottom: 40px;
+ }
+} 

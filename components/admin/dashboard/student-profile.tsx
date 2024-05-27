@@ -30,7 +30,7 @@ export const StudentProfile = () => {
     viewport.current!.scrollTo({ left: newPosistion, behavior: 'smooth' });
   }
 
-
+  console.log(profiles.slice(-100).reverse())
   return (
     <>
       <div

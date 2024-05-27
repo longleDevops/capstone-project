@@ -7,20 +7,15 @@ import { zValidator } from '@hono/zod-validator'
 
 const app = new Hono()
   .get('/',
-    clerkMiddleware(),
-    async (c) => {
-      const auth = getAuth(c)
 
-      if (!auth?.userId) {
-        return c.json({ error: 'Unauthorized' }, 401)
-      }
+    async (c) => {
+
       const data = await db.select()
         .from(satisfaction)
 
       return c.json({ data })
     })
   .post('/',
-    clerkMiddleware(),
     zValidator("json", insertSatisfactionSchema.pick({
       q1Answer: true,
       q2Answer: true,

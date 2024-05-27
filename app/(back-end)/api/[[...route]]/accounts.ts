@@ -6,7 +6,6 @@ import { account } from "../../db/schema";
 
 const app = new Hono()
   .get('/',
-    clerkMiddleware(),
     async (c) => {
       const auth = getAuth(c)
 
@@ -19,7 +18,6 @@ const app = new Hono()
       return c.json({ data })
     })
   .get('/submitted-accounts',
-    clerkMiddleware(),
     async (c) => {
       const auth = getAuth(c)
 
@@ -36,13 +34,8 @@ const app = new Hono()
       return c.json({ data })
     })
   .get('/all-accounts',
-    clerkMiddleware(),
     async (c) => {
-      const auth = getAuth(c)
 
-      if (!auth?.userId) {
-        return c.json({ error: 'Unauthorized' }, 401)
-      }
       const data = await db.select()
         .from(account)
         .orderBy(account.createdAt)
@@ -50,7 +43,6 @@ const app = new Hono()
     })
 
   .post('/',
-    clerkMiddleware(),
     async (c) => {
       const auth = getAuth(c)
       if (!auth?.userId) { return c.json({ error: 'Unauthorized' }, 401) }
@@ -62,7 +54,6 @@ const app = new Hono()
     }
   )
   .patch('/update-submission',
-    clerkMiddleware(),
     async (c) => {
       const auth = getAuth(c)
       if (!auth?.userId) { return c.json({ error: 'Unauthorized' }, 401) }

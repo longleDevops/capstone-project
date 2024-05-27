@@ -7,20 +7,14 @@ import { zValidator } from '@hono/zod-validator'
 
 const app = new Hono()
   .get('/',
-    clerkMiddleware(),
     async (c) => {
-      const auth = getAuth(c)
 
-      if (!auth?.userId) {
-        return c.json({ error: 'Unauthorized' }, 401)
-      }
       const data = await db.select()
         .from(studentBackground)
 
       return c.json({ data })
     })
   .post('/',
-    clerkMiddleware(),
     zValidator("json", insertBackgroundSchema.pick({
       firstName: true,
       lastName: true,

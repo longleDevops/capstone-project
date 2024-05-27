@@ -7,20 +7,16 @@ import { zValidator } from '@hono/zod-validator'
 
 const app = new Hono()
   .get('/',
-    clerkMiddleware(),
-    async (c) => {
-      const auth = getAuth(c)
 
-      if (!auth?.userId) {
-        return c.json({ error: 'Unauthorized' }, 401)
-      }
+    async (c) => {
+
+
       const data = await db.select()
         .from(searchingJob)
 
       return c.json({ data })
     })
   .post('/',
-    clerkMiddleware(),
     zValidator("json", insertSearchingJobSchema.pick({
       companyName: true,
       jobTitle: true,

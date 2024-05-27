@@ -10,8 +10,7 @@
     align-items: baseline;
     width: 250px;
     border-radius: 0 40px 40px 0;
-    backdrop-filter: blur(90px);
-    background-color: rgba(189, 189, 189, .5);
+    background-color: rgba(189, 189, 189, .8);
 }
 
 .title {
@@ -77,4 +76,38 @@
     width: 200px;
     margin-top: auto;
     margin-left: 20px;
+}
+
+.sidebar_item{
+
+}
+
+@media  (800px< width <= 1000px) {
+.span_title{
+    display: none;
+}
+.container{
+    width: 100px;
+}
+  .sidebar_item{
+    display: none;
+  }
+  .link{
+    width: 50px;
+  }
+  .link_active{
+    width: 50px;
+  }
+  .username{
+    display: none;
+  }
+}
+
+@media (width <= 800px) {
+  .container{
+        border-radius: 0 0 0 0;
+  }
+  .title{
+    border-radius: 0 0 0 0;
+  }
 }

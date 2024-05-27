@@ -10,6 +10,7 @@ import styles from './styles.module.css'
 import { useUser } from '@clerk/nextjs'
 import { useGetAccount } from '@/app/(back-end)/features/account/api/use-get-account'
 import { redirect } from 'next/navigation'
+import { StepperNavbar } from './stepper-navbar'
 
 export const Survey = () => {
   const { currentPart } = useSurvey();
@@ -21,6 +22,9 @@ export const Survey = () => {
     <div className={styles.container}>
       <div className={styles.left_content}>
         <ProgressSidebar />
+      </div>
+      <div className={styles.stepper}>
+        <StepperNavbar />
       </div>
       <div className={styles.right_content}>
         {!isLoaded ?

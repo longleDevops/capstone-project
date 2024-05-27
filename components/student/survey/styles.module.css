@@ -26,7 +26,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  
 }
 
 /*Progress Side bar*/
@@ -257,4 +257,25 @@
   justify-content: center;
   align-items: center;
   color:black;
+}
+
+.stepper{
+  display: none;
+}
+
+@media (width <= 1030px) {
+  .stepper{
+    display: block;
+  }
+  .left_content{
+    display: none;
+  }
+  .container{
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 60px;
+    padding-left: 30px;
+    padding-right: 20px;
+
+  }
 }

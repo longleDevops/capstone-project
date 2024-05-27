@@ -73,7 +73,6 @@
     justify-content: flex-start;
     flex-direction: row;
     /* Change flex-direction to row */
-    backdrop-filter: blur(90px);
 }
 
 .imageHolder {
@@ -87,20 +86,20 @@
 
 
 .aboutContainer {
-    width: 700px;
+    max-width: 700px;
+    width: 90%;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 20px;
-    background-color: rgba(255, 255, 255,.1);
-    backdrop-filter: blur(80px);
+    background-color: #ffeaea;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 2px 3px 10px black;
+    box-shadow: 2px 3px 10px rgba(15, 15, 15, 0.405);
 }
 .heading {
     font-size: 24px;
@@ -159,5 +158,15 @@
     font-weight: 400;
     justify-content: center;
     align-items: center;
+    padding: 0 20px;
+    text-align: center;
 }
+
+
+/* @media  (width <= 800px) {
+    .aboutContainer{
+        width: 90%;
+    }
+
+} */
 

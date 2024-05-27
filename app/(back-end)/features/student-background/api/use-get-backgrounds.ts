@@ -13,7 +13,6 @@ export const useGetBackgrounds = () => {
       }
 
       const { data } = await response.json()
-      console.log(data.slice(-100).reverse())
 
       return data
     }

@@ -14,10 +14,10 @@ async function main() {
   //await db.delete(account)
 
   //await insertDomesticOnly(2025);
-  await insertInternationalOnly(3305);
-  await insertWorkingOnly(2550);
-  await insertSeekingDegreeOnly(3055);
-  await insertSearchingJobOnly(4055);
+  //await insertInternationalOnly(3305);
+  await insertWorkingOnly(25);
+  //await insertSeekingDegreeOnly(3055);
+  //await insertSearchingJobOnly(4055);
 }
 
 

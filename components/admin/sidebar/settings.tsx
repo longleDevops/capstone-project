@@ -1,11 +1,15 @@
+"use client"
+
 import { useDisclosure } from '@mantine/hooks';
 import { Drawer, Button } from '@mantine/core';
 import { Settings } from 'lucide-react';
 import { useSettings } from "@/hooks/use-settings"
 import styles from './styles.module.css'
 import { ThemeSelect } from './theme-select';
+import { useRouter } from 'next/navigation';
 
 export function SettingsComponent() {
+  const router = useRouter()
   const [opened, { open, close }] = useDisclosure(false);
   const { isClosed, setIsClosed, tempTheme, setTheme, theme } = useSettings()
 
@@ -37,7 +41,7 @@ export function SettingsComponent() {
                 Save Changes
               </Button>
             </div>
-            <div className={styles.sign_out_btn}>
+            <div className={styles.sign_out_btn} onClick={() => router.push('/admin')}>
               <Button variant='default' radius={10} w={'100%'} size='md'>
                 Sign Out
               </Button>

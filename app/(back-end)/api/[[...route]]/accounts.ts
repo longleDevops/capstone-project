@@ -2,7 +2,7 @@ import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import { eq } from "drizzle-orm";
 import { Hono } from "hono";
 import db from "../../db/drizzle";
-import { account, domesticStudent, internationalStudent, satisfaction, seekingDegree, studentBackground, working } from "../../db/schema";
+import { account } from "../../db/schema";
 
 const app = new Hono()
   .get('/',

@@ -7,6 +7,7 @@ import { useDialog } from '@/hooks/use-dialog';
 import 'chart.js/auto';
 import { Bar } from "react-chartjs-2"
 import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/api/use-get-backgrounds";
+import CountUp from 'react-countup'
 
 export const SalaryDialog = () => {
 
@@ -53,9 +54,12 @@ export const SalaryDialog = () => {
   const data = {
     labels: majorArr,
     datasets: [{
-      label: "Avg. Job Salary",
+      label: "Avg. Salary",
       data: avgSalary,
-      backgroundColor: '#3a4fde'
+      backgroundColor: '#3a4fde',
+      hoverBackgroundColor: '#00d4c8',
+      maxBarThickness: 40,
+      pointStyle: 'cross'
     }]
   };
 
@@ -65,7 +69,7 @@ export const SalaryDialog = () => {
         transitionProps={{ duration: 50 }}>
         {/* Modal content */}
         <div className={styles.modal_container}>
-          <div className={styles.chart_title}>Average Student Salary Per Major</div>
+          <div className={styles.chart_title}>Average Student Salary By Majors</div>
           <div className={styles.bar_container}>
             <Bar
               data={data}
@@ -96,10 +100,15 @@ export const SalaryDialog = () => {
 
                   scales: {
                     y: {
+                      max: 120000,
                       ticks: {
                         font: {
-                          size: 16,
+                          size: 15,
                           weight: 'bold'
+                        },
+                        // Include a dollar sign in the ticks
+                        callback: function (value, index, ticks) {
+                          return '$ ' + value.toLocaleString();
                         }
                       },
                       border: {
@@ -108,6 +117,7 @@ export const SalaryDialog = () => {
 
                     },
                     x: {
+
                       ticks: {
                         font: {
                           size: 12,

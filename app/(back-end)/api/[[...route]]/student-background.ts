@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm";
 import { studentBackground, insertAccountSchema, insertBackgroundSchema } from "../../db/schema";
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth"
 import { zValidator } from '@hono/zod-validator'
+import { asc, desc } from 'drizzle-orm';
 
 const app = new Hono()
   .get('/',
@@ -11,7 +12,7 @@ const app = new Hono()
 
       const data = await db.select()
         .from(studentBackground)
-
+        .orderBy(desc(studentBackground.id))
       return c.json({ data })
     })
   .post('/',

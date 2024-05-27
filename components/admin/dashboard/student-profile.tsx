@@ -17,13 +17,15 @@ export const StudentProfile = () => {
   const { data: allSubmittedStudents } = useGetSubmittedAccounts()
   const { data: backgroundData } = useGetBackgrounds()
   const { theme } = useSettings()
+  const viewport = useRef<HTMLDivElement>(null);
+  const [scrollPosition, onScrollPositionChange] = useState({ x: 0, y: 0 });
 
-  const profiles = backgroundData ? backgroundData : [];
+  if (!backgroundData) return <>...Loading</>
+  // const profiles = backgroundData.slice(-100).reverse();
+  const profiles = backgroundData.slice(0, 100)
 
   const submissionPercent = (allStudents && allSubmittedStudents) ? (allSubmittedStudents.length / allStudents.length) * 100 : 0
 
-  const viewport = useRef<HTMLDivElement>(null);
-  const [scrollPosition, onScrollPositionChange] = useState({ x: 0, y: 0 });
 
   const scrollToRight = (amount: number) => {
     const newPosistion = amount + scrollPosition.x;
@@ -52,10 +54,10 @@ export const StudentProfile = () => {
         onScrollPositionChange={onScrollPositionChange}
       >
         <Flex gap={15}>
-          {profiles.slice(-100).reverse().map((item) => (
+          {profiles.map((item, index) => (
             <div
               className={styles.profile_holder}
-              key={item.id}
+              key={index}
 
             >
               <div className={styles.profile_top}

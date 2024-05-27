@@ -2,7 +2,21 @@
   width: 100%;
 }
 
+.hamburger{
+  display:none
+}
+
 .container::-webkit-scrollbar{
   display: none;
 }
 
+@media (width <= 1300px) {
+  .sidebar{
+    display: none;
+  }
+  .hamburger{
+    display: block;
+    margin-left: 40px;
+    margin-top: 40px;
+  }
+}

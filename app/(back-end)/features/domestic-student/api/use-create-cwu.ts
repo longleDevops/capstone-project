@@ -20,6 +20,7 @@ export const useCreateDomestic = () => {
     },
     onSuccess: () => {
       console.log("Successful")
+      queryClient.invalidateQueries({ queryKey: ["domestic-students"] })
     },
     onError: () => {
       console.log("Domestic Error")

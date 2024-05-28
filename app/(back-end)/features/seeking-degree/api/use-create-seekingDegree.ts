@@ -20,6 +20,7 @@ export const useCreateSeekingDegree = () => {
     },
     onSuccess: () => {
       console.log("Create Seeking Degree Successful")
+      queryClient.invalidateQueries({ queryKey: ["seeking-degrees"] })
     },
     onError: () => {
       console.log("Searching student err")

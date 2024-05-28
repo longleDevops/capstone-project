@@ -20,6 +20,7 @@ export const useCreateSatisfaction = () => {
     },
     onSuccess: () => {
       console.log("create satisfaction successful")
+      queryClient.invalidateQueries({ queryKey: ["satisfaction"] })
     },
     onError: () => {
       console.log("Satisfaction error")

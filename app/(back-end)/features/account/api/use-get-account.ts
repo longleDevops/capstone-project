@@ -4,7 +4,7 @@ import { client } from "@/lib/hono"
 
 export const useGetAccount = () => {
   const query = useQuery({
-    queryKey: ["account"],
+    queryKey: ["account2"],
     queryFn: async () => {
       const response = await client.api.accounts.$get()
 

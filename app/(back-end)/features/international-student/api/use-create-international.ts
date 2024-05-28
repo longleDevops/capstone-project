@@ -20,6 +20,7 @@ export const useCreateInternational = () => {
     },
     onSuccess: () => {
       console.log("Create International Successful")
+      queryClient.invalidateQueries({ queryKey: ["international-students"] })
     },
     onError: () => {
       console.log("International error")

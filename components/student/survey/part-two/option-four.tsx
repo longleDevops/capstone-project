@@ -168,6 +168,7 @@ export const OptionFour = () => {
               "Above $100,000", // list of salaries.
             ]}
             allowDeselect={false}
+            required
             searchable
             nothingFoundMessage="Nothing found..."
             key={form.key('salary')}

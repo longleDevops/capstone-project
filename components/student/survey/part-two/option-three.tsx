@@ -60,6 +60,17 @@ export const OptionThree = () => {
 
   const seekingMutation = useCreateSeekingDegree()
   const handleSubmit = (values: typeof form.values) => {
+    if (q5Path3Answer === -1) {
+      notifications.show({
+        title: 'Please Answer',
+        message: "Did the major at CWU help you get accepted?",
+        color: 'red',
+        autoClose: 3000,
+        style: { width: 290, height: 80 },
+        classNames: styles2
+      });
+      return;
+    }
     setSeekingAnswers({
       ...values,
       isHelped: q5Path3Answer === 0
@@ -104,6 +115,7 @@ export const OptionThree = () => {
       });
       return;
     }
+
     setCurrentPart(4)
     setQ1Answer(3)
   }
@@ -158,6 +170,7 @@ export const OptionThree = () => {
               "Doctoral Degree",
 
             ]}
+            searchable
             allowDeselect={false}
             key={form.key('degreeLevel')}
             {...form.getInputProps('degreeLevel')}

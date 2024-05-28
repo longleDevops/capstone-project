@@ -60,6 +60,9 @@ export const FormTwo = () => {
     return input === q4Path1Answer ? setQ4Path1Answer(-1) : setQ4Path1Answer(input)
   }
 
+  const handleQ4Pt2 = (input: number) => {
+    return input === q4Path1Answer2 ? setQ4Path1Answer2(-1) : setQ4Path1Answer2(input)
+  }
   const { internationalAnswers, setInternationalAnswers } = useInternationalAnswers();
   const { companyName, jobTitle, salary } = internationalAnswers
 
@@ -119,7 +122,7 @@ export const FormTwo = () => {
   }
 
   const navigateNext = () => {
-    if (q4Path1Answer === -1) {
+    if (q4Path1Answer2 === -1) {
       notifications.show({
         title: 'Please Answer',
         message: "Have you taken OPT / CPT?",
@@ -151,7 +154,7 @@ export const FormTwo = () => {
               Have you taken OPT / CPT?
             </div>
             <div className={styles.q2_path1_holder}>
-              <div className={q4Path1Answer2 === 0 ? styles.q2_path1_yes_selected : styles.q2_path1_yes} onClick={() => setQ4Path1Answer2(0)}>
+              <div className={q4Path1Answer2 === 0 ? styles.q2_path1_yes_selected : styles.q2_path1_yes} onClick={() => handleQ4Pt2(0)}>
                 {q4Path1Answer2 === 0 &&
                   <div className={styles.select_holder}>
                     <Check size={15} color='white' />
@@ -160,7 +163,7 @@ export const FormTwo = () => {
                 <Check size={22} />
                 YES
               </div>
-              <div className={q4Path1Answer2 === 1 ? styles.q2_path1_no_selected : styles.q2_path1_no} onClick={() => setQ4Path1Answer2(1)}>
+              <div className={q4Path1Answer2 === 1 ? styles.q2_path1_no_selected : styles.q2_path1_no} onClick={() => handleQ4Pt2(1)}>
                 {q4Path1Answer2 === 1 &&
                   <div className={styles.select_holder}>
                     <Check size={15} color='white' />
@@ -205,6 +208,7 @@ export const FormTwo = () => {
                   key={form.key('salary')}
                   {...form.getInputProps('salary')}
                   comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 } }}
+                  required
                 />
               </>
             }

@@ -16,6 +16,7 @@ const app = new Hono()
       return c.json({ data })
     })
   .post('/',
+    clerkMiddleware(),
     zValidator("json", insertInternationalStudentSchema.pick({
       companyName: true,
       jobTitle: true,

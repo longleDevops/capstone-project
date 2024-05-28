@@ -31,7 +31,14 @@ export const OptionOne = () => {
   const { currentPart, setCurrentPart } = useSurvey()
 
   const handleQ2Pt1 = (input: number) => {
-    return input === q2Path1Answer ? setQ2Path1Answer(-1) : setQ2Path1Answer(input)
+    if (input === q2Path1Answer) {
+      setQ2Path1Answer(-1)
+      setQ3Path1Answer(-1);
+      setQ4Path1Answer(-1);
+      setQ4Path1Answer2(-1)
+      return
+    }
+    setQ2Path1Answer(input)
   }
   const handleQ3Pt1 = (input: number) => {
     return input === q3Path1Answer ? setQ3Path1Answer(-1) : setQ3Path1Answer(input)
@@ -70,6 +77,7 @@ export const OptionOne = () => {
     }
 
   }
+
 
   return (
     <div>

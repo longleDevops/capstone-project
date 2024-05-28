@@ -200,6 +200,7 @@ export const FormOne = () => {
               key={form.key('internshipSalary')}
               {...form.getInputProps('internshipSalary')}
               comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 } }}
+              required
             />
 
             <div className={styles.title}>How long did you take the internship?</div>
@@ -223,6 +224,7 @@ export const FormOne = () => {
               key={form.key('internshipPrepTime')}
               {...form.getInputProps('internshipPrepTime')}
               comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 } }}
+              required
             />
           </>
         )}

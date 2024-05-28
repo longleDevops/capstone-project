@@ -8,7 +8,7 @@ import { useSurveyPartTwo } from "@/hooks/use-partTwo"
 
 export const ProgressSidebar = () => {
   const { currentPart, setCurrentPart } = useSurvey()
-  const { q1Answer, setQ1Answer } = useSurveyPartTwo()
+  const { q1Answer, setQ1Answer, q2Path1Answer, q2Path2Answer, q2Path3Answer, q2Path4Answer } = useSurveyPartTwo()
   const steps = [
     {
       title: 'Background info',
@@ -43,6 +43,10 @@ export const ProgressSidebar = () => {
   const handleTrackingClicked = (pos: number) => {
     setQ1Answer(pos);
     setCurrentPart(pos + 1)
+  }
+
+  const isDisabled = (input: number) => {
+    return (q2Path1Answer === 0 && input !== q1Answer) || (q2Path2Answer === 0 && input !== q1Answer) || (q2Path3Answer === 0 && input !== q1Answer) || (q2Path4Answer === 0 && input !== q1Answer)
   }
   return (
     <div className={styles.sidebar_container}>
@@ -80,13 +84,19 @@ export const ProgressSidebar = () => {
         </div>
         <div className={styles.steps_container}>
           {steps.map((item, index) => (
-            <div key={item.title} className={index === 1 ? styles.steps_item2 : styles.steps_item}>
+            <div key={item.title}
+              className={
+                index === 1 ? styles.steps_item2 : styles.steps_item
+              }>
               <p className={styles.steps_title}>{item.title}</p>
-              <p className={styles.steps_description}>{item.description}</p>
+              <p className={styles.steps_description}>
+                {item.description}
+              </p>
+
               {index === 1 && [1, 2, 3, 4].includes(currentPart) && (
                 <div className={styles.tracking_container}>
                   {tracking.map((item, index) => (
-                    <div key={index} className={[1, 2, 3, 4].includes(currentPart) && q1Answer === index ? styles.tracking_item_active : styles.tracking_item} onClick={() => handleTrackingClicked(index)}>
+                    <div key={index} className={[1, 2, 3, 4].includes(currentPart) && q1Answer === index ? styles.tracking_item_active : isDisabled(index) ? styles.disabled : styles.tracking_item} onClick={() => handleTrackingClicked(index)} >
                       {item}
                     </div>
                   ))}

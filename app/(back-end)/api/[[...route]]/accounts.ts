@@ -40,6 +40,7 @@ const app = new Hono()
     })
 
   .post('/',
+    clerkMiddleware(),
     async (c) => {
       const auth = getAuth(c)
       if (!auth?.userId) { return c.json({ error: 'Unauthorized' }, 401) }

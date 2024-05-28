@@ -176,6 +176,7 @@ export const OptionTwo = () => {
             data={salaryRange}
             allowDeselect={false}
             searchable
+            required
             nothingFoundMessage="Nothing found..."
             key={form.key('salary')}
             {...form.getInputProps('salary')}

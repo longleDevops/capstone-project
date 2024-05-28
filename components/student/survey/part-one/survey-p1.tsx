@@ -30,11 +30,7 @@ export const SurveyOne = () => {
     lastName: z
       .string(),
     studentId: z
-      .coerce
-      .number()
-      .int()
-      .gte(1000000, { message: 'ID should have 7 numbers and not start with 0' })
-      .lte(9999999, { message: 'ID should only have 7 numbers' }),
+      .string(),
     major: z
       .string(),
     startTerm: z
@@ -44,9 +40,9 @@ export const SurveyOne = () => {
     campus: z
       .string(),
     gender: z
-      .string({ message: 'Please fill this field' }),
+      .string(),
     race: z
-      .string({ message: 'Please fill this field' }),
+      .string(),
     degreeLevel: z
       .string()
   });
@@ -80,7 +76,23 @@ export const SurveyOne = () => {
 
     return endIndex > startIndex;
   }
+
+  const isValidId = (input: string) => {
+    const regex = /^[0-9]{8}$/;
+    return regex.test(input);
+  }
   const handleSubmit = (values: typeof form.values) => {
+    if (values.studentId.length !== 0 && !isValidId(values.studentId)) {
+      notifications.show({
+        title: '',
+        message: "Student ID has to be numeric value with 8 characters",
+        color: 'red',
+        autoClose: 3000,
+        style: { width: 280, height: 80 },
+        classNames: styles2
+      })
+      return;
+    }
     if (!isValidTerm(values.startTerm, values.endTerm)) {
       notifications.show({
         title: '',
@@ -133,10 +145,13 @@ export const SurveyOne = () => {
 
           />
 
-          <div className={styles.title}><p>What is your CWU ID? </p></div>
+          <div className={styles.title}>
+            <p>What is your CWU ID? </p>
+            <p className={styles.optional}>{"(Optional)"}</p>
+          </div>
           <TextInput size='lg' radius={10}
             leftSection={<Fingerprint />}
-            placeholder='0000000'
+            placeholder={'00000000'}
             key={form.key('studentId')}
             {...form.getInputProps('studentId')}
           />
@@ -153,6 +168,8 @@ export const SurveyOne = () => {
               "Doctoral Degree",
 
             ]}
+            searchable
+            pointer={true}
             allowDeselect={false}
             key={form.key('degreeLevel')}
             {...form.getInputProps('degreeLevel')}
@@ -296,7 +313,6 @@ export const SurveyOne = () => {
           <Select
             size="lg"
             radius={10}
-
             style={{}}
             data={[
               "Ellensburg",
@@ -308,6 +324,7 @@ export const SurveyOne = () => {
             ]}
             allowDeselect={false}
             searchable
+            pointer
             leftSection={<University />}
             key={form.key('campus')}
             {...form.getInputProps('campus')}
@@ -323,7 +340,9 @@ export const SurveyOne = () => {
               'Female',
               'Other',
             ]}
-            clearable
+            pointer
+            searchable
+            allowDeselect={false}
             leftSection={<FaTransgender size={24} />}
             key={form.key('gender')}
             {...form.getInputProps('gender')}
@@ -339,11 +358,13 @@ export const SurveyOne = () => {
               'Hispanic and Latino',
               'Middle Eastern',
             ]}
-            clearable
-            leftSection={<Earth />}
+            pointer
+            searchable
+            leftSection={<Earth size={24} />}
             key={form.key('race')}
             {...form.getInputProps('race')}
-            required
+            required={true}
+            allowDeselect={false}
           />
 
           <div className={styles.btn_group}>

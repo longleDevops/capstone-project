@@ -5,15 +5,35 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { eq } from "drizzle-orm";
 import styles from './style.module.css'
+import { currentUser } from '@clerk/nextjs/server';
+
 
 export const Home = async () => {
-  const { userId } = auth()
-  if (!userId) redirect("/");
+  const { userId } = auth();
+  const user = await currentUser()
+  if (!userId) {
+    redirect("/")
+  }
 
-  const currentUser = await db.select({
+  if (!user) {
+    redirect("/")
+  }
+  const firstName = user.firstName === null ? '' : user.firstName
+  const lastName = user.lastName === null ? '' : user.lastName
+
+  await db.insert(account)
+    .values({
+      id: userId,
+      firstName,
+      lastName
+    })
+    .onConflictDoNothing({ target: account.id });
+
+  const userObject = await db.select({
     isSubmitted: account.isSubmitted,
   }).from(account).where(eq(account.id, userId))
-  const { isSubmitted } = currentUser[0]
+
+  const { isSubmitted } = userObject[0]
 
   const formatTime = (dateObject: Date) => {
     const result = dateObject.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' });
@@ -36,7 +56,7 @@ export const Home = async () => {
 
 
   return (
-    <NotStarted />
+    <NotStarted firstName={firstName} lastName={lastName} userId={userId} />
   );
 
 };

@@ -20,6 +20,9 @@ export const useCreateDomestic = () => {
     },
     onSuccess: () => {
       console.log("Successful")
+    },
+    onError: () => {
+      console.log("Domestic Error")
     }
   })
 

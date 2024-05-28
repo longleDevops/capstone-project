@@ -66,7 +66,7 @@ export const ProgressSidebar = () => {
       <div className={styles.content_container}>
         <div className={styles.vertical_container}>
           {steps.map((item, index) => (
-            <>
+            <div key={item.title}>
               <div className={item.isCompleted ? styles.inner_status_completed : item.isActive ? styles.inner_status_active : styles.inner_status}>
                 {item.isCompleted ?
                   <Check color="white" size={14} strokeWidth={4} absoluteStrokeWidth />
@@ -79,7 +79,7 @@ export const ProgressSidebar = () => {
               {index === 1 &&
                 <div className={item.isCompleted ? styles.status_completed2 : item.isActive ? styles.status_active2 : styles.status2}> </div>
               }
-            </>
+            </div>
           ))}
         </div>
         <div className={styles.steps_container}>

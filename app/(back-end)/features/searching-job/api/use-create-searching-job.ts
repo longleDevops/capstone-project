@@ -20,6 +20,9 @@ export const useCreateSearchingJob = () => {
     },
     onSuccess: () => {
       console.log("Create Searching Successful")
+    },
+    onError: () => {
+      console.log("Searching student err")
     }
   })
 

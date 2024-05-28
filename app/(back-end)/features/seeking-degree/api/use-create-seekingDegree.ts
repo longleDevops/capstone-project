@@ -20,6 +20,9 @@ export const useCreateSeekingDegree = () => {
     },
     onSuccess: () => {
       console.log("Create Seeking Degree Successful")
+    },
+    onError: () => {
+      console.log("Searching student err")
     }
   })
 

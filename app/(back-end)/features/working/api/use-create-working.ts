@@ -20,6 +20,9 @@ export const useCreateWorking = () => {
     },
     onSuccess: () => {
       console.log("Create Working Successful")
+    },
+    onError: () => {
+      console.log("Working student err")
     }
   })
 

@@ -6,9 +6,37 @@ import { useSurvey } from "@/hooks/use-survey";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./style.module.css";
+import { useBackgroundAnswers } from "@/hooks/use-background-answers";
+import { Button } from "@mantine/core";
+import { useRouter } from "next/navigation";
 
-export const NotStarted = () => {
+type props = {
+  firstName: string,
+  lastName: string,
+  userId: string
+}
+
+export const NotStarted = ({ firstName, lastName, userId }: props) => {
   const { isStarted, setIsStarted } = useSurvey()
+  const { setBackgroundAnswers } = useBackgroundAnswers()
+  const router = useRouter()
+  const handleClicked = () => {
+    setBackgroundAnswers({
+      firstName,
+      lastName,
+      studentId: '',
+      major: '',
+      startTerm: '',
+      endTerm: '',
+      campus: '',
+      gender: '',
+      race: '',
+      degreeLevel: ''
+    })
+    setIsStarted(true)
+    router.push('/student/survey')
+  }
+
   return (
     <>
       <div className={styles.imageHolder}>
@@ -37,13 +65,10 @@ export const NotStarted = () => {
             support initiatives.
           </p>
         </div>
-        <Link
-          href={'/student/survey'}
-        >
-          <button onClick={() => setIsStarted(true)} className={styles.surveyButton}>
-            Take Survey!
-          </button>
-        </Link>
+
+        <Button variant="default" onClick={handleClicked} className={styles.surveyButton}>
+          Take Survey!
+        </Button>
       </div>
     </>
   );

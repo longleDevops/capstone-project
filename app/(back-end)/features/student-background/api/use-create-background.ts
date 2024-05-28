@@ -20,6 +20,9 @@ export const useCreateBackground = () => {
     },
     onSuccess: () => {
       console.log("Successful")
+    },
+    onError: () => {
+      console.log("Background student error")
     }
   })
 

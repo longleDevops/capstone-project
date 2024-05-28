@@ -23,6 +23,8 @@ import { useSeekingDegreeAnswers } from '@/hooks/use-seeking-degree-answers';
 import { useSearchingJobAnswers } from '@/hooks/use-searching-job-answers';
 import { useCreateSearchingJob } from '@/app/(back-end)/features/searching-job/api/use-create-searching-job';
 import { useCreateSeekingDegree } from '@/app/(back-end)/features/seeking-degree/api/use-create-seekingDegree';
+import { useCreateAccount } from '@/app/(back-end)/features/account/api/use-create-account';
+import { error } from 'console';
 
 export const ConfirmationModal = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -47,7 +49,7 @@ export const ConfirmationModal = () => {
   const seekingDegreeMutation = useCreateSeekingDegree()
   const searchingJobMutation = useCreateSearchingJob()
   const satisfactionMutation = useCreateSatisfaction()
-
+  const accountMutation = useCreateAccount()
   // Is loading states
   const { isPending: isBackgroundLoading } = backgroundMutation
   const { isPending: isDomesticLoading } = domesticMutation
@@ -137,6 +139,13 @@ export const ConfirmationModal = () => {
           setCurrentPart(6)
       }
     });
+
+    accountMutation.mutate({
+      firstName: backgroundAnswers.firstName,
+      lastName: backgroundAnswers.lastName,
+    })
+
+
   }
 
   const navigateNext = () => {

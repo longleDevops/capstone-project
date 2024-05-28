@@ -17,7 +17,6 @@ import { useUser } from '@clerk/nextjs';
 import styles from './styles.module.css';
 
 export const SurveyOne = () => {
-  const { user } = useUser()
 
   const { backgroundAnswers, setBackgroundAnswers } = useBackgroundAnswers()
   const { q1Answer } = useSurveyPartTwo()
@@ -26,9 +25,9 @@ export const SurveyOne = () => {
 
   const schema = z.object({
     firstName: z
-      .string(),
+      .string({ message: 'Please enter your first name' }),
     lastName: z
-      .string(),
+      .string({ message: 'Please enter your last name' }),
     studentId: z
       .string(),
     major: z
@@ -55,8 +54,8 @@ export const SurveyOne = () => {
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
-      firstName: firstName ? firstName : user?.firstName,
-      lastName: lastName ? lastName : user?.lastName,
+      firstName,
+      lastName,
       studentId,
       major,
       startTerm,
@@ -82,6 +81,7 @@ export const SurveyOne = () => {
     return regex.test(input);
   }
   const handleSubmit = (values: typeof form.values) => {
+
     if (values.studentId.length !== 0 && !isValidId(values.studentId)) {
       notifications.show({
         title: '',
@@ -105,7 +105,10 @@ export const SurveyOne = () => {
       return;
     }
 
-    setBackgroundAnswers(values);
+    setBackgroundAnswers({
+      ...values,
+      studentId: values.studentId.length === 0 ? '00000000' : values.studentId
+    });
     notifications.show({
       title: 'Background Info Completed',
       message: "",
@@ -130,7 +133,7 @@ export const SurveyOne = () => {
             What is your First Name?
           </div>
           <TextInput size='lg' radius={10}
-            required
+            required={true}
             leftSection={<ContactRound />}
             styles={{ input: {} }}
             key={form.key('firstName')}
@@ -142,7 +145,7 @@ export const SurveyOne = () => {
             leftSection={<ContactRound />}
             key={form.key('lastName')}
             {...form.getInputProps('lastName')}
-
+            required
           />
 
           <div className={styles.title}>

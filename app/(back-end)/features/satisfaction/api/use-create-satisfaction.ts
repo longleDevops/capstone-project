@@ -18,14 +18,11 @@ export const useCreateSatisfaction = () => {
       const response = await client.api.satisfaction.$post({ json });
       return await response.json()
     },
-    onSuccess: async () => {
-      try {
-        await client.api.accounts["update-submission"].$patch();
-        queryClient.invalidateQueries({ queryKey: ['student-backgrounds'] })
-        queryClient.invalidateQueries({ queryKey: ['accounts'] })
-      } catch (e) {
-        console.error(e)
-      }
+    onSuccess: () => {
+      console.log("create satisfaction successful")
+    },
+    onError: () => {
+      console.log("Satisfaction error")
     }
   })
 

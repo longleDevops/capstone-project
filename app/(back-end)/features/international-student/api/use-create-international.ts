@@ -20,6 +20,9 @@ export const useCreateInternational = () => {
     },
     onSuccess: () => {
       console.log("Create International Successful")
+    },
+    onError: () => {
+      console.log("International error")
     }
   })
 

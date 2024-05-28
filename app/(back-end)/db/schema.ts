@@ -5,8 +5,8 @@ import { relations } from 'drizzle-orm';
 // db schema
 export const account = pgTable("Account", {
   id: text("id").primaryKey(),
-  firstName: text("First Name").default("N/A"),
-  lastName: text("Last Name").default("N/A"),
+  firstName: text("First Name").default("").notNull(),
+  lastName: text("Last Name").default("").notNull(),
   isSubmitted: boolean("Survey Completed").default(false).notNull(),
   createdAt: timestamp("Created At", { mode: "date", withTimezone: true }).defaultNow().notNull()
 
@@ -16,8 +16,8 @@ export const insertAccountSchema = createInsertSchema(account)
 
 export const studentBackground = pgTable("Student Background", {
   id: serial("id").primaryKey(),
-  firstName: text("First Name"),
-  lastName: text("Last Name"),
+  firstName: text("First Name").notNull().default(''),
+  lastName: text("Last Name").notNull().default(''),
   studentId: text("Student ID").default('0000000'),
   major: text("Major").notNull(),
   startTerm: text("Start Term").notNull(),

@@ -2,23 +2,31 @@ import { faker } from '@faker-js/faker';
 import { min } from 'drizzle-orm';
 
 export const avgSalaryArr = [
+  35000,
   45000,
   55000,
   65000,
   75000,
   85000,
   95000,
-  120000
+  105000,
+  115000,
+  125000,
+  145000,
 ]
 
 export const salaryRange = [
+  "$30,000 - $40,000",
   "$40,000 - $50,000",
   "$50,000 - $60,000",
   "$60,000 - $70,000",
   "$70,000 - $80,000",
   "$80,000 - $90,000",
   "$90,000 - $100,000",
-  "Above $100,000", // list of salaries.
+  "$100,000 - $110,000",
+  "$110,000 - $120,000",
+  "$120,000 - $130,000",
+  "$130,000 - $160,000", // list of salaries.
 ]
 
 export const startTermArr = ["Fall 2017", "Winter 2017", "Spring 2017", "Summer 2017", "Fall 2018", "Winter 2018", "Spring 2018", "Summer 2018", "Fall 2019", "Winter 2019", "Spring 2019", "Summer 2019", "Fall 2020", "Winter 2020", "Spring 2020", "Summer 2020", "Fall 2021", "Winter 2021", "Spring 2021", "Summer 2021", "Fall 2022", "Winter 2022", "Spring 2022", "Summer 2022", "Fall 2023", "Winter 2023", "Spring 2023", "Summer 2023", "Fall 2024", "Winter 2024", "Spring 2024"];
@@ -33,7 +41,7 @@ export const majorArr = [
   "Criminal Justice and Safety Studies",
   "Social Science Research Methods",
   "Marketing",
-  "Computer and Information Systems Security",
+  "Computer Science",
   "Photography",
   "Web Page and Digital Design",
   "Accounting",

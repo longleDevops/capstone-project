@@ -194,7 +194,7 @@ export const SurveyOne = () => {
               "Criminal Justice and Safety Studies",
               "Social Science Research Methods",
               "Marketing",
-              "Computer and Information Systems Security",
+              "Computer Science",
               "Photography",
               "Web Page and Digital Design",
               "Accounting",

@@ -179,13 +179,34 @@ export const OptionThree = () => {
           />
 
           <div className={styles.title}>What is your major?</div>
-          <TextInput
-            size='lg'
-            placeholder="Ex: Apple Inc."
-            required
-            leftSection={<FlaskConical />}
+          <Select
+            size="lg"
+            radius={10}
+            leftSection={<GraduationCap />}
+            style={{}}
+            data={[
+              "Art",
+              "Elementary Education",
+              "Business",
+              "Psychology",
+              "Criminal Justice and Safety Studies",
+              "Social Science Research Methods",
+              "Marketing",
+              "Computer Science",
+              "Photography",
+              "Web Page and Digital Design",
+              "Accounting",
+              "Finance",
+              "Nursing",
+              "Medical"
+            ]}
+            allowDeselect={false}
+            searchable
+            nothingFoundMessage="Nothing found..."
             key={form.key('major')}
             {...form.getInputProps('major')}
+            comboboxProps={{ transitionProps: { transition: 'pop', duration: 200 } }}
+            required
           />
 
           <div className={styles.title}>Did the major at CWU help you get acceped?</div>

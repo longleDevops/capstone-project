@@ -40,23 +40,31 @@ export const OptionTwo = () => {
   const { companyName, jobTitle, salary } = workingAnswers
 
   const salaryRange = [
+    "$30,000 - $40,000",
     "$40,000 - $50,000",
     "$50,000 - $60,000",
     "$60,000 - $70,000",
     "$70,000 - $80,000",
     "$80,000 - $90,000",
     "$90,000 - $100,000",
-    "Above $100,000", // list of salaries.
+    "$100,000 - $110,000",
+    "$110,000 - $120,000",
+    "$120,000 - $130,000",
+    "$130,000 - $160,000", // list of salaries.
   ]
 
   const avgSalary = [
+    35000,
     45000,
     55000,
     65000,
     75000,
     85000,
     95000,
-    120000
+    105000,
+    115000,
+    125000,
+    145000,
   ]
   const schema = z.object({
     companyName: z.string(),

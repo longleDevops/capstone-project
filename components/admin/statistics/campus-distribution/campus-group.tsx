@@ -1,12 +1,21 @@
 "use client";
 
-import { DistributionChart } from "./distribution-chart";
 import styles from "@/components/admin/statistics/styles.module.css";
 import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/api/use-get-backgrounds";
 import { useFilter } from "@/hooks/use-filter";
 import CountUp from 'react-countup'
+import { CampusChart } from "./campus-chart";
 
-export const DistributionGroup = () => {
+const campusArr = [
+  "Ellensburg",
+  "Pierce County",
+  "Lynnwood",
+  "Des Moines",
+  "Sammamish",
+  "Online"
+]
+
+export const CampusGroup = () => {
   const { majorName } = useFilter();
 
   const { data: backgroundData1, isLoading } = useGetBackgrounds();
@@ -18,16 +27,28 @@ export const DistributionGroup = () => {
       ? backgroundData2
       : backgroundData2.filter((item) => majorName.has(item.major));
 
-  const bachelorArr = backgroundData
-    ? backgroundData.filter((val) => val.degreeLevel === "Bachelor's Degree")
+  const ellenArr = backgroundData
+    ? backgroundData.filter((val) => val.campus === campusArr[0])
     : [];
 
-  const masterArr = backgroundData
-    ? backgroundData.filter((val) => val.degreeLevel === "Master's Degree")
+  const pierceArr = backgroundData
+    ? backgroundData.filter((val) => val.campus === campusArr[1])
     : [];
 
-  const doctorateArr = backgroundData
-    ? backgroundData.filter((val) => val.degreeLevel === "Doctoral Degree")
+  const lynwoodArr = backgroundData
+    ? backgroundData.filter((val) => val.campus === campusArr[2])
+    : [];
+
+  const desmoinesArr = backgroundData
+    ? backgroundData.filter((val) => val.campus === campusArr[3])
+    : [];
+
+  const sammamishArr = backgroundData
+    ? backgroundData.filter((val) => val.campus === campusArr[4])
+    : [];
+
+  const onlineArr = backgroundData
+    ? backgroundData.filter((val) => val.campus === campusArr[5])
     : [];
 
   const distributions = [
@@ -37,24 +58,39 @@ export const DistributionGroup = () => {
       amount: 0,
     },
     {
-      level: "Bachelor's",
+      level: campusArr[0],
       rank: "1",
-      amount: bachelorArr.length,
+      amount: ellenArr.length,
     },
     {
-      level: "Master's",
+      level: campusArr[1],
       rank: "2",
-      amount: masterArr.length,
+      amount: pierceArr.length,
     },
     {
-      level: "Doctorate's",
+      level: campusArr[2],
       rank: "3",
-      amount: doctorateArr.length,
+      amount: lynwoodArr.length,
+    },
+    {
+      level: campusArr[3],
+      rank: "4",
+      amount: desmoinesArr.length,
+    },
+    {
+      level: campusArr[4],
+      rank: "5",
+      amount: sammamishArr.length,
+    },
+    {
+      level: campusArr[5],
+      rank: "6",
+      amount: onlineArr.length,
     },
   ];
   return (
     <>
-      <div className={styles.title}>Level</div>
+      <div className={styles.title}>Campus</div>
       <div className={styles.distribution_holder}>
         <div className={styles.list}>
           {distributions.map((item, index) =>
@@ -88,10 +124,13 @@ export const DistributionGroup = () => {
         </div>
         <div className={styles.doughnut}>
           {!isLoading && (
-            <DistributionChart
-              bachelor={bachelorArr.length}
-              master={masterArr.length}
-              doctorate={doctorateArr.length}
+            <CampusChart
+              ellen={ellenArr.length}
+              pierce={pierceArr.length}
+              lynwood={lynwoodArr.length}
+              desmoines={desmoinesArr.length}
+              sammamish={sammamishArr.length}
+              online={onlineArr.length}
             />
           )}
         </div>

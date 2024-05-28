@@ -33,25 +33,25 @@ export const SalaryGroup = () => {
   const bachelorAvgSalary =
     workingBachelorStudents.length > 0
       ? workingBachelorStudents.reduce(
-          (accumulator, currentValue) => accumulator + currentValue.avgSalary,
-          0
-        ) / workingBachelorStudents.length
+        (accumulator, currentValue) => accumulator + currentValue.avgSalary,
+        0
+      ) / workingBachelorStudents.length
       : 0;
 
   const masterAvgSalary =
     workingMasterStudents.length > 0
       ? workingMasterStudents.reduce(
-          (accumulator, currentValue) => accumulator + currentValue.avgSalary,
-          0
-        ) / workingMasterStudents.length
+        (accumulator, currentValue) => accumulator + currentValue.avgSalary,
+        0
+      ) / workingMasterStudents.length
       : 0;
 
   const doctorateAvgSalary =
     workingDoctorateStudents.length > 0
       ? workingDoctorateStudents.reduce(
-          (accumulator, currentValue) => accumulator + currentValue.avgSalary,
-          0
-        ) / workingDoctorateStudents.length
+        (accumulator, currentValue) => accumulator + currentValue.avgSalary,
+        0
+      ) / workingDoctorateStudents.length
       : 0;
 
   const salary = [
@@ -87,7 +87,7 @@ export const SalaryGroup = () => {
                 <p className={styles.color_txt}></p>
                 <p className={styles.rank_txt}></p>
                 <p className={styles.level_txt}>Levels </p>
-                <p className={styles.amount_txt}>Average Salary </p>{" "}
+                <p className={styles.amount_txt}>Avg Salary </p>
                 {/* Change label to Average Salary */}
               </div>
             ) : (
@@ -97,8 +97,8 @@ export const SalaryGroup = () => {
                     index === 1
                       ? styles.color_txt2
                       : index === 2
-                      ? styles.color_txt3
-                      : styles.color_txt4
+                        ? styles.color_txt3
+                        : styles.color_txt4
                   }
                 ></p>
                 <p className={styles.rank_txt}>{item.rank}</p>

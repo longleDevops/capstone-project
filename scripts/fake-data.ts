@@ -62,8 +62,6 @@ export const genderArr = [
   'Other',
 ]
 
-
-
 export const campusArr = [
   "Ellensburg",
   "Pierce County",

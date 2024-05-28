@@ -35,7 +35,7 @@ export const SalaryChart = ({ bachelor, master, doctorate }: Props) => {
   return (
     <div className={styles.doughnut_container}>
       <div className={styles.doughnut_value}>
-        <CountUp end={totalStudents} duration={2} />
+        <CountUp end={totalStudents} duration={2} prefix="$" />
         <p className={styles.doughnut_description}>Avarage</p>
       </div>
       <div>

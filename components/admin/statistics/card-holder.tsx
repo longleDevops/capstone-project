@@ -38,15 +38,33 @@ export const CardHolder = () => {
 
   const employedArr = backgroundData
     ? backgroundData
-        .filter((value) => value.isEmployed)
-        .map((value) => value.avgSalary)
+      .filter((value) => value.isEmployed)
+      .map((value) => value.avgSalary)
     : [];
 
   const totalSalary = employedArr.reduce((accumulator, currentValue) => {
     return accumulator + currentValue;
   }, 0);
 
-  const avgSalary = Number(totalSalary.toFixed(1));
+
+  const formatTotalSalary = totalSalary.toLocaleString('en-US', {
+    // add suffixes for thousands, millions, and billions
+    // the maximum number of decimal places to use
+    maximumFractionDigits: 2,
+    // specify the abbreviations to use for the suffixes
+    notation: 'compact',
+    compactDisplay: 'short'
+  })
+
+  // Extract the numeric value and the suffix (K, M, or B)
+  const match = formatTotalSalary.match(/(-?\d*\.?\d+)([KMB])?/);
+
+  const numericValue = match ? parseFloat(match[1]) : 0; // Numeric value without the suffix
+  const suffix = match ? match[2] : ''; // The suffix (K, M, or B) or an empty string if not present
+
+
+
+  const avgSalary = Number((totalSalary / employedArr.length).toFixed(1))
 
   const employmentRate =
     totalStudents > 0 ? (employedArr.length / totalStudents) * 100 : 0.0;
@@ -82,16 +100,15 @@ export const CardHolder = () => {
         "This data represents the employment rates or the percentage of students who are currently employed. The standard comparison value is 50%. ",
     },
     {
-      title: "Total student Incomes",
-      value: avgSalary,
+      title: "Gross Salary",
+      value: numericValue,
       increased: "3%",
       icon: HandCoins,
-      prefix: "$",
-      suffix: "",
+      prefix: '$',
+      suffix,
       isIncreased: avgSalary > 50000,
-      difference: (((avgSalary - 50000) / 50000) * 100).toFixed(2),
-      label:
-        "This data represents the average salary reported by students who are currently employed. The standard comparison value is $50,000",
+      difference: ((avgSalary - 50000) / 50000 * 100).toFixed(2),
+      label: 'This data represents the total salary reported by all students who are currently employed. The standard comparison value is $50,000'
     },
     {
       title: "Avg Rating",
@@ -149,7 +166,7 @@ export const CardHolder = () => {
                 className={styles.lower_card_value}
                 style={index === 0 ? {} : {}}
               >
-                {index === 1 || index === 3 ? (
+                {index !== 0 ? (
                   <CountUp
                     end={item.value}
                     decimals={1}

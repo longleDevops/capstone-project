@@ -1,12 +1,20 @@
 "use client";
 
-import { DistributionChart } from "./distribution-chart";
 import styles from "@/components/admin/statistics/styles.module.css";
 import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/api/use-get-backgrounds";
 import { useFilter } from "@/hooks/use-filter";
 import CountUp from 'react-countup'
+import { RaceChart } from "./race-chart";
 
-export const DistributionGroup = () => {
+const raceArr = [
+  'Asian',
+  'White and European',
+  'African',
+  'Hispanic and Latino',
+  'Middle Eastern',
+]
+
+export const RaceGroup = () => {
   const { majorName } = useFilter();
 
   const { data: backgroundData1, isLoading } = useGetBackgrounds();
@@ -18,16 +26,24 @@ export const DistributionGroup = () => {
       ? backgroundData2
       : backgroundData2.filter((item) => majorName.has(item.major));
 
-  const bachelorArr = backgroundData
-    ? backgroundData.filter((val) => val.degreeLevel === "Bachelor's Degree")
+  const asianArr = backgroundData
+    ? backgroundData.filter((val) => val.race === raceArr[0])
     : [];
 
-  const masterArr = backgroundData
-    ? backgroundData.filter((val) => val.degreeLevel === "Master's Degree")
+  const whiteAndEuropeanArr = backgroundData
+    ? backgroundData.filter((val) => val.race === raceArr[1])
     : [];
 
-  const doctorateArr = backgroundData
-    ? backgroundData.filter((val) => val.degreeLevel === "Doctoral Degree")
+  const africanArr = backgroundData
+    ? backgroundData.filter((val) => val.race === raceArr[2])
+    : [];
+
+  const hispanicAndLatino = backgroundData
+    ? backgroundData.filter((val) => val.race === raceArr[3])
+    : [];
+
+  const middleEastern = backgroundData
+    ? backgroundData.filter((val) => val.race === raceArr[4])
     : [];
 
   const distributions = [
@@ -37,24 +53,34 @@ export const DistributionGroup = () => {
       amount: 0,
     },
     {
-      level: "Bachelor's",
+      level: "Asian",
       rank: "1",
-      amount: bachelorArr.length,
+      amount: asianArr.length,
     },
     {
-      level: "Master's",
+      level: "White and European",
       rank: "2",
-      amount: masterArr.length,
+      amount: whiteAndEuropeanArr.length,
     },
     {
-      level: "Doctorate's",
+      level: "African",
       rank: "3",
-      amount: doctorateArr.length,
+      amount: africanArr.length,
+    },
+    {
+      level: "Hispanic and Latino",
+      rank: "4",
+      amount: hispanicAndLatino.length,
+    },
+    {
+      level: "Middle Easten",
+      rank: "5",
+      amount: middleEastern.length,
     },
   ];
   return (
     <>
-      <div className={styles.title}>Level</div>
+      <div className={styles.title}>Ethicity</div>
       <div className={styles.distribution_holder}>
         <div className={styles.list}>
           {distributions.map((item, index) =>
@@ -71,9 +97,10 @@ export const DistributionGroup = () => {
                   className={
                     index === 1
                       ? styles.color_txt2
-                      : index === 2
-                        ? styles.color_txt3
-                        : styles.color_txt4
+                      : index === 2 ? styles.color_txt3
+                        : index === 3 ? styles.color_txt4
+                          : index === 4 ? styles.color_txt5
+                            : styles.color_txt6
                   }
                 ></p>
                 <p className={styles.rank_txt}>{item.rank}</p>
@@ -88,10 +115,12 @@ export const DistributionGroup = () => {
         </div>
         <div className={styles.doughnut}>
           {!isLoading && (
-            <DistributionChart
-              bachelor={bachelorArr.length}
-              master={masterArr.length}
-              doctorate={doctorateArr.length}
+            <RaceChart
+              asian={asianArr.length}
+              white={whiteAndEuropeanArr.length}
+              african={africanArr.length}
+              hispanic={hispanicAndLatino.length}
+              middleEastern={middleEastern.length}
             />
           )}
         </div>

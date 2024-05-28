@@ -20,8 +20,8 @@ export const FilterList = () => {
   }
   return (
     <div className={styles.filter_container}>
-      {arr.map((item) => (
-        <div className={styles.each_item}>
+      {arr.map((item, index) => (
+        <div className={styles.each_item} key={index}>
           <p className={styles.filter_item_title}>{item}</p>
           <div className={styles.x} onClick={() => handleClicked(item)}>X</div>
         </div>

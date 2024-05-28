@@ -1,31 +1,14 @@
 "use client"
 
-import { Line } from "react-chartjs-2"
 import 'chart.js/auto';
-import styles from './styles.module.css'
+import styles from "./styles.module.css"
+import { Radar } from "react-chartjs-2"
 import { useGetBackgrounds } from '@/app/(back-end)/features/student-background/api/use-get-backgrounds';
-import { useFilter } from "@/hooks/use-filter";
+import { useFilter } from '@/hooks/use-filter';
 
-export const LineChart = () => {
-
-  // const labels = ['S22', 'F23', 'W23', 'S23', 'F24', 'W24', 'S4'];
-
-  // const data = {
-  //   labels,
-  //   datasets: [
-  //     {
-  //       fill: true,
-  //       data: [23, 43, 45, 65, 234, 43, 333],
-  //       borderColor: 'rgb(53, 162, 235)',
-  //       backgroundColor: 'rgba(53, 162, 235, 0.5)',
-  //       tension: .5
-  //     },
-  //   ],
-  // };
-
+export const RadarChart = () => {
   // fall, winter, spring (2017-2023)
   const quarters = ["F17", "W17", "S17", "SU17", "F18", "W18", "S18", "SU18", "F19", "W19", "S19", "SU19", "F20", "W20", "S20", "SU20", "F21", "W21", "S21", "SU21", "F22", "W22", "S22", "SU22", "F23", "W23", "S23", "SU23", "F24", "W24", "S24", "SU24"]
-
 
   const { majorName } = useFilter()
 
@@ -64,42 +47,61 @@ export const LineChart = () => {
     datasets: [
       {
         label: 'Employed',
-        data: Array.from(employedMap.values()),
-        backgroundColor: ["#0363f4"],
         fill: true,
-        tension: .5
+        data: Array.from(employedMap.values()),
+        backgroundColor: "rgba(34,90,239,.6)",
+        borderColor: 'rgba(34, 90, 239,1)',
       },
       {
         label: 'Unemployed',
-        data: Array.from(otherMap.values()),
-        backgroundColor: ["#f33c5c"],
         fill: true,
-        tension: .5
+        data: Array.from(otherMap.values()),
+        backgroundColor: "rgba(233,60,92,0.6)",
+        borderColor: 'rgba(233,60,92,.1)',
       },
 
     ]
   };
+  //#3981ee
+  // backgroundColor: [
+  //   'rgba(255, 99, 132, 0.2)',
+  //   'rgba(255, 159, 64, 0.2)',
+  //   'rgba(255, 205, 86, 0.2)',
+  //   'rgba(75, 192, 192, 0.2)',
+  //   'rgba(54, 162, 235, 0.2)',
+  //   'rgba(153, 102, 255, 0.2)',
+  //   'rgba(201, 203, 207, 0.2)'
+  // ],
+  // borderColor: [
+  //   'rgb(255, 99, 132)',
+  //   'rgb(255, 159, 64)',
+  //   'rgb(255, 205, 86)',
+  //   'rgb(75, 192, 192)',
+  //   'rgb(54, 162, 235)',
+  //   'rgb(153, 102, 255)',
+  //   'rgb(201, 203, 207)'
+  // ],
+  // borderWidth: 1
+
   function transform(quarter: string) {
-    const season = quarter.split(" ")[0].slice(0, 2) === "Su" ? 'SU' : quarter.split(" ")[0].slice(0, 1); // "F"
+    const season = quarter.split(" ")[0].slice(0, 2) === 'Su' ? 'SU' : quarter.split(" ")[0].slice(0, 1); // "F"
     const year = quarter.split(" ")[1].slice(2); // "19"
     return season + year
   }
 
   return (
-    <div className={styles.area_container}>
-      <Line
+    <div className={styles.bar_container}>
+      <Radar
         data={data}
         options={
           {
-
             responsive: true,
             maintainAspectRatio: false,
             // Plugins
             plugins: {
               legend: {
                 display: true,
-                position: 'top',
-                align: 'end',
+                position: 'bottom',
                 labels: {
                   boxWidth: 8,
                   boxHeight: 8,
@@ -111,11 +113,11 @@ export const LineChart = () => {
                 boxPadding: 5,
                 padding: 10,
                 titleFont: {
-                  size: 16,
+                  size: 14,
                   weight: 'bold'
                 },
                 bodyFont: {
-                  size: 20,
+                  size: 18,
                   weight: 'bolder'
                 }
               }
@@ -127,22 +129,6 @@ export const LineChart = () => {
               point: {
                 radius: 2
               }
-            },
-            scales: {
-              y: {
-                ticks: {
-                  display: false
-                },
-                border: {
-                  dash: [5]
-                }
-              },
-              x: {
-
-                border: {
-                  dash: [5]
-                }
-              },
             }
           }
         }

@@ -2,10 +2,9 @@
 
 import 'chart.js/auto';
 
-import { Doughnut, Pie } from 'react-chartjs-2';
-import styles from '@/components/admin/statistics/styles.module.css'
-import { GraduationCap } from 'lucide-react';
-import { rgba } from '@mantine/core';
+import styles from '@/components/admin/statistics/styles.module.css';
+import { Doughnut } from 'react-chartjs-2';
+import CountUp from 'react-countup'
 
 type props = {
   bachelor: number,
@@ -35,7 +34,7 @@ export const DistributionChart = ({ bachelor, master, doctorate }: props) => {
   return (
     <div className={styles.doughnut_container}>
       <div className={styles.doughnut_value}>
-        <p>{percent.toFixed(0)}%</p>
+        <CountUp end={Math.round(percent)} suffix='%' duration={2} />
         <p className={styles.doughnut_description}>Bachelor&apos;s</p>
       </div>
       <div>

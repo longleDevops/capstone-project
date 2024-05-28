@@ -13,9 +13,11 @@ import { CampusGroup } from "./campus-distribution/campus-group"
 import { Button } from "@mantine/core"
 import { useShowHide } from "@/hooks/use-showHide"
 
+
 export const Statistics = () => {
   const { isClosed, theme } = useSettings()
   const { isShown, setIsShown } = useShowHide()
+
   return (
     <div
       className={styles.container}
@@ -27,7 +29,7 @@ export const Statistics = () => {
 
         <FilterList />
         <FilterGroup />
-        <div className={styles.section_container}>
+        <div className={styles.section_container} >
           <div className={styles.left_container1}
             style={
               theme === 'Classic' ? { border: '1px solid #d0d5dc' } : {}

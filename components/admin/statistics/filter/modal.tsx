@@ -1,6 +1,6 @@
 "use client"
 
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useWindowScroll } from '@mantine/hooks';
 import { Modal, Button } from '@mantine/core';
 import styles from './styles.module.css'
 import { useFilter } from '@/hooks/use-filter';
@@ -9,6 +9,9 @@ import { GraduationCap } from 'lucide-react';
 
 export function FilterModal() {
   const { majorName, setMajorName, majorSet, setMajorSet } = useFilter()
+  const [scroll, scrollTo] = useWindowScroll();
+
+
   const majorArr = [
     "Art",
     "Elementary Education",
@@ -30,6 +33,7 @@ export function FilterModal() {
 
   const handleConfirmed = () => {
     close();
+    scrollTo({ y: 130 })
     majorName.clear()
     majorSet.forEach(val => majorName.add(val))
     setMajorName(majorName)

@@ -96,7 +96,14 @@ export const BarChart = () => {
             // Plugins
             plugins: {
               legend: {
-                display: false
+                display: true,
+                position: 'top',
+                align: 'end',
+                labels: {
+                  boxWidth: 8,
+                  boxHeight: 8,
+                  borderRadius: 50
+                }
               },
               tooltip: {
                 displayColors: true,

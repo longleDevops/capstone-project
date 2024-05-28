@@ -80,7 +80,7 @@ export const DistributionGroup = () => {
                 <p className={styles.level_txt}>{item.level}</p>
                 <p className={styles.amount_txt}>
 
-                  <CountUp end={item.amount} separator="," />
+                  <CountUp end={item.amount} separator="," duration={2} />
                 </p>
               </div>
             )

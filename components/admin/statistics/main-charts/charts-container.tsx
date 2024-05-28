@@ -6,6 +6,7 @@ import { LineChart } from './line-chart'
 import styles from './styles.module.css'
 import { BarChart } from './bar-chart'
 import { useSettings } from '@/hooks/use-settings'
+import { RadarChart } from './radar-chart'
 
 export const ChartsContainer = () => {
   const { theme } = useSettings()
@@ -20,9 +21,10 @@ export const ChartsContainer = () => {
         <ChartSelect />
       </div>
       <p className={styles.chart_description}>{"Fall, Winter, Spring, Summer"}</p>
-      {chartType === "Area chart"
-        ? <LineChart />
-        : <BarChart />}
+      {chartType === "Area chart" ? <LineChart />
+        : chartType === "Bar chart" ? <BarChart />
+          : <RadarChart />
+      }
     </div>
   )
 }

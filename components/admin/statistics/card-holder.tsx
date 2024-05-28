@@ -34,7 +34,7 @@ export const CardHolder = () => {
     return accumulator + currentValue;
   }, 0);
 
-  const avgRating = Number((sumRating / ratingArr.length).toFixed(1));
+  const avgRating = parseFloat((sumRating / ratingArr.length).toFixed(1));
 
   const employedArr = backgroundData
     ? backgroundData
@@ -83,6 +83,7 @@ export const CardHolder = () => {
           ? (((totalStudents - 10) / 10) * 100).toFixed(2)
           : (((10 - totalStudents) / 10) * 100).toFixed(2),
       label: "This data represents all students who have completed the survey",
+      color: '#bc0c47'
     },
     {
       title: "Employment Rate",
@@ -96,8 +97,8 @@ export const CardHolder = () => {
         employmentRate - 50 > 0
           ? (((employmentRate - 50) / 50) * 100).toFixed(2)
           : (((50 - employmentRate) / 50) * 100).toFixed(2),
-      label:
-        "This data represents the employment rates or the percentage of students who are currently employed. The standard comparison value is 50%. ",
+      label: "This data represents the employment rates or the percentage of students who are currently employed. The standard comparison value is 50%. ",
+      color: '#bc0c47'
     },
     {
       title: "Gross Salary",
@@ -108,7 +109,8 @@ export const CardHolder = () => {
       suffix,
       isIncreased: avgSalary > 50000,
       difference: ((avgSalary - 50000) / 50000 * 100).toFixed(2),
-      label: 'This data represents the total salary reported by all students who are currently employed. The standard comparison value is $50,000'
+      label: 'This data represents the total salary reported by all students who are currently employed. The standard comparison value is $50,000',
+      color: '#bc0c47'
     },
     {
       title: "Avg Rating",
@@ -121,6 +123,7 @@ export const CardHolder = () => {
       difference: (((avgRating - 2.5) / 2.5) * 100).toFixed(2),
       label:
         "This data represents the average survey rating collected from all students. The highest rating is 5, and the lowest is 1. The standard comparison value is 2.5.",
+      color: '#bc0c47'
     },
   ];
   return (
@@ -136,6 +139,7 @@ export const CardHolder = () => {
               className={
                 index === 0 ? styles.logo_holder_first : styles.logo_holder
               }
+
             >
               {index === 0 && (
                 <Image

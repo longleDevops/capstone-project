@@ -4,7 +4,6 @@ import { useDisclosure, useWindowScroll } from '@mantine/hooks';
 import { Modal, Button } from '@mantine/core';
 import styles from './styles.module.css'
 import { useFilter } from '@/hooks/use-filter';
-import { useState } from 'react';
 import { GraduationCap } from 'lucide-react';
 
 export function FilterModal() {

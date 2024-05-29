@@ -33,7 +33,7 @@ export function FilterModal() {
 
   const handleConfirmed = () => {
     close();
-    scrollTo({ y: 30 })
+    scrollTo({ y: 25 })
     majorName.clear()
     majorSet.forEach(val => majorName.add(val))
     setMajorName(majorName)

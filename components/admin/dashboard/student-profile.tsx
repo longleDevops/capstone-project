@@ -5,7 +5,6 @@ import { useRef, useState } from "react";
 import { Flex, ScrollArea } from '@mantine/core';
 
 import { useGetAccounts } from "@/app/(back-end)/features/account/api/use-get-accounts";
-import { useGetSubmittedAccounts } from "@/app/(back-end)/features/account/api/use-get-submitted-accounts";
 import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/api/use-get-backgrounds";
 import { ProfileDialog } from "./dialog/profile-dialog";
 import styles from "./styles.module.css";
@@ -14,7 +13,7 @@ import { useSettings } from "@/hooks/use-settings";
 
 export const StudentProfile = () => {
   const { data: allStudents } = useGetAccounts()
-  const { data: allSubmittedStudents } = useGetSubmittedAccounts()
+  const { data: allSubmittedStudents } = useGetBackgrounds()
   const { data: backgroundData } = useGetBackgrounds()
   const { theme } = useSettings()
   const viewport = useRef<HTMLDivElement>(null);

@@ -7,6 +7,7 @@ import { useDialog } from '@/hooks/use-dialog';
 import 'chart.js/auto';
 import { Bar } from "react-chartjs-2"
 import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/api/use-get-backgrounds";
+import CountUp from 'react-countup'
 
 export const CareerDialog = () => {
   const { isDialogOpen2, setIsDialogOpen2 } = useDialog()
@@ -28,8 +29,6 @@ export const CareerDialog = () => {
     "Medical"
   ]
 
-  const { isDialogOpen, setIsDialogOpen } = useDialog()
-
   const { data: backgroundData1 } = useGetBackgrounds()
 
   const backgroundData2 = backgroundData1 ? backgroundData1 : []
@@ -47,7 +46,7 @@ export const CareerDialog = () => {
     workingArr.push(workingMap.get(val.major))
   })
 
-
+  const totalStudent = workingArr.length
   const labels = majorArr;
   const data = {
     labels: labels,
@@ -83,7 +82,12 @@ export const CareerDialog = () => {
       <Modal opened={isDialogOpen2} onClose={() => setIsDialogOpen2(false)} withCloseButton={false} centered size="auto" radius={20}
         transitionProps={{ duration: 50 }}>
         {/* Modal content */}
-        <div className={styles.chart_title}>Total Employed Students Per Major</div>
+        <div className={styles.chart_title}><p>Total Employed Students Per Major</p>
+          <div className={styles.total_title}>
+            <CountUp end={totalStudent} duration={3} />
+            <p>Employed students</p>
+          </div>
+        </div>
         <div className={styles.bar_container}>
           <Bar
             options={
@@ -93,7 +97,8 @@ export const CareerDialog = () => {
                 indexAxis: 'y',
                 plugins: {
                   legend: {
-                    display: false
+                    display: false,
+
                   },
                   tooltip: {
                     displayColors: true,
@@ -124,7 +129,7 @@ export const CareerDialog = () => {
 
                   },
                   x: {
-                    max: 700,
+                    suggestedMax: 100,
                     ticks: {
                       font: {
                         size: 16,

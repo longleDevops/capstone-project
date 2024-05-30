@@ -4,7 +4,7 @@ import { client } from "@/lib/hono"
 
 export const useGetSatisfactions = () => {
   const query = useQuery({
-    queryKey: ["satisfactions"],
+    queryKey: ["getSatisfaction"],
     queryFn: async () => {
       const response = await client.api.satisfaction.$get()
 
@@ -14,7 +14,9 @@ export const useGetSatisfactions = () => {
 
       const { data } = await response.json()
       return data
-    }
+    },
+    refetchIntervalInBackground: true,
+    refetchInterval: 5000
   })
   return query;
 }

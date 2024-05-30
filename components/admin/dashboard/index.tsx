@@ -29,13 +29,13 @@ export const AdminDashboard = () => {
         </div>
 
         <p className={styles.welcome_text}>Recent Submissions</p>
-        <p className={styles.welcome_description}>View and Manage student&apos;s profiles from all survey submissions</p>
+        <p className={styles.welcome_description}>View and Manage student&apos;s profiles from recent survey submissions</p>
         <div className={styles.profile_container}>
           <StudentProfile />
         </div>
 
         <p className={styles.welcome_text}>Recent Registerd</p>
-        <p className={styles.welcome_description}>View all recent registered students</p>
+        <p className={styles.welcome_description}>View 50 recent registered students</p>
         <div className={styles.submission_container}>
           <StudentRegistered />
         </div>

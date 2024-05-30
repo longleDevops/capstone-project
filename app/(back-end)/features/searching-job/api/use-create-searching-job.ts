@@ -7,8 +7,6 @@ type ResponseType = InferResponseType<typeof client.api.searchingJob.$post>
 type RequestType = InferRequestType<typeof client.api.searchingJob.$post>["json"]
 
 export const useCreateSearchingJob = () => {
-  const queryClient = useQueryClient()
-
   const mutation = useMutation<
     ResponseType,
     Error,

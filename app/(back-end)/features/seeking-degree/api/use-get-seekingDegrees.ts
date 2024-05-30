@@ -14,7 +14,9 @@ export const useGetSeekingDegrees = () => {
 
       const { data } = await response.json()
       return data
-    }
+    },
+    refetchIntervalInBackground: true,
+    refetchInterval: 5000
   })
   return query;
 }

@@ -8,7 +8,6 @@ type RequestType = InferRequestType<typeof client.api.domesticStudent.$post>["js
 
 export const useCreateDomestic = () => {
   const queryClient = useQueryClient()
-
   const mutation = useMutation<
     ResponseType,
     Error,
@@ -19,8 +18,7 @@ export const useCreateDomestic = () => {
       return await response.json()
     },
     onSuccess: () => {
-      console.log("Successful")
-      //queryClient.invalidateQueries({ queryKey: ["domestic-students"] })
+      console.log("Domestic successful")
     },
     onError: () => {
       console.log("Domestic Error")

@@ -7,8 +7,6 @@ type ResponseType = InferResponseType<typeof client.api.seekingDegree.$post>
 type RequestType = InferRequestType<typeof client.api.seekingDegree.$post>["json"]
 
 export const useCreateSeekingDegree = () => {
-  const queryClient = useQueryClient()
-
   const mutation = useMutation<
     ResponseType,
     Error,

@@ -11,20 +11,20 @@ const db = drizzle(sql, { schema });
 
 
 async function main() {
-  // await db.delete(account)
-  // await db.delete(domesticStudent)
-  // await db.delete(studentBackground)
-  // await db.delete(internationalStudent)
-  // await db.delete(satisfaction)
-  // await db.delete(searchingJob)
-  // await db.delete(working)
-  // await db.delete(seekingDegree)
+  await db.delete(account)
+  await db.delete(domesticStudent)
+  await db.delete(studentBackground)
+  await db.delete(internationalStudent)
+  await db.delete(satisfaction)
+  await db.delete(searchingJob)
+  await db.delete(working)
+  await db.delete(seekingDegree)
 
-  await insertDomesticOnly(1234);
-  await insertInternationalOnly(700);
-  await insertWorkingOnly(860);
-  await insertSeekingDegreeOnly(400);
-  await insertSearchingJobOnly(340);
+  await insertDomesticOnly(20);
+  await insertInternationalOnly(30);
+  await insertWorkingOnly(20);
+  await insertSeekingDegreeOnly(30);
+  await insertSearchingJobOnly(20);
 }
 
 

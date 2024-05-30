@@ -4,7 +4,7 @@ import { client } from "@/lib/hono"
 
 export const useGetBackgrounds = () => {
   const query = useQuery({
-    queryKey: ["student-backgrounds"],
+    queryKey: ['getBackground'],
     queryFn: async () => {
       const response = await client.api.backgrounds.$get()
 
@@ -15,7 +15,9 @@ export const useGetBackgrounds = () => {
       const { data } = await response.json()
 
       return data
-    }
+    },
+    refetchIntervalInBackground: true,
+    refetchInterval: 5000
   })
   return query;
 }

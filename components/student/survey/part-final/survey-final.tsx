@@ -45,9 +45,6 @@ export const SurveyFinal = () => {
       >
         Back to Home
       </Button>
-      <Button onClick={() => setCurrentPart(2)}>
-        test
-      </Button>
     </div>
   )
 }

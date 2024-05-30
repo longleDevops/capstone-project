@@ -4,7 +4,7 @@ import { client } from "@/lib/hono"
 
 export const useGetDomestics = () => {
   const query = useQuery({
-    queryKey: ["domestic-students"],
+    queryKey: ["getDomestics"],
     queryFn: async () => {
       const response = await client.api.domesticStudent.$get()
 
@@ -14,7 +14,9 @@ export const useGetDomestics = () => {
 
       const { data } = await response.json()
       return data
-    }
+    },
+    refetchIntervalInBackground: true,
+    refetchInterval: 5000
   })
   return query;
 }

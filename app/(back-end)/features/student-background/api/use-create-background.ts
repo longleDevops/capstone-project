@@ -7,8 +7,6 @@ type ResponseType = InferResponseType<typeof client.api.backgrounds.$post>
 type RequestType = InferRequestType<typeof client.api.backgrounds.$post>["json"]
 
 export const useCreateBackground = () => {
-  const queryClient = useQueryClient()
-
   const mutation = useMutation<
     ResponseType,
     Error,
@@ -16,13 +14,16 @@ export const useCreateBackground = () => {
   >({
     mutationFn: async (json) => {
       const response = await client.api.backgrounds.$post({ json });
+
       return await response.json()
     },
     onSuccess: () => {
-      console.log("Successful")
+      console.log("Update background Successful")
+
     },
-    onError: () => {
+    onError: (err) => {
       console.log("Background student error")
+      console.error(err)
     }
   })
 

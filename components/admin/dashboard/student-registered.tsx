@@ -5,7 +5,6 @@ import styles from "./styles.module.css"
 
 export const StudentRegistered = () => {
   const { data } = useGetAccounts()
-
   const formatDate = (input: string) => {
     const dateObject = new Date(input)
     const result = dateObject.toLocaleString('en-US', { month: '2-digit', day: 'numeric', year: 'numeric' });
@@ -28,6 +27,7 @@ export const StudentRegistered = () => {
   }
 
   if (!data) return <>...Loading</>
+  console.log("registered length" + data.length)
   return (
     <div className={styles.submission_container_big}>
       <div className={styles.submission_container}>
@@ -38,7 +38,7 @@ export const StudentRegistered = () => {
           <p className={styles.submission_name4} >Date Registered</p>
           <p className={styles.submission_name5}>At Time</p>
         </div>
-        {data.slice(50).reverse().map((item, index) => (
+        {data.slice(-50).reverse().map((item, index) => (
           <div className={isEven(index) ? styles.submission_row : styles.submission_row_odd} key={item.id}>
             <p className={styles.submission_name1}>{item.firstName} {item.lastName}</p>
             <p className={styles.submission_name2}>Graduation survey</p>

@@ -16,13 +16,11 @@ export const useCreateAccount = () => {
   >({
     mutationFn: async (json) => {
       const response = await client.api.accounts["update-submission"].$patch({ json });
+
       return await response.json()
     },
     onSuccess: () => {
       console.log("Update Account Successful")
-      queryClient.invalidateQueries({ queryKey: ["account1"] })
-      queryClient.invalidateQueries({ queryKey: ["account2"] })
-      queryClient.invalidateQueries({ queryKey: ["account3"] })
     },
     onError: (error) => {
       console.log("update account err" + error)

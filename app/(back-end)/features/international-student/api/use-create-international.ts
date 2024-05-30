@@ -7,8 +7,6 @@ type ResponseType = InferResponseType<typeof client.api.internationalStudent.$po
 type RequestType = InferRequestType<typeof client.api.internationalStudent.$post>["json"]
 
 export const useCreateInternational = () => {
-  const queryClient = useQueryClient()
-
   const mutation = useMutation<
     ResponseType,
     Error,
@@ -20,7 +18,6 @@ export const useCreateInternational = () => {
     },
     onSuccess: () => {
       console.log("Create International Successful")
-      queryClient.invalidateQueries({ queryKey: ["international-students"] })
     },
     onError: () => {
       console.log("International error")

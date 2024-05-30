@@ -25,7 +25,7 @@ import { useCreateSearchingJob } from '@/app/(back-end)/features/searching-job/a
 import { useCreateSeekingDegree } from '@/app/(back-end)/features/seeking-degree/api/use-create-seekingDegree';
 import { useCreateAccount } from '@/app/(back-end)/features/account/api/use-create-account';
 import { error } from 'console';
-import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { useQueryClient } from "@tanstack/react-query"
 
 
 export const ConfirmationModal = () => {
@@ -64,7 +64,6 @@ export const ConfirmationModal = () => {
 
 
   const handleSubmit = () => {
-
     const studentStatus =
       (q1SurveyPt2 === 0 && q3Path1Answer === 0) ? 'domestic-student'
         : (q1SurveyPt2 === 0 && q3Path1Answer === 1) ? 'international-student'
@@ -73,20 +72,49 @@ export const ConfirmationModal = () => {
               : 'job-seeking-student';
 
     const avgRating = ((q1Answer + q2Answer + q3Answer + q4Answer + q5Answer) / 5).toFixed(1)
-
+    // domestic ans
     if (q1SurveyPt2 === 0 && q3Path1Answer === 0) {
-      domesticMutation.mutate(domesticAnswers);
       backgroundMutation.mutate({
         ...backgroundAnswers,
         status: studentStatus,
         avgSalary: domesticAnswers.avgInternshipSalary,
         isEmployed: domesticAnswers.avgInternshipSalary > 0,
         avgRating
+      }, {
+        onSuccess: () => {
+          domesticMutation.mutate(domesticAnswers, {
+            onSuccess: () => {
+              queryClient.invalidateQueries(),
+                satisfactionMutation.mutate({
+                  q1Answer,
+                  q2Answer,
+                  q3Answer,
+                  q4Answer,
+                  q5Answer,
+                }, {
+                  onSuccess: () => {
+                    accountMutation.mutate({
+                      firstName: backgroundAnswers.firstName,
+                      lastName: backgroundAnswers.lastName,
+                    }, {
+                      onSuccess: () => {
+                        close(),
+                          toast.success("Successfully Submit")
+                        setCurrentPart(6)
+                      }
+
+                    })
+                  }
+                })
+            }
+
+          });
+        }
       });
     }
 
+    // International
     if (q1SurveyPt2 === 0 && q3Path1Answer === 1) {
-      internationalMutation.mutate(internationalAnswers);
       backgroundMutation.mutate({
         ...backgroundAnswers,
         status: studentStatus,
@@ -94,9 +122,36 @@ export const ConfirmationModal = () => {
         isEmployed: internationalAnswers.avgSalary > 0,
         avgRating
       });
+      internationalMutation.mutate(internationalAnswers,
+        {
+          onSuccess: () => {
+            satisfactionMutation.mutate({
+              q1Answer,
+              q2Answer,
+              q3Answer,
+              q4Answer,
+              q5Answer,
+            }, {
+              onSuccess: () => {
+                accountMutation.mutate({
+                  firstName: backgroundAnswers.firstName,
+                  lastName: backgroundAnswers.lastName,
+                }, {
+                  onSuccess: () => {
+                    close(),
+                      toast.success("Successfully Submit")
+                    setCurrentPart(6)
+                  }
+                })
+              }
+            })
+          }
+        }
+      );
     }
+
+    // Working
     if (q1SurveyPt2 === 1 && q2Path2Answer === 0) {
-      workingMutation.mutate(workingAnswers);
       backgroundMutation.mutate({
         ...backgroundAnswers,
         status: studentStatus,
@@ -104,10 +159,41 @@ export const ConfirmationModal = () => {
         isEmployed: true,
         avgRating
       });
+      workingMutation.mutate(workingAnswers,
+        {
+          onSuccess: () => {
+            onSuccess: () => {
+              satisfactionMutation.mutate({
+                q1Answer,
+                q2Answer,
+                q3Answer,
+                q4Answer,
+                q5Answer,
+              }, {
+                onSuccess: () => {
+                  accountMutation.mutate({
+                    firstName: backgroundAnswers.firstName,
+                    lastName: backgroundAnswers.lastName,
+                  }, {
+                    onSuccess: () => {
+                      close(),
+                        toast.success("Successfully Submit")
+                      setCurrentPart(6)
+
+                    }
+
+                  })
+                }
+              })
+            }
+
+          }
+        }
+      );
     }
 
+    // seeking degree
     if (q1SurveyPt2 === 2 && q2Path3Answer === 0) {
-      seekingDegreeMutation.mutate(seekingAnswers);
       backgroundMutation.mutate({
         ...backgroundAnswers,
         status: studentStatus,
@@ -115,10 +201,41 @@ export const ConfirmationModal = () => {
         isEmployed: false,
         avgRating
       });
+      seekingDegreeMutation.mutate(seekingAnswers,
+        {
+          onSuccess: () => {
+            onSuccess: () => {
+              satisfactionMutation.mutate({
+                q1Answer,
+                q2Answer,
+                q3Answer,
+                q4Answer,
+                q5Answer,
+              }, {
+                onSuccess: () => {
+                  accountMutation.mutate({
+                    firstName: backgroundAnswers.firstName,
+                    lastName: backgroundAnswers.lastName,
+                  }, {
+                    onSuccess: () => {
+                      close(),
+                        toast.success("Successfully Submit")
+                      setCurrentPart(6)
+
+                    }
+
+                  })
+                }
+              })
+            }
+
+          }
+        }
+      );
     }
 
+    // Searching jobs
     if (q1SurveyPt2 === 3 && q2Path4Answer === 0) {
-      searchingJobMutation.mutate(searchingAnswers);
       backgroundMutation.mutate({
         ...backgroundAnswers,
         status: studentStatus,
@@ -126,38 +243,37 @@ export const ConfirmationModal = () => {
         isEmployed: false,
         avgRating
       });
+      searchingJobMutation.mutate(searchingAnswers, {
+        onSuccess: () => {
+          onSuccess: () => {
+            satisfactionMutation.mutate({
+              q1Answer,
+              q2Answer,
+              q3Answer,
+              q4Answer,
+              q5Answer,
+            }, {
+              onSuccess: () => {
+                accountMutation.mutate({
+                  firstName: backgroundAnswers.firstName,
+                  lastName: backgroundAnswers.lastName,
+                }, {
+                  onSuccess: () => {
+                    close(),
+                      toast.success("Successfully Submit")
+                    setCurrentPart(6)
+
+                  }
+
+                })
+              }
+            })
+          }
+
+
+        }
+      });
     }
-
-    satisfactionMutation.mutate({
-      q1Answer,
-      q2Answer,
-      q3Answer,
-      q4Answer,
-      q5Answer,
-    }, {
-      onSuccess: () => {
-        close(),
-          toast.success("Successfully Submit"),
-          setCurrentPart(6)
-        // queryClient.invalidateQueries({
-        //   queryKey: ['account1'],
-        //   exact: true,
-        //   refetchType: 'all'
-        // }),
-        // queryClient.invalidateQueries({
-        //   queryKey: ['student-backgrounds'],
-        //   exact: true,
-        //   refetchType: 'all'
-        // })
-
-      }
-    });
-
-    accountMutation.mutate({
-      firstName: backgroundAnswers.firstName,
-      lastName: backgroundAnswers.lastName,
-    })
-
 
   }
 

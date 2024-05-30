@@ -20,7 +20,6 @@ export const useCreateSearchingJob = () => {
     },
     onSuccess: () => {
       console.log("Create Searching Successful")
-      queryClient.invalidateQueries({ queryKey: ["searching-jobs"] })
     },
     onError: () => {
       console.log("Searching student err")

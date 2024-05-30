@@ -25,9 +25,12 @@ import { useCreateSearchingJob } from '@/app/(back-end)/features/searching-job/a
 import { useCreateSeekingDegree } from '@/app/(back-end)/features/seeking-degree/api/use-create-seekingDegree';
 import { useCreateAccount } from '@/app/(back-end)/features/account/api/use-create-account';
 import { error } from 'console';
+import { useQuery, useQueryClient } from "@tanstack/react-query"
+
 
 export const ConfirmationModal = () => {
   const [opened, { open, close }] = useDisclosure(false);
+  const queryClient = useQueryClient()
 
   const { q1Answer: q1SurveyPt2, q3Path1Answer, q2Path2Answer, q2Path3Answer, q2Path4Answer } = useSurveyPartTwo()
   const { q1Answer, q2Answer, q3Answer, q4Answer, q5Answer } = useSurveyPartThree()
@@ -92,7 +95,6 @@ export const ConfirmationModal = () => {
         avgRating
       });
     }
-
     if (q1SurveyPt2 === 1 && q2Path2Answer === 0) {
       workingMutation.mutate(workingAnswers);
       backgroundMutation.mutate({
@@ -137,6 +139,17 @@ export const ConfirmationModal = () => {
         close(),
           toast.success("Successfully Submit"),
           setCurrentPart(6)
+        // queryClient.invalidateQueries({
+        //   queryKey: ['account1'],
+        //   exact: true,
+        //   refetchType: 'all'
+        // }),
+        // queryClient.invalidateQueries({
+        //   queryKey: ['student-backgrounds'],
+        //   exact: true,
+        //   refetchType: 'all'
+        // })
+
       }
     });
 

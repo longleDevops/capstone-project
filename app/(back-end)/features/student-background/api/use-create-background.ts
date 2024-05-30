@@ -20,7 +20,6 @@ export const useCreateBackground = () => {
     },
     onSuccess: () => {
       console.log("Successful")
-      queryClient.invalidateQueries({ queryKey: ["student-backgrounds"] })
     },
     onError: () => {
       console.log("Background student error")

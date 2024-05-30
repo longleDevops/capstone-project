@@ -4,7 +4,6 @@ import { Hono } from "hono";
 import db from "../../db/drizzle";
 import { account, insertAccountSchema } from "../../db/schema";
 import { zValidator } from '@hono/zod-validator'
-import { set } from "zod";
 
 const app = new Hono()
   .get('/',

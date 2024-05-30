@@ -20,7 +20,6 @@ export const useCreateWorking = () => {
     },
     onSuccess: () => {
       console.log("Create Working Successful")
-      queryClient.invalidateQueries({ queryKey: ["working"] })
     },
     onError: () => {
       console.log("Working student err")

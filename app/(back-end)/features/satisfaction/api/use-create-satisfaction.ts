@@ -16,11 +16,11 @@ export const useCreateSatisfaction = () => {
   >({
     mutationFn: async (json) => {
       const response = await client.api.satisfaction.$post({ json });
+      await queryClient.invalidateQueries()
       return await response.json()
     },
     onSuccess: () => {
       console.log("create satisfaction successful")
-      queryClient.invalidateQueries({ queryKey: ["satisfaction"] })
     },
     onError: () => {
       console.log("Satisfaction error")

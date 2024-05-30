@@ -292,13 +292,15 @@
   background-color: #fcfcfc;
   border-radius: 10px;
   box-shadow: 2px 3px 3px #0069B6;
-  min-width: 1050px;
+  max-width: 1050px;
+  width: 100%;
 }
 .submission_container{
   display: flex;
   flex-direction: column;
   padding:20px 0 20px 0;
   margin-top: -18px;
+  width: 100%;
 }
 
 .submission_row{
@@ -326,33 +328,39 @@
   justify-content: space-between;
   background-color: #9946ff;
   color:white;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
 }
 
-.date_created{
-  width: 60px;
-}
-
-.submission_status{
-  width: 140px;
-}
-.submission_name{
+.submission_name1{
   width: 150px;
 }
+.submission_name2{
+  width: 150px;
+}
+.submission_name3{
+  width: 150px;
+}
+.submission_name4{
+  width: 150px;
+}
+.submission_name5{
+  width: 150px;
+}
+
 /* texts, fonts */
 .dashboard_text{
-  font-size: 26px;
+  font-size: 28px;
   font-weight:500;
 }
 
 .welcome_text{
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 500;
 }
 
 .welcome_description{
-  font-size:16px;
+  font-size:18px;
   font-weight: 500;
   color: grey;
 }
@@ -386,7 +394,7 @@
 
 @media (width<=1300px) {
   .container{
-    margin: 20px 20px 0px 20px;
+    margin: 20px !important;
   }
   
 }
@@ -423,5 +431,53 @@
   .next_btn{
     min-width: 40px;
     min-height: 40px;
+  }
+}
+@media (width<=990px) {
+  .statistics_container{
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (width<=1140px) {
+  .submission_name1{
+    width: 80px;
+    margin-right: 0px;
+  }
+  .submission_name2{
+    width: 60px;
+  }
+  .submission_name3{
+    width: 80px;
+  }
+  .submission_name4{
+    width: 80px;
+  }
+  .submission_name5{
+    width: 80px;
+  }
+}
+
+@media (width <= 780px) {
+  .submission_name1{
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .submission_name2{
+      font-size: 12px;
+    font-weight: 500;
+  }
+  .submission_name3{
+      font-size: 12px;
+    font-weight: 500;
+  }
+  .submission_name4{
+     font-size: 12px;
+    font-weight: 500;
+  }
+  .submission_name5{
+      font-size: 12px;
+    font-weight: 500;
   }
 }

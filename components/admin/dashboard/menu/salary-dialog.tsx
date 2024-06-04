@@ -42,15 +42,19 @@ export const SalaryDialog = () => {
   workingData.forEach(val => {
     salaryMap.set(val.major, salaryMap.get(val.major) + val.avgSalary)
   })
-
   workingData.forEach(val => {
     countMap.set(val.major, countMap.get(val.major) + 1)
   })
-
   const avgSalary: number[] = []
-  workingData.forEach(val => {
-    avgSalary.push(salaryMap.get(val.major) / countMap.get(val.major))
+  majorArr.forEach(val => {
+    if (salaryMap.get(val) === 0) {
+      avgSalary.push(0);
+
+    } else {
+      avgSalary.push(salaryMap.get(val) / countMap.get(val))
+    }
   })
+  console.log(avgSalary)
   const data = {
     labels: majorArr,
     datasets: [{

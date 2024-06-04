@@ -16,7 +16,7 @@ export const useGetAccounts = () => {
       return data
     },
     refetchIntervalInBackground: true,
-    refetchInterval: 5000
+    refetchInterval: 2000
   })
   return query;
 }

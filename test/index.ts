@@ -20,11 +20,11 @@ async function main() {
   await db.delete(working)
   await db.delete(seekingDegree)
 
-  await insertDomesticOnly(20);
-  await insertInternationalOnly(30);
-  await insertWorkingOnly(20);
-  await insertSeekingDegreeOnly(30);
-  await insertSearchingJobOnly(20);
+  await insertDomesticOnly(15000);
+  await insertInternationalOnly(12000);
+  await insertWorkingOnly(8000);
+  await insertSeekingDegreeOnly(8000);
+  await insertSearchingJobOnly(10000);
 }
 
 

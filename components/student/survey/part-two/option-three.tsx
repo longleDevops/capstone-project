@@ -17,14 +17,6 @@ import { useSeekingDegreeAnswers } from '@/hooks/use-seeking-degree-answers'
 
 export const OptionThree = () => {
   const {
-    q1Answer,
-    q2Path1Answer,
-    q3Path1Answer,
-    q4Path1Answer,
-
-    q2Path2Answer,
-
-
     q2Path3Answer,
     q5Path3Answer,
     setQ1Answer,

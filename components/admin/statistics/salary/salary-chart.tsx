@@ -12,19 +12,21 @@ type Props = {
 
 export const SalaryChart = ({ bachelor, master, doctorate }: Props) => {
   // Calculate total number of students
-  const totalStudents = (bachelor + master + doctorate) / 3;
-
+  const totalStudents = (bachelor + master + doctorate);
+  const median = totalStudents / 3;
   // Calculate average salary for each degree level
-  const bachelorAvgSalary = totalStudents !== 0 ? bachelor / totalStudents : 0;
-  const masterAvgSalary = totalStudents !== 0 ? master / totalStudents : 0;
+  const bachelorAvgSalary =
+    totalStudents !== 0 ? parseFloat(((bachelor / totalStudents) * 100).toFixed(2)) : 0;
+  const masterAvgSalary =
+    totalStudents !== 0 ? parseFloat(((master / totalStudents) * 100).toFixed(2)) : 0;
   const doctorateAvgSalary =
-    totalStudents !== 0 ? doctorate / totalStudents : 0;
+    totalStudents !== 0 ? 100 - bachelorAvgSalary - masterAvgSalary : 0;
 
   const data = {
     labels: ["Bachelor's", "Master's", "Doctorate's"],
     datasets: [
       {
-        label: "",
+        label: "%",
         data: [bachelorAvgSalary, masterAvgSalary, doctorateAvgSalary],
         hoverOffset: 15,
         borderWidth: 0,
@@ -35,8 +37,8 @@ export const SalaryChart = ({ bachelor, master, doctorate }: Props) => {
   return (
     <div className={styles.doughnut_container}>
       <div className={styles.doughnut_value}>
-        <CountUp end={totalStudents} duration={2} prefix="$" />
-        <p className={styles.doughnut_description}>Avarage</p>
+        <CountUp end={median} duration={2} prefix="$" />
+        <p className={styles.doughnut_description}>Total Avarage</p>
       </div>
       <div>
         <Doughnut

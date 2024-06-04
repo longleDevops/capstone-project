@@ -15,6 +15,7 @@ export type Student = {
   endTerm: string
   campus: string
   employmentStatus: string,
+  satisfaction: number,
   gender: string,
   race: string,
 };
@@ -39,7 +40,7 @@ export const columns: MRT_ColumnDef<Student>[] = [
   {
     accessorKey: 'degree',
     header: 'Degree',
-    size: 120,
+    size: 160,
   },
   {
     accessorKey: 'major',
@@ -65,6 +66,11 @@ export const columns: MRT_ColumnDef<Student>[] = [
     accessorKey: 'employmentStatus',
     header: 'Status',
     size: 120,
+  },
+  {
+    header: 'Satisfaction',
+    accessorKey: 'satisfaction',
+    size: 160,
   },
   {
     accessorKey: 'gender',

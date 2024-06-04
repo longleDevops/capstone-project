@@ -10,23 +10,22 @@ export const SalaryGroup = () => {
   const { data: backgroundData1, isLoading } = useGetBackgrounds();
   const backgroundData2 = backgroundData1 ? backgroundData1 : [];
   const backgroundData =
-    majorName.size === 0 || majorName.size === 14
+    (majorName.size === 0 || majorName.size === 14)
       ? backgroundData2
       : backgroundData2.filter((item) => majorName.has(item.major));
-
   // Filter working students for each degree level
   const workingBachelorStudents = backgroundData.filter(
     (val) =>
-      val.degreeLevel === "Bachelor's Degree" &&
-      val.status === "working-student"
+    (val.degreeLevel === "Bachelor's Degree" &&
+      val.avgSalary > 0)
   );
   const workingMasterStudents = backgroundData.filter(
     (val) =>
-      val.degreeLevel === "Master's Degree" && val.status === "working-student"
+      (val.degreeLevel === "Master's Degree" && val.avgSalary > 0)
   );
   const workingDoctorateStudents = backgroundData.filter(
     (val) =>
-      val.degreeLevel === "Doctoral Degree" && val.status === "working-student"
+      (val.degreeLevel === "Doctoral Degree" && val.avgSalary > 0)
   );
 
   // Calculate average salary for working students of each degree level

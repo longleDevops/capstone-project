@@ -13,9 +13,13 @@ type props = {
 }
 
 export const DistributionChart = ({ bachelor, master, doctorate }: props) => {
-  const dataArr = [bachelor, master, doctorate];
+  const total = bachelor + master + doctorate;
+  const bachelorPercent = total !== 0 ? parseFloat(((bachelor / total) * 100).toFixed(2)) : 0;
+  const masterPercent = total !== 0 ? parseFloat(((master / total) * 100).toFixed(2)) : 0;
 
-  const percent = (bachelor / (bachelor + master + doctorate)) * 100;
+  const doctoratePercent = total !== 0 ? 100 - bachelorPercent - masterPercent : 0;
+
+  const dataArr = [bachelorPercent, masterPercent, doctoratePercent];
 
   const data = {
     labels: [
@@ -24,7 +28,7 @@ export const DistributionChart = ({ bachelor, master, doctorate }: props) => {
       "Doctorate's"
     ],
     datasets: [{
-      label: '',
+      label: '%',
       data: dataArr,
 
       hoverOffset: 15,
@@ -34,8 +38,8 @@ export const DistributionChart = ({ bachelor, master, doctorate }: props) => {
   return (
     <div className={styles.doughnut_container}>
       <div className={styles.doughnut_value}>
-        <CountUp end={Math.round(percent)} suffix='%' duration={2} />
-        <p className={styles.doughnut_description}>Bachelor&apos;s</p>
+        <CountUp end={total} duration={2} />
+        <p className={styles.doughnut_description}>Total Students</p>
       </div>
       <div>
         <Doughnut

@@ -43,7 +43,7 @@ export const StudentProfile = () => {
         </div>
         <p className={styles.submission_text}>Submissions</p>
         <p className={styles.submission_percent}>{submissionPercent.toFixed(0)}%</p>
-        <p>{allSubmittedStudents?.length} <span>/ {allStudents?.length}</span></p>
+        <p style={{ fontWeight: '600' }}>{allSubmittedStudents?.length} <span>/ {allStudents?.length}</span></p>
       </div>
 
       <ScrollArea w={760} h={270}

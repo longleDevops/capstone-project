@@ -22,9 +22,6 @@ export const OptionOne = () => {
     setQ1Answer,
     setQ2Path1Answer,
     setQ3Path1Answer,
-    setQ2Path4Answer,
-    setQ2Path2Answer,
-    setQ2Path3Answer,
     setQ4Path1Answer,
     setQ4Path1Answer2
   } = useSurveyPartTwo()
@@ -36,6 +33,13 @@ export const OptionOne = () => {
       setQ3Path1Answer(-1);
       setQ4Path1Answer(-1);
       setQ4Path1Answer2(-1)
+      return
+    }
+    if (input === 1) {
+      setQ3Path1Answer(-1);
+      setQ4Path1Answer(-1);
+      setQ4Path1Answer2(-1);
+      setQ2Path1Answer(input);
       return
     }
     setQ2Path1Answer(input)

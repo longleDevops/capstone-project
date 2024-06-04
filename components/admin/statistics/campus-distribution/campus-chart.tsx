@@ -26,14 +26,23 @@ const campusArr = [
 ]
 
 export const CampusChart = ({ ellen, pierce, lynwood, desmoines, sammamish, online }: props) => {
-  const dataArr = [ellen, pierce, lynwood, desmoines, sammamish, online];
+  const total = ellen + pierce + lynwood + desmoines + sammamish + online
+  const ellenPercent = total !== 0 ? parseFloat(((ellen / total) * 100).toFixed(1)) : 0
+  const piercePercent = total !== 0 ? parseFloat(((pierce / total) * 100).toFixed(1)) : 0
+  const lynwoodPercent = total !== 0 ? parseFloat(((lynwood / total) * 100).toFixed(1)) : 0
+  const desmoinesPercent = total !== 0 ? parseFloat(((desmoines / total) * 100).toFixed(1)) : 0
+  const sammanishPercent = total !== 0 ? parseFloat(((sammamish / total) * 100).toFixed(1)) : 0
+  const onlinePercent = total !== 0 ? 100 - ellenPercent - piercePercent - lynwoodPercent - desmoinesPercent - sammanishPercent : 0
+
+
+  const dataArr = [ellenPercent, piercePercent, lynwoodPercent, desmoinesPercent, sammanishPercent, onlinePercent];
 
   const percent = (desmoines / (ellen + pierce + lynwood + desmoines + sammamish + online)) * 100;
 
   const data = {
     labels: campusArr,
     datasets: [{
-      label: '',
+      label: '%',
       data: dataArr,
 
       hoverOffset: 15,

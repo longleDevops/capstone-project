@@ -162,31 +162,28 @@ export const ConfirmationModal = () => {
       workingMutation.mutate(workingAnswers,
         {
           onSuccess: () => {
-            onSuccess: () => {
-              satisfactionMutation.mutate({
-                q1Answer,
-                q2Answer,
-                q3Answer,
-                q4Answer,
-                q5Answer,
-              }, {
-                onSuccess: () => {
-                  accountMutation.mutate({
-                    firstName: backgroundAnswers.firstName,
-                    lastName: backgroundAnswers.lastName,
-                  }, {
-                    onSuccess: () => {
-                      close(),
-                        toast.success("Successfully Submit")
-                      setCurrentPart(6)
+            satisfactionMutation.mutate({
+              q1Answer,
+              q2Answer,
+              q3Answer,
+              q4Answer,
+              q5Answer,
+            }, {
+              onSuccess: () => {
+                accountMutation.mutate({
+                  firstName: backgroundAnswers.firstName,
+                  lastName: backgroundAnswers.lastName,
+                }, {
+                  onSuccess: () => {
+                    close(),
+                      toast.success("Successfully Submit")
+                    setCurrentPart(6)
 
-                    }
+                  }
 
-                  })
-                }
-              })
-            }
-
+                })
+              }
+            })
           }
         }
       );
@@ -203,48 +200,6 @@ export const ConfirmationModal = () => {
       });
       seekingDegreeMutation.mutate(seekingAnswers,
         {
-          onSuccess: () => {
-            onSuccess: () => {
-              satisfactionMutation.mutate({
-                q1Answer,
-                q2Answer,
-                q3Answer,
-                q4Answer,
-                q5Answer,
-              }, {
-                onSuccess: () => {
-                  accountMutation.mutate({
-                    firstName: backgroundAnswers.firstName,
-                    lastName: backgroundAnswers.lastName,
-                  }, {
-                    onSuccess: () => {
-                      close(),
-                        toast.success("Successfully Submit")
-                      setCurrentPart(6)
-
-                    }
-
-                  })
-                }
-              })
-            }
-
-          }
-        }
-      );
-    }
-
-    // Searching jobs
-    if (q1SurveyPt2 === 3 && q2Path4Answer === 0) {
-      backgroundMutation.mutate({
-        ...backgroundAnswers,
-        status: studentStatus,
-        avgSalary: 0,
-        isEmployed: false,
-        avgRating
-      });
-      searchingJobMutation.mutate(searchingAnswers, {
-        onSuccess: () => {
           onSuccess: () => {
             satisfactionMutation.mutate({
               q1Answer,
@@ -270,11 +225,46 @@ export const ConfirmationModal = () => {
             })
           }
 
+        }
+      );
+    }
 
+    // Searching jobs
+    if (q1SurveyPt2 === 3 && q2Path4Answer === 0) {
+      backgroundMutation.mutate({
+        ...backgroundAnswers,
+        status: studentStatus,
+        avgSalary: 0,
+        isEmployed: false,
+        avgRating
+      });
+      searchingJobMutation.mutate(searchingAnswers, {
+        onSuccess: () => {
+          satisfactionMutation.mutate({
+            q1Answer,
+            q2Answer,
+            q3Answer,
+            q4Answer,
+            q5Answer,
+          }, {
+            onSuccess: () => {
+              accountMutation.mutate({
+                firstName: backgroundAnswers.firstName,
+                lastName: backgroundAnswers.lastName,
+              }, {
+                onSuccess: () => {
+                  close(),
+                    toast.success("Successfully Submit")
+                  setCurrentPart(6)
+
+                }
+
+              })
+            }
+          })
         }
       });
     }
-
   }
 
   const navigateNext = () => {

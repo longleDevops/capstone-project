@@ -2,7 +2,7 @@
 
 import { StudentTable } from "./student-table"
 import styles from "./styles.module.css"
-import { Student } from "./columns"
+import { Student } from './columns'
 import { useGetBackgrounds } from "@/app/(back-end)/features/student-background/api/use-get-backgrounds"
 import { useSettings } from "@/hooks/use-settings"
 
@@ -24,7 +24,7 @@ export const StudentPage = () => {
         endTerm: item.endTerm || 'N/A',
         campus: item.campus,
         employmentStatus: item.status,
-        // satisfaction: '4.6',
+        satisfaction: parseFloat(item.avgRating),
         // salary: "$100,000",
         gender: item.gender,
         race: item.race,

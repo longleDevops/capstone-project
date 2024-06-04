@@ -53,7 +53,7 @@ export const NotStarted = ({ firstName, lastName, userId }: props) => {
         />
         <div className={styles.heading}>Post-Graduation Career Survey </div>
         <div className={styles.description_container}>
-          <p>
+          <p className={styles.paragraph}>
             As you embark on your journey beyond Central Washington University,
             we invite you to participate in our Post-Graduation Career Survey.
             Your insights and experiences are invaluable in shaping the future

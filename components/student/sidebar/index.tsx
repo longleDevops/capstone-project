@@ -22,12 +22,6 @@ export const Sidebar = () => {
     },
 
     {
-      href: "/student/contact", // NEED to add one more page for about us
-      name: "Help And Support",
-      icon: Bell,
-      isActive: pathName === "/student/contact",
-    },
-    {
       href: "/student/about", // NEED to add one more page for about us
       name: "About Us",
       icon: CircleHelp,
